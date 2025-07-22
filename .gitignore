@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled Fortran
+*.o
+*.mod
+*.smod
+
+# Executables
+test_*
+!test_*.f
+!test_*.f90
+
+# Environment files
+.env
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Archives
+*.tgz
+*.tar.gz
+*.zip
+
+# IDE
+.vscode/
+.idea/
+
+# Logs (but keep the directory)
+logs/*
+!logs/.gitkeep

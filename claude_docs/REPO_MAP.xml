@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repo_map>
+    <project>
+        <name>SLATEC Legacy Code Modernization</name>
+        <purpose>Demonstrate AI-assisted modernization of legacy FORTRAN 77 mathematical library to modern Fortran</purpose>
+        <status>Analysis complete, proof-of-concept implemented, migration planning in progress</status>
+    </project>
+    
+    <repository_overview>
+        <location>/Users/nicholasmullen/Code/gauntlet/slatec_test</location>
+        <source_origin>http://www.netlib.org/slatec/slatec_src.tgz</source_origin>
+        <version>SLATEC Common Mathematical Library Version 4.1 (July 1993)</version>
+        <total_files>736</total_files>
+        <total_lines>168,355</total_lines>
+        <code_lines>77,407</code_lines>
+        <comment_lines>90,948</comment_lines>
+        <language>Pure FORTRAN 77</language>
+        <size_mb>5.79</size_mb>
+    </repository_overview>
+    
+    <directory_structure>
+        <src>
+            <description>Main SLATEC source files - all FORTRAN 77 (.f extension)</description>
+            <file_count>736</file_count>
+            <naming_conventions>
+                <single_precision>Functions without prefix (e.g., besi.f, gamln.f)</single_precision>
+                <double_precision>Functions with 'd' prefix (e.g., dbesi.f, dgamln.f)</double_precision>
+                <complex_single>Functions with 'c' prefix (e.g., cbesi.f)</complex_single>
+                <complex_double>Functions with 'z' prefix (e.g., zbesi.f)</complex_double>
+            </naming_conventions>
+        </src>
+        <root_directory>
+            <test_programs>
+                <test_simple.f>Basic R1MACH testing</test_simple.f>
+                <test_lamw.f>Comprehensive Lambert W function validation</test_lamw.f>
+                <test_slatec.f>Multi-function testing framework</test_slatec.f>
+            </test_programs>
+            <documentation>
+                <generate_lambert_test_cases.py>Python script for high-precision reference values</generate_lambert_test_cases.py>
+                <lambert_w_test_cases.f>Static test cases for Lambert W</lambert_w_test_cases.f>
+                <REPO_MAP.xml>This repository map</REPO_MAP.xml>
+            </documentation>
+            <compiled_objects>Multiple .o files from gfortran compilation</compiled_objects>
+        </root_directory>
+    </directory_structure>
+    
+    <mathematical_components>
+        <gams_classification>
+            <description>Organized by GAMS (Guide to Available Mathematical Software) system</description>
+            <total_categories>10</total_categories>
+        </gams_classification>
+        
+        <numerical_integration>
+            <gams_code>H</gams_code>
+            <count>73</count>
+            <subcategories>H2 (Quadrature), H2A1B2 (tabulated data), H2A2A1 (B-splines)</subcategories>
+            <key_routines>
+                <quadpack>qag*, qng, qaws* - adaptive quadrature</quadpack>
+                <gaussian>gaus8 - 8-point Gaussian integration</gaussian>
+                <bspline>Integration with B-spline methods</bspline>
+            </key_routines>
+            <modernization_priority>Medium - complex but well-defined algorithms</modernization_priority>
+        </numerical_integration>
+        
+        <special_functions>
+            <gams_code>C</gams_code>
+            <count>63</count>
+            <subcategories>C10 (Bessel), C5 (Exponential/Logarithmic)</subcategories>
+            <key_routines>
+                <bessel>besi/besj/besk/besy families with precision variants</bessel>
+                <gamma>gamln/dgamln - log gamma functions</gamma>
+                <airy>Airy functions for wave equations</airy>
+                <elliptic>Complete elliptic integrals</elliptic>
+                <lambert_w>lamw - Modern addition (product logarithm)</lambert_w>
+            </key_routines>
+            <dependencies>Often call ALNGAM, machine constants, error handling</dependencies>
+            <modernization_priority>High - direct SciPy equivalents available</modernization_priority>
+        </special_functions>
+        
+        <linear_algebra>
+            <gams_code>D</gams_code>
+            <count>45</count>
+            <subcategories>D1 (Elementary), D2 (Linear systems), D3 (Eigenvalues), D4 (Sparse)</subcategories>
+            <key_routines>
+                <linpack>sgefa/dgefa (factorization), sgesl/dgesl (solution)</linpack>
+                <banded>snbfa/dnbfa - banded matrix specialists</banded>
+                <eispack>sgeev/dgeev - eigenvalue problems</eispack>
+                <sparse>LA05 routines - limited sparse support</sparse>
+            </key_routines>
+            <modernization_priority>Low - LAPACK provides modern alternatives</modernization_priority>
+        </linear_algebra>
+        
+        <interpolation>
+            <gams_code>E</gams_code>
+            <count>27</count>
+            <subcategories>E1 (Univariate), E1A (Polynomial splines), E3 (Service routines)</subcategories>
+            <key_routines>
+                <bspline>bint*, bval*, bspl* - comprehensive B-spline package</bspline>
+                <conversion>bsppp - B-spline to piecewise polynomial</conversion>
+                <polynomial>General polynomial interpolation</polynomial>
+            </key_routines>
+            <documentation>bspdoc.f - extensive B-spline documentation</documentation>
+            <modernization_priority>Medium - useful standalone routines</modernization_priority>
+        </interpolation>
+        
+        <approximation>
+            <gams_code>K</gams_code>
+            <count>24</count>
+            <subcategories>K6 (Service routines)</subcategories>
+            <key_routines>
+                <least_squares>Polynomial and rational approximation</least_squares>
+                <chebyshev>Chebyshev polynomial methods</chebyshev>
+            </key_routines>
+            <modernization_priority>Medium - specialized algorithms</modernization_priority>
+        </approximation>
+        
+        <differential_equations>
+            <gams_code>I</gams_code>
+            <count>23</count>
+            <subcategories>I1A (Initial value), I1B (Boundary value)</subcategories>
+            <key_routines>
+                <runge_kutta>rkf* - Runge-Kutta-Fehlberg methods</runge_kutta>
+                <adams>adams family - multi-step methods</adams>
+                <stiff>debdf - backward differentiation formulas</stiff>
+                <dae>dassl - Differential-Algebraic System Solver</dae>
+                <bvp>bvsup - boundary value problems</bvp>
+                <livermore>lsod* - Livermore ODE solvers</livermore>
+            </key_routines>
+            <modernization_priority>High - no direct modern equivalents</modernization_priority>
+        </differential_equations>
+        
+        <nonlinear_equations>
+            <gams_code>F</gams_code>
+            <count>14</count>
+            <subcategories>F1 (Single), F2 (Systems), F3 (Service)</subcategories>
+            <key_routines>
+                <root_finding>fzero/dfzero - scalar root finding</root_finding>
+                <systems>snsq* - nonlinear equation systems</systems>
+                <optimization>Hybrid methods, Newton variants</optimization>
+            </key_routines>
+            <modernization_priority>Medium - SciPy equivalents exist</modernization_priority>
+        </nonlinear_equations>
+        
+        <service_routines>
+            <gams_code>R</gams_code>
+            <count>21</count>
+            <key_routines>
+                <machine_constants>r1mach, d1mach, i1mach - portable machine parameters</machine_constants>
+                <error_handling>xermsg, xerprn, xersve - centralized error system</error_handling>
+                <sorting>isort, ssort, various sort algorithms</sorting>
+                <utilities>Memory management, array operations</utilities>
+            </key_routines>
+            <modernization_priority>High - foundation for other functions</modernization_priority>
+        </service_routines>
+        
+        <data_handling>
+            <gams_code>N</gams_code>
+            <count>11</count>
+            <examples>Data processing, array manipulation</examples>
+            <modernization_priority>Medium - useful utilities</modernization_priority>
+        </data_handling>
+        
+        <arithmetic_error>
+            <gams_code>A</gams_code>
+            <count>12</count>
+            <examples>Extended precision, error analysis</examples>
+            <modernization_priority>Medium - numerical stability focus</modernization_priority>
+        </arithmetic_error>
+        
+        <statistics_probability>
+            <gams_code>L</gams_code>
+            <count>2</count>
+            <examples>Limited statistical functions</examples>
+            <modernization_priority>Low - modern alternatives widely available</modernization_priority>
+        </statistics_probability>
+        
+        <simulation_stochastic>
+            <gams_code>G</gams_code>
+            <count>2</count>
+            <examples>Random number generation</examples>
+            <modernization_priority>Low - modern alternatives available</modernization_priority>
+        </simulation_stochastic>
+        
+        <integral_transforms>
+            <gams_code>J</gams_code>
+            <count>1</count>
+            <key_routines>
+                <fft>Complete FFT package with documentation (fftdoc.f)</fft>
+                <transforms>Real, complex, sine, cosine transforms</transforms>
+            </key_routines>
+            <modernization_priority>Low - FFTW and modern FFT libraries available</modernization_priority>
+        </integral_transforms>
+        
+        <miscellaneous>
+            <gams_code>Z</gams_code>
+            <count>1</count>
+            <examples>aaaaaa.f - Library information and disclaimer</examples>
+            <modernization_priority>Low - informational only</modernization_priority>
+        </miscellaneous>
+    </mathematical_components>
+    
+    <technical_characteristics>
+        <fortran_77_patterns>
+            <fixed_format>All files use column-based formatting (C in col 1, code starts col 7)</fixed_format>
+            <obsolete_constructs>GO TO statements, arithmetic IF, computed GO TO</obsolete_constructs>
+            <memory_management>COMMON blocks, EQUIVALENCE statements, static arrays</memory_management>
+            <error_handling>Centralized XERMSG system with consistent error reporting</error_handling>
+            <machine_dependencies>Isolated in r1mach, d1mach, i1mach functions</machine_dependencies>
+            <documentation>Extensive structured prologues with purpose, usage, references</documentation>
+        </fortran_77_patterns>
+        <code_quality>
+            <documentation_ratio>54% of lines are comments</documentation_ratio>
+            <consistency>High - follows SLATEC conventions throughout</consistency>
+            <modularity>Good - clear separation of concerns</modularity>
+            <numerical_stability>Excellent - extensively tested algorithms</numerical_stability>
+        </code_quality>
+    </technical_characteristics>
+    
+    <implemented_additions>
+        <lambert_w_function>
+            <file>src/lamw.f</file>
+            <status>Complete and tested</status>
+            <features>Principal branch W₀(x) for x ≥ -1/e</features>
+            <test_results>15/16 test cases passed (branch point edge case expected)</test_results>
+            <algorithm>Halley's method with series expansion for small x</algorithm>
+            <integration>Uses SLATEC error handling (XERMSG), follows F77 style</integration>
+        </lambert_w_function>
+        <modernized_r1mach>
+            <file>r1mach_modern.f</file>
+            <purpose>Uses Fortran intrinsics instead of hardcoded constants</purpose>
+            <status>Working replacement for machine constants</status>
+        </modernized_r1mach>
+    </implemented_additions>
+    
+    <build_system>
+        <compiler>gfortran-15 (GNU Fortran 15.1.0)</compiler>
+        <installation>Installed via Homebrew on macOS</installation>
+        <flags>-std=legacy (required for FORTRAN 77 compatibility)</flags>
+        <linking>Manual linking of object files and dependencies</linking>
+        <dependencies>
+            <error_handling>xermsg.o, xerprn.o, xersve.o, xerhlt.o, xercnt.o, fdump.o</error_handling>
+            <machine_constants>i1mach.o, j4save.o, xgetua.o</machine_constants>
+        </dependencies>
+    </build_system>
+    
+    <available_resources>
+        <netlib_repository>
+            <slatec_chk>324KB test suite with 54 quick check drivers (not downloaded)</slatec_chk>
+            <guide>Official SLATEC documentation (not downloaded)</guide>
+            <tree>Dependency relationships (not downloaded)</tree>
+            <spfun>Special functions subset (not downloaded)</spfun>
+            <lin>Linear algebra subset (not downloaded)</lin>
+        </netlib_repository>
+        <test_resources>
+            <original_tests>SLATEC test suite for baseline validation</original_tests>
+            <comprehensive_coverage>Edge cases, boundary values, random sampling</comprehensive_coverage>
+            <performance_benchmarks>Speed and memory usage comparison</performance_benchmarks>
+        </test_resources>
+    </available_resources>
+    
+    <dependency_structure>
+        <hierarchical_levels>
+            <foundation>Machine constants (*1mach), error handling (xermsg system)</foundation>
+            <core>Basic linear algebra, special function kernels, elementary math</core>
+            <application>High-level solvers calling multiple lower-level routines</application>
+        </hierarchical_levels>
+        
+        <common_patterns>
+            <special_function_dependencies>
+                <example>besi.f calls ALNGAM, ASYIK, I1MACH, R1MACH, XERMSG</example>
+                <pattern>Special functions typically call: machine constants, error handling, asymptotic expansions, gamma functions</pattern>
+            </special_function_dependencies>
+            <precision_variants>
+                <naming>Same algorithm with s/d/c/z prefixes for different precisions</naming>
+                <count>Most core algorithms have 2-4 precision variants</count>
+                <consistency>APIs consistent across precision levels</consistency>
+            </precision_variants>
+            <error_handling>
+                <centralized>All through xermsg system</centralized>
+                <components>xerprn, xersve, xerhlt, xercnt - consistent reporting</components>
+                <integration>Every major routine uses standardized error reporting</integration>
+            </error_handling>
+        </common_patterns>
+        
+        <subsidiary_routines>
+            <purpose>Internal helper functions for complex algorithms</purpose>
+            <examples>asyik (Bessel asymptotics), besknu (Bessel K subsidiary)</examples>
+            <characteristics>Not user-callable, algorithm-specific optimizations</characteristics>
+        </subsidiary_routines>
+    </dependency_structure>
+
+    <migration_strategy>
+        <approach>Incremental modernization with backward compatibility</approach>
+        <validation>Dual comparison: Original F77 vs Modern F90+ with comprehensive test coverage</validation>
+        <dependency_aware_ordering>
+            <phase1>Foundation: Machine constants, error handling (breaks no dependencies)</phase1>
+            <phase2>Core utilities: enorm, pythag, sorting (minimal dependencies)</phase2>
+            <phase3>Mathematical functions: gamma, special functions (moderate dependencies)</phase3>
+            <phase4>High-level solvers: integration, ODE, linear algebra (many dependencies)</phase4>
+        </dependency_aware_ordering>
+        
+        <gams_category_priorities>
+            <high_priority>
+                <category>R - Service routines (foundation for everything)</category>
+                <category>C - Special functions (direct SciPy equivalents)</category>
+                <category>I - Differential equations (unique, high-value algorithms)</category>
+            </high_priority>
+            <medium_priority>
+                <category>H - Numerical integration (complex but well-defined)</category>
+                <category>E - Interpolation (useful standalone routines)</category>
+                <category>F - Nonlinear equations (SciPy equivalents exist)</category>
+                <category>K - Approximation (specialized algorithms)</category>
+            </medium_priority>
+            <low_priority>
+                <category>D - Linear algebra (LAPACK alternatives exist)</category>
+                <category>J - FFT (FFTW alternatives exist)</category>
+                <category>L,G - Statistics (modern alternatives widely available)</category>
+                <category>Z - Miscellaneous (informational)</category>
+            </low_priority>
+        </gams_category_priorities>
+        
+        <precision_variant_strategy>
+            <approach>Modernize single precision first, then extend to other precisions</approach>
+            <rationale>Reduces duplicate effort, establishes patterns</rationale>
+            <template>Modern implementation can handle multiple precisions via parameterized types</template>
+        </precision_variant_strategy>
+        
+        <target_candidates>
+            <tier1_foundation>r1mach.f, i1mach.f, xermsg.f (already started)</tier1_foundation>
+            <tier1_utilities>enorm.f, pythag.f (simple, self-contained)</tier1_utilities>
+            <tier2_mathematical>gamln.f, fzero.f (moderate complexity, clear algorithms)</tier2_mathematical>
+            <tier3_special_functions>besi.f family (complex but high-value, SciPy validation)</tier3_special_functions>
+            <tier4_complex_systems>qag.f (QUADPACK), dassl.f (unique ODE solver)</tier4_complex_systems>
+        </target_candidates>
+    </migration_strategy>
+    
+    <technical_challenges>
+        <numerical_precision>Must maintain bit-for-bit compatibility where possible</numerical_precision>
+        <dependency_management>Functions call each other, requiring careful ordering</dependency_management>
+        <interface_compatibility>Modern F90+ interfaces differ from F77 calling conventions</interface_compatibility>
+        <build_complexity>Mixed F77/F90+ compilation requires build system updates</build_complexity>
+        <testing_infrastructure>Limited existing tests, need comprehensive validation framework</testing_infrastructure>
+    </technical_challenges>
+    
+    <next_steps>
+        <immediate>
+            <download_test_suite>Get slatec_chk.tgz for validation baseline</download_test_suite>
+            <select_first_target>Choose enorm.f or pythag.f for first modernization</select_first_target>
+            <create_validation_framework>Build triple comparison test system</create_validation_framework>
+        </immediate>
+        <short_term>
+            <modernize_utilities>Convert foundational functions first</modernize_utilities>
+            <establish_patterns>Document reusable transformation patterns</establish_patterns>
+            <build_automation>Create scripts for common F77→F90+ conversions</build_automation>
+        </short_term>
+        <long_term>
+            <systematic_migration>Apply patterns to larger function families</systematic_migration>
+            <performance_optimization>Leverage modern Fortran features for speed</performance_optimization>
+            <community_engagement>Share results with scientific computing community</community_engagement>
+        </long_term>
+    </next_steps>
+    
+    <context_restoration>
+        <key_insights>
+            <size_discrepancy>SLATEC is 168k lines, not 1M+ as sometimes claimed</size_discrepancy>
+            <pure_f77>Entire codebase is FORTRAN 77 with no modernization attempts</pure_f77>
+            <systematic_organization>Well-structured with consistent naming and documentation</systematic_organization>
+            <proof_of_concept>Successfully added Lambert W function following SLATEC conventions</proof_of_concept>
+        </key_insights>
+        <decision_points>
+            <modernization_scope>Focus on mathematical functions with clear modern equivalents</modernization_scope>
+            <validation_strategy>Use SciPy as independent reference for correctness</validation_strategy>
+            <compatibility_approach>Maintain F77 interfaces while modernizing implementations</compatibility_approach>
+        </decision_points>
+    </context_restoration>
+</repo_map>
