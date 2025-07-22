@@ -1,0 +1,2479 @@
+{
+  "function": "zabs",
+  "signature": "DOUBLE PRECISION FUNCTION ZABS(ZR, ZI)",
+  "description": "Compute absolute value (magnitude) of a complex number with overflow/underflow protection",
+  "total_tests": 353,
+  "test_cases": [
+    {
+      "description": "Zero complex number",
+      "inputs": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Pure real positive",
+      "inputs": [
+        3.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Pure real negative",
+      "inputs": [
+        -4.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Pure imaginary positive",
+      "inputs": [
+        0.0,
+        5.0
+      ]
+    },
+    {
+      "description": "Pure imaginary negative",
+      "inputs": [
+        0.0,
+        -12.0
+      ]
+    },
+    {
+      "description": "Simple 3-4-5 triangle",
+      "inputs": [
+        3.0,
+        4.0
+      ]
+    },
+    {
+      "description": "Simple 3-4-5 triangle negative real",
+      "inputs": [
+        -3.0,
+        4.0
+      ]
+    },
+    {
+      "description": "Simple 3-4-5 triangle negative imaginary",
+      "inputs": [
+        3.0,
+        -4.0
+      ]
+    },
+    {
+      "description": "Simple 3-4-5 triangle both negative",
+      "inputs": [
+        -3.0,
+        -4.0
+      ]
+    },
+    {
+      "description": "Unit complex at 0 degrees",
+      "inputs": [
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Unit complex at 15 degrees",
+      "inputs": [
+        0.9659258262890683,
+        0.25881904510252074
+      ]
+    },
+    {
+      "description": "Unit complex at 30 degrees",
+      "inputs": [
+        0.8660254037844387,
+        0.49999999999999994
+      ]
+    },
+    {
+      "description": "Unit complex at 45 degrees",
+      "inputs": [
+        0.7071067811865476,
+        0.7071067811865475
+      ]
+    },
+    {
+      "description": "Unit complex at 60 degrees",
+      "inputs": [
+        0.5000000000000001,
+        0.8660254037844386
+      ]
+    },
+    {
+      "description": "Unit complex at 75 degrees",
+      "inputs": [
+        0.25881904510252074,
+        0.9659258262890683
+      ]
+    },
+    {
+      "description": "Unit complex at 90 degrees",
+      "inputs": [
+        6.123233995736766e-17,
+        1.0
+      ]
+    },
+    {
+      "description": "Unit complex at 105 degrees",
+      "inputs": [
+        -0.25881904510252085,
+        0.9659258262890683
+      ]
+    },
+    {
+      "description": "Unit complex at 120 degrees",
+      "inputs": [
+        -0.49999999999999983,
+        0.8660254037844387
+      ]
+    },
+    {
+      "description": "Unit complex at 135 degrees",
+      "inputs": [
+        -0.7071067811865475,
+        0.7071067811865476
+      ]
+    },
+    {
+      "description": "Unit complex at 150 degrees",
+      "inputs": [
+        -0.8660254037844387,
+        0.49999999999999994
+      ]
+    },
+    {
+      "description": "Unit complex at 165 degrees",
+      "inputs": [
+        -0.9659258262890682,
+        0.258819045102521
+      ]
+    },
+    {
+      "description": "Unit complex at 180 degrees",
+      "inputs": [
+        -1.0,
+        1.2246467991473532e-16
+      ]
+    },
+    {
+      "description": "Unit complex at 195 degrees",
+      "inputs": [
+        -0.9659258262890683,
+        -0.2588190451025208
+      ]
+    },
+    {
+      "description": "Unit complex at 210 degrees",
+      "inputs": [
+        -0.8660254037844386,
+        -0.5000000000000001
+      ]
+    },
+    {
+      "description": "Unit complex at 225 degrees",
+      "inputs": [
+        -0.7071067811865477,
+        -0.7071067811865475
+      ]
+    },
+    {
+      "description": "Unit complex at 240 degrees",
+      "inputs": [
+        -0.5000000000000004,
+        -0.8660254037844384
+      ]
+    },
+    {
+      "description": "Unit complex at 255 degrees",
+      "inputs": [
+        -0.25881904510252063,
+        -0.9659258262890683
+      ]
+    },
+    {
+      "description": "Unit complex at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-16,
+        -1.0
+      ]
+    },
+    {
+      "description": "Unit complex at 285 degrees",
+      "inputs": [
+        0.2588190451025203,
+        -0.9659258262890684
+      ]
+    },
+    {
+      "description": "Unit complex at 300 degrees",
+      "inputs": [
+        0.5000000000000001,
+        -0.8660254037844386
+      ]
+    },
+    {
+      "description": "Unit complex at 315 degrees",
+      "inputs": [
+        0.7071067811865474,
+        -0.7071067811865477
+      ]
+    },
+    {
+      "description": "Unit complex at 330 degrees",
+      "inputs": [
+        0.8660254037844384,
+        -0.5000000000000004
+      ]
+    },
+    {
+      "description": "Unit complex at 345 degrees",
+      "inputs": [
+        0.9659258262890683,
+        -0.2588190451025207
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 0 degrees",
+      "inputs": [
+        0.1,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 30 degrees",
+      "inputs": [
+        0.08660254037844388,
+        0.049999999999999996
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 45 degrees",
+      "inputs": [
+        0.07071067811865477,
+        0.07071067811865475
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 60 degrees",
+      "inputs": [
+        0.05000000000000002,
+        0.08660254037844387
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-18,
+        0.1
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 120 degrees",
+      "inputs": [
+        -0.04999999999999999,
+        0.08660254037844388
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 135 degrees",
+      "inputs": [
+        -0.07071067811865475,
+        0.07071067811865477
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 150 degrees",
+      "inputs": [
+        -0.08660254037844388,
+        0.049999999999999996
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 180 degrees",
+      "inputs": [
+        -0.1,
+        1.2246467991473533e-17
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 225 degrees",
+      "inputs": [
+        -0.07071067811865477,
+        -0.07071067811865475
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-17,
+        -0.1
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.1 at 315 degrees",
+      "inputs": [
+        0.07071067811865474,
+        -0.07071067811865477
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 0 degrees",
+      "inputs": [
+        0.5,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 30 degrees",
+      "inputs": [
+        0.43301270189221935,
+        0.24999999999999997
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 45 degrees",
+      "inputs": [
+        0.3535533905932738,
+        0.35355339059327373
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 60 degrees",
+      "inputs": [
+        0.25000000000000006,
+        0.4330127018922193
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 90 degrees",
+      "inputs": [
+        3.061616997868383e-17,
+        0.5
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 120 degrees",
+      "inputs": [
+        -0.24999999999999992,
+        0.43301270189221935
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 135 degrees",
+      "inputs": [
+        -0.35355339059327373,
+        0.3535533905932738
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 150 degrees",
+      "inputs": [
+        -0.43301270189221935,
+        0.24999999999999997
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 180 degrees",
+      "inputs": [
+        -0.5,
+        6.123233995736766e-17
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 225 degrees",
+      "inputs": [
+        -0.35355339059327384,
+        -0.35355339059327373
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 270 degrees",
+      "inputs": [
+        -9.184850993605148e-17,
+        -0.5
+      ]
+    },
+    {
+      "description": "Complex with magnitude 0.5 at 315 degrees",
+      "inputs": [
+        0.3535533905932737,
+        -0.35355339059327384
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 0 degrees",
+      "inputs": [
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 30 degrees",
+      "inputs": [
+        0.8660254037844387,
+        0.49999999999999994
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 45 degrees",
+      "inputs": [
+        0.7071067811865476,
+        0.7071067811865475
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 60 degrees",
+      "inputs": [
+        0.5000000000000001,
+        0.8660254037844386
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-17,
+        1.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 120 degrees",
+      "inputs": [
+        -0.49999999999999983,
+        0.8660254037844387
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 135 degrees",
+      "inputs": [
+        -0.7071067811865475,
+        0.7071067811865476
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 150 degrees",
+      "inputs": [
+        -0.8660254037844387,
+        0.49999999999999994
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 180 degrees",
+      "inputs": [
+        -1.0,
+        1.2246467991473532e-16
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 225 degrees",
+      "inputs": [
+        -0.7071067811865477,
+        -0.7071067811865475
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-16,
+        -1.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 1.0 at 315 degrees",
+      "inputs": [
+        0.7071067811865474,
+        -0.7071067811865477
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 0 degrees",
+      "inputs": [
+        2.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 30 degrees",
+      "inputs": [
+        1.7320508075688774,
+        0.9999999999999999
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 45 degrees",
+      "inputs": [
+        1.4142135623730951,
+        1.414213562373095
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 60 degrees",
+      "inputs": [
+        1.0000000000000002,
+        1.7320508075688772
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 90 degrees",
+      "inputs": [
+        1.2246467991473532e-16,
+        2.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 120 degrees",
+      "inputs": [
+        -0.9999999999999997,
+        1.7320508075688774
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 135 degrees",
+      "inputs": [
+        -1.414213562373095,
+        1.4142135623730951
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 150 degrees",
+      "inputs": [
+        -1.7320508075688774,
+        0.9999999999999999
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 180 degrees",
+      "inputs": [
+        -2.0,
+        2.4492935982947064e-16
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 225 degrees",
+      "inputs": [
+        -1.4142135623730954,
+        -1.414213562373095
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 270 degrees",
+      "inputs": [
+        -3.6739403974420594e-16,
+        -2.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 2.0 at 315 degrees",
+      "inputs": [
+        1.4142135623730947,
+        -1.4142135623730954
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 0 degrees",
+      "inputs": [
+        5.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 30 degrees",
+      "inputs": [
+        4.330127018922194,
+        2.4999999999999996
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 45 degrees",
+      "inputs": [
+        3.5355339059327378,
+        3.5355339059327373
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 60 degrees",
+      "inputs": [
+        2.5000000000000004,
+        4.330127018922193
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 90 degrees",
+      "inputs": [
+        3.061616997868383e-16,
+        5.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 120 degrees",
+      "inputs": [
+        -2.499999999999999,
+        4.330127018922194
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 135 degrees",
+      "inputs": [
+        -3.5355339059327373,
+        3.5355339059327378
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 150 degrees",
+      "inputs": [
+        -4.330127018922194,
+        2.4999999999999996
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 180 degrees",
+      "inputs": [
+        -5.0,
+        6.123233995736766e-16
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 225 degrees",
+      "inputs": [
+        -3.5355339059327386,
+        -3.5355339059327373
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 270 degrees",
+      "inputs": [
+        -9.184850993605148e-16,
+        -5.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 5.0 at 315 degrees",
+      "inputs": [
+        3.535533905932737,
+        -3.5355339059327386
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 0 degrees",
+      "inputs": [
+        10.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 30 degrees",
+      "inputs": [
+        8.660254037844387,
+        4.999999999999999
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 45 degrees",
+      "inputs": [
+        7.0710678118654755,
+        7.071067811865475
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 60 degrees",
+      "inputs": [
+        5.000000000000001,
+        8.660254037844386
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-16,
+        10.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 120 degrees",
+      "inputs": [
+        -4.999999999999998,
+        8.660254037844387
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 135 degrees",
+      "inputs": [
+        -7.071067811865475,
+        7.0710678118654755
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 150 degrees",
+      "inputs": [
+        -8.660254037844387,
+        4.999999999999999
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 180 degrees",
+      "inputs": [
+        -10.0,
+        1.2246467991473533e-15
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 225 degrees",
+      "inputs": [
+        -7.071067811865477,
+        -7.071067811865475
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 270 degrees",
+      "inputs": [
+        -1.8369701987210296e-15,
+        -10.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 10.0 at 315 degrees",
+      "inputs": [
+        7.071067811865474,
+        -7.071067811865477
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 0 degrees",
+      "inputs": [
+        100.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 30 degrees",
+      "inputs": [
+        86.60254037844388,
+        49.99999999999999
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 45 degrees",
+      "inputs": [
+        70.71067811865476,
+        70.71067811865474
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 60 degrees",
+      "inputs": [
+        50.000000000000014,
+        86.60254037844386
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-15,
+        100.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 120 degrees",
+      "inputs": [
+        -49.999999999999986,
+        86.60254037844388
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 135 degrees",
+      "inputs": [
+        -70.71067811865474,
+        70.71067811865476
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 150 degrees",
+      "inputs": [
+        -86.60254037844388,
+        49.99999999999999
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 180 degrees",
+      "inputs": [
+        -100.0,
+        1.2246467991473532e-14
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 225 degrees",
+      "inputs": [
+        -70.71067811865477,
+        -70.71067811865474
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-14,
+        -100.0
+      ]
+    },
+    {
+      "description": "Complex with magnitude 100.0 at 315 degrees",
+      "inputs": [
+        70.71067811865474,
+        -70.71067811865477
+      ]
+    },
+    {
+      "description": "Pythagorean triple (3,4,5)",
+      "inputs": [
+        3.0,
+        4.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (3,-4,5)",
+      "inputs": [
+        3.0,
+        -4.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-3,4,5)",
+      "inputs": [
+        -3.0,
+        4.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-3,-4,5)",
+      "inputs": [
+        -3.0,
+        -4.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (5,12,13)",
+      "inputs": [
+        5.0,
+        12.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (5,-12,13)",
+      "inputs": [
+        5.0,
+        -12.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-5,12,13)",
+      "inputs": [
+        -5.0,
+        12.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-5,-12,13)",
+      "inputs": [
+        -5.0,
+        -12.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (8,15,17)",
+      "inputs": [
+        8.0,
+        15.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (8,-15,17)",
+      "inputs": [
+        8.0,
+        -15.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-8,15,17)",
+      "inputs": [
+        -8.0,
+        15.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-8,-15,17)",
+      "inputs": [
+        -8.0,
+        -15.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (7,24,25)",
+      "inputs": [
+        7.0,
+        24.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (7,-24,25)",
+      "inputs": [
+        7.0,
+        -24.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-7,24,25)",
+      "inputs": [
+        -7.0,
+        24.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-7,-24,25)",
+      "inputs": [
+        -7.0,
+        -24.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (20,21,29)",
+      "inputs": [
+        20.0,
+        21.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (20,-21,29)",
+      "inputs": [
+        20.0,
+        -21.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-20,21,29)",
+      "inputs": [
+        -20.0,
+        21.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-20,-21,29)",
+      "inputs": [
+        -20.0,
+        -21.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (9,40,41)",
+      "inputs": [
+        9.0,
+        40.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (9,-40,41)",
+      "inputs": [
+        9.0,
+        -40.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-9,40,41)",
+      "inputs": [
+        -9.0,
+        40.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-9,-40,41)",
+      "inputs": [
+        -9.0,
+        -40.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (11,60,61)",
+      "inputs": [
+        11.0,
+        60.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (11,-60,61)",
+      "inputs": [
+        11.0,
+        -60.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-11,60,61)",
+      "inputs": [
+        -11.0,
+        60.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-11,-60,61)",
+      "inputs": [
+        -11.0,
+        -60.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (12,35,37)",
+      "inputs": [
+        12.0,
+        35.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (12,-35,37)",
+      "inputs": [
+        12.0,
+        -35.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-12,35,37)",
+      "inputs": [
+        -12.0,
+        35.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-12,-35,37)",
+      "inputs": [
+        -12.0,
+        -35.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (13,84,85)",
+      "inputs": [
+        13.0,
+        84.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (13,-84,85)",
+      "inputs": [
+        13.0,
+        -84.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-13,84,85)",
+      "inputs": [
+        -13.0,
+        84.0
+      ]
+    },
+    {
+      "description": "Pythagorean triple (-13,-84,85)",
+      "inputs": [
+        -13.0,
+        -84.0
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-20",
+      "inputs": [
+        1e-20,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-20",
+      "inputs": [
+        0.0,
+        1e-20
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-20",
+      "inputs": [
+        1e-20,
+        1e-20
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-30",
+      "inputs": [
+        1e-30,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-30",
+      "inputs": [
+        0.0,
+        1e-30
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-30",
+      "inputs": [
+        1e-30,
+        1e-30
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-50",
+      "inputs": [
+        1e-50,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-50",
+      "inputs": [
+        0.0,
+        1e-50
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-50",
+      "inputs": [
+        1e-50,
+        1e-50
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-100",
+      "inputs": [
+        1e-100,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-100",
+      "inputs": [
+        0.0,
+        1e-100
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-100",
+      "inputs": [
+        1e-100,
+        1e-100
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-150",
+      "inputs": [
+        1e-150,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-150",
+      "inputs": [
+        0.0,
+        1e-150
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-150",
+      "inputs": [
+        1e-150,
+        1e-150
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-200",
+      "inputs": [
+        1e-200,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-200",
+      "inputs": [
+        0.0,
+        1e-200
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-200",
+      "inputs": [
+        1e-200,
+        1e-200
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-250",
+      "inputs": [
+        1e-250,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-250",
+      "inputs": [
+        0.0,
+        1e-250
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-250",
+      "inputs": [
+        1e-250,
+        1e-250
+      ]
+    },
+    {
+      "description": "Tiny real part 1e-300",
+      "inputs": [
+        1e-300,
+        0.0
+      ]
+    },
+    {
+      "description": "Tiny imaginary part 1e-300",
+      "inputs": [
+        0.0,
+        1e-300
+      ]
+    },
+    {
+      "description": "Both parts tiny 1e-300",
+      "inputs": [
+        1e-300,
+        1e-300
+      ]
+    },
+    {
+      "description": "Huge real part 1e+20",
+      "inputs": [
+        1e+20,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+20",
+      "inputs": [
+        0.0,
+        1e+20
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+20",
+      "inputs": [
+        1e+20,
+        1e+20
+      ]
+    },
+    {
+      "description": "Huge real part 1e+50",
+      "inputs": [
+        1e+50,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+50",
+      "inputs": [
+        0.0,
+        1e+50
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+50",
+      "inputs": [
+        1e+50,
+        1e+50
+      ]
+    },
+    {
+      "description": "Huge real part 1e+100",
+      "inputs": [
+        1e+100,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+100",
+      "inputs": [
+        0.0,
+        1e+100
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+100",
+      "inputs": [
+        1e+100,
+        1e+100
+      ]
+    },
+    {
+      "description": "Huge real part 1e+150",
+      "inputs": [
+        1e+150,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+150",
+      "inputs": [
+        0.0,
+        1e+150
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+150",
+      "inputs": [
+        1e+150,
+        1e+150
+      ]
+    },
+    {
+      "description": "Huge real part 1e+200",
+      "inputs": [
+        1e+200,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+200",
+      "inputs": [
+        0.0,
+        1e+200
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+200",
+      "inputs": [
+        1e+200,
+        1e+200
+      ]
+    },
+    {
+      "description": "Huge real part 1e+250",
+      "inputs": [
+        1e+250,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+250",
+      "inputs": [
+        0.0,
+        1e+250
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+250",
+      "inputs": [
+        1e+250,
+        1e+250
+      ]
+    },
+    {
+      "description": "Huge real part 1e+300",
+      "inputs": [
+        1e+300,
+        0.0
+      ]
+    },
+    {
+      "description": "Huge imaginary part 1e+300",
+      "inputs": [
+        0.0,
+        1e+300
+      ]
+    },
+    {
+      "description": "Both parts huge 1e+300",
+      "inputs": [
+        1e+300,
+        1e+300
+      ]
+    },
+    {
+      "description": "Large real, small imaginary",
+      "inputs": [
+        1e+100,
+        1e-100
+      ]
+    },
+    {
+      "description": "Small real, large imaginary",
+      "inputs": [
+        1e-100,
+        1e+100
+      ]
+    },
+    {
+      "description": "Medium real, tiny imaginary",
+      "inputs": [
+        1.0,
+        1e-200
+      ]
+    },
+    {
+      "description": "Tiny real, medium imaginary",
+      "inputs": [
+        1e-200,
+        1.0
+      ]
+    },
+    {
+      "description": "Both parts at machine epsilon",
+      "inputs": [
+        2.220446049250313e-16,
+        2.220446049250313e-16
+      ]
+    },
+    {
+      "description": "Real at 1, imaginary at machine epsilon",
+      "inputs": [
+        1.0,
+        2.220446049250313e-16
+      ]
+    },
+    {
+      "description": "Real at machine epsilon, imaginary at 1",
+      "inputs": [
+        2.220446049250313e-16,
+        1.0
+      ]
+    },
+    {
+      "description": "Both parts near sqrt(DBL_MAX)",
+      "inputs": [
+        1e+154,
+        1e+154
+      ]
+    },
+    {
+      "description": "Real near sqrt(DBL_MAX), imaginary smaller",
+      "inputs": [
+        1e+154,
+        1e+150
+      ]
+    },
+    {
+      "description": "Imaginary near sqrt(DBL_MAX), real smaller",
+      "inputs": [
+        1e+150,
+        1e+154
+      ]
+    },
+    {
+      "description": "Both parts near sqrt(DBL_MIN)",
+      "inputs": [
+        1e-154,
+        1e-154
+      ]
+    },
+    {
+      "description": "Real near sqrt(DBL_MIN), imaginary larger",
+      "inputs": [
+        1e-154,
+        1e-150
+      ]
+    },
+    {
+      "description": "Imaginary near sqrt(DBL_MIN), real larger",
+      "inputs": [
+        1e-150,
+        1e-154
+      ]
+    },
+    {
+      "description": "Real/Imaginary ratio 1e+10",
+      "inputs": [
+        10000000000.0,
+        1.0
+      ]
+    },
+    {
+      "description": "Imaginary/Real ratio 1e+10",
+      "inputs": [
+        1.0,
+        10000000000.0
+      ]
+    },
+    {
+      "description": "Real/Imaginary ratio 1e+20",
+      "inputs": [
+        1e+20,
+        1.0
+      ]
+    },
+    {
+      "description": "Imaginary/Real ratio 1e+20",
+      "inputs": [
+        1.0,
+        1e+20
+      ]
+    },
+    {
+      "description": "Real/Imaginary ratio 1e+50",
+      "inputs": [
+        1e+50,
+        1.0
+      ]
+    },
+    {
+      "description": "Imaginary/Real ratio 1e+50",
+      "inputs": [
+        1.0,
+        1e+50
+      ]
+    },
+    {
+      "description": "Real/Imaginary ratio 1e+100",
+      "inputs": [
+        1e+100,
+        1.0
+      ]
+    },
+    {
+      "description": "Imaginary/Real ratio 1e+100",
+      "inputs": [
+        1.0,
+        1e+100
+      ]
+    },
+    {
+      "description": "Real/Imaginary ratio 1e+200",
+      "inputs": [
+        1e+200,
+        1.0
+      ]
+    },
+    {
+      "description": "Imaginary/Real ratio 1e+200",
+      "inputs": [
+        1.0,
+        1e+200
+      ]
+    },
+    {
+      "description": "Real/Imaginary ratio 1e+300",
+      "inputs": [
+        1e+300,
+        1.0
+      ]
+    },
+    {
+      "description": "Imaginary/Real ratio 1e+300",
+      "inputs": [
+        1.0,
+        1e+300
+      ]
+    },
+    {
+      "description": "Random complex #1",
+      "inputs": [
+        27.885359691576753,
+        -94.99784895546661
+      ]
+    },
+    {
+      "description": "Random complex #2",
+      "inputs": [
+        -44.99413632617615,
+        -55.35785237023545
+      ]
+    },
+    {
+      "description": "Random complex #3",
+      "inputs": [
+        47.29424283280247,
+        35.33989748458225
+      ]
+    },
+    {
+      "description": "Random complex #4",
+      "inputs": [
+        78.43591354096907,
+        -82.61223347411678
+      ]
+    },
+    {
+      "description": "Random complex #5",
+      "inputs": [
+        -15.61563606294591,
+        -94.04055611238593
+      ]
+    },
+    {
+      "description": "Random complex #6",
+      "inputs": [
+        -56.27240503927933,
+        1.0710576206724767
+      ]
+    },
+    {
+      "description": "Random complex #7",
+      "inputs": [
+        -94.69280606322728,
+        -60.2324698626703
+      ]
+    },
+    {
+      "description": "Random complex #8",
+      "inputs": [
+        29.976887555904653,
+        8.98829612064334
+      ]
+    },
+    {
+      "description": "Random complex #9",
+      "inputs": [
+        -55.911875591860664,
+        17.85313677518174
+      ]
+    },
+    {
+      "description": "Random complex #10",
+      "inputs": [
+        61.88609133556534,
+        -98.7002480643878
+      ]
+    },
+    {
+      "description": "Random complex #11",
+      "inputs": [
+        61.163850366561576,
+        39.62787899764538
+      ]
+    },
+    {
+      "description": "Random complex #12",
+      "inputs": [
+        -31.949896696401623,
+        -68.90410003764369
+      ]
+    },
+    {
+      "description": "Random complex #13",
+      "inputs": [
+        91.44261444135623,
+        -32.68109097747465
+      ]
+    },
+    {
+      "description": "Random complex #14",
+      "inputs": [
+        -81.45083132397042,
+        -80.65672463330719
+      ]
+    },
+    {
+      "description": "Random complex #15",
+      "inputs": [
+        69.49887326949195,
+        20.745206273378216
+      ]
+    },
+    {
+      "description": "Random complex #16",
+      "inputs": [
+        61.42565465487604,
+        45.94635733876359
+      ]
+    },
+    {
+      "description": "Random complex #17",
+      "inputs": [
+        7.245618290940143,
+        94.62315279587412
+      ]
+    },
+    {
+      "description": "Random complex #18",
+      "inputs": [
+        -24.29312455832931,
+        10.408126254645396
+      ]
+    },
+    {
+      "description": "Random complex #19",
+      "inputs": [
+        65.88093285059898,
+        23.703950472849215
+      ]
+    },
+    {
+      "description": "Random complex #20",
+      "inputs": [
+        72.34138006215545,
+        15.470429051352411
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #1",
+      "inputs": [
+        -1.5593546911207638e+21,
+        -1.6104659558110605e-45
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #2",
+      "inputs": [
+        -7.606747980417129e-42,
+        -8.44351429325162e-27
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #3",
+      "inputs": [
+        -96119785183186.86,
+        -1.7675980685630646e-13
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #4",
+      "inputs": [
+        1.4763106026712013e-23,
+        1.0102687612004605e+44
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #5",
+      "inputs": [
+        -8.749952784787393e-33,
+        -1.971775202144092e+23
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #6",
+      "inputs": [
+        1.0206029840375386e+49,
+        369208085818413.06
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #7",
+      "inputs": [
+        -1.0449951151910705e+35,
+        -3.7254090830050205e+28
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #8",
+      "inputs": [
+        -2.0288896437838635e-18,
+        5.265417336182101e-23
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #9",
+      "inputs": [
+        1.3469507032994198e+38,
+        -6.128946754205121e-19
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #10",
+      "inputs": [
+        -1.3399180429440549e+42,
+        -0.0003890224976171158
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #11",
+      "inputs": [
+        2318151.683958828,
+        1.4958243855339374e-23
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #12",
+      "inputs": [
+        8.667750910220311e-10,
+        1.6294081235794932e-29
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #13",
+      "inputs": [
+        -9.625567952481005e-41,
+        1.312181436776265e-45
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #14",
+      "inputs": [
+        -1.4090393215164e+30,
+        -3.8932081945049314e-08
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #15",
+      "inputs": [
+        3.8571025909555794e+50,
+        5884.459814597709
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #16",
+      "inputs": [
+        5.111070839423614e-49,
+        8.731025640553252e+21
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #17",
+      "inputs": [
+        -3.740086844288422e-23,
+        -162812914846780.12
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #18",
+      "inputs": [
+        0.00017718158432982075,
+        -1.1393511254069215e+46
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #19",
+      "inputs": [
+        9.44495355135772,
+        5.432853919514513e-32
+      ]
+    },
+    {
+      "description": "Random complex with varied magnitude #20",
+      "inputs": [
+        1.5234104631257287e-20,
+        -545142544563757.9
+      ]
+    },
+    {
+      "description": "Golden ratio complex (phi, 1)",
+      "inputs": [
+        1.618033988749895,
+        1.0
+      ]
+    },
+    {
+      "description": "Pi and e",
+      "inputs": [
+        3.141592653589793,
+        2.718281828459045
+      ]
+    },
+    {
+      "description": "sqrt(2) and sqrt(3)",
+      "inputs": [
+        1.4142135623730951,
+        1.7320508075688772
+      ]
+    },
+    {
+      "description": "Equal real and imaginary parts",
+      "inputs": [
+        7.0,
+        7.0
+      ]
+    },
+    {
+      "description": "Negative equal parts",
+      "inputs": [
+        -5.5,
+        -5.5
+      ]
+    },
+    {
+      "description": "Opposite signs equal magnitude",
+      "inputs": [
+        10.0,
+        -10.0
+      ]
+    },
+    {
+      "description": "CDC underflow real part",
+      "inputs": [
+        1e-293,
+        0.0
+      ]
+    },
+    {
+      "description": "CDC underflow imaginary part",
+      "inputs": [
+        0.0,
+        1e-293
+      ]
+    },
+    {
+      "description": "CDC underflow both parts",
+      "inputs": [
+        1e-293,
+        1e-293
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-200",
+      "inputs": [
+        3e-200,
+        4e-200
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-100",
+      "inputs": [
+        3e-100,
+        4e-100
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-50",
+      "inputs": [
+        3e-50,
+        4e-50
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-10",
+      "inputs": [
+        3e-10,
+        4e-10
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-05",
+      "inputs": [
+        3.0000000000000004e-05,
+        4e-05
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-02",
+      "inputs": [
+        0.03,
+        0.04
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e-01",
+      "inputs": [
+        0.30000000000000004,
+        0.4
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+00",
+      "inputs": [
+        3.0,
+        4.0
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+01",
+      "inputs": [
+        30.0,
+        40.0
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+02",
+      "inputs": [
+        300.0,
+        400.0
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+05",
+      "inputs": [
+        300000.0,
+        400000.0
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+10",
+      "inputs": [
+        30000000000.0,
+        40000000000.0
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+50",
+      "inputs": [
+        3.0000000000000002e+50,
+        4e+50
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+100",
+      "inputs": [
+        3.0000000000000002e+100,
+        4e+100
+      ]
+    },
+    {
+      "description": "Complex (3.0,4.0) scaled by 1e+200",
+      "inputs": [
+        3e+200,
+        4e+200
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-200",
+      "inputs": [
+        1e-200,
+        1e-200
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-100",
+      "inputs": [
+        1e-100,
+        1e-100
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-50",
+      "inputs": [
+        1e-50,
+        1e-50
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-10",
+      "inputs": [
+        1e-10,
+        1e-10
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-05",
+      "inputs": [
+        1e-05,
+        1e-05
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-02",
+      "inputs": [
+        0.01,
+        0.01
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e-01",
+      "inputs": [
+        0.1,
+        0.1
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+00",
+      "inputs": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+01",
+      "inputs": [
+        10.0,
+        10.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+02",
+      "inputs": [
+        100.0,
+        100.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+05",
+      "inputs": [
+        100000.0,
+        100000.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+10",
+      "inputs": [
+        10000000000.0,
+        10000000000.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+50",
+      "inputs": [
+        1e+50,
+        1e+50
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+100",
+      "inputs": [
+        1e+100,
+        1e+100
+      ]
+    },
+    {
+      "description": "Complex (1.0,1.0) scaled by 1e+200",
+      "inputs": [
+        1e+200,
+        1e+200
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-200",
+      "inputs": [
+        1e-200,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-100",
+      "inputs": [
+        1e-100,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-50",
+      "inputs": [
+        1e-50,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-10",
+      "inputs": [
+        1e-10,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-05",
+      "inputs": [
+        1e-05,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-02",
+      "inputs": [
+        0.01,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e-01",
+      "inputs": [
+        0.1,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+00",
+      "inputs": [
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+01",
+      "inputs": [
+        10.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+02",
+      "inputs": [
+        100.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+05",
+      "inputs": [
+        100000.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+10",
+      "inputs": [
+        10000000000.0,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+50",
+      "inputs": [
+        1e+50,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+100",
+      "inputs": [
+        1e+100,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (1.0,0.0) scaled by 1e+200",
+      "inputs": [
+        1e+200,
+        0.0
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-200",
+      "inputs": [
+        0.0,
+        1e-200
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-100",
+      "inputs": [
+        0.0,
+        1e-100
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-50",
+      "inputs": [
+        0.0,
+        1e-50
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-10",
+      "inputs": [
+        0.0,
+        1e-10
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-05",
+      "inputs": [
+        0.0,
+        1e-05
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-02",
+      "inputs": [
+        0.0,
+        0.01
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e-01",
+      "inputs": [
+        0.0,
+        0.1
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+00",
+      "inputs": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+01",
+      "inputs": [
+        0.0,
+        10.0
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+02",
+      "inputs": [
+        0.0,
+        100.0
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+05",
+      "inputs": [
+        0.0,
+        100000.0
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+10",
+      "inputs": [
+        0.0,
+        10000000000.0
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+50",
+      "inputs": [
+        0.0,
+        1e+50
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+100",
+      "inputs": [
+        0.0,
+        1e+100
+      ]
+    },
+    {
+      "description": "Complex (0.0,1.0) scaled by 1e+200",
+      "inputs": [
+        0.0,
+        1e+200
+      ]
+    },
+    {
+      "description": "Near-zero real 1e-307",
+      "inputs": [
+        1e-307,
+        0.0
+      ]
+    },
+    {
+      "description": "Near-zero imaginary 1e-307",
+      "inputs": [
+        0.0,
+        1e-307
+      ]
+    },
+    {
+      "description": "Near-zero both 1e-307",
+      "inputs": [
+        1e-307,
+        1e-307
+      ]
+    },
+    {
+      "description": "Near-zero real 1e-308",
+      "inputs": [
+        1e-308,
+        0.0
+      ]
+    },
+    {
+      "description": "Near-zero imaginary 1e-308",
+      "inputs": [
+        0.0,
+        1e-308
+      ]
+    },
+    {
+      "description": "Near-zero both 1e-308",
+      "inputs": [
+        1e-308,
+        1e-308
+      ]
+    },
+    {
+      "description": "Near-zero real 5e-324",
+      "inputs": [
+        5e-324,
+        0.0
+      ]
+    },
+    {
+      "description": "Near-zero imaginary 5e-324",
+      "inputs": [
+        0.0,
+        5e-324
+      ]
+    },
+    {
+      "description": "Near-zero both 5e-324",
+      "inputs": [
+        5e-324,
+        5e-324
+      ]
+    },
+    {
+      "description": "Negative zero real part",
+      "inputs": [
+        -0.0,
+        1.0
+      ]
+    },
+    {
+      "description": "Negative zero imaginary part",
+      "inputs": [
+        1.0,
+        -0.0
+      ]
+    },
+    {
+      "description": "Both negative zeros",
+      "inputs": [
+        -0.0,
+        -0.0
+      ]
+    },
+    {
+      "description": "5-12-13 triangle scaled by 1e-250",
+      "inputs": [
+        5e-250,
+        1.2e-249
+      ]
+    },
+    {
+      "description": "5-12-13 triangle scaled by 1e-150",
+      "inputs": [
+        5e-150,
+        1.2e-149
+      ]
+    },
+    {
+      "description": "5-12-13 triangle scaled by 1e-75",
+      "inputs": [
+        5e-75,
+        1.2e-74
+      ]
+    },
+    {
+      "description": "5-12-13 triangle scaled by 1e+75",
+      "inputs": [
+        4.9999999999999994e+75,
+        1.2e+76
+      ]
+    },
+    {
+      "description": "5-12-13 triangle scaled by 1e+150",
+      "inputs": [
+        5e+150,
+        1.1999999999999999e+151
+      ]
+    },
+    {
+      "description": "5-12-13 triangle scaled by 1e+250",
+      "inputs": [
+        4.9999999999999996e+250,
+        1.2e+251
+      ]
+    },
+    {
+      "description": "Maximum safe values before overflow",
+      "inputs": [
+        1.3e+154,
+        1.3e+154
+      ]
+    },
+    {
+      "description": "Just below overflow threshold",
+      "inputs": [
+        7.071067811865475e+307,
+        7.071067811865475e+307
+      ]
+    },
+    {
+      "description": "Minimum normal values",
+      "inputs": [
+        2.2250738585072014e-308,
+        2.2250738585072014e-308
+      ]
+    }
+  ]
+}

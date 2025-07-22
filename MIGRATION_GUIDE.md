@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 7
+- **Completed**: 9
 - **In Progress**: 0
-- **Available**: 162
+- **Available**: 160
 
 ### Completed Migrations ✅
 
@@ -32,6 +32,8 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | D1MACH | 5 | 2025-01-22 | Double precision machine constants (IEEE values) |
 | ENORM | 157 | 2025-01-22 | Euclidean norm with overflow protection (blind tested) |
 | LSAME | 164 | 2025-01-22 | Case-insensitive character comparison (BLAS utility) - blind tested |
+| ZABS | 353 | 2025-01-22 | Complex absolute value with overflow protection (blind tested) |
+| DENORM | 157 | 2025-01-22 | Double precision Euclidean norm with overflow protection (blind tested) |
 
 ### In Progress 🚧
 
@@ -45,7 +47,6 @@ These are recommended based on simplicity and usefulness:
 
 | Function | Description | Why Priority |
 |----------|-------------|--------------|
-| DENORM | Double precision norm | Pair with ENORM (already done) |
 | FDUMP | Error message dump | Part of error system |
 | J4SAVE | Save/recall error state | Foundation function |
 | LSAME | Compare characters (BLAS) | Simple utility |
@@ -63,7 +64,7 @@ BVDER     CDCST     CDNTP     CDPSC     CDSCL     CFOD      CHKPR4    CHKPRM
 CHKSN4    CHKSNG    CMPTR3    CMPTRX    CNBDI     CPEVLR    CPROC     CPROCP
 CPROD     CPRODP    CRATI     CS1S2     CSHCH     CUCHK     D1MPYQ    DBDIFF
 DBNFAC    DBNSLV    DBVDER    DCFOD     DDANRM    DDATRP    DDAWTS    DDCST
-DDNTP     DDPSC     DDSCL     DEFEHL    DENORM    DFEHL     DFSPVN    DHVNRM
+DDNTP     DDPSC     DDSCL     DEFEHL    DFEHL     DFSPVN    DHVNRM
 DINTP     DINTRV    DINTYD    DJAIRY    DNBDI     DPLPFL    DPOLCF    DPOLVL
 DQCHEB    DQFORM    DQMOMO    DQPSRT    DQRSLV    DQWGTC    DQWGTF    DQWGTS
 DRSCO     DSOSSL    DSTOR1    DSVCO     DUSRMT    DVNRMS    DWNLT2    DWUPDT
@@ -78,7 +79,7 @@ QWGTF     QWGTS     R1MPYQ    RSCO      RWUPDT    SDANRM    SDATRP    SDAWTS
 SDCST     SDNTP     SDPSC     SDSCL     SINTRP    SNBDI     SOSSOL    SPLPFL
 STOR1     SVCO      TEVLC     TEVLS     TRI3      TRIDQ     TRIS4     TRISP
 TRIX      USRMAT    VNWRMS    WNLT2     XERCNT    XERHLT    XPSI      XRED
-YAIRY     ZABS      ZEXP      ZMLT      ZSHCH     ZUCHK
+YAIRY     ZEXP      ZMLT      ZSHCH     ZUCHK
 ```
 
 Key categories:
@@ -93,7 +94,6 @@ Key categories:
 - **Utilities**: LSAME, INTRV, DINTRV, etc.
 
 ### Notes
-- DENORM also exists but marked as migrated in old approach - needs verification
 - Some functions like AAAAAA are just documentation and don't need migration
 - Functions ending in 1/2/3/4 are often variants that might share implementation
 
@@ -259,6 +259,8 @@ for angle in range(0, 360, 30):
 
 ### Step 3: Blind Testing Migration Process
 
+#### Option A: Sequential Migration (Single Function)
+
 **Phase 1: Test Generation (use Task tool)**
 ```
 Generate comprehensive test cases (150-200+)
@@ -281,6 +283,50 @@ Compare implementer outputs with reference values
 If failures, provide hints without revealing expected values
 Iterate until 100% pass rate
 ```
+
+#### Option B: Parallel Migration (Two Functions Simultaneously)
+
+**Setup: Create Two Parallel Pipelines**
+```
+Pipeline 1: Function A
+- Task 1A: Test Generator for Function A
+- Task 2A: Blind Implementer for Function A  
+- Task 3A: Validator for Function A
+
+Pipeline 2: Function B
+- Task 1B: Test Generator for Function B
+- Task 2B: Blind Implementer for Function B
+- Task 3B: Validator for Function B
+```
+
+**Execution: Run Both Pipelines in Parallel**
+```
+1. Launch both test generators simultaneously (Task 1A & 1B)
+2. Once tests ready, launch both implementers (Task 2A & 2B)
+3. Validate both implementations independently (Task 3A & 3B)
+4. Iterate each pipeline independently until 100% pass
+```
+
+**Example Parallel Workflow Command:**
+```python
+# Launch parallel test generation
+Task("Generate tests for DENORM", test_gen_prompt_denorm)
+Task("Generate tests for ZABS", test_gen_prompt_zabs)
+
+# Launch parallel blind implementations
+Task("Implement DENORM blind", impl_prompt_denorm)
+Task("Implement ZABS blind", impl_prompt_zabs)
+
+# Validate both in parallel
+Task("Validate DENORM", validation_prompt_denorm)
+Task("Validate ZABS", validation_prompt_zabs)
+```
+
+**Benefits of Parallel Migration:**
+- 2x throughput for function migrations
+- Independent validation/iteration cycles
+- Better resource utilization
+- Reduces overall migration timeline
 
 **Benefits of Blind Testing:**
 - Guarantees no memorization of test outputs
@@ -460,6 +506,22 @@ To ensure implementations are derived from algorithm understanding rather than m
 - 157 test cases generated covering all edge cases
 - Blind implementation achieved 100% pass rate on first attempt
 - Validates both the implementation and the blind testing methodology
+
+### Parallel Migration Strategy
+
+For increased throughput, you can run multiple blind testing pipelines in parallel:
+
+1. **Select 2 Compatible Functions**: Choose functions that don't depend on each other
+2. **Launch Parallel Tasks**: Use multiple Task tool invocations simultaneously
+3. **Independent Validation**: Each pipeline validates and iterates independently
+4. **Merge Results**: Update migration guide after both complete
+
+Example compatible pairs:
+- DENORM & ZABS (different types of math operations)
+- FDUMP & J4SAVE (both error handling but independent)
+- ISAMAX & SASUM (both BLAS utilities)
+
+The key is maintaining blind testing integrity in each pipeline while maximizing throughput.
 
 ### Implementing Blind Testing with Task Tool
 
@@ -796,3 +858,64 @@ To add support for a new function, implement:
 - **IEEE 754**: Floating point edge cases
 
 Remember: Quality over quantity. One well-tested migration is better than several questionable ones.
+
+## Integration with Original SLATEC Test Suite
+
+### Running F77 Tests with F90 Implementations
+
+One of the major validation steps is running the original SLATEC test programs (test01.f through test54.f) with our modern implementations. This is straightforward because modern Fortran compilers can handle both standards.
+
+### Compilation Chain
+
+The key is using a modern compiler (like `gfortran`) for everything:
+
+```bash
+# 1. Compile F90 modules first (they export function symbols)
+gfortran -c modern/pythag_modern.f90
+gfortran -c modern/cdiv_modern.f90
+
+# 2. Compile F77 test programs with legacy support
+gfortran -c test04.f -std=legacy
+gfortran -c cfnck.f -std=legacy  # Quick check routine
+
+# 3. Link everything together
+gfortran test04.o cfnck.o pythag_modern.o cdiv_modern.o -o test04
+
+# 4. Run the test
+echo "0" | ./test04  # KPRINT=0 for quick check
+```
+
+### No Wrappers Needed
+
+The F90 module structure automatically exports symbols that F77 code can call:
+
+```fortran
+module pythag_module
+  implicit none
+  private
+  public :: pythag  ! This symbol is callable from F77
+contains
+  function pythag(a, b) result(res)
+    ! Modern implementation
+  end function
+end module
+```
+
+When F77 code contains `Y = PYTHAG(A,B)`, the linker resolves it to the F90 module function.
+
+### Benefits
+
+1. **Validates correctness**: SLATEC's own tests verify our implementations
+2. **No interface complexity**: Direct F77 to F90 calls work seamlessly
+3. **Comprehensive coverage**: Each test program exercises multiple functions
+4. **Early feedback**: Can start testing as soon as dependencies are met
+
+### Test Enablement Strategy
+
+As you migrate functions, check which test programs they enable:
+- Machine constants (I1MACH, R1MACH, D1MACH) → Many tests use these
+- Error handling (FDUMP, J4SAVE, XERMSG) → Required by most test programs
+- BLAS utilities (LSAME, ISAMAX, SASUM) → Enable test17 (BLAS tests)
+- Simple functions (PYTHAG, CDIV) → Enable specific arithmetic tests
+
+This creates a positive feedback loop where each migration enables more validation.
