@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 4
+- **Completed**: 5
 - **In Progress**: 0
-- **Available**: 165
+- **Available**: 164
 
 ### Completed Migrations ✅
 
@@ -29,6 +29,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | CDIV | 335 | 2025-01-22 | Complex division (a+bi)/(c+di) |
 | I1MACH | 16 | 2025-01-22 | Integer machine constants (IEEE values) |
 | R1MACH | 5 | 2025-01-22 | Single precision machine constants (IEEE values) |
+| D1MACH | 5 | 2025-01-22 | Double precision machine constants (IEEE values) |
 
 ### In Progress 🚧
 
@@ -140,8 +141,8 @@ These standards explain why the F77 code looks the way it does:
 #### Level 0: Foundation (No Dependencies)
 Must be migrated first:
 - **I1MACH** - Integer machine constants - Already migrated ✓
-- **R1MACH** - Single precision machine constants
-- **D1MACH** - Double precision machine constants
+- **R1MACH** - Single precision machine constants - Already migrated ✓
+- **D1MACH** - Double precision machine constants - Already migrated ✓
 - **J4SAVE** - Save/recall error handling state
 - **FDUMP** - Dump error messages
 - **PYTHAG** - Already migrated ✓
@@ -670,6 +671,17 @@ Study these for reference:
    - Returns integer machine constants
    - Uses modern intrinsics instead of hardcoded values
    - Note: System-dependent, tested against IEEE standards
+
+4. **R1MACH** (`modern/r1mach_modern.f90`)
+   - 5 test cases in `test_data/r1mach_tests.json`
+   - Returns single precision machine constants
+   - Fixed R1MACH(3) to return epsilon/2 as per IEEE spec
+
+5. **D1MACH** (`modern/d1mach_modern.f90`)
+   - 5 test cases in `test_data/d1mach_tests.json`
+   - Returns double precision machine constants
+   - Uses modern intrinsics (tiny, huge, epsilon for real64)
+   - Special parsing handling for extreme values (E+309)
 
 ### Test Helper Script
 
