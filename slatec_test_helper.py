@@ -39,6 +39,8 @@ class SlatecTestHelper:
             return self._generate_r1mach_tests()
         elif self.func_name == "D1MACH":
             return self._generate_d1mach_tests()
+        elif self.func_name == "ENORM":
+            return self._generate_enorm_tests()
         else:
             print(f"No test generator for {self.func_name} yet")
             print("Please implement a generator based on the function's purpose")
@@ -192,6 +194,544 @@ class SlatecTestHelper:
         
         return tests
     
+    def _generate_enorm_tests(self):
+        """Generate test cases for ENORM (Euclidean norm with overflow/underflow protection)"""
+        tests = []
+        
+        # Category 1: Basic vectors where norm is obvious
+        tests.append({
+            "description": "Simple 3-4-5 triangle",
+            "n": 2,
+            "inputs": [3.0, 4.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Unit vector in 2D",
+            "n": 2,
+            "inputs": [1.0/math.sqrt(2), 1.0/math.sqrt(2)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Unit vector in 3D",
+            "n": 3,
+            "inputs": [1.0/math.sqrt(3), 1.0/math.sqrt(3), 1.0/math.sqrt(3)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "All ones vector length 5",
+            "n": 5,
+            "inputs": [1.0, 1.0, 1.0, 1.0, 1.0],
+            "expected": None
+        })
+        
+        # Category 2: Edge cases
+        tests.append({
+            "description": "Empty vector (N=0)",
+            "n": 0,
+            "inputs": [],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Single element vector",
+            "n": 1,
+            "inputs": [5.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Single negative element",
+            "n": 1,
+            "inputs": [-7.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "All zeros vector",
+            "n": 4,
+            "inputs": [0.0, 0.0, 0.0, 0.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Mixed signs",
+            "n": 4,
+            "inputs": [1.0, -2.0, 3.0, -4.0],
+            "expected": None
+        })
+        
+        # Category 3: Underflow protection (values near RDWARF = 3.834e-20)
+        rdwarf = 3.834e-20
+        
+        tests.append({
+            "description": "Single tiny value at RDWARF",
+            "n": 1,
+            "inputs": [rdwarf],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Two tiny values at RDWARF",
+            "n": 2,
+            "inputs": [rdwarf, rdwarf],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Values just below RDWARF",
+            "n": 3,
+            "inputs": [rdwarf * 0.5, rdwarf * 0.5, rdwarf * 0.5],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Values just above RDWARF",
+            "n": 3,
+            "inputs": [rdwarf * 2, rdwarf * 2, rdwarf * 2],
+            "expected": None
+        })
+        
+        # Category 4: Overflow protection (values near RGIANT = 1.304e19)
+        rgiant = 1.304e19
+        
+        tests.append({
+            "description": "Single huge value at RGIANT",
+            "n": 1,
+            "inputs": [rgiant],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Two huge values at RGIANT/2",
+            "n": 2,
+            "inputs": [rgiant/2, rgiant/2],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Values near overflow threshold",
+            "n": 3,
+            "inputs": [rgiant * 0.6, rgiant * 0.6, rgiant * 0.6],
+            "expected": None
+        })
+        
+        # Category 5: Mixed magnitudes
+        tests.append({
+            "description": "Mix of tiny and normal values",
+            "n": 3,
+            "inputs": [rdwarf, 1.0, 2.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Mix of huge and normal values",
+            "n": 3,
+            "inputs": [rgiant/10, 1.0, 2.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Mix of tiny, normal, and huge",
+            "n": 5,
+            "inputs": [rdwarf * 10, 0.1, 1.0, 10.0, rgiant/100],
+            "expected": None
+        })
+        
+        # Category 6: Scaling tests (same direction, different magnitudes)
+        base_vec = [3.0, 4.0, 12.0]  # Norm = 13
+        scales = [1e-10, 1e-5, 0.01, 0.1, 1, 10, 100, 1e5, 1e10]
+        
+        for scale in scales:
+            scaled = [x * scale for x in base_vec]
+            tests.append({
+                "description": f"Vector [3,4,12] scaled by {scale}",
+                "n": 3,
+                "inputs": scaled,
+                "expected": None
+            })
+        
+        # Category 7: Random vectors of various sizes
+        import random
+        random.seed(42)  # For reproducibility
+        
+        # Small vectors
+        for n in [1, 2, 3, 5, 10]:
+            vec = [random.uniform(-10, 10) for _ in range(n)]
+            tests.append({
+                "description": f"Random vector size {n}",
+                "n": n,
+                "inputs": vec,
+                "expected": None
+            })
+        
+        # Medium vectors
+        for n in [20, 30, 50]:
+            vec = [random.uniform(-100, 100) for _ in range(n)]
+            tests.append({
+                "description": f"Random vector size {n}",
+                "n": n,
+                "inputs": vec,
+                "expected": None
+            })
+        
+        # Large vectors
+        for n in [75, 100]:
+            vec = [random.uniform(-1000, 1000) for _ in range(n)]
+            tests.append({
+                "description": f"Random vector size {n}",
+                "n": n,
+                "inputs": vec,
+                "expected": None
+            })
+        
+        # Special patterns
+        tests.append({
+            "description": "Alternating +1/-1 pattern",
+            "n": 10,
+            "inputs": [(-1)**i for i in range(10)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Fibonacci sequence first 10",
+            "n": 10,
+            "inputs": [1.0, 1.0, 2.0, 3.0, 5.0, 8.0, 13.0, 21.0, 34.0, 55.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Powers of 2",
+            "n": 8,
+            "inputs": [2**i for i in range(8)],
+            "expected": None
+        })
+        
+        # More underflow/overflow boundary tests
+        tests.append({
+            "description": "Vector with values spanning machine range",
+            "n": 7,
+            "inputs": [rdwarf*100, 1e-10, 1e-5, 1.0, 1e5, 1e10, rgiant/100],
+            "expected": None
+        })
+        
+        # Stress tests with extreme values
+        tests.append({
+            "description": "Many tiny values that sum to normal",
+            "n": 100,
+            "inputs": [1e-10] * 100,  # sqrt(100 * 1e-20) = 1e-9
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Geometric progression",
+            "n": 10,
+            "inputs": [2**(-i) for i in range(10)],
+            "expected": None
+        })
+        
+        # Additional edge cases
+        tests.append({
+            "description": "Single zero with non-zeros",
+            "n": 5,
+            "inputs": [1.0, 2.0, 0.0, 3.0, 4.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Very large N with small values",
+            "n": 100,
+            "inputs": [0.01] * 100,
+            "expected": None
+        })
+        
+        # Numerical stability tests
+        tests.append({
+            "description": "Values that might cause intermediate overflow",
+            "n": 3,
+            "inputs": [1e15, 1e15, 1e15],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Values that might cause intermediate underflow",
+            "n": 3,
+            "inputs": [1e-15, 1e-15, 1e-15],
+            "expected": None
+        })
+        
+        # More mixed magnitude tests
+        for exp_diff in [10, 20, 30]:
+            tests.append({
+                "description": f"Two values differing by 10^{exp_diff}",
+                "n": 2,
+                "inputs": [1.0, 10**(-exp_diff)],
+                "expected": None
+            })
+        
+        # Test near the boundary between small/intermediate/large
+        agiant_approx = rgiant / 10  # Approximate AGIANT for N=10
+        
+        tests.append({
+            "description": "Values just below AGIANT threshold",
+            "n": 10,
+            "inputs": [agiant_approx * 0.9] * 10,
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Values just above AGIANT threshold",
+            "n": 10,
+            "inputs": [agiant_approx * 1.1] * 10,
+            "expected": None
+        })
+        
+        # Additional tests to reach 150-200 range
+        
+        # More Pythagorean-like triples at various scales
+        pythagorean_triples = [
+            (5, 12, 13), (8, 15, 17), (7, 24, 25), (20, 21, 29),
+            (9, 40, 41), (11, 60, 61), (12, 35, 37), (13, 84, 85)
+        ]
+        for a, b, c in pythagorean_triples:
+            for scale in [1e-15, 1e-8, 1e-3, 1e3, 1e8, 1e15]:
+                tests.append({
+                    "description": f"Pythagorean triple ({a},{b}) scaled by {scale:.0e}",
+                    "n": 2,
+                    "inputs": [a*scale, b*scale],
+                    "expected": None
+                })
+        
+        # Test vectors with increasing number of elements
+        for n in [15, 25, 40, 60, 80]:
+            # All equal values
+            tests.append({
+                "description": f"All equal values, N={n}",
+                "n": n,
+                "inputs": [1.0/math.sqrt(n)] * n,
+                "expected": None
+            })
+            
+            # Decreasing values
+            tests.append({
+                "description": f"Decreasing values 1/i, N={n}",
+                "n": n,
+                "inputs": [1.0/i for i in range(1, n+1)],
+                "expected": None
+            })
+            
+            # Random normal distribution
+            import random
+            random.seed(1234 + n)  # Different seed for each n
+            tests.append({
+                "description": f"Random normal distribution, N={n}",
+                "n": n,
+                "inputs": [random.gauss(0, 1) for _ in range(n)],
+                "expected": None
+            })
+        
+        # Edge cases with zeros interspersed
+        tests.append({
+            "description": "Alternating zeros and ones",
+            "n": 20,
+            "inputs": [i % 2 for i in range(20)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Mostly zeros with few non-zeros",
+            "n": 50,
+            "inputs": [1.0 if i in [5, 15, 25, 35, 45] else 0.0 for i in range(50)],
+            "expected": None
+        })
+        
+        # Extreme scaling tests
+        extreme_scales = [1e-30, 1e-25, 1e-22, 1e22, 1e25, 1e30]
+        for scale in extreme_scales:
+            tests.append({
+                "description": f"Unit vector scaled by {scale:.0e}",
+                "n": 3,
+                "inputs": [scale/math.sqrt(3)] * 3,
+                "expected": None
+            })
+        
+        # Tests with specific patterns
+        tests.append({
+            "description": "Harmonic series first 30 terms",
+            "n": 30,
+            "inputs": [1.0/i for i in range(1, 31)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Prime numbers as floats",
+            "n": 25,
+            "inputs": [2.0, 3.0, 5.0, 7.0, 11.0, 13.0, 17.0, 19.0, 23.0, 29.0,
+                      31.0, 37.0, 41.0, 43.0, 47.0, 53.0, 59.0, 61.0, 67.0, 71.0,
+                      73.0, 79.0, 83.0, 89.0, 97.0],
+            "expected": None
+        })
+        
+        # Tests around machine precision boundaries
+        tests.append({
+            "description": "Values near machine epsilon",
+            "n": 5,
+            "inputs": [1.0, 1.0 + 1e-7, 1.0 - 1e-7, 1.0 + 1e-8, 1.0 - 1e-8],
+            "expected": None
+        })
+        
+        # More underflow/overflow combination tests
+        tests.append({
+            "description": "Extreme range: tiny to huge values",
+            "n": 9,
+            "inputs": [rdwarf, rdwarf*10, rdwarf*100, 1e-10, 1.0, 1e10, rgiant/100, rgiant/10, rgiant],
+            "expected": None
+        })
+        
+        # Sinusoidal patterns
+        for freq in [1, 2, 5, 10]:
+            n = 36
+            tests.append({
+                "description": f"Sinusoidal pattern frequency {freq}",
+                "n": n,
+                "inputs": [math.sin(freq * 2 * math.pi * i / n) for i in range(n)],
+                "expected": None
+            })
+        
+        # Exponential growth/decay patterns
+        tests.append({
+            "description": "Exponential growth pattern",
+            "n": 20,
+            "inputs": [math.exp(i/5.0) for i in range(20)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Exponential decay pattern",
+            "n": 20,
+            "inputs": [math.exp(-i/5.0) for i in range(20)],
+            "expected": None
+        })
+        
+        # Tests with specific norms
+        # Norm = 10 with different distributions
+        tests.append({
+            "description": "Two values with norm 10",
+            "n": 2,
+            "inputs": [6.0, 8.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Three values with norm ~10",
+            "n": 3,
+            "inputs": [5.0, 7.0, 5.0],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Ten values with norm ~10",
+            "n": 10,
+            "inputs": [10.0/math.sqrt(10)] * 10,
+            "expected": None
+        })
+        
+        # Complex patterns
+        tests.append({
+            "description": "Alternating large positive/negative values",
+            "n": 20,
+            "inputs": [1000.0 * ((-1)**i) for i in range(20)],
+            "expected": None
+        })
+        
+        # More random tests with different distributions
+        random.seed(9876)
+        
+        # Uniform distribution
+        for n in [35, 45, 65, 85]:
+            tests.append({
+                "description": f"Random uniform [0,1], N={n}",
+                "n": n,
+                "inputs": [random.uniform(0, 1) for _ in range(n)],
+                "expected": None
+            })
+        
+        # Exponential distribution
+        for n in [33, 47, 73]:
+            tests.append({
+                "description": f"Random exponential distribution, N={n}",
+                "n": n,
+                "inputs": [random.expovariate(1.0) for _ in range(n)],
+                "expected": None
+            })
+        
+        # Log-normal distribution
+        tests.append({
+            "description": "Log-normal distribution N=40",
+            "n": 40,
+            "inputs": [random.lognormvariate(0, 1) for _ in range(40)],
+            "expected": None
+        })
+        
+        # Tests with exact integer values
+        tests.append({
+            "description": "Consecutive integers 1 to 30",
+            "n": 30,
+            "inputs": [float(i) for i in range(1, 31)],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Perfect squares",
+            "n": 15,
+            "inputs": [float(i*i) for i in range(1, 16)],
+            "expected": None
+        })
+        
+        # Edge case: very long vectors
+        tests.append({
+            "description": "Very long vector N=100 with pattern",
+            "n": 100,
+            "inputs": [(i % 10 + 1) * 0.1 for i in range(100)],
+            "expected": None
+        })
+        
+        # Boundary test cases for overflow/underflow thresholds
+        # Test AGIANT = RGIANT/N for various N
+        for n in [2, 5, 10, 20, 50, 100]:
+            agiant = rgiant / n
+            tests.append({
+                "description": f"At AGIANT boundary for N={n}",
+                "n": n,
+                "inputs": [agiant] * n,
+                "expected": None
+            })
+        
+        # Additional special values tests
+        tests.append({
+            "description": "Mix of special float values",
+            "n": 7,
+            "inputs": [0.0, -0.0, 1.0, -1.0, 0.5, -0.5, 2.0],
+            "expected": None
+        })
+        
+        # Tests that stress the algorithm's three different sums
+        tests.append({
+            "description": "Values in all three ranges",
+            "n": 12,
+            "inputs": [
+                rdwarf/2, rdwarf, rdwarf*2,  # Small
+                0.001, 0.1, 1.0, 10.0,       # Intermediate  
+                rgiant/10, rgiant/5, rgiant/2, rgiant*0.8, rgiant  # Large
+            ],
+            "expected": None
+        })
+        
+        print(f"Generated {len(tests)} test cases for ENORM")
+        return tests
+    
     def run_f77_reference(self, test_cases):
         """Run F77 implementation to get reference values"""
         all_results = []
@@ -262,6 +802,8 @@ class SlatecTestHelper:
             return self._generate_r1mach_f77(test_cases, start_index)
         elif self.func_name == "D1MACH":
             return self._generate_d1mach_f77(test_cases, start_index)
+        elif self.func_name == "ENORM":
+            return self._generate_enorm_f77(test_cases, start_index)
         else:
             raise NotImplementedError(f"No F77 generator for {self.func_name}")
     
@@ -367,6 +909,34 @@ class SlatecTestHelper:
         program += "      END"
         return program
     
+    def _generate_enorm_f77(self, test_cases, start_index):
+        """Generate F77 program for ENORM"""
+        program = f"""      PROGRAM TEST_ENORM
+      REAL ENORM, RESULT
+      EXTERNAL ENORM
+      INTEGER N
+      REAL X(100)
+      
+"""
+        for i, test in enumerate(test_cases):
+            test_num = start_index + i + 1
+            n = test['n']
+            values = test['inputs']
+            
+            program += f"""C     Test {test_num}
+      N = {n}
+"""
+            # Initialize array
+            for j, val in enumerate(values):
+                program += f"      X({j+1}) = {val:e}\n"
+            
+            program += f"""      RESULT = ENORM(N, X)
+      WRITE(*,'(A,I5,A,E20.10)') 'TEST_', {test_num}, '_RESULT: ', RESULT
+      
+"""
+        program += "      END"
+        return program
+    
     def _parse_f77_output(self, output):
         """Parse F77 output to extract results"""
         results = []
@@ -425,6 +995,14 @@ class SlatecTestHelper:
                 else:
                     value = float(value_str)
                 results.append((test_num, value))
+                
+        elif self.func_name == "ENORM":
+            # Single result per test
+            pattern = r'TEST_\s*(\d+)_RESULT:\s*([-+]?\d*\.?\d+[eE][-+]?\d+)'
+            for match in re.finditer(pattern, output):
+                test_num = int(match.group(1))
+                value = float(match.group(2))
+                results.append((test_num, value))
         
         return results
     
@@ -448,6 +1026,10 @@ class SlatecTestHelper:
                 test_case['expected'] = value
                 test_case['test_id'] = test_num
         elif self.func_name == "D1MACH":
+            for (test_num, value), test_case in zip(results, test_cases):
+                test_case['expected'] = value
+                test_case['test_id'] = test_num
+        elif self.func_name == "ENORM":
             for (test_num, value), test_case in zip(results, test_cases):
                 test_case['expected'] = value
                 test_case['test_id'] = test_num
@@ -729,7 +1311,8 @@ class SlatecTestHelper:
             "CDIV": "SUBROUTINE CDIV(AR, AI, BR, BI, CR, CI)",
             "I1MACH": "INTEGER FUNCTION I1MACH(I)",
             "R1MACH": "REAL FUNCTION R1MACH(I)",
-            "D1MACH": "DOUBLE PRECISION FUNCTION D1MACH(I)"
+            "D1MACH": "DOUBLE PRECISION FUNCTION D1MACH(I)",
+            "ENORM": "REAL FUNCTION ENORM(N, X)"
         }
         return signatures.get(self.func_name, "Unknown")
     
@@ -740,7 +1323,8 @@ class SlatecTestHelper:
             "CDIV": "Complex division: (CR,CI) = (AR,AI)/(BR,BI)",
             "I1MACH": "Return integer machine dependent constants",
             "R1MACH": "Return floating point machine dependent constants",
-            "D1MACH": "Return double precision machine dependent constants"
+            "D1MACH": "Return double precision machine dependent constants",
+            "ENORM": "Compute Euclidean norm of a vector with overflow/underflow protection"
         }
         return descriptions.get(self.func_name, "No description")
 
