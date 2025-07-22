@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 3
+- **Completed**: 4
 - **In Progress**: 0
-- **Available**: 166
+- **Available**: 165
 
 ### Completed Migrations ✅
 
@@ -28,6 +28,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | PYTHAG | 194 | 2025-01-22 | Pythagorean sum with overflow protection |
 | CDIV | 335 | 2025-01-22 | Complex division (a+bi)/(c+di) |
 | I1MACH | 16 | 2025-01-22 | Integer machine constants (IEEE values) |
+| R1MACH | 5 | 2025-01-22 | Single precision machine constants (IEEE values) |
 
 ### In Progress 🚧
 
