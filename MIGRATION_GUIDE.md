@@ -258,24 +258,40 @@ for angle in range(0, 360, 30):
 - Include both systematic combinations and edge cases
 - **F77 Batch Limit**: F77 programs can only handle ~50 test cases per program due to size limits. The helper script automatically handles batching.
 
-### Step 3: Generate Test Cases and Get Reference Values
+### Step 3: Blind Testing Migration Process
 
-Use the test helper script to generate test cases and automatically get reference values from F77:
-
-```bash
-python slatec_test_helper.py generate FUNCNAME
+**Phase 1: Test Generation (use Task tool)**
+```
+Generate comprehensive test cases (150-200+)
+Run F77 to get reference values
+Save full test data AND create blind version (no expected values)
 ```
 
-This will:
-1. Generate test cases based on your implementation
-2. Create F77 test programs (handling batch limits automatically)
-3. Compile and run the F77 code
-4. Parse the output and extract reference values
-5. Save everything to `test_data/funcname_tests.json`
+**Phase 2: Blind Implementation (use Task tool)**
+```
+Provide implementer with:
+- F77 source code
+- Blind test inputs only
+- Function signature/description
+Implementer creates modern version without seeing expected outputs
+```
+
+**Phase 3: Validation & Iteration**
+```
+Compare implementer outputs with reference values
+If failures, provide hints without revealing expected values
+Iterate until 100% pass rate
+```
+
+**Benefits of Blind Testing:**
+- Guarantees no memorization of test outputs
+- Forces true algorithm understanding
+- Catches subtle implementation errors
+- Provides highest confidence in correctness
 
 #### Adding Support for a New Function
 
-To migrate a new function, you need to add it to `slatec_test_helper.py`:
+For the test generation phase, you need to add support to `slatec_test_helper.py`:
 
 1. **Add test case generation** in `_generate_FUNCNAME_tests()`:
 ```python
@@ -330,7 +346,7 @@ The helper handles all the tedious parts:
 - **Scientific notation parsing**: Handles F77 output format (e.g., `1.234567E+00`)
 - **JSON formatting**: Structured test data with descriptions and expected values
 
-### Step 5: Create Modern Fortran Implementation
+### Step 4: Create Modern Fortran Implementation (Blind)
 
 #### Module Structure
 ```fortran
@@ -401,29 +417,20 @@ end select
 real, parameter :: one = 1.0, zero = 0.0
 ```
 
-### Step 6: Test Modern Implementation
+### Step 5: Validate Blind Implementation
 
-Validate your modern implementation against the test data:
+In Phase 3, compare the blind implementation's outputs with the reference values:
+- Load expected values from the full test data (not blind version)
+- Compare with implementer's outputs
+- Calculate pass/fail rate
+- If failures occur:
+  - Create feedback without revealing expected values
+  - Provide hints about the nature of failures
+  - Return to Step 4 for another iteration
 
-```bash
-python slatec_test_helper.py validate FUNCNAME
-```
+Validation requires 100% pass rate to ensure correctness.
 
-This will:
-1. Load the test data from `test_data/funcname_tests.json`
-2. Compile your modern implementation from `modern/funcname_modern.f90`
-3. Run all test cases through your implementation
-4. Compare results with F77 reference values (using 1e-6 relative tolerance)
-5. Report pass/fail statistics
-
-The validation requires 100% pass rate. If any tests fail, the output will show:
-- Which tests failed
-- Expected vs actual values
-- Relative error
-
-You may need to add support for your function's modern test generation in `_generate_FUNCNAME_modern_test()` if it has a different signature than the examples.
-
-### Step 7: Validation Criteria
+### Step 6: Final Validation Criteria
 
 The migration is successful when:
 - 100% of test cases pass (no exceptions)
@@ -454,6 +461,51 @@ To ensure implementations are derived from algorithm understanding rather than m
 - 157 test cases generated covering all edge cases
 - Blind implementation achieved 100% pass rate on first attempt
 - Validates both the implementation and the blind testing methodology
+
+### Implementing Blind Testing with Task Tool
+
+```python
+# Phase 1: Test Generation Task
+task_prompt = """
+Generate comprehensive test cases for FUNCNAME:
+1. Read F77 source at src/funcname.f
+2. Create 150+ diverse test cases
+3. Run F77 to get expected outputs
+4. Save to test_data/funcname_tests.json
+5. Create blind version at test_data/funcname_tests_blind.json
+"""
+
+# Phase 2: Blind Implementation Task
+implementer_prompt = """
+Implement modern Fortran version of FUNCNAME:
+Resources:
+- F77 source: src/funcname.f
+- Blind tests: test_data/funcname_tests_blind.json
+- NO access to expected outputs
+
+Create modern/funcname_modern.f90 and output results
+"""
+
+# Phase 3: Validation
+# Compare outputs, provide feedback if needed
+```
+
+### Feedback Loop Example
+```json
+{
+  "iteration": 1,
+  "passed": 147,
+  "failed": 10,
+  "failures": [
+    {
+      "test_id": 42,
+      "inputs": [3, [1e-30, 2e-30, 3e-30]],
+      "your_output": 0.0,
+      "hint": "Result should be positive and very small, check underflow handling"
+    }
+  ]
+}
+```
 
 ## Test Generation Strategies
 
