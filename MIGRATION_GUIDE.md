@@ -546,6 +546,23 @@ if (n < 0) then
 end if
 ```
 
+### Special Case: Machine Constants (I1MACH, R1MACH, D1MACH)
+
+Machine constant functions are unique because they return system-dependent values:
+- **F77 Challenge**: Original code has all constants commented out - users must manually configure
+- **Testing Approach**: Use IEEE standard values as reference (most common on modern systems)
+- **Modern Solution**: Use Fortran intrinsics that automatically detect system properties
+- **Validation**: Values may differ between F77 and modern, but both are "correct" for their environment
+
+Example:
+```fortran
+! F77 (hardcoded):
+DATA IMACH(5) / 32 /      ! Always 32
+
+! Modern (adaptive):
+i1mach = bit_size(1)      ! 32 on 32-bit systems, 64 on 64-bit systems
+```
+
 ### Handling Complex F77 Constructs
 
 #### Functions with Many Parameters (>6)
