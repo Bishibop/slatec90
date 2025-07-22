@@ -521,6 +521,29 @@ Study these for reference:
    - Complex division (a+bi)/(c+di)
    - Scaling algorithm to avoid overflow
 
+### Optional Test Helper Script
+
+A Python helper script `slatec_test_helper.py` is available to automate test generation and validation:
+
+```bash
+# Generate test cases and get reference values from F77
+python slatec_test_helper.py generate PYTHAG
+
+# Validate modern implementation against test data
+python slatec_test_helper.py validate PYTHAG
+```
+
+The script handles:
+- Test case generation based on function type
+- Batch compilation and execution of F77 programs
+- Parsing F77 output to extract reference values
+- Validating modern implementations against test data
+
+To add support for a new function, implement:
+1. `_generate_FUNCNAME_tests()` - Test case generation
+2. `_generate_FUNCNAME_f77()` - F77 test program generation
+3. Update parsing logic if output format differs
+
 ### Key Resources
 - **Abramowitz & Stegun**: Mathematical reference values
 - **DLMF**: Digital Library of Mathematical Functions
