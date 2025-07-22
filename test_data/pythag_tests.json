@@ -1,0 +1,1958 @@
+{
+  "function": "pythag",
+  "metadata": {
+    "parameters": [
+      "A",
+      "B"
+    ],
+    "category": null,
+    "purpose": "Compute sqrt(A**2+B**2) without overflow or underflow",
+    "library": "SLATEC",
+    "dependencies": []
+  },
+  "test_cases": [
+    {
+      "id": 0,
+      "inputs": [
+        3,
+        4
+      ],
+      "description": "Pythagorean triple (3,4,5) scaled by 1",
+      "expected": 5.0,
+      "valid": true
+    },
+    {
+      "id": 1,
+      "inputs": [
+        0.30000000000000004,
+        0.4
+      ],
+      "description": "Pythagorean triple (3,4,5) scaled by 0.1",
+      "expected": 0.5,
+      "valid": true
+    },
+    {
+      "id": 2,
+      "inputs": [
+        0.03,
+        0.04
+      ],
+      "description": "Pythagorean triple (3,4,5) scaled by 0.01",
+      "expected": 0.04999999702,
+      "valid": true
+    },
+    {
+      "id": 3,
+      "inputs": [
+        30,
+        40
+      ],
+      "description": "Pythagorean triple (3,4,5) scaled by 10",
+      "expected": 50.0,
+      "valid": true
+    },
+    {
+      "id": 4,
+      "inputs": [
+        300,
+        400
+      ],
+      "description": "Pythagorean triple (3,4,5) scaled by 100",
+      "expected": 500.0,
+      "valid": true
+    },
+    {
+      "id": 5,
+      "inputs": [
+        3000,
+        4000
+      ],
+      "description": "Pythagorean triple (3,4,5) scaled by 1000",
+      "expected": 5000.0,
+      "valid": true
+    },
+    {
+      "id": 6,
+      "inputs": [
+        5,
+        12
+      ],
+      "description": "Pythagorean triple (5,12,13) scaled by 1",
+      "expected": 13.0,
+      "valid": true
+    },
+    {
+      "id": 7,
+      "inputs": [
+        0.5,
+        1.2000000000000002
+      ],
+      "description": "Pythagorean triple (5,12,13) scaled by 0.1",
+      "expected": 1.300000072,
+      "valid": true
+    },
+    {
+      "id": 8,
+      "inputs": [
+        0.05,
+        0.12
+      ],
+      "description": "Pythagorean triple (5,12,13) scaled by 0.01",
+      "expected": 0.1300000101,
+      "valid": true
+    },
+    {
+      "id": 9,
+      "inputs": [
+        50,
+        120
+      ],
+      "description": "Pythagorean triple (5,12,13) scaled by 10",
+      "expected": 130.0,
+      "valid": true
+    },
+    {
+      "id": 10,
+      "inputs": [
+        500,
+        1200
+      ],
+      "description": "Pythagorean triple (5,12,13) scaled by 100",
+      "expected": 1300.0,
+      "valid": true
+    },
+    {
+      "id": 11,
+      "inputs": [
+        5000,
+        12000
+      ],
+      "description": "Pythagorean triple (5,12,13) scaled by 1000",
+      "expected": 13000.0,
+      "valid": true
+    },
+    {
+      "id": 12,
+      "inputs": [
+        8,
+        15
+      ],
+      "description": "Pythagorean triple (8,15,17) scaled by 1",
+      "expected": 17.0,
+      "valid": true
+    },
+    {
+      "id": 13,
+      "inputs": [
+        0.8,
+        1.5
+      ],
+      "description": "Pythagorean triple (8,15,17) scaled by 0.1",
+      "expected": 1.700000048,
+      "valid": true
+    },
+    {
+      "id": 14,
+      "inputs": [
+        0.08,
+        0.15
+      ],
+      "description": "Pythagorean triple (8,15,17) scaled by 0.01",
+      "expected": 0.1700000018,
+      "valid": true
+    },
+    {
+      "id": 15,
+      "inputs": [
+        80,
+        150
+      ],
+      "description": "Pythagorean triple (8,15,17) scaled by 10",
+      "expected": 170.0000153,
+      "valid": true
+    },
+    {
+      "id": 16,
+      "inputs": [
+        800,
+        1500
+      ],
+      "description": "Pythagorean triple (8,15,17) scaled by 100",
+      "expected": 1700.0,
+      "valid": true
+    },
+    {
+      "id": 17,
+      "inputs": [
+        8000,
+        15000
+      ],
+      "description": "Pythagorean triple (8,15,17) scaled by 1000",
+      "expected": 17000.0,
+      "valid": true
+    },
+    {
+      "id": 18,
+      "inputs": [
+        7,
+        24
+      ],
+      "description": "Pythagorean triple (7,24,25) scaled by 1",
+      "expected": 25.0,
+      "valid": true
+    },
+    {
+      "id": 19,
+      "inputs": [
+        0.7000000000000001,
+        2.4000000000000004
+      ],
+      "description": "Pythagorean triple (7,24,25) scaled by 0.1",
+      "expected": 2.5,
+      "valid": true
+    },
+    {
+      "id": 20,
+      "inputs": [
+        0.07,
+        0.24
+      ],
+      "description": "Pythagorean triple (7,24,25) scaled by 0.01",
+      "expected": 0.2499999851,
+      "valid": true
+    },
+    {
+      "id": 21,
+      "inputs": [
+        70,
+        240
+      ],
+      "description": "Pythagorean triple (7,24,25) scaled by 10",
+      "expected": 250.0,
+      "valid": true
+    },
+    {
+      "id": 22,
+      "inputs": [
+        700,
+        2400
+      ],
+      "description": "Pythagorean triple (7,24,25) scaled by 100",
+      "expected": 2500.0,
+      "valid": true
+    },
+    {
+      "id": 23,
+      "inputs": [
+        7000,
+        24000
+      ],
+      "description": "Pythagorean triple (7,24,25) scaled by 1000",
+      "expected": 25000.0,
+      "valid": true
+    },
+    {
+      "id": 24,
+      "inputs": [
+        20,
+        21
+      ],
+      "description": "Pythagorean triple (20,21,29) scaled by 1",
+      "expected": 29.0,
+      "valid": true
+    },
+    {
+      "id": 25,
+      "inputs": [
+        2.0,
+        2.1
+      ],
+      "description": "Pythagorean triple (20,21,29) scaled by 0.1",
+      "expected": 2.899999857,
+      "valid": true
+    },
+    {
+      "id": 26,
+      "inputs": [
+        0.2,
+        0.21
+      ],
+      "description": "Pythagorean triple (20,21,29) scaled by 0.01",
+      "expected": 0.2899999917,
+      "valid": true
+    },
+    {
+      "id": 27,
+      "inputs": [
+        200,
+        210
+      ],
+      "description": "Pythagorean triple (20,21,29) scaled by 10",
+      "expected": 289.9999695,
+      "valid": true
+    },
+    {
+      "id": 28,
+      "inputs": [
+        2000,
+        2100
+      ],
+      "description": "Pythagorean triple (20,21,29) scaled by 100",
+      "expected": 2900.0,
+      "valid": true
+    },
+    {
+      "id": 29,
+      "inputs": [
+        20000,
+        21000
+      ],
+      "description": "Pythagorean triple (20,21,29) scaled by 1000",
+      "expected": 29000.00195,
+      "valid": true
+    },
+    {
+      "id": 30,
+      "inputs": [
+        0.0009765625,
+        0.0009765625
+      ],
+      "description": "Equal values: 2^-10",
+      "expected": 0.001381067908,
+      "valid": true
+    },
+    {
+      "id": 31,
+      "inputs": [
+        0.001953125,
+        0.001953125
+      ],
+      "description": "Equal values: 2^-9",
+      "expected": 0.002762135817,
+      "valid": true
+    },
+    {
+      "id": 32,
+      "inputs": [
+        0.00390625,
+        0.00390625
+      ],
+      "description": "Equal values: 2^-8",
+      "expected": 0.005524271633,
+      "valid": true
+    },
+    {
+      "id": 33,
+      "inputs": [
+        0.0078125,
+        0.0078125
+      ],
+      "description": "Equal values: 2^-7",
+      "expected": 0.01104854327,
+      "valid": true
+    },
+    {
+      "id": 34,
+      "inputs": [
+        0.015625,
+        0.015625
+      ],
+      "description": "Equal values: 2^-6",
+      "expected": 0.02209708653,
+      "valid": true
+    },
+    {
+      "id": 35,
+      "inputs": [
+        0.03125,
+        0.03125
+      ],
+      "description": "Equal values: 2^-5",
+      "expected": 0.04419417307,
+      "valid": true
+    },
+    {
+      "id": 36,
+      "inputs": [
+        0.0625,
+        0.0625
+      ],
+      "description": "Equal values: 2^-4",
+      "expected": 0.08838834614,
+      "valid": true
+    },
+    {
+      "id": 37,
+      "inputs": [
+        0.125,
+        0.125
+      ],
+      "description": "Equal values: 2^-3",
+      "expected": 0.1767766923,
+      "valid": true
+    },
+    {
+      "id": 38,
+      "inputs": [
+        0.25,
+        0.25
+      ],
+      "description": "Equal values: 2^-2",
+      "expected": 0.3535533845,
+      "valid": true
+    },
+    {
+      "id": 39,
+      "inputs": [
+        0.5,
+        0.5
+      ],
+      "description": "Equal values: 2^-1",
+      "expected": 0.7071067691,
+      "valid": true
+    },
+    {
+      "id": 40,
+      "inputs": [
+        1,
+        1
+      ],
+      "description": "Equal values: 2^0",
+      "expected": 1.414213538,
+      "valid": true
+    },
+    {
+      "id": 41,
+      "inputs": [
+        2,
+        2
+      ],
+      "description": "Equal values: 2^1",
+      "expected": 2.828427076,
+      "valid": true
+    },
+    {
+      "id": 42,
+      "inputs": [
+        4,
+        4
+      ],
+      "description": "Equal values: 2^2",
+      "expected": 5.656854153,
+      "valid": true
+    },
+    {
+      "id": 43,
+      "inputs": [
+        8,
+        8
+      ],
+      "description": "Equal values: 2^3",
+      "expected": 11.31370831,
+      "valid": true
+    },
+    {
+      "id": 44,
+      "inputs": [
+        16,
+        16
+      ],
+      "description": "Equal values: 2^4",
+      "expected": 22.62741661,
+      "valid": true
+    },
+    {
+      "id": 45,
+      "inputs": [
+        32,
+        32
+      ],
+      "description": "Equal values: 2^5",
+      "expected": 45.25483322,
+      "valid": true
+    },
+    {
+      "id": 46,
+      "inputs": [
+        64,
+        64
+      ],
+      "description": "Equal values: 2^6",
+      "expected": 90.50966644,
+      "valid": true
+    },
+    {
+      "id": 47,
+      "inputs": [
+        128,
+        128
+      ],
+      "description": "Equal values: 2^7",
+      "expected": 181.0193329,
+      "valid": true
+    },
+    {
+      "id": 48,
+      "inputs": [
+        256,
+        256
+      ],
+      "description": "Equal values: 2^8",
+      "expected": 362.0386658,
+      "valid": true
+    },
+    {
+      "id": 49,
+      "inputs": [
+        512,
+        512
+      ],
+      "description": "Equal values: 2^9",
+      "expected": 724.0773315,
+      "valid": true
+    },
+    {
+      "id": 50,
+      "inputs": [
+        1024,
+        1024
+      ],
+      "description": "Equal values: 2^10",
+      "expected": 1448.154663,
+      "valid": true
+    },
+    {
+      "id": 51,
+      "inputs": [
+        0,
+        1
+      ],
+      "description": "Zero and 1",
+      "expected": 1.0,
+      "valid": true
+    },
+    {
+      "id": 52,
+      "inputs": [
+        1,
+        0
+      ],
+      "description": "1 and zero",
+      "expected": 1.0,
+      "valid": true
+    },
+    {
+      "id": 53,
+      "inputs": [
+        0,
+        -1
+      ],
+      "description": "Zero and -1",
+      "expected": 1.0,
+      "valid": true
+    },
+    {
+      "id": 54,
+      "inputs": [
+        -1,
+        0
+      ],
+      "description": "-1 and zero",
+      "expected": 1.0,
+      "valid": true
+    },
+    {
+      "id": 55,
+      "inputs": [
+        0,
+        0.1
+      ],
+      "description": "Zero and 0.1",
+      "expected": 0.1000000015,
+      "valid": true
+    },
+    {
+      "id": 56,
+      "inputs": [
+        0.1,
+        0
+      ],
+      "description": "0.1 and zero",
+      "expected": 0.1000000015,
+      "valid": true
+    },
+    {
+      "id": 57,
+      "inputs": [
+        0,
+        -0.1
+      ],
+      "description": "Zero and -0.1",
+      "expected": 0.1000000015,
+      "valid": true
+    },
+    {
+      "id": 58,
+      "inputs": [
+        -0.1,
+        0
+      ],
+      "description": "-0.1 and zero",
+      "expected": 0.1000000015,
+      "valid": true
+    },
+    {
+      "id": 59,
+      "inputs": [
+        0,
+        10
+      ],
+      "description": "Zero and 10",
+      "expected": 10.0,
+      "valid": true
+    },
+    {
+      "id": 60,
+      "inputs": [
+        10,
+        0
+      ],
+      "description": "10 and zero",
+      "expected": 10.0,
+      "valid": true
+    },
+    {
+      "id": 61,
+      "inputs": [
+        0,
+        -10
+      ],
+      "description": "Zero and -10",
+      "expected": 10.0,
+      "valid": true
+    },
+    {
+      "id": 62,
+      "inputs": [
+        -10,
+        0
+      ],
+      "description": "-10 and zero",
+      "expected": 10.0,
+      "valid": true
+    },
+    {
+      "id": 63,
+      "inputs": [
+        0,
+        100
+      ],
+      "description": "Zero and 100",
+      "expected": 100.0,
+      "valid": true
+    },
+    {
+      "id": 64,
+      "inputs": [
+        100,
+        0
+      ],
+      "description": "100 and zero",
+      "expected": 100.0,
+      "valid": true
+    },
+    {
+      "id": 65,
+      "inputs": [
+        0,
+        -100
+      ],
+      "description": "Zero and -100",
+      "expected": 100.0,
+      "valid": true
+    },
+    {
+      "id": 66,
+      "inputs": [
+        -100,
+        0
+      ],
+      "description": "-100 and zero",
+      "expected": 100.0,
+      "valid": true
+    },
+    {
+      "id": 67,
+      "inputs": [
+        5.95e-08,
+        5.95e-08
+      ],
+      "description": "Near epsilon: 0.5*epsilon",
+      "expected": 8.414571084e-08,
+      "valid": true
+    },
+    {
+      "id": 68,
+      "inputs": [
+        1.19e-07,
+        1.19e-07
+      ],
+      "description": "Near epsilon: 1*epsilon",
+      "expected": 1.682914217e-07,
+      "valid": true
+    },
+    {
+      "id": 69,
+      "inputs": [
+        2.38e-07,
+        2.38e-07
+      ],
+      "description": "Near epsilon: 2*epsilon",
+      "expected": 3.365828434e-07,
+      "valid": true
+    },
+    {
+      "id": 70,
+      "inputs": [
+        1.19e-06,
+        1.19e-06
+      ],
+      "description": "Near epsilon: 10*epsilon",
+      "expected": 1.682914331e-06,
+      "valid": true
+    },
+    {
+      "id": 71,
+      "inputs": [
+        100000000000000000000000000000000000,
+        0
+      ],
+      "description": "Large value: 10^35",
+      "expected": 1.000000041e+35,
+      "valid": true
+    },
+    {
+      "id": 72,
+      "inputs": [
+        1000000000000000000000000000000000000,
+        0
+      ],
+      "description": "Large value: 10^36",
+      "expected": 9.999999617e+35,
+      "valid": true
+    },
+    {
+      "id": 73,
+      "inputs": [
+        10000000000000000000000000000000000000,
+        0
+      ],
+      "description": "Large value: 10^37",
+      "expected": 9.999999934e+36,
+      "valid": true
+    },
+    {
+      "id": 74,
+      "inputs": [
+        100000000000000000000000000000000000000,
+        0
+      ],
+      "description": "Large value: 10^38",
+      "expected": 9.99999968e+37,
+      "valid": true
+    },
+    {
+      "id": 75,
+      "inputs": [
+        1e-35,
+        1e-35
+      ],
+      "description": "Small value: 10^-35",
+      "expected": 1.414213692e-35,
+      "valid": true
+    },
+    {
+      "id": 76,
+      "inputs": [
+        1e-36,
+        1e-36
+      ],
+      "description": "Small value: 10^-36",
+      "expected": 1.414213548e-36,
+      "valid": true
+    },
+    {
+      "id": 77,
+      "inputs": [
+        1e-37,
+        1e-37
+      ],
+      "description": "Small value: 10^-37",
+      "expected": 1.414213504e-37,
+      "valid": true
+    },
+    {
+      "id": 78,
+      "inputs": [
+        1e-38,
+        1e-38
+      ],
+      "description": "Small value: 10^-38",
+      "expected": 1.414213532e-38,
+      "valid": true
+    },
+    {
+      "id": 79,
+      "inputs": [
+        278.8535969157674,
+        -949.9784895546661
+      ],
+      "description": "Random uniform #1",
+      "expected": 990.0598755,
+      "valid": true
+    },
+    {
+      "id": 80,
+      "inputs": [
+        -449.94136326176147,
+        -553.5785237023545
+      ],
+      "description": "Random uniform #2",
+      "expected": 713.369751,
+      "valid": true
+    },
+    {
+      "id": 81,
+      "inputs": [
+        472.9424283280248,
+        353.3989748458225
+      ],
+      "description": "Random uniform #3",
+      "expected": 590.3942261,
+      "valid": true
+    },
+    {
+      "id": 82,
+      "inputs": [
+        784.3591354096909,
+        -826.1223347411677
+      ],
+      "description": "Random uniform #4",
+      "expected": 1139.165039,
+      "valid": true
+    },
+    {
+      "id": 83,
+      "inputs": [
+        -156.1563606294592,
+        -940.4055611238593
+      ],
+      "description": "Random uniform #5",
+      "expected": 953.2824707,
+      "valid": true
+    },
+    {
+      "id": 84,
+      "inputs": [
+        -562.7240503927933,
+        10.710576206724795
+      ],
+      "description": "Random uniform #6",
+      "expected": 562.8260498,
+      "valid": true
+    },
+    {
+      "id": 85,
+      "inputs": [
+        -946.9280606322727,
+        -602.324698626703
+      ],
+      "description": "Random uniform #7",
+      "expected": 1122.260132,
+      "valid": true
+    },
+    {
+      "id": 86,
+      "inputs": [
+        299.76887555904636,
+        89.88296120643327
+      ],
+      "description": "Random uniform #8",
+      "expected": 312.9541931,
+      "valid": true
+    },
+    {
+      "id": 87,
+      "inputs": [
+        -559.1187559186067,
+        178.53136775181747
+      ],
+      "description": "Random uniform #9",
+      "expected": 586.9303589,
+      "valid": true
+    },
+    {
+      "id": 88,
+      "inputs": [
+        618.8609133556533,
+        -987.002480643878
+      ],
+      "description": "Random uniform #10",
+      "expected": 1164.973267,
+      "valid": true
+    },
+    {
+      "id": 89,
+      "inputs": [
+        611.6385036656159,
+        396.2787899764537
+      ],
+      "description": "Random uniform #11",
+      "expected": 728.7925415,
+      "valid": true
+    },
+    {
+      "id": 90,
+      "inputs": [
+        -319.4989669640163,
+        -689.0410003764368
+      ],
+      "description": "Random uniform #12",
+      "expected": 759.5111084,
+      "valid": true
+    },
+    {
+      "id": 91,
+      "inputs": [
+        914.4261444135625,
+        -326.8109097747465
+      ],
+      "description": "Random uniform #13",
+      "expected": 971.0718384,
+      "valid": true
+    },
+    {
+      "id": 92,
+      "inputs": [
+        -814.5083132397042,
+        -806.567246333072
+      ],
+      "description": "Random uniform #14",
+      "expected": 1146.287231,
+      "valid": true
+    },
+    {
+      "id": 93,
+      "inputs": [
+        694.9887326949195,
+        207.4520627337822
+      ],
+      "description": "Random uniform #15",
+      "expected": 725.2901001,
+      "valid": true
+    },
+    {
+      "id": 94,
+      "inputs": [
+        614.2565465487603,
+        459.46357338763573
+      ],
+      "description": "Random uniform #16",
+      "expected": 767.0839233,
+      "valid": true
+    },
+    {
+      "id": 95,
+      "inputs": [
+        72.45618290940138,
+        946.2315279587413
+      ],
+      "description": "Random uniform #17",
+      "expected": 949.0015259,
+      "valid": true
+    },
+    {
+      "id": 96,
+      "inputs": [
+        -242.93124558329305,
+        104.0812625464539
+      ],
+      "description": "Random uniform #18",
+      "expected": 264.2886353,
+      "valid": true
+    },
+    {
+      "id": 97,
+      "inputs": [
+        658.8093285059897,
+        237.03950472849215
+      ],
+      "description": "Random uniform #19",
+      "expected": 700.1552734,
+      "valid": true
+    },
+    {
+      "id": 98,
+      "inputs": [
+        723.4138006215544,
+        154.70429051352403
+      ],
+      "description": "Random uniform #20",
+      "expected": 739.770874,
+      "valid": true
+    },
+    {
+      "id": 99,
+      "inputs": [
+        409.1436724298469,
+        -908.3512326886755
+      ],
+      "description": "Random uniform #21",
+      "expected": 996.2431641,
+      "valid": true
+    },
+    {
+      "id": 100,
+      "inputs": [
+        -544.2034486969062,
+        -421.2240727957857
+      ],
+      "description": "Random uniform #22",
+      "expected": 688.1766357,
+      "valid": true
+    },
+    {
+      "id": 101,
+      "inputs": [
+        -840.416046152745,
+        -534.4182272779396
+      ],
+      "description": "Random uniform #23",
+      "expected": 995.942749,
+      "valid": true
+    },
+    {
+      "id": 102,
+      "inputs": [
+        -797.9971411805418,
+        -444.0527937798157
+      ],
+      "description": "Random uniform #24",
+      "expected": 913.2262573,
+      "valid": true
+    },
+    {
+      "id": 103,
+      "inputs": [
+        271.3688885288004,
+        -270.33564205983157
+      ],
+      "description": "Random uniform #25",
+      "expected": 383.0436096,
+      "valid": true
+    },
+    {
+      "id": 104,
+      "inputs": [
+        -259.6380657662347,
+        -580.9859384570246
+      ],
+      "description": "Random uniform #26",
+      "expected": 636.3619995,
+      "valid": true
+    },
+    {
+      "id": 105,
+      "inputs": [
+        -466.0443559017733,
+        873.3091754249879
+      ],
+      "description": "Random uniform #27",
+      "expected": 989.881958,
+      "valid": true
+    },
+    {
+      "id": 106,
+      "inputs": [
+        296.0707704931872,
+        218.2620113339765
+      ],
+      "description": "Random uniform #28",
+      "expected": 367.826355,
+      "valid": true
+    },
+    {
+      "id": 107,
+      "inputs": [
+        -657.722703603806,
+        458.25359590069843
+      ],
+      "description": "Random uniform #29",
+      "expected": 801.6205444,
+      "valid": true
+    },
+    {
+      "id": 108,
+      "inputs": [
+        -673.1950124761432,
+        -241.0891164847044
+      ],
+      "description": "Random uniform #30",
+      "expected": 715.0632935,
+      "valid": true
+    },
+    {
+      "id": 109,
+      "inputs": [
+        979.0467012731906,
+        279.99951970818574
+      ],
+      "description": "Random uniform #31",
+      "expected": 1018.298645,
+      "valid": true
+    },
+    {
+      "id": 110,
+      "inputs": [
+        113.89948754929242,
+        369.2285019797491
+      ],
+      "description": "Random uniform #32",
+      "expected": 386.3971558,
+      "valid": true
+    },
+    {
+      "id": 111,
+      "inputs": [
+        685.7038403796191,
+        551.9998230924896
+      ],
+      "description": "Random uniform #33",
+      "expected": 880.2802734,
+      "valid": true
+    },
+    {
+      "id": 112,
+      "inputs": [
+        -541.9038560717913,
+        -935.7995121919245
+      ],
+      "description": "Random uniform #34",
+      "expected": 1081.378906,
+      "valid": true
+    },
+    {
+      "id": 113,
+      "inputs": [
+        -369.0939038818361,
+        -464.5182480485945
+      ],
+      "description": "Random uniform #35",
+      "expected": 593.302124,
+      "valid": true
+    },
+    {
+      "id": 114,
+      "inputs": [
+        -578.0343128273471,
+        885.8194286701089
+      ],
+      "description": "Random uniform #36",
+      "expected": 1057.733276,
+      "valid": true
+    },
+    {
+      "id": 115,
+      "inputs": [
+        752.7352529453376,
+        -370.64423840304414
+      ],
+      "description": "Random uniform #37",
+      "expected": 839.0396118,
+      "valid": true
+    },
+    {
+      "id": 116,
+      "inputs": [
+        310.87733058976005,
+        -208.73619787867153
+      ],
+      "description": "Random uniform #38",
+      "expected": 374.4536133,
+      "valid": true
+    },
+    {
+      "id": 117,
+      "inputs": [
+        829.0951794810869,
+        -82.29629482520238
+      ],
+      "description": "Random uniform #39",
+      "expected": 833.1695557,
+      "valid": true
+    },
+    {
+      "id": 118,
+      "inputs": [
+        -470.2396670038951,
+        -506.7449846120331
+      ],
+      "description": "Random uniform #40",
+      "expected": 691.3145142,
+      "valid": true
+    },
+    {
+      "id": 119,
+      "inputs": [
+        122.73626832630157,
+        -474.51678295412944
+      ],
+      "description": "Random uniform #41",
+      "expected": 490.1330261,
+      "valid": true
+    },
+    {
+      "id": 120,
+      "inputs": [
+        169.17198044708107,
+        795.6457672049539
+      ],
+      "description": "Random uniform #42",
+      "expected": 813.4318848,
+      "valid": true
+    },
+    {
+      "id": 121,
+      "inputs": [
+        -201.19898971920543,
+        -561.3584816854334
+      ],
+      "description": "Random uniform #43",
+      "expected": 596.3257446,
+      "valid": true
+    },
+    {
+      "id": 122,
+      "inputs": [
+        995.0752129902205,
+        19.05258735292898
+      ],
+      "description": "Random uniform #44",
+      "expected": 995.2575684,
+      "valid": true
+    },
+    {
+      "id": 123,
+      "inputs": [
+        -818.1811756524122,
+        -905.7672491505309
+      ],
+      "description": "Random uniform #45",
+      "expected": 1220.587769,
+      "valid": true
+    },
+    {
+      "id": 124,
+      "inputs": [
+        -780.7017392986817,
+        254.89208340618006
+      ],
+      "description": "Random uniform #46",
+      "expected": 821.2583008,
+      "valid": true
+    },
+    {
+      "id": 125,
+      "inputs": [
+        584.1587287259283,
+        -155.68006640063197
+      ],
+      "description": "Random uniform #47",
+      "expected": 604.5474854,
+      "valid": true
+    },
+    {
+      "id": 126,
+      "inputs": [
+        -872.9445876960857,
+        -236.7614269869265
+      ],
+      "description": "Random uniform #48",
+      "expected": 904.4822998,
+      "valid": true
+    },
+    {
+      "id": 127,
+      "inputs": [
+        992.2427604801935,
+        58.22869019827408
+      ],
+      "description": "Random uniform #49",
+      "expected": 993.9498901,
+      "valid": true
+    },
+    {
+      "id": 128,
+      "inputs": [
+        942.1567552272363,
+        721.559404468996
+      ],
+      "description": "Random uniform #50",
+      "expected": 1186.721191,
+      "valid": true
+    },
+    {
+      "id": 129,
+      "inputs": [
+        1.6967600837401356e-10,
+        25967.873520354304
+      ],
+      "description": "Random log scale #1",
+      "expected": 25967.86914,
+      "valid": true
+    },
+    {
+      "id": 130,
+      "inputs": [
+        1.7023288992263508e-08,
+        -0.04957982772391228
+      ],
+      "description": "Random log scale #2",
+      "expected": 0.04957982898,
+      "valid": true
+    },
+    {
+      "id": 131,
+      "inputs": [
+        1192116092.0017228,
+        -32889616.349956922
+      ],
+      "description": "Random log scale #3",
+      "expected": 1192569600.0,
+      "valid": true
+    },
+    {
+      "id": 132,
+      "inputs": [
+        1.4244050085432232,
+        -1.3434343730829634e-08
+      ],
+      "description": "Random log scale #4",
+      "expected": 1.424404979,
+      "valid": true
+    },
+    {
+      "id": 133,
+      "inputs": [
+        -1.1396864135672589e-07,
+        177916.40783418794
+      ],
+      "description": "Random log scale #5",
+      "expected": 177916.4062,
+      "valid": true
+    },
+    {
+      "id": 134,
+      "inputs": [
+        0.5917171551370657,
+        1.727247236136304e-08
+      ],
+      "description": "Random log scale #6",
+      "expected": 0.5917171836,
+      "valid": true
+    },
+    {
+      "id": 135,
+      "inputs": [
+        -6.152423279349126e-06,
+        -6.56798041273214e-06
+      ],
+      "description": "Random log scale #7",
+      "expected": 8.999480997e-06,
+      "valid": true
+    },
+    {
+      "id": 136,
+      "inputs": [
+        -43466.22231008592,
+        -2091534.6719762
+      ],
+      "description": "Random log scale #8",
+      "expected": 2091986.625,
+      "valid": true
+    },
+    {
+      "id": 137,
+      "inputs": [
+        -1566.810433733178,
+        864915328.7403034
+      ],
+      "description": "Random log scale #9",
+      "expected": 864915328.0,
+      "valid": true
+    },
+    {
+      "id": 138,
+      "inputs": [
+        -3.576644275174828,
+        -135.48098630303025
+      ],
+      "description": "Random log scale #10",
+      "expected": 135.5281982,
+      "valid": true
+    },
+    {
+      "id": 139,
+      "inputs": [
+        18154.297846906862,
+        0.009546540073809676
+      ],
+      "description": "Random log scale #11",
+      "expected": 18154.30078,
+      "valid": true
+    },
+    {
+      "id": 140,
+      "inputs": [
+        -98238493.26764172,
+        -0.10708356663740677
+      ],
+      "description": "Random log scale #12",
+      "expected": 98238488.0,
+      "valid": true
+    },
+    {
+      "id": 141,
+      "inputs": [
+        -1.9077344685951142e-09,
+        -2.6344211243063297e-10
+      ],
+      "description": "Random log scale #13",
+      "expected": 1.925837712e-09,
+      "valid": true
+    },
+    {
+      "id": 142,
+      "inputs": [
+        -1.3925691814591136e-10,
+        -14348.910640107844
+      ],
+      "description": "Random log scale #14",
+      "expected": 14348.91016,
+      "valid": true
+    },
+    {
+      "id": 143,
+      "inputs": [
+        2.2284688212646107e-09,
+        -4.248730272106825e-10
+      ],
+      "description": "Random log scale #15",
+      "expected": 2.268609967e-09,
+      "valid": true
+    },
+    {
+      "id": 144,
+      "inputs": [
+        1.9192095506818045,
+        -3.7114642298673155e-05
+      ],
+      "description": "Random log scale #16",
+      "expected": 1.919209957,
+      "valid": true
+    },
+    {
+      "id": 145,
+      "inputs": [
+        6.090860149370041,
+        -29312.395893946326
+      ],
+      "description": "Random log scale #17",
+      "expected": 29312.40039,
+      "valid": true
+    },
+    {
+      "id": 146,
+      "inputs": [
+        -492479.8726132046,
+        -1412342.2635697285
+      ],
+      "description": "Random log scale #18",
+      "expected": 1495742.75,
+      "valid": true
+    },
+    {
+      "id": 147,
+      "inputs": [
+        8.681930093076411e-09,
+        0.04178531188924789
+      ],
+      "description": "Random log scale #19",
+      "expected": 0.04178531095,
+      "valid": true
+    },
+    {
+      "id": 148,
+      "inputs": [
+        -0.2190248344443361,
+        -38151.971868478424
+      ],
+      "description": "Random log scale #20",
+      "expected": 38151.96875,
+      "valid": true
+    },
+    {
+      "id": 149,
+      "inputs": [
+        -0.011283027380512543,
+        -0.0006110153318820908
+      ],
+      "description": "Random log scale #21",
+      "expected": 0.01129956171,
+      "valid": true
+    },
+    {
+      "id": 150,
+      "inputs": [
+        -6.78893175241936e-07,
+        5.3175928057969815
+      ],
+      "description": "Random log scale #22",
+      "expected": 5.317593098,
+      "valid": true
+    },
+    {
+      "id": 151,
+      "inputs": [
+        -4.6747750313513346e-07,
+        0.17887982775454314
+      ],
+      "description": "Random log scale #23",
+      "expected": 0.1788797975,
+      "valid": true
+    },
+    {
+      "id": 152,
+      "inputs": [
+        -1446921.249142008,
+        -13162483.790620537
+      ],
+      "description": "Random log scale #24",
+      "expected": 13241769.0,
+      "valid": true
+    },
+    {
+      "id": 153,
+      "inputs": [
+        -1103.819037311949,
+        -6.482742359741278
+      ],
+      "description": "Random log scale #25",
+      "expected": 1103.838013,
+      "valid": true
+    },
+    {
+      "id": 154,
+      "inputs": [
+        -336774856.8161994,
+        9417045.922749141
+      ],
+      "description": "Random log scale #26",
+      "expected": 336906560.0,
+      "valid": true
+    },
+    {
+      "id": 155,
+      "inputs": [
+        0.5162053591701115,
+        -1.8834148224266232e-06
+      ],
+      "description": "Random log scale #27",
+      "expected": 0.5162053704,
+      "valid": true
+    },
+    {
+      "id": 156,
+      "inputs": [
+        1.9621961896523463e-07,
+        1.1043521144322673e-10
+      ],
+      "description": "Random log scale #28",
+      "expected": 1.962196308e-07,
+      "valid": true
+    },
+    {
+      "id": 157,
+      "inputs": [
+        339126299.6860995,
+        504181.76686771197
+      ],
+      "description": "Random log scale #29",
+      "expected": 339126688.0,
+      "valid": true
+    },
+    {
+      "id": 158,
+      "inputs": [
+        8547.322132366804,
+        -40748.00476850634
+      ],
+      "description": "Random log scale #30",
+      "expected": 41634.79688,
+      "valid": true
+    },
+    {
+      "id": 159,
+      "inputs": [
+        -6.279966764910036e-07,
+        -2.2595292529245665e-06
+      ],
+      "description": "Random log scale #31",
+      "expected": 2.345176199e-06,
+      "valid": true
+    },
+    {
+      "id": 160,
+      "inputs": [
+        91098.49612136114,
+        -1.3909305890775148e-09
+      ],
+      "description": "Random log scale #32",
+      "expected": 91098.5,
+      "valid": true
+    },
+    {
+      "id": 161,
+      "inputs": [
+        -1.3727504494518969e-09,
+        -1.4340686434578422
+      ],
+      "description": "Random log scale #33",
+      "expected": 1.434069037,
+      "valid": true
+    },
+    {
+      "id": 162,
+      "inputs": [
+        -79.56134731807578,
+        3193.3834639098386
+      ],
+      "description": "Random log scale #34",
+      "expected": 3194.374023,
+      "valid": true
+    },
+    {
+      "id": 163,
+      "inputs": [
+        -2.4988044974898046e-08,
+        -63936120.77471812
+      ],
+      "description": "Random log scale #35",
+      "expected": 63936120.0,
+      "valid": true
+    },
+    {
+      "id": 164,
+      "inputs": [
+        244.1350904317217,
+        0.024238085142833706
+      ],
+      "description": "Random log scale #36",
+      "expected": 244.1351013,
+      "valid": true
+    },
+    {
+      "id": 165,
+      "inputs": [
+        -1.2167013459181888e-06,
+        21078.32108385167
+      ],
+      "description": "Random log scale #37",
+      "expected": 21078.32031,
+      "valid": true
+    },
+    {
+      "id": 166,
+      "inputs": [
+        0.008236011338241289,
+        2715.2164691746025
+      ],
+      "description": "Random log scale #38",
+      "expected": 2715.216064,
+      "valid": true
+    },
+    {
+      "id": 167,
+      "inputs": [
+        -0.00021064149353562629,
+        -108965.70882272198
+      ],
+      "description": "Random log scale #39",
+      "expected": 108965.7031,
+      "valid": true
+    },
+    {
+      "id": 168,
+      "inputs": [
+        -0.1464571074054262,
+        -9312983147.922785
+      ],
+      "description": "Random log scale #40",
+      "expected": 9312983040.0,
+      "valid": true
+    },
+    {
+      "id": 169,
+      "inputs": [
+        -5.658327519884146,
+        1.3112753009990208
+      ],
+      "description": "Random log scale #41",
+      "expected": 5.808279991,
+      "valid": true
+    },
+    {
+      "id": 170,
+      "inputs": [
+        41426998.98844445,
+        38495046.59932742
+      ],
+      "description": "Random log scale #42",
+      "expected": 56551432.0,
+      "valid": true
+    },
+    {
+      "id": 171,
+      "inputs": [
+        1.4286855333209957e-07,
+        -4730413.362562117
+      ],
+      "description": "Random log scale #43",
+      "expected": 4730413.0,
+      "valid": true
+    },
+    {
+      "id": 172,
+      "inputs": [
+        -2276.48123225057,
+        -12.360773538393167
+      ],
+      "description": "Random log scale #44",
+      "expected": 2276.514404,
+      "valid": true
+    },
+    {
+      "id": 173,
+      "inputs": [
+        -1.9467869651984606e-05,
+        62266454.89455278
+      ],
+      "description": "Random log scale #45",
+      "expected": 62266448.0,
+      "valid": true
+    },
+    {
+      "id": 174,
+      "inputs": [
+        4.316437224159388e-05,
+        -1.6315226078383582e-06
+      ],
+      "description": "Random log scale #46",
+      "expected": 4.319519576e-05,
+      "valid": true
+    },
+    {
+      "id": 175,
+      "inputs": [
+        5622.669753197898,
+        11435530.270623896
+      ],
+      "description": "Random log scale #47",
+      "expected": 11435531.0,
+      "valid": true
+    },
+    {
+      "id": 176,
+      "inputs": [
+        -127858563.73270315,
+        8357459.21529889
+      ],
+      "description": "Random log scale #48",
+      "expected": 128131448.0,
+      "valid": true
+    },
+    {
+      "id": 177,
+      "inputs": [
+        3863329.8302304847,
+        -7.616145564844304e-10
+      ],
+      "description": "Random log scale #49",
+      "expected": 3863330.0,
+      "valid": true
+    },
+    {
+      "id": 178,
+      "inputs": [
+        552.4176499863927,
+        1.7342242257679653e-05
+      ],
+      "description": "Random log scale #50",
+      "expected": 552.4176025,
+      "valid": true
+    },
+    {
+      "id": 179,
+      "inputs": [
+        1,
+        1e-20
+      ],
+      "description": "Huge ratio",
+      "expected": 1.0,
+      "valid": true
+    },
+    {
+      "id": 180,
+      "inputs": [
+        1e-20,
+        1
+      ],
+      "description": "Tiny ratio",
+      "expected": 1.0,
+      "valid": true
+    },
+    {
+      "id": 181,
+      "inputs": [
+        1e+20,
+        1e-20
+      ],
+      "description": "Extreme ratio",
+      "expected": 1.00000002e+20,
+      "valid": true
+    },
+    {
+      "id": 182,
+      "inputs": [
+        -1,
+        -2
+      ],
+      "description": "Signs: (-1, -1) with (1, 2)",
+      "expected": 2.23606801,
+      "valid": true
+    },
+    {
+      "id": 183,
+      "inputs": [
+        -1,
+        2
+      ],
+      "description": "Signs: (-1, 1) with (1, 2)",
+      "expected": 2.23606801,
+      "valid": true
+    },
+    {
+      "id": 184,
+      "inputs": [
+        1,
+        -2
+      ],
+      "description": "Signs: (1, -1) with (1, 2)",
+      "expected": 2.23606801,
+      "valid": true
+    },
+    {
+      "id": 185,
+      "inputs": [
+        1,
+        2
+      ],
+      "description": "Signs: (1, 1) with (1, 2)",
+      "expected": 2.23606801,
+      "valid": true
+    },
+    {
+      "id": 186,
+      "inputs": [
+        -3,
+        -4
+      ],
+      "description": "Signs: (-1, -1) with (3, 4)",
+      "expected": 5.0,
+      "valid": true
+    },
+    {
+      "id": 187,
+      "inputs": [
+        -3,
+        4
+      ],
+      "description": "Signs: (-1, 1) with (3, 4)",
+      "expected": 5.0,
+      "valid": true
+    },
+    {
+      "id": 188,
+      "inputs": [
+        3,
+        -4
+      ],
+      "description": "Signs: (1, -1) with (3, 4)",
+      "expected": 5.0,
+      "valid": true
+    },
+    {
+      "id": 189,
+      "inputs": [
+        3,
+        4
+      ],
+      "description": "Signs: (1, 1) with (3, 4)",
+      "expected": 5.0,
+      "valid": true
+    },
+    {
+      "id": 190,
+      "inputs": [
+        -5,
+        -12
+      ],
+      "description": "Signs: (-1, -1) with (5, 12)",
+      "expected": 13.0,
+      "valid": true
+    },
+    {
+      "id": 191,
+      "inputs": [
+        -5,
+        12
+      ],
+      "description": "Signs: (-1, 1) with (5, 12)",
+      "expected": 13.0,
+      "valid": true
+    },
+    {
+      "id": 192,
+      "inputs": [
+        5,
+        -12
+      ],
+      "description": "Signs: (1, -1) with (5, 12)",
+      "expected": 13.0,
+      "valid": true
+    },
+    {
+      "id": 193,
+      "inputs": [
+        5,
+        12
+      ],
+      "description": "Signs: (1, 1) with (5, 12)",
+      "expected": 13.0,
+      "valid": true
+    }
+  ],
+  "generation_date": "2025-07-22T10:35:08.846683",
+  "total_tests": 194,
+  "valid_tests": 194
+}

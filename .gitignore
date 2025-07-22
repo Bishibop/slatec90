@@ -12,6 +12,8 @@ __pycache__/
 test_*
 !test_*.f
 !test_*.f90
+!test_*.py
+!test_data/
 
 # Environment files
 .env
