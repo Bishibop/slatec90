@@ -82,7 +82,6 @@ swarm:
       description: "Blind Fortran modernization specialist implementing F77 algorithms in F90 (Worker #1)"
       directory: .
       model: opus
-      connections: [migration_coordinator]
       allowed_tools: [Read, Edit, Write, Bash, MultiEdit]
       prompt: |
         You are a Fortran modernization specialist (Worker #1) converting SLATEC functions from F77 to modern Fortran 90.
@@ -120,7 +119,6 @@ swarm:
       description: "Blind Fortran modernization specialist implementing F77 algorithms in F90 (Worker #2)"
       directory: .
       model: opus
-      connections: [migration_coordinator]
       allowed_tools: [Read, Edit, Write, Bash, MultiEdit]
       prompt: |
         You are a Fortran modernization specialist (Worker #2) converting SLATEC functions from F77 to modern Fortran 90.

@@ -41,6 +41,8 @@ class SlatecTestHelper:
             return self._generate_d1mach_tests()
         elif self.func_name == "ENORM":
             return self._generate_enorm_tests()
+        elif self.func_name == "LSAME":
+            return self._generate_lsame_tests()
         else:
             print(f"No test generator for {self.func_name} yet")
             print("Please implement a generator based on the function's purpose")
@@ -732,6 +734,126 @@ class SlatecTestHelper:
         print(f"Generated {len(tests)} test cases for ENORM")
         return tests
     
+    def _generate_lsame_tests(self):
+        """Generate test cases for LSAME (case-insensitive character comparison)"""
+        tests = []
+        
+        # Category 1: Basic same letter tests
+        tests.append({
+            "description": "Same uppercase letters",
+            "inputs": ["A", "A"],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Same lowercase letters",
+            "inputs": ["a", "a"],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Lowercase vs uppercase (same letter)",
+            "inputs": ["a", "A"],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Uppercase vs uppercase (same letter)",
+            "inputs": ["A", "A"],
+            "expected": None
+        })
+        
+        # Category 2: Different letters
+        tests.append({
+            "description": "Different uppercase letters",
+            "inputs": ["A", "B"],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Different lowercase letters",
+            "inputs": ["a", "b"],
+            "expected": None
+        })
+        
+        tests.append({
+            "description": "Different letters mixed case",
+            "inputs": ["a", "B"],
+            "expected": None
+        })
+        
+        # Category 3: All alphabet letters
+        # Test all letters against themselves (uppercase)
+        for i in range(26):
+            letter = chr(ord('A') + i)
+            tests.append({
+                "description": f"Letter {letter} uppercase vs uppercase",
+                "inputs": [letter, letter],
+                "expected": None
+            })
+        
+        # Test all letters against themselves (lowercase vs uppercase)
+        for i in range(26):
+            lower = chr(ord('a') + i)
+            upper = chr(ord('A') + i)
+            tests.append({
+                "description": f"Letter {lower} lowercase vs {upper} uppercase",
+                "inputs": [lower, upper],
+                "expected": None
+            })
+        
+        # Category 4: Non-letter characters
+        special_chars = ['0', '1', '9', ' ', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', ';', ':', "'", '"', ',', '.', '<', '>', '/', '?', '\\', '|']
+        for char in special_chars:
+            tests.append({
+                "description": f"Special character '{char}' vs 'A'",
+                "inputs": [char, "A"],
+                "expected": None
+            })
+        
+        # Test special characters against themselves
+        for char in special_chars[:10]:  # Just first 10 to keep test count reasonable
+            tests.append({
+                "description": f"Special character '{char}' vs itself",
+                "inputs": [char, char],
+                "expected": None
+            })
+        
+        # Category 5: Edge cases with adjacent letters
+        adjacent_pairs = [('A', 'B'), ('B', 'C'), ('Y', 'Z'), ('a', 'b'), ('y', 'z')]
+        for char1, char2 in adjacent_pairs:
+            tests.append({
+                "description": f"Adjacent letters {char1} vs {char2}",
+                "inputs": [char1, char2],
+                "expected": None
+            })
+        
+        # Category 6: Case variations for specific letters
+        test_letters = ['A', 'Z', 'M', 'a', 'z', 'm']
+        for letter1 in test_letters:
+            for letter2 in test_letters:
+                tests.append({
+                    "description": f"Case test: '{letter1}' vs '{letter2}'",
+                    "inputs": [letter1, letter2],
+                    "expected": None
+                })
+        
+        # Category 7: Numbers and digits
+        for digit in '0123456789':
+            tests.append({
+                "description": f"Digit '{digit}' vs 'A'",
+                "inputs": [digit, "A"],
+                "expected": None
+            })
+            tests.append({
+                "description": f"Digit '{digit}' vs itself",
+                "inputs": [digit, digit],
+                "expected": None
+            })
+        
+        print(f"Generated {len(tests)} test cases for LSAME")
+        return tests
+    
     def run_f77_reference(self, test_cases):
         """Run F77 implementation to get reference values"""
         all_results = []
@@ -804,6 +926,8 @@ class SlatecTestHelper:
             return self._generate_d1mach_f77(test_cases, start_index)
         elif self.func_name == "ENORM":
             return self._generate_enorm_f77(test_cases, start_index)
+        elif self.func_name == "LSAME":
+            return self._generate_lsame_f77(test_cases, start_index)
         else:
             raise NotImplementedError(f"No F77 generator for {self.func_name}")
     
@@ -937,6 +1061,35 @@ class SlatecTestHelper:
         program += "      END"
         return program
     
+    def _generate_lsame_f77(self, test_cases, start_index):
+        """Generate F77 program for LSAME"""
+        program = f"""      PROGRAM TEST_LSAME
+      LOGICAL LSAME, RESULT
+      EXTERNAL LSAME
+      CHARACTER*1 CA, CB
+      
+"""
+        for i, test in enumerate(test_cases):
+            test_num = start_index + i + 1
+            ca, cb = test['inputs']
+            # Need to escape single quotes in F77 character constants
+            ca_escaped = ca.replace("'", "''")
+            cb_escaped = cb.replace("'", "''")
+            
+            program += f"""C     Test {test_num}
+      CA = '{ca_escaped}'
+      CB = '{cb_escaped}'
+      RESULT = LSAME(CA, CB)
+      IF (RESULT) THEN
+        WRITE(*,'(A,I5,A)') 'TEST_', {test_num}, '_RESULT: T'
+      ELSE
+        WRITE(*,'(A,I5,A)') 'TEST_', {test_num}, '_RESULT: F'
+      ENDIF
+      
+"""
+        program += "      END"
+        return program
+    
     def _parse_f77_output(self, output):
         """Parse F77 output to extract results"""
         results = []
@@ -1003,6 +1156,14 @@ class SlatecTestHelper:
                 test_num = int(match.group(1))
                 value = float(match.group(2))
                 results.append((test_num, value))
+                
+        elif self.func_name == "LSAME":
+            # Boolean result per test (T or F)
+            pattern = r'TEST_\s*(\d+)_RESULT:\s*([TF])'
+            for match in re.finditer(pattern, output):
+                test_num = int(match.group(1))
+                value = match.group(2) == 'T'  # Convert to Python boolean
+                results.append((test_num, value))
         
         return results
     
@@ -1030,6 +1191,10 @@ class SlatecTestHelper:
                 test_case['expected'] = value
                 test_case['test_id'] = test_num
         elif self.func_name == "ENORM":
+            for (test_num, value), test_case in zip(results, test_cases):
+                test_case['expected'] = value
+                test_case['test_id'] = test_num
+        elif self.func_name == "LSAME":
             for (test_num, value), test_case in zip(results, test_cases):
                 test_case['expected'] = value
                 test_case['test_id'] = test_num

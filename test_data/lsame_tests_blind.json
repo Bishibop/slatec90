@@ -1,0 +1,1320 @@
+{
+  "function": "lsame",
+  "signature": "Unknown",
+  "description": "No description",
+  "total_tests": 164,
+  "test_cases": [
+    {
+      "description": "Same uppercase letters",
+      "inputs": [
+        "A",
+        "A"
+      ],
+      "test_id": 1
+    },
+    {
+      "description": "Same lowercase letters",
+      "inputs": [
+        "a",
+        "a"
+      ],
+      "test_id": 2
+    },
+    {
+      "description": "Lowercase vs uppercase (same letter)",
+      "inputs": [
+        "a",
+        "A"
+      ],
+      "test_id": 3
+    },
+    {
+      "description": "Uppercase vs uppercase (same letter)",
+      "inputs": [
+        "A",
+        "A"
+      ],
+      "test_id": 4
+    },
+    {
+      "description": "Different uppercase letters",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "test_id": 5
+    },
+    {
+      "description": "Different lowercase letters",
+      "inputs": [
+        "a",
+        "b"
+      ],
+      "test_id": 6
+    },
+    {
+      "description": "Different letters mixed case",
+      "inputs": [
+        "a",
+        "B"
+      ],
+      "test_id": 7
+    },
+    {
+      "description": "Letter A uppercase vs uppercase",
+      "inputs": [
+        "A",
+        "A"
+      ],
+      "test_id": 8
+    },
+    {
+      "description": "Letter B uppercase vs uppercase",
+      "inputs": [
+        "B",
+        "B"
+      ],
+      "test_id": 9
+    },
+    {
+      "description": "Letter C uppercase vs uppercase",
+      "inputs": [
+        "C",
+        "C"
+      ],
+      "test_id": 10
+    },
+    {
+      "description": "Letter D uppercase vs uppercase",
+      "inputs": [
+        "D",
+        "D"
+      ],
+      "test_id": 11
+    },
+    {
+      "description": "Letter E uppercase vs uppercase",
+      "inputs": [
+        "E",
+        "E"
+      ],
+      "test_id": 12
+    },
+    {
+      "description": "Letter F uppercase vs uppercase",
+      "inputs": [
+        "F",
+        "F"
+      ],
+      "test_id": 13
+    },
+    {
+      "description": "Letter G uppercase vs uppercase",
+      "inputs": [
+        "G",
+        "G"
+      ],
+      "test_id": 14
+    },
+    {
+      "description": "Letter H uppercase vs uppercase",
+      "inputs": [
+        "H",
+        "H"
+      ],
+      "test_id": 15
+    },
+    {
+      "description": "Letter I uppercase vs uppercase",
+      "inputs": [
+        "I",
+        "I"
+      ],
+      "test_id": 16
+    },
+    {
+      "description": "Letter J uppercase vs uppercase",
+      "inputs": [
+        "J",
+        "J"
+      ],
+      "test_id": 17
+    },
+    {
+      "description": "Letter K uppercase vs uppercase",
+      "inputs": [
+        "K",
+        "K"
+      ],
+      "test_id": 18
+    },
+    {
+      "description": "Letter L uppercase vs uppercase",
+      "inputs": [
+        "L",
+        "L"
+      ],
+      "test_id": 19
+    },
+    {
+      "description": "Letter M uppercase vs uppercase",
+      "inputs": [
+        "M",
+        "M"
+      ],
+      "test_id": 20
+    },
+    {
+      "description": "Letter N uppercase vs uppercase",
+      "inputs": [
+        "N",
+        "N"
+      ],
+      "test_id": 21
+    },
+    {
+      "description": "Letter O uppercase vs uppercase",
+      "inputs": [
+        "O",
+        "O"
+      ],
+      "test_id": 22
+    },
+    {
+      "description": "Letter P uppercase vs uppercase",
+      "inputs": [
+        "P",
+        "P"
+      ],
+      "test_id": 23
+    },
+    {
+      "description": "Letter Q uppercase vs uppercase",
+      "inputs": [
+        "Q",
+        "Q"
+      ],
+      "test_id": 24
+    },
+    {
+      "description": "Letter R uppercase vs uppercase",
+      "inputs": [
+        "R",
+        "R"
+      ],
+      "test_id": 25
+    },
+    {
+      "description": "Letter S uppercase vs uppercase",
+      "inputs": [
+        "S",
+        "S"
+      ],
+      "test_id": 26
+    },
+    {
+      "description": "Letter T uppercase vs uppercase",
+      "inputs": [
+        "T",
+        "T"
+      ],
+      "test_id": 27
+    },
+    {
+      "description": "Letter U uppercase vs uppercase",
+      "inputs": [
+        "U",
+        "U"
+      ],
+      "test_id": 28
+    },
+    {
+      "description": "Letter V uppercase vs uppercase",
+      "inputs": [
+        "V",
+        "V"
+      ],
+      "test_id": 29
+    },
+    {
+      "description": "Letter W uppercase vs uppercase",
+      "inputs": [
+        "W",
+        "W"
+      ],
+      "test_id": 30
+    },
+    {
+      "description": "Letter X uppercase vs uppercase",
+      "inputs": [
+        "X",
+        "X"
+      ],
+      "test_id": 31
+    },
+    {
+      "description": "Letter Y uppercase vs uppercase",
+      "inputs": [
+        "Y",
+        "Y"
+      ],
+      "test_id": 32
+    },
+    {
+      "description": "Letter Z uppercase vs uppercase",
+      "inputs": [
+        "Z",
+        "Z"
+      ],
+      "test_id": 33
+    },
+    {
+      "description": "Letter a lowercase vs A uppercase",
+      "inputs": [
+        "a",
+        "A"
+      ],
+      "test_id": 34
+    },
+    {
+      "description": "Letter b lowercase vs B uppercase",
+      "inputs": [
+        "b",
+        "B"
+      ],
+      "test_id": 35
+    },
+    {
+      "description": "Letter c lowercase vs C uppercase",
+      "inputs": [
+        "c",
+        "C"
+      ],
+      "test_id": 36
+    },
+    {
+      "description": "Letter d lowercase vs D uppercase",
+      "inputs": [
+        "d",
+        "D"
+      ],
+      "test_id": 37
+    },
+    {
+      "description": "Letter e lowercase vs E uppercase",
+      "inputs": [
+        "e",
+        "E"
+      ],
+      "test_id": 38
+    },
+    {
+      "description": "Letter f lowercase vs F uppercase",
+      "inputs": [
+        "f",
+        "F"
+      ],
+      "test_id": 39
+    },
+    {
+      "description": "Letter g lowercase vs G uppercase",
+      "inputs": [
+        "g",
+        "G"
+      ],
+      "test_id": 40
+    },
+    {
+      "description": "Letter h lowercase vs H uppercase",
+      "inputs": [
+        "h",
+        "H"
+      ],
+      "test_id": 41
+    },
+    {
+      "description": "Letter i lowercase vs I uppercase",
+      "inputs": [
+        "i",
+        "I"
+      ],
+      "test_id": 42
+    },
+    {
+      "description": "Letter j lowercase vs J uppercase",
+      "inputs": [
+        "j",
+        "J"
+      ],
+      "test_id": 43
+    },
+    {
+      "description": "Letter k lowercase vs K uppercase",
+      "inputs": [
+        "k",
+        "K"
+      ],
+      "test_id": 44
+    },
+    {
+      "description": "Letter l lowercase vs L uppercase",
+      "inputs": [
+        "l",
+        "L"
+      ],
+      "test_id": 45
+    },
+    {
+      "description": "Letter m lowercase vs M uppercase",
+      "inputs": [
+        "m",
+        "M"
+      ],
+      "test_id": 46
+    },
+    {
+      "description": "Letter n lowercase vs N uppercase",
+      "inputs": [
+        "n",
+        "N"
+      ],
+      "test_id": 47
+    },
+    {
+      "description": "Letter o lowercase vs O uppercase",
+      "inputs": [
+        "o",
+        "O"
+      ],
+      "test_id": 48
+    },
+    {
+      "description": "Letter p lowercase vs P uppercase",
+      "inputs": [
+        "p",
+        "P"
+      ],
+      "test_id": 49
+    },
+    {
+      "description": "Letter q lowercase vs Q uppercase",
+      "inputs": [
+        "q",
+        "Q"
+      ],
+      "test_id": 50
+    },
+    {
+      "description": "Letter r lowercase vs R uppercase",
+      "inputs": [
+        "r",
+        "R"
+      ],
+      "test_id": 51
+    },
+    {
+      "description": "Letter s lowercase vs S uppercase",
+      "inputs": [
+        "s",
+        "S"
+      ],
+      "test_id": 52
+    },
+    {
+      "description": "Letter t lowercase vs T uppercase",
+      "inputs": [
+        "t",
+        "T"
+      ],
+      "test_id": 53
+    },
+    {
+      "description": "Letter u lowercase vs U uppercase",
+      "inputs": [
+        "u",
+        "U"
+      ],
+      "test_id": 54
+    },
+    {
+      "description": "Letter v lowercase vs V uppercase",
+      "inputs": [
+        "v",
+        "V"
+      ],
+      "test_id": 55
+    },
+    {
+      "description": "Letter w lowercase vs W uppercase",
+      "inputs": [
+        "w",
+        "W"
+      ],
+      "test_id": 56
+    },
+    {
+      "description": "Letter x lowercase vs X uppercase",
+      "inputs": [
+        "x",
+        "X"
+      ],
+      "test_id": 57
+    },
+    {
+      "description": "Letter y lowercase vs Y uppercase",
+      "inputs": [
+        "y",
+        "Y"
+      ],
+      "test_id": 58
+    },
+    {
+      "description": "Letter z lowercase vs Z uppercase",
+      "inputs": [
+        "z",
+        "Z"
+      ],
+      "test_id": 59
+    },
+    {
+      "description": "Special character '0' vs 'A'",
+      "inputs": [
+        "0",
+        "A"
+      ],
+      "test_id": 60
+    },
+    {
+      "description": "Special character '1' vs 'A'",
+      "inputs": [
+        "1",
+        "A"
+      ],
+      "test_id": 61
+    },
+    {
+      "description": "Special character '9' vs 'A'",
+      "inputs": [
+        "9",
+        "A"
+      ],
+      "test_id": 62
+    },
+    {
+      "description": "Special character ' ' vs 'A'",
+      "inputs": [
+        " ",
+        "A"
+      ],
+      "test_id": 63
+    },
+    {
+      "description": "Special character '!' vs 'A'",
+      "inputs": [
+        "!",
+        "A"
+      ],
+      "test_id": 64
+    },
+    {
+      "description": "Special character '@' vs 'A'",
+      "inputs": [
+        "@",
+        "A"
+      ],
+      "test_id": 65
+    },
+    {
+      "description": "Special character '#' vs 'A'",
+      "inputs": [
+        "#",
+        "A"
+      ],
+      "test_id": 66
+    },
+    {
+      "description": "Special character '$' vs 'A'",
+      "inputs": [
+        "$",
+        "A"
+      ],
+      "test_id": 67
+    },
+    {
+      "description": "Special character '%' vs 'A'",
+      "inputs": [
+        "%",
+        "A"
+      ],
+      "test_id": 68
+    },
+    {
+      "description": "Special character '^' vs 'A'",
+      "inputs": [
+        "^",
+        "A"
+      ],
+      "test_id": 69
+    },
+    {
+      "description": "Special character '&' vs 'A'",
+      "inputs": [
+        "&",
+        "A"
+      ],
+      "test_id": 70
+    },
+    {
+      "description": "Special character '*' vs 'A'",
+      "inputs": [
+        "*",
+        "A"
+      ],
+      "test_id": 71
+    },
+    {
+      "description": "Special character '(' vs 'A'",
+      "inputs": [
+        "(",
+        "A"
+      ],
+      "test_id": 72
+    },
+    {
+      "description": "Special character ')' vs 'A'",
+      "inputs": [
+        ")",
+        "A"
+      ],
+      "test_id": 73
+    },
+    {
+      "description": "Special character '-' vs 'A'",
+      "inputs": [
+        "-",
+        "A"
+      ],
+      "test_id": 74
+    },
+    {
+      "description": "Special character '_' vs 'A'",
+      "inputs": [
+        "_",
+        "A"
+      ],
+      "test_id": 75
+    },
+    {
+      "description": "Special character '=' vs 'A'",
+      "inputs": [
+        "=",
+        "A"
+      ],
+      "test_id": 76
+    },
+    {
+      "description": "Special character '+' vs 'A'",
+      "inputs": [
+        "+",
+        "A"
+      ],
+      "test_id": 77
+    },
+    {
+      "description": "Special character '[' vs 'A'",
+      "inputs": [
+        "[",
+        "A"
+      ],
+      "test_id": 78
+    },
+    {
+      "description": "Special character ']' vs 'A'",
+      "inputs": [
+        "]",
+        "A"
+      ],
+      "test_id": 79
+    },
+    {
+      "description": "Special character '{' vs 'A'",
+      "inputs": [
+        "{",
+        "A"
+      ],
+      "test_id": 80
+    },
+    {
+      "description": "Special character '}' vs 'A'",
+      "inputs": [
+        "}",
+        "A"
+      ],
+      "test_id": 81
+    },
+    {
+      "description": "Special character ';' vs 'A'",
+      "inputs": [
+        ";",
+        "A"
+      ],
+      "test_id": 82
+    },
+    {
+      "description": "Special character ':' vs 'A'",
+      "inputs": [
+        ":",
+        "A"
+      ],
+      "test_id": 83
+    },
+    {
+      "description": "Special character ''' vs 'A'",
+      "inputs": [
+        "'",
+        "A"
+      ],
+      "test_id": 84
+    },
+    {
+      "description": "Special character '\"' vs 'A'",
+      "inputs": [
+        "\"",
+        "A"
+      ],
+      "test_id": 85
+    },
+    {
+      "description": "Special character ',' vs 'A'",
+      "inputs": [
+        ",",
+        "A"
+      ],
+      "test_id": 86
+    },
+    {
+      "description": "Special character '.' vs 'A'",
+      "inputs": [
+        ".",
+        "A"
+      ],
+      "test_id": 87
+    },
+    {
+      "description": "Special character '<' vs 'A'",
+      "inputs": [
+        "<",
+        "A"
+      ],
+      "test_id": 88
+    },
+    {
+      "description": "Special character '>' vs 'A'",
+      "inputs": [
+        ">",
+        "A"
+      ],
+      "test_id": 89
+    },
+    {
+      "description": "Special character '/' vs 'A'",
+      "inputs": [
+        "/",
+        "A"
+      ],
+      "test_id": 90
+    },
+    {
+      "description": "Special character '?' vs 'A'",
+      "inputs": [
+        "?",
+        "A"
+      ],
+      "test_id": 91
+    },
+    {
+      "description": "Special character '\\' vs 'A'",
+      "inputs": [
+        "\\",
+        "A"
+      ],
+      "test_id": 92
+    },
+    {
+      "description": "Special character '|' vs 'A'",
+      "inputs": [
+        "|",
+        "A"
+      ],
+      "test_id": 93
+    },
+    {
+      "description": "Special character '0' vs itself",
+      "inputs": [
+        "0",
+        "0"
+      ],
+      "test_id": 94
+    },
+    {
+      "description": "Special character '1' vs itself",
+      "inputs": [
+        "1",
+        "1"
+      ],
+      "test_id": 95
+    },
+    {
+      "description": "Special character '9' vs itself",
+      "inputs": [
+        "9",
+        "9"
+      ],
+      "test_id": 96
+    },
+    {
+      "description": "Special character ' ' vs itself",
+      "inputs": [
+        " ",
+        " "
+      ],
+      "test_id": 97
+    },
+    {
+      "description": "Special character '!' vs itself",
+      "inputs": [
+        "!",
+        "!"
+      ],
+      "test_id": 98
+    },
+    {
+      "description": "Special character '@' vs itself",
+      "inputs": [
+        "@",
+        "@"
+      ],
+      "test_id": 99
+    },
+    {
+      "description": "Special character '#' vs itself",
+      "inputs": [
+        "#",
+        "#"
+      ],
+      "test_id": 100
+    },
+    {
+      "description": "Special character '$' vs itself",
+      "inputs": [
+        "$",
+        "$"
+      ],
+      "test_id": 101
+    },
+    {
+      "description": "Special character '%' vs itself",
+      "inputs": [
+        "%",
+        "%"
+      ],
+      "test_id": 102
+    },
+    {
+      "description": "Special character '^' vs itself",
+      "inputs": [
+        "^",
+        "^"
+      ],
+      "test_id": 103
+    },
+    {
+      "description": "Adjacent letters A vs B",
+      "inputs": [
+        "A",
+        "B"
+      ],
+      "test_id": 104
+    },
+    {
+      "description": "Adjacent letters B vs C",
+      "inputs": [
+        "B",
+        "C"
+      ],
+      "test_id": 105
+    },
+    {
+      "description": "Adjacent letters Y vs Z",
+      "inputs": [
+        "Y",
+        "Z"
+      ],
+      "test_id": 106
+    },
+    {
+      "description": "Adjacent letters a vs b",
+      "inputs": [
+        "a",
+        "b"
+      ],
+      "test_id": 107
+    },
+    {
+      "description": "Adjacent letters y vs z",
+      "inputs": [
+        "y",
+        "z"
+      ],
+      "test_id": 108
+    },
+    {
+      "description": "Case test: 'A' vs 'A'",
+      "inputs": [
+        "A",
+        "A"
+      ],
+      "test_id": 109
+    },
+    {
+      "description": "Case test: 'A' vs 'Z'",
+      "inputs": [
+        "A",
+        "Z"
+      ],
+      "test_id": 110
+    },
+    {
+      "description": "Case test: 'A' vs 'M'",
+      "inputs": [
+        "A",
+        "M"
+      ],
+      "test_id": 111
+    },
+    {
+      "description": "Case test: 'A' vs 'a'",
+      "inputs": [
+        "A",
+        "a"
+      ],
+      "test_id": 112
+    },
+    {
+      "description": "Case test: 'A' vs 'z'",
+      "inputs": [
+        "A",
+        "z"
+      ],
+      "test_id": 113
+    },
+    {
+      "description": "Case test: 'A' vs 'm'",
+      "inputs": [
+        "A",
+        "m"
+      ],
+      "test_id": 114
+    },
+    {
+      "description": "Case test: 'Z' vs 'A'",
+      "inputs": [
+        "Z",
+        "A"
+      ],
+      "test_id": 115
+    },
+    {
+      "description": "Case test: 'Z' vs 'Z'",
+      "inputs": [
+        "Z",
+        "Z"
+      ],
+      "test_id": 116
+    },
+    {
+      "description": "Case test: 'Z' vs 'M'",
+      "inputs": [
+        "Z",
+        "M"
+      ],
+      "test_id": 117
+    },
+    {
+      "description": "Case test: 'Z' vs 'a'",
+      "inputs": [
+        "Z",
+        "a"
+      ],
+      "test_id": 118
+    },
+    {
+      "description": "Case test: 'Z' vs 'z'",
+      "inputs": [
+        "Z",
+        "z"
+      ],
+      "test_id": 119
+    },
+    {
+      "description": "Case test: 'Z' vs 'm'",
+      "inputs": [
+        "Z",
+        "m"
+      ],
+      "test_id": 120
+    },
+    {
+      "description": "Case test: 'M' vs 'A'",
+      "inputs": [
+        "M",
+        "A"
+      ],
+      "test_id": 121
+    },
+    {
+      "description": "Case test: 'M' vs 'Z'",
+      "inputs": [
+        "M",
+        "Z"
+      ],
+      "test_id": 122
+    },
+    {
+      "description": "Case test: 'M' vs 'M'",
+      "inputs": [
+        "M",
+        "M"
+      ],
+      "test_id": 123
+    },
+    {
+      "description": "Case test: 'M' vs 'a'",
+      "inputs": [
+        "M",
+        "a"
+      ],
+      "test_id": 124
+    },
+    {
+      "description": "Case test: 'M' vs 'z'",
+      "inputs": [
+        "M",
+        "z"
+      ],
+      "test_id": 125
+    },
+    {
+      "description": "Case test: 'M' vs 'm'",
+      "inputs": [
+        "M",
+        "m"
+      ],
+      "test_id": 126
+    },
+    {
+      "description": "Case test: 'a' vs 'A'",
+      "inputs": [
+        "a",
+        "A"
+      ],
+      "test_id": 127
+    },
+    {
+      "description": "Case test: 'a' vs 'Z'",
+      "inputs": [
+        "a",
+        "Z"
+      ],
+      "test_id": 128
+    },
+    {
+      "description": "Case test: 'a' vs 'M'",
+      "inputs": [
+        "a",
+        "M"
+      ],
+      "test_id": 129
+    },
+    {
+      "description": "Case test: 'a' vs 'a'",
+      "inputs": [
+        "a",
+        "a"
+      ],
+      "test_id": 130
+    },
+    {
+      "description": "Case test: 'a' vs 'z'",
+      "inputs": [
+        "a",
+        "z"
+      ],
+      "test_id": 131
+    },
+    {
+      "description": "Case test: 'a' vs 'm'",
+      "inputs": [
+        "a",
+        "m"
+      ],
+      "test_id": 132
+    },
+    {
+      "description": "Case test: 'z' vs 'A'",
+      "inputs": [
+        "z",
+        "A"
+      ],
+      "test_id": 133
+    },
+    {
+      "description": "Case test: 'z' vs 'Z'",
+      "inputs": [
+        "z",
+        "Z"
+      ],
+      "test_id": 134
+    },
+    {
+      "description": "Case test: 'z' vs 'M'",
+      "inputs": [
+        "z",
+        "M"
+      ],
+      "test_id": 135
+    },
+    {
+      "description": "Case test: 'z' vs 'a'",
+      "inputs": [
+        "z",
+        "a"
+      ],
+      "test_id": 136
+    },
+    {
+      "description": "Case test: 'z' vs 'z'",
+      "inputs": [
+        "z",
+        "z"
+      ],
+      "test_id": 137
+    },
+    {
+      "description": "Case test: 'z' vs 'm'",
+      "inputs": [
+        "z",
+        "m"
+      ],
+      "test_id": 138
+    },
+    {
+      "description": "Case test: 'm' vs 'A'",
+      "inputs": [
+        "m",
+        "A"
+      ],
+      "test_id": 139
+    },
+    {
+      "description": "Case test: 'm' vs 'Z'",
+      "inputs": [
+        "m",
+        "Z"
+      ],
+      "test_id": 140
+    },
+    {
+      "description": "Case test: 'm' vs 'M'",
+      "inputs": [
+        "m",
+        "M"
+      ],
+      "test_id": 141
+    },
+    {
+      "description": "Case test: 'm' vs 'a'",
+      "inputs": [
+        "m",
+        "a"
+      ],
+      "test_id": 142
+    },
+    {
+      "description": "Case test: 'm' vs 'z'",
+      "inputs": [
+        "m",
+        "z"
+      ],
+      "test_id": 143
+    },
+    {
+      "description": "Case test: 'm' vs 'm'",
+      "inputs": [
+        "m",
+        "m"
+      ],
+      "test_id": 144
+    },
+    {
+      "description": "Digit '0' vs 'A'",
+      "inputs": [
+        "0",
+        "A"
+      ],
+      "test_id": 145
+    },
+    {
+      "description": "Digit '0' vs itself",
+      "inputs": [
+        "0",
+        "0"
+      ],
+      "test_id": 146
+    },
+    {
+      "description": "Digit '1' vs 'A'",
+      "inputs": [
+        "1",
+        "A"
+      ],
+      "test_id": 147
+    },
+    {
+      "description": "Digit '1' vs itself",
+      "inputs": [
+        "1",
+        "1"
+      ],
+      "test_id": 148
+    },
+    {
+      "description": "Digit '2' vs 'A'",
+      "inputs": [
+        "2",
+        "A"
+      ],
+      "test_id": 149
+    },
+    {
+      "description": "Digit '2' vs itself",
+      "inputs": [
+        "2",
+        "2"
+      ],
+      "test_id": 150
+    },
+    {
+      "description": "Digit '3' vs 'A'",
+      "inputs": [
+        "3",
+        "A"
+      ],
+      "test_id": 151
+    },
+    {
+      "description": "Digit '3' vs itself",
+      "inputs": [
+        "3",
+        "3"
+      ],
+      "test_id": 152
+    },
+    {
+      "description": "Digit '4' vs 'A'",
+      "inputs": [
+        "4",
+        "A"
+      ],
+      "test_id": 153
+    },
+    {
+      "description": "Digit '4' vs itself",
+      "inputs": [
+        "4",
+        "4"
+      ],
+      "test_id": 154
+    },
+    {
+      "description": "Digit '5' vs 'A'",
+      "inputs": [
+        "5",
+        "A"
+      ],
+      "test_id": 155
+    },
+    {
+      "description": "Digit '5' vs itself",
+      "inputs": [
+        "5",
+        "5"
+      ],
+      "test_id": 156
+    },
+    {
+      "description": "Digit '6' vs 'A'",
+      "inputs": [
+        "6",
+        "A"
+      ],
+      "test_id": 157
+    },
+    {
+      "description": "Digit '6' vs itself",
+      "inputs": [
+        "6",
+        "6"
+      ],
+      "test_id": 158
+    },
+    {
+      "description": "Digit '7' vs 'A'",
+      "inputs": [
+        "7",
+        "A"
+      ],
+      "test_id": 159
+    },
+    {
+      "description": "Digit '7' vs itself",
+      "inputs": [
+        "7",
+        "7"
+      ],
+      "test_id": 160
+    },
+    {
+      "description": "Digit '8' vs 'A'",
+      "inputs": [
+        "8",
+        "A"
+      ],
+      "test_id": 161
+    },
+    {
+      "description": "Digit '8' vs itself",
+      "inputs": [
+        "8",
+        "8"
+      ],
+      "test_id": 162
+    },
+    {
+      "description": "Digit '9' vs 'A'",
+      "inputs": [
+        "9",
+        "A"
+      ],
+      "test_id": 163
+    },
+    {
+      "description": "Digit '9' vs itself",
+      "inputs": [
+        "9",
+        "9"
+      ],
+      "test_id": 164
+    }
+  ]
+}

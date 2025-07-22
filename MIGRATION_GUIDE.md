@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 6
+- **Completed**: 7
 - **In Progress**: 0
-- **Available**: 163
+- **Available**: 162
 
 ### Completed Migrations ✅
 
@@ -31,6 +31,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | R1MACH | 5 | 2025-01-22 | Single precision machine constants (IEEE values) |
 | D1MACH | 5 | 2025-01-22 | Double precision machine constants (IEEE values) |
 | ENORM | 157 | 2025-01-22 | Euclidean norm with overflow protection (blind tested) |
+| LSAME | 164 | 2025-01-22 | Case-insensitive character comparison (BLAS utility) - blind tested |
 
 ### In Progress 🚧
 
