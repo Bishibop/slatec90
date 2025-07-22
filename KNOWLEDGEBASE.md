@@ -193,3 +193,128 @@ Our dual validation approach (F77 vs F90) perfectly aligns with:
 - Systematic handling of s/d/c/z variants
 
 This knowledge base captures our current understanding and will be updated as we progress through the migration phases.
+
+## Directory Structure and Organization Strategy
+
+### Proposed Project Organization
+```
+slatec_migration/
+├── original/                    # Original F77 source (our current src/)
+├── modern/                      # Modernized F90+ implementations
+│   ├── utilities/              # Phase 2: Zero-dependency functions
+│   │   ├── enorm_module.f90    # Modern ENORM with generic interface
+│   │   ├── pythag_module.f90   # Modern PYTHAG 
+│   │   └── machine_constants.f90 # Modern R1MACH/I1MACH/D1MACH
+│   ├── special_functions/       # Phase 3: Mathematical functions
+│   │   ├── bessel_module.f90   # Unified Bessel functions
+│   │   ├── gamma_module.f90    # Gamma function family
+│   │   └── error_functions.f90 # ERF/ERFC family
+│   ├── integration/            # Phase 4: Integration routines
+│   │   ├── quadpack_module.f90 # QAG*, QAGS modernized
+│   │   └── gauss_quad.f90      # GAUS8 and variants
+│   └── linear_algebra/         # Phase 4: LA routines
+│       └── eigenvalue_module.f90
+├── wrappers/                   # F77 compatibility interfaces
+│   ├── enorm_compat.f90       # F77-compatible wrapper for ENORM
+│   └── pythag_compat.f90      # F77-compatible wrapper for PYTHAG
+├── validation/                 # Dual comparison framework
+│   ├── test_framework.f90     # Generic validation infrastructure
+│   ├── enorm_validation.f90   # ENORM F77 vs F90 tests
+│   └── validation_reports/    # Test results and comparisons
+├── benchmarks/                # Performance comparison
+│   ├── timing_framework.f90   # Performance measurement tools
+│   └── results/              # Performance data
+└── tools/                     # Automation scripts
+    ├── transform_f77.py      # F77→F90 transformation helpers
+    └── dependency_analyzer.py # Dependency mapping tools
+```
+
+### Phase 2 Implementation Structure
+Starting with ENORM and PYTHAG modernization:
+```
+modern/utilities/
+├── enorm_module.f90           # Modern implementation
+└── pythag_module.f90          # Modern implementation
+
+wrappers/
+├── enorm_compat.f90           # Maintains F77 interface
+└── pythag_compat.f90          # Maintains F77 interface
+
+validation/
+├── enorm_validation.f90       # Dual comparison tests
+└── pythag_validation.f90      # Dual comparison tests
+```
+
+### Module Design Pattern Template
+Each modern function follows this standard pattern:
+```fortran
+! modern/utilities/enorm_module.f90
+module enorm_module
+    use iso_fortran_env, only: real32, real64
+    implicit none
+    private
+    
+    ! Generic interface for all precisions
+    interface euclidean_norm
+        module procedure enorm_real32, enorm_real64
+    end interface euclidean_norm
+    
+    public :: euclidean_norm
+    
+contains
+    pure real(real32) function enorm_real32(x) result(norm)
+        real(real32), intent(in) :: x(:)
+        ! Modern implementation using intrinsic functions
+    end function
+    
+    pure real(real64) function enorm_real64(x) result(norm)
+        real(real64), intent(in) :: x(:)
+        ! Modern implementation using intrinsic functions
+    end function
+end module enorm_module
+```
+
+### Compatibility Wrapper Pattern
+```fortran
+! wrappers/enorm_compat.f90
+real function enorm(n, x)
+    use enorm_module, only: euclidean_norm
+    implicit none
+    integer, intent(in) :: n
+    real, intent(in) :: x(n)
+    
+    enorm = euclidean_norm(x(1:n))
+end function enorm
+```
+
+### Build System Strategy
+Mixed F77/F90 compilation approach:
+```makefile
+# Compile modern modules first
+modern_modules: $(F90_SOURCES)
+    gfortran -std=f2018 -c $(F90_SOURCES)
+
+# Compile wrappers that depend on modules
+wrappers: modern_modules $(WRAPPER_SOURCES)
+    gfortran -std=f2018 -c $(WRAPPER_SOURCES)
+
+# Legacy F77 compilation
+legacy: $(F77_SOURCES)
+    gfortran -std=legacy -c $(F77_SOURCES)
+```
+
+### Organization Benefits
+1. **Clear Separation**: Original vs modern code clearly delineated
+2. **Backward Compatibility**: Wrappers maintain existing interfaces
+3. **Systematic Organization**: Matches our dependency-based phases
+4. **Validation Framework**: Easy to compare F77 vs F90 implementations
+5. **Scalable**: Structure supports growing from 2 functions to 100+
+6. **Phase Alignment**: Directory structure mirrors migration phases
+
+### Implementation Strategy
+- **Current Phase**: Keep existing src/ structure with original F77
+- **Phase 2 Start**: Create modern/utilities/ for first modernized functions
+- **Establish Patterns**: Use ENORM/PYTHAG to validate directory structure
+- **Scale Up**: Apply proven patterns to subsequent phases
+
+This structure ensures systematic organization while maintaining compatibility and providing clear migration paths for each phase of the modernization process.

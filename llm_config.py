@@ -25,7 +25,7 @@ def get_client():
         _client = OpenAI(api_key=api_key)
     return _client
 
-def call_llm(prompt, model="o3-mini", reasoning_effort="medium", max_tokens=None):
+def call_llm(prompt, model="o3-mini", reasoning_effort="medium", max_tokens=None, response_format=None):
     """
     Call OpenAI API with o3-mini or other models
     
@@ -34,6 +34,7 @@ def call_llm(prompt, model="o3-mini", reasoning_effort="medium", max_tokens=None
         model: Model to use (o3-mini, gpt-4-turbo-preview, gpt-3.5-turbo)
         reasoning_effort: For o3-mini only - "low", "medium", or "high"
         max_tokens: Maximum completion tokens
+        response_format: Optional response format (e.g., {"type": "json_object"})
     """
     
     # Build messages
@@ -42,35 +43,43 @@ def call_llm(prompt, model="o3-mini", reasoning_effort="medium", max_tokens=None
     # Set default max_tokens based on model
     if max_tokens is None:
         if model in ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo-preview"]:
-            max_tokens = 4000  # Safe limit for GPT models
+            max_tokens = 8000  # Increased for complex code generation
         else:
-            max_tokens = 5000  # Default for other models
+            max_tokens = 16000  # Much higher for o3-mini which can handle it
     
     print(f"[LLM] Calling {model} with {len(prompt)} chars, max_tokens={max_tokens}...")
     
+    import time
+    start_time = time.time()
+    
     try:
         client = get_client()
+        
+        # Build kwargs
+        kwargs = {
+            "model": model,
+            "messages": messages,
+        }
+        
+        if response_format:
+            kwargs["response_format"] = response_format
+            
         if model == "o3-mini":
             # o3-mini specific parameters
             print(f"[LLM] Using reasoning effort: {reasoning_effort}")
-            response = client.chat.completions.create(
-                model=model,
-                messages=messages,
-                max_completion_tokens=max_tokens,
-                reasoning_effort=reasoning_effort
-            )
+            kwargs["max_completion_tokens"] = max_tokens
+            kwargs["reasoning_effort"] = reasoning_effort
         else:
             # Other models (gpt-4, gpt-3.5-turbo)
             print(f"[LLM] Using temperature: 0.1")
-            response = client.chat.completions.create(
-                model=model,
-                messages=messages,
-                max_tokens=max_tokens,
-                temperature=0.1  # Low for deterministic code generation
-            )
+            kwargs["max_tokens"] = max_tokens
+            kwargs["temperature"] = 0.1  # Low for deterministic code generation
+            
+        response = client.chat.completions.create(**kwargs)
             
         result = response.choices[0].message.content
-        print(f"[LLM] Got response: {len(result)} chars")
+        elapsed = time.time() - start_time
+        print(f"[LLM] Got response: {len(result)} chars in {elapsed:.1f}s")
         return result
         
     except Exception as e:
