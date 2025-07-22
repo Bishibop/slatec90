@@ -1,0 +1,136 @@
+{
+  "function": "i1mach",
+  "signature": "INTEGER FUNCTION I1MACH(I)",
+  "description": "Return integer machine dependent constants",
+  "total_tests": 16,
+  "test_cases": [
+    {
+      "description": "I1MACH(1): Standard input unit",
+      "inputs": [
+        1
+      ],
+      "expected": 5,
+      "test_id": 1
+    },
+    {
+      "description": "I1MACH(2): Standard output unit",
+      "inputs": [
+        2
+      ],
+      "expected": 6,
+      "test_id": 2
+    },
+    {
+      "description": "I1MACH(3): Standard punch unit",
+      "inputs": [
+        3
+      ],
+      "expected": 6,
+      "test_id": 3
+    },
+    {
+      "description": "I1MACH(4): Standard error unit",
+      "inputs": [
+        4
+      ],
+      "expected": 0,
+      "test_id": 4
+    },
+    {
+      "description": "I1MACH(5): Bits per integer",
+      "inputs": [
+        5
+      ],
+      "expected": 32,
+      "test_id": 5
+    },
+    {
+      "description": "I1MACH(6): Characters per integer",
+      "inputs": [
+        6
+      ],
+      "expected": 4,
+      "test_id": 6
+    },
+    {
+      "description": "I1MACH(7): Integer base",
+      "inputs": [
+        7
+      ],
+      "expected": 2,
+      "test_id": 7
+    },
+    {
+      "description": "I1MACH(8): Integer digits",
+      "inputs": [
+        8
+      ],
+      "expected": 31,
+      "test_id": 8
+    },
+    {
+      "description": "I1MACH(9): Largest integer",
+      "inputs": [
+        9
+      ],
+      "expected": 2147483647,
+      "test_id": 9
+    },
+    {
+      "description": "I1MACH(10): Float base",
+      "inputs": [
+        10
+      ],
+      "expected": 2,
+      "test_id": 10
+    },
+    {
+      "description": "I1MACH(11): Single precision digits",
+      "inputs": [
+        11
+      ],
+      "expected": 24,
+      "test_id": 11
+    },
+    {
+      "description": "I1MACH(12): Single precision min exponent",
+      "inputs": [
+        12
+      ],
+      "expected": -125,
+      "test_id": 12
+    },
+    {
+      "description": "I1MACH(13): Single precision max exponent",
+      "inputs": [
+        13
+      ],
+      "expected": 128,
+      "test_id": 13
+    },
+    {
+      "description": "I1MACH(14): Double precision digits",
+      "inputs": [
+        14
+      ],
+      "expected": 53,
+      "test_id": 14
+    },
+    {
+      "description": "I1MACH(15): Double precision min exponent",
+      "inputs": [
+        15
+      ],
+      "expected": -1021,
+      "test_id": 15
+    },
+    {
+      "description": "I1MACH(16): Double precision max exponent",
+      "inputs": [
+        16
+      ],
+      "expected": 1024,
+      "test_id": 16
+    }
+  ]
+}

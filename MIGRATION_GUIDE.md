@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 2
+- **Completed**: 3
 - **In Progress**: 0
-- **Available**: 167
+- **Available**: 166
 
 ### Completed Migrations ✅
 
@@ -27,6 +27,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 |----------|------------|----------------|-------|
 | PYTHAG | 194 | 2025-01-22 | Pythagorean sum with overflow protection |
 | CDIV | 335 | 2025-01-22 | Complex division (a+bi)/(c+di) |
+| I1MACH | 16 | 2025-01-22 | Integer machine constants (IEEE values) |
 
 ### In Progress 🚧
 
@@ -64,7 +65,7 @@ DINTP     DINTRV    DINTYD    DJAIRY    DNBDI     DPLPFL    DPOLCF    DPOLVL
 DQCHEB    DQFORM    DQMOMO    DQPSRT    DQRSLV    DQWGTC    DQWGTF    DQWGTS
 DRSCO     DSOSSL    DSTOR1    DSVCO     DUSRMT    DVNRMS    DWNLT2    DWUPDT
 DX        DX4       DXPSI     DXRED     DY        DY4       DYAIRY    ENORM
-FDUMP     FFTDOC    FUNDOC    HVNRM     I1MACH    INDXA     INDXB     INDXC
+FDUMP     FFTDOC    FUNDOC    HVNRM     INDXA     INDXB     INDXC
 INTRV     INTYD     INXCA     INXCB     INXCC     J4SAVE    JAIRY     LA05ED
 LA05ES    LSAME     MC20AD    MC20AS    MINSO4    MINSOL    MPADD3    MPERR
 MPMLP     MPSTR     ORTHO4    ORTHOG    PGSF      PIMACH    POLCOF    POLYVL
@@ -137,7 +138,7 @@ These standards explain why the F77 code looks the way it does:
 
 #### Level 0: Foundation (No Dependencies)
 Must be migrated first:
-- **I1MACH** - Integer machine constants
+- **I1MACH** - Integer machine constants - Already migrated ✓
 - **R1MACH** - Single precision machine constants
 - **D1MACH** - Double precision machine constants
 - **J4SAVE** - Save/recall error handling state
@@ -645,6 +646,12 @@ Study these for reference:
    - 335 test cases in `test_data/cdiv_tests.json`
    - Complex division (a+bi)/(c+di)
    - Scaling algorithm to avoid overflow
+
+3. **I1MACH** (`modern/i1mach_modern.f90`)
+   - 16 test cases in `test_data/i1mach_tests.json`
+   - Returns integer machine constants
+   - Uses modern intrinsics instead of hardcoded values
+   - Note: System-dependent, tested against IEEE standards
 
 ### Test Helper Script
 

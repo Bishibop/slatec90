@@ -33,6 +33,8 @@ class SlatecTestHelper:
             return self._generate_pythag_tests()
         elif self.func_name == "CDIV":
             return self._generate_cdiv_tests()
+        elif self.func_name == "I1MACH":
+            return self._generate_i1mach_tests()
         else:
             print(f"No test generator for {self.func_name} yet")
             print("Please implement a generator based on the function's purpose")
@@ -106,6 +108,42 @@ class SlatecTestHelper:
         
         return tests
     
+    def _generate_i1mach_tests(self):
+        """Generate test cases for I1MACH (machine constants)"""
+        tests = []
+        
+        # Test all 16 valid indices
+        descriptions = [
+            "Standard input unit",
+            "Standard output unit", 
+            "Standard punch unit",
+            "Standard error unit",
+            "Bits per integer",
+            "Characters per integer",
+            "Integer base",
+            "Integer digits",
+            "Largest integer",
+            "Float base",
+            "Single precision digits",
+            "Single precision min exponent",
+            "Single precision max exponent",
+            "Double precision digits",
+            "Double precision min exponent",
+            "Double precision max exponent"
+        ]
+        
+        for i in range(1, 17):
+            tests.append({
+                "description": f"I1MACH({i}): {descriptions[i-1]}",
+                "inputs": [i],
+                "expected": None
+            })
+        
+        # Test invalid indices (should cause error in F77)
+        # We'll skip these for now since F77 will STOP on error
+        
+        return tests
+    
     def run_f77_reference(self, test_cases):
         """Run F77 implementation to get reference values"""
         all_results = []
@@ -123,7 +161,11 @@ class SlatecTestHelper:
                 f.write(program)
             
             exe_file = "temp_test"
-            src_file = f"src/{self.func_name.lower()}.f"
+            # Special case for I1MACH - use IEEE version
+            if self.func_name == "I1MACH":
+                src_file = "src/i1mach_ieee.f"
+            else:
+                src_file = f"src/{self.func_name.lower()}.f"
             
             # Compile
             compile_result = subprocess.run(
@@ -162,6 +204,8 @@ class SlatecTestHelper:
             return self._generate_pythag_f77(test_cases, start_index)
         elif self.func_name == "CDIV":
             return self._generate_cdiv_f77(test_cases, start_index)
+        elif self.func_name == "I1MACH":
+            return self._generate_i1mach_f77(test_cases, start_index)
         else:
             raise NotImplementedError(f"No F77 generator for {self.func_name}")
     
@@ -208,6 +252,25 @@ class SlatecTestHelper:
         program += "      END"
         return program
     
+    def _generate_i1mach_f77(self, test_cases, start_index):
+        """Generate F77 program for I1MACH"""
+        program = f"""      PROGRAM TEST_I1MACH
+      INTEGER I1MACH, I, RESULT
+      EXTERNAL I1MACH
+      
+"""
+        for idx, test in enumerate(test_cases):
+            test_num = start_index + idx + 1
+            i = test['inputs'][0]
+            program += f"""C     Test {test_num}
+      I = {i}
+      RESULT = I1MACH(I)
+      WRITE(*,'(A,I5,A,I15)') 'TEST_', {test_num}, '_RESULT: ', RESULT
+      
+"""
+        program += "      END"
+        return program
+    
     def _parse_f77_output(self, output):
         """Parse F77 output to extract results"""
         results = []
@@ -228,6 +291,14 @@ class SlatecTestHelper:
                 real_part = float(match.group(2))
                 imag_part = float(match.group(3))
                 results.append((test_num, real_part, imag_part))
+                
+        elif self.func_name == "I1MACH":
+            # Integer result per test
+            pattern = r'TEST_\s*(\d+)_RESULT:\s*([-+]?\d+)'
+            for match in re.finditer(pattern, output):
+                test_num = int(match.group(1))
+                value = int(match.group(2))
+                results.append((test_num, value))
         
         return results
     
@@ -241,6 +312,10 @@ class SlatecTestHelper:
         elif self.func_name == "CDIV":
             for (test_num, real_part, imag_part), test_case in zip(results, test_cases):
                 test_case['expected'] = [real_part, imag_part]
+                test_case['test_id'] = test_num
+        elif self.func_name == "I1MACH":
+            for (test_num, value), test_case in zip(results, test_cases):
+                test_case['expected'] = value
                 test_case['test_id'] = test_num
         
         # Create output structure
@@ -298,6 +373,18 @@ class SlatecTestHelper:
                         print(f"  Expected: {expected}")
                         print(f"  Actual: {actual}")
                         print(f"  Error: {rel_error}")
+            elif self.func_name == "I1MACH":
+                actual = result[1]  # (test_num, value)
+                expected = test_case['expected']
+                
+                # For integers, must match exactly
+                if actual != expected:
+                    failures += 1
+                    if failures <= 5:
+                        print(f"\nTest {result[0]} FAILED:")
+                        print(f"  Description: {test_case['description']}")
+                        print(f"  Expected: {expected}")
+                        print(f"  Actual: {actual}")
                         
         print(f"\n{len(test_cases) - failures} tests PASSED")
         print(f"{failures} tests FAILED")
@@ -350,6 +437,8 @@ class SlatecTestHelper:
             return self._generate_pythag_modern_test(test_cases)
         elif self.func_name == "CDIV":
             return self._generate_cdiv_modern_test(test_cases)
+        elif self.func_name == "I1MACH":
+            return self._generate_i1mach_modern_test(test_cases)
         else:
             raise NotImplementedError(f"No modern test generator for {self.func_name}")
     
@@ -398,11 +487,32 @@ class SlatecTestHelper:
         program += "end program test_cdiv"
         return program
     
+    def _generate_i1mach_modern_test(self, test_cases):
+        """Generate modern F90 test for I1MACH"""
+        program = f"""program test_i1mach
+    use i1mach_module, only: i1mach
+    implicit none
+    
+    integer :: i, result
+    
+"""
+        for idx, test in enumerate(test_cases[:self.batch_size]):
+            i_val = test['inputs'][0]
+            program += f"""    ! Test {idx+1}
+    i = {i_val}
+    result = i1mach(i)
+    write(*,'(A,I5,A,I15)') 'TEST_', {idx+1}, '_RESULT: ', result
+    
+"""
+        program += "end program test_i1mach"
+        return program
+    
     def _get_signature(self):
         """Get function signature"""
         signatures = {
             "PYTHAG": "REAL FUNCTION PYTHAG(A, B)",
-            "CDIV": "SUBROUTINE CDIV(AR, AI, BR, BI, CR, CI)"
+            "CDIV": "SUBROUTINE CDIV(AR, AI, BR, BI, CR, CI)",
+            "I1MACH": "INTEGER FUNCTION I1MACH(I)"
         }
         return signatures.get(self.func_name, "Unknown")
     
@@ -410,7 +520,8 @@ class SlatecTestHelper:
         """Get function description"""
         descriptions = {
             "PYTHAG": "Compute sqrt(a^2 + b^2) without overflow",
-            "CDIV": "Complex division: (CR,CI) = (AR,AI)/(BR,BI)"
+            "CDIV": "Complex division: (CR,CI) = (AR,AI)/(BR,BI)",
+            "I1MACH": "Return integer machine dependent constants"
         }
         return descriptions.get(self.func_name, "No description")
 
