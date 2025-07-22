@@ -85,13 +85,17 @@ To check a function's dependencies, look for:
 
 ### Step 1: Select a Function
 
-1. Open `zero_dependency_functions.json` to see remaining functions
-2. Choose a function that:
+1. Check `MIGRATION_STATUS.md` to see what's available and claim your function
+2. Open `zero_dependency_functions.json` for the complete list
+3. Choose a function that:
    - Is computational (not documentation like AAAAAA)
    - Has clear mathematical purpose
    - Exists in `src/` directory
+   - Isn't already claimed by someone else
 
-3. Read the function's source file to understand:
+4. Update `MIGRATION_STATUS.md` to mark your function as "In Progress"
+
+5. Read the function's source file to understand:
    - Its mathematical purpose (check the PURPOSE comment)
    - Input/output parameters
    - Any special algorithms or numerical considerations
