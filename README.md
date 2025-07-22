@@ -13,7 +13,7 @@ SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Comm
 - CDIV - Complex division (335 test cases, 100% pass)
 
 📊 **Progress**: 2 of 169 zero-dependency functions migrated  
-🎯 **Next**: 167 functions ready for migration (see `zero_dependency_functions.json`)
+🎯 **Next**: 167 functions ready for migration (see MIGRATION_GUIDE.md)
 
 ## Migration Approach
 
@@ -37,8 +37,7 @@ slatec_test/
 │   ├── pythag_tests.json   # 194 test cases
 │   └── cdiv_tests.json     # 335 test cases
 ├── tree                    # Function dependency tree
-├── zero_dependency_functions.json  # Functions ready to migrate
-└── MIGRATION_GUIDE.md      # Comprehensive migration instructions
+└── MIGRATION_GUIDE.md      # Comprehensive migration instructions and status
 ```
 
 ## Quick Example
@@ -103,9 +102,8 @@ end module pythag_module
 
 ## Key Documentation
 
-- **`MIGRATION_GUIDE.md`** - Complete migration instructions and strategies
+- **`MIGRATION_GUIDE.md`** - Complete migration instructions, strategies, and function list
 - **`KNOWLEDGEBASE.md`** - General SLATEC knowledge and insights
-- **`zero_dependency_functions.json`** - List of functions ready to migrate
 
 ## Technical Details
 

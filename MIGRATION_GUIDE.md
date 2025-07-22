@@ -3,25 +3,104 @@
 This is a comprehensive guide for migrating SLATEC functions from F77 to modern Fortran. It consolidates all migration-specific documentation into a single reference.
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Understanding SLATEC](#understanding-slatec)
-3. [Function Dependencies](#function-dependencies)
-4. [Migration Process](#migration-process)
-5. [Test Generation Strategies](#test-generation-strategies)
-6. [Implementation Guidelines](#implementation-guidelines)
-7. [Validation and Quality](#validation-and-quality)
-8. [Examples and References](#examples-and-references)
+1. [Migration Status](#migration-status)
+2. [Overview](#overview)
+3. [Understanding SLATEC](#understanding-slatec)
+4. [Function Dependencies](#function-dependencies)
+5. [Migration Process](#migration-process)
+6. [Test Generation Strategies](#test-generation-strategies)
+7. [Implementation Guidelines](#implementation-guidelines)
+8. [Validation and Quality](#validation-and-quality)
+9. [Examples and References](#examples-and-references)
+
+## Migration Status
+
+### Summary
+- **Total Zero-Dependency Functions**: 169
+- **Completed**: 2
+- **In Progress**: 0
+- **Available**: 167
+
+### Completed Migrations ✅
+
+| Function | Test Cases | Date Completed | Notes |
+|----------|------------|----------------|-------|
+| PYTHAG | 194 | 2025-01-22 | Pythagorean sum with overflow protection |
+| CDIV | 335 | 2025-01-22 | Complex division (a+bi)/(c+di) |
+
+### In Progress 🚧
+
+| Function | Developer | Started | Notes |
+|----------|-----------|---------|-------|
+| (none) | | | |
+
+### Next Priority Functions 🎯
+
+These are recommended based on simplicity and usefulness:
+
+| Function | Description | Why Priority |
+|----------|-------------|--------------|
+| ENORM | Euclidean norm | Simple, widely used |
+| DENORM | Double precision norm | Pair with ENORM |
+| FDUMP | Error message dump | Part of error system |
+| J4SAVE | Save/recall error state | Foundation function |
+| LSAME | Compare characters (BLAS) | Simple utility |
+| ZABS | Complex absolute value | Simple complex arithmetic |
+| ISAMAX | Index of max abs value | BLAS utility |
+| SASUM | Sum of absolute values | BLAS utility |
+
+### Complete List of Available Functions (167)
+
+All zero-dependency functions available for migration:
+
+```
+AAAAAA    BCRH      BDIFF     BNFAC     BNSLV     BSPDOC    BSPLVN    BSRH
+BVDER     CDCST     CDNTP     CDPSC     CDSCL     CFOD      CHKPR4    CHKPRM
+CHKSN4    CHKSNG    CMPTR3    CMPTRX    CNBDI     CPEVLR    CPROC     CPROCP
+CPROD     CPRODP    CRATI     CS1S2     CSHCH     CUCHK     D1MPYQ    DBDIFF
+DBNFAC    DBNSLV    DBVDER    DCFOD     DDANRM    DDATRP    DDAWTS    DDCST
+DDNTP     DDPSC     DDSCL     DEFEHL    DENORM    DFEHL     DFSPVN    DHVNRM
+DINTP     DINTRV    DINTYD    DJAIRY    DNBDI     DPLPFL    DPOLCF    DPOLVL
+DQCHEB    DQFORM    DQMOMO    DQPSRT    DQRSLV    DQWGTC    DQWGTF    DQWGTS
+DRSCO     DSOSSL    DSTOR1    DSVCO     DUSRMT    DVNRMS    DWNLT2    DWUPDT
+DX        DX4       DXPSI     DXRED     DY        DY4       DYAIRY    ENORM
+FDUMP     FFTDOC    FUNDOC    HVNRM     I1MACH    INDXA     INDXB     INDXC
+INTRV     INTYD     INXCA     INXCB     INXCC     J4SAVE    JAIRY     LA05ED
+LA05ES    LSAME     MC20AD    MC20AS    MINSO4    MINSOL    MPADD3    MPERR
+MPMLP     MPSTR     ORTHO4    ORTHOG    PGSF      PIMACH    POLCOF    POLYVL
+PPGSF     PPPSF     PPSGF     PPSPF     PROC      PROCP     PROD      PRODP
+PSGF      QCHEB     QFORM     QMOMO     QPDOC     QPSRT     QRSOLV    QWGTC
+QWGTF     QWGTS     R1MPYQ    RSCO      RWUPDT    SDANRM    SDATRP    SDAWTS
+SDCST     SDNTP     SDPSC     SDSCL     SINTRP    SNBDI     SOSSOL    SPLPFL
+STOR1     SVCO      TEVLC     TEVLS     TRI3      TRIDQ     TRIS4     TRISP
+TRIX      USRMAT    VNWRMS    WNLT2     XERCNT    XERHLT    XPSI      XRED
+YAIRY     ZABS      ZEXP      ZMLT      ZSHCH     ZUCHK
+```
+
+Key categories:
+- **BLAS-like operations**: D1MPYQ, R1MPYQ, RWUPDT, DWUPDT, etc.
+- **Complex arithmetic**: ZABS, ZEXP, ZMLT, ZSHCH, CSHCH, etc.
+- **Norms**: ENORM, DENORM, HVNRM, DHVNRM, VNWRMS, DVNRMS, etc.
+- **Machine constants**: I1MACH, PIMACH
+- **Error handling**: FDUMP, J4SAVE, XERCNT, XERHLT
+- **Polynomial/Spline**: POLCOF, DPOLVL, BSPLVN, DFSPVN, etc.
+- **Special functions**: JAIRY, DJAIRY, YAIRY, DYAIRY (Airy functions)
+- **Documentation**: AAAAAA, BSPDOC, FFTDOC, FUNDOC, QPDOC
+- **Utilities**: LSAME, INTRV, DINTRV, etc.
+
+### Notes
+- ENORM has a modern/utilities/enorm_module.f90 from old approach but no test data - needs proper migration
+- DENORM also exists but marked as migrated in old approach - needs verification
+- Some functions like AAAAAA are just documentation and don't need migration
+- Functions ending in 1/2/3/4 are often variants that might share implementation
 
 ## Overview
 
 ### Current Status
-- Successfully migrated: PYTHAG (194 tests), CDIV (335 tests)
-- 167 zero-dependency functions remaining (see `zero_dependency_functions.json`)
-- All migrations require 100% test pass rate
+All migrations require 100% test pass rate. See the migration status table above for current progress.
 
 ### Key Files
 - `tree` - Complete function dependency tree
-- `zero_dependency_functions.json` - Functions ready to migrate
 - `src/` - Original F77 source files
 - `modern/` - Modern Fortran implementations
 - `test_data/` - Validated test cases with reference values
@@ -83,19 +162,18 @@ To check a function's dependencies, look for:
 
 ## Migration Process
 
-### Step 1: Select a Function
+### Step 1: Select and Claim a Function
 
-1. Check `MIGRATION_STATUS.md` to see what's available and claim your function
-2. Open `zero_dependency_functions.json` for the complete list
-3. Choose a function that:
+1. Check the Migration Status section above to see what's available
+2. Choose a function that:
    - Is computational (not documentation like AAAAAA)
    - Has clear mathematical purpose
    - Exists in `src/` directory
-   - Isn't already claimed by someone else
+   - Isn't already in progress or completed
 
-4. Update `MIGRATION_STATUS.md` to mark your function as "In Progress"
+3. Update this guide's "In Progress" table with your function and commit immediately to avoid conflicts
 
-5. Read the function's source file to understand:
+4. Read the function's source file to understand:
    - Its mathematical purpose (check the PURPOSE comment)
    - Input/output parameters
    - Any special algorithms or numerical considerations
@@ -404,18 +482,21 @@ slatec_test/
 
 ## Validation and Quality
 
-### Migration Checklist
+### Migration Requirements Checklist
+
+Before marking a function as complete:
 - [ ] Selected function from zero-dependency list
 - [ ] Read and understood original F77 code
-- [ ] Generated comprehensive test cases (>100)
+- [ ] Generated comprehensive test cases (minimum 100, more for complex functions)
 - [ ] Created F77 test program
 - [ ] Compiled and ran F77 tests successfully
 - [ ] Captured all reference values
-- [ ] Implemented modern Fortran version
+- [ ] Test data saved in `test_data/funcname_tests.json`
+- [ ] Implemented modern Fortran version in `modern/funcname_modern.f90`
 - [ ] All tests pass with 100% success rate
 - [ ] No compiler warnings
-- [ ] Files organized correctly
-- [ ] Ready to commit
+- [ ] Algorithm preserved from original
+- [ ] Updated Migration Status table to show completion
 
 ### Commit Message Format
 ```
