@@ -6,13 +6,10 @@ This script helps generate test cases, run F77 reference implementations,
 and validate modern Fortran implementations for SLATEC functions.
 
 Usage:
-    # Generate test cases
+    # Generate test cases and get reference values from F77
     python slatec_test_helper.py generate FUNCNAME
     
-    # Run F77 to get reference values
-    python slatec_test_helper.py reference FUNCNAME
-    
-    # Validate modern implementation
+    # Validate modern implementation against test data
     python slatec_test_helper.py validate FUNCNAME
 """
 

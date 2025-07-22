@@ -8,22 +8,30 @@ SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Comm
 
 ## Current Status
 
-✅ **Completed Migrations**:
-- PYTHAG - Pythagorean sum (194 test cases, 100% pass)
-- CDIV - Complex division (335 test cases, 100% pass)
+✅ **Completed**: 2 of 169 zero-dependency functions  
+📊 **In Progress**: 0  
+🎯 **Available**: 167 (see MIGRATION_GUIDE.md for full list and status)
 
-📊 **Progress**: 2 of 169 zero-dependency functions migrated  
-🎯 **Next**: 167 functions ready for migration (see MIGRATION_GUIDE.md)
+## Prerequisites
 
-## Migration Approach
+- gfortran (or compatible Fortran compiler)
+- Python 3.6+
+- Basic command line tools (make, git)
 
-We use a manual, test-driven approach:
-1. Generate comprehensive test cases (200+ per function)
-2. Compile and run original F77 to get reference values
-3. Implement modern Fortran version preserving the algorithm
-4. Validate against all test cases (100% pass rate required)
+## Quick Start
 
-See **MIGRATION_GUIDE.md** for complete instructions.
+1. **Choose a function** from the available list in MIGRATION_GUIDE.md
+2. **Generate test cases**:
+   ```bash
+   python slatec_test_helper.py generate FUNCNAME
+   ```
+3. **Implement modern version** in `modern/funcname_modern.f90`
+4. **Validate implementation**:
+   ```bash
+   python slatec_test_helper.py validate FUNCNAME
+   ```
+
+All migrations require 100% test pass rate. See **MIGRATION_GUIDE.md** for detailed instructions.
 
 ## Project Structure
 
@@ -40,81 +48,24 @@ slatec_test/
 └── MIGRATION_GUIDE.md      # Comprehensive migration instructions and status
 ```
 
-## Quick Example
 
-Original F77 (PYTHAG):
-```fortran
-      REAL FUNCTION PYTHAG (A, B)
-      REAL A,B,P,Q,R,S,T
-      P = MAX(ABS(A),ABS(B))
-      Q = MIN(ABS(A),ABS(B))
-      IF (Q .EQ. 0.0E0) GO TO 20
-   10 CONTINUE
-         R = (Q/P)**2
-         T = 4.0E0 + R
-         IF (T .EQ. 4.0E0) GO TO 20
-         S = R/T
-         P = P + 2.0E0*P*S
-         Q = Q*S
-      GO TO 10
-   20 PYTHAG = P
-      RETURN
-      END
-```
-
-Modern Fortran:
-```fortran
-module pythag_module
-  implicit none
-  private
-  public :: pythag
-
-contains
-
-  pure function pythag(a, b) result(res)
-    implicit none
-    real, intent(in) :: a, b
-    real :: res
-    real :: p, q, r, s, t
-
-    p = max(abs(a), abs(b))
-    q = min(abs(a), abs(b))
-    
-    if (q == 0.0) then
-      res = p
-      return
-    end if
-
-    do
-      r = (q / p)**2
-      t = 4.0 + r
-      if (t == 4.0) exit
-      s = r / t
-      p = p + 2.0 * p * s
-      q = q * s
-    end do
-
-    res = p
-  end function pythag
-
-end module pythag_module
-```
-
-## Key Documentation
+## Key Files
 
 - **`MIGRATION_GUIDE.md`** - Complete migration instructions, strategies, and function list
+- **`slatec_test_helper.py`** - Required script for test generation and validation
+- **`tree`** - Function dependency relationships
 - **`KNOWLEDGEBASE.md`** - General SLATEC knowledge and insights
 
-## Technical Details
+## Contributing
 
-- **Compiler**: gfortran (tested with modern standards)
-- **Validation**: Exact comparison with F77 results (1e-6 tolerance)
-- **Test Coverage**: 100-500 test cases per function
-- **Algorithm Preservation**: Keep original numerical methods
+1. Check MIGRATION_GUIDE.md for available functions
+2. Update the "In Progress" table before starting work
+3. Follow the test-driven migration process
+4. Ensure 100% test pass rate before marking complete
+5. Commit with descriptive message following the format in MIGRATION_GUIDE.md
 
 ## Original SLATEC Info
 
 - **Version**: 4.1 (July 1993)
-- **Size**: 736 files, 168k lines
-- **Categories**: 14 GAMS classifications
+- **Size**: 736 files, 168,355 lines
 - **License**: Public domain

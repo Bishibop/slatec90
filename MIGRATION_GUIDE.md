@@ -108,17 +108,28 @@ All migrations require 100% test pass rate. See the migration status table above
 ## Understanding SLATEC
 
 ### What is SLATEC?
-- **736 FORTRAN 77 source files** containing highly optimized mathematical algorithms
-- **~300 user-callable functions** (each with 2-4 precision variants)
-- **440 subsidiary routines** (internal helpers not directly callable)
+- **Version 4.1** (July 1993) - The version we're migrating
+- **902 user-callable routines** plus subsidiary routines = 736 total files
+- **290,907 lines** of highly optimized mathematical algorithms
 - **14 GAMS categories** covering everything from special functions to ODE solvers
-- **54% documentation** - exceptionally well-documented legacy code
+- **Public domain** - No distribution restrictions
 
 ### SLATEC Philosophy
 - **Quick check philosophy**: Tests designed to catch gross errors, not exhaustive validation
-- **Portability**: Strict coding guidelines for portability across supercomputers
-- **Error handling**: Sophisticated XERMSG system for all error conditions
-- **Machine constants**: Uses I1MACH, R1MACH, D1MACH for platform independence
+- **Portability**: Primary goal was portable software for member sites' supercomputers
+- **Error handling**: Sophisticated XERMSG system with 3 severity levels
+- **Machine constants**: Uses I1MACH, R1MACH, D1MACH from Bell Labs' PORT Library
+- **No printed output**: All information returned via arguments
+
+### Key SLATEC Coding Standards (from official guide)
+These standards explain why the F77 code looks the way it does:
+
+1. **No COMMON blocks or SAVE variables** - Except for DATA loaded constants (obstructs multiprocessing)
+2. **All UPPERCASE** - Except comments and character constants (F77 standard requirement)
+3. **Strict prologue format** - Starts with `C***BEGIN PROLOGUE` for documentation extraction
+4. **Error flag argument** - Required for all user-callable routines that can detect errors
+5. **Machine constants only via I1MACH/R1MACH/D1MACH** - Never calculate or DATA load directly
+6. **Build on existing routines** - E.g., use LINPACK/EISPACK rather than reimplementing
 
 ## Function Dependencies
 
@@ -212,6 +223,20 @@ Include:
 - Division by conjugate
 - Near-zero divisors
 
+**Example: CDIV Test Pattern**
+```python
+# Test complex division at various angles
+for angle in range(0, 360, 30):
+    rad = math.radians(angle)
+    ar, ai = 5 * math.cos(rad), 5 * math.sin(rad)
+    br, bi = math.cos(math.radians(45)), math.sin(math.radians(45))
+    test_case = {
+        "description": f"Magnitude 5 at {angle}° / unit at 45°",
+        "inputs": [ar, ai, br, bi],
+        "expected": None  # F77 fills: [cr, ci]
+    }
+```
+
 #### For Special Functions (BESI, GAMMA, ERF, etc.)
 1. **Literature reference values** (Abramowitz & Stegun, DLMF)
 2. **Algorithm regime transitions**:
@@ -227,68 +252,79 @@ Include:
 - Minimum: 50-100 for simple functions
 - Target: 200-500 for comprehensive coverage
 - Include both systematic combinations and edge cases
+- **F77 Batch Limit**: F77 programs can only handle ~50 test cases per program due to size limits. The helper script automatically handles batching.
 
-### Step 3: Create F77 Test Program
+### Step 3: Generate Test Cases and Get Reference Values
 
-Write an F77 program to get reference values:
+Use the test helper script to generate test cases and automatically get reference values from F77:
 
-For functions returning single value:
-```fortran
-      PROGRAM TEST_FUNC
+```bash
+python slatec_test_helper.py generate FUNCNAME
+```
+
+This will:
+1. Generate test cases based on your implementation
+2. Create F77 test programs (handling batch limits automatically)
+3. Compile and run the F77 code
+4. Parse the output and extract reference values
+5. Save everything to `test_data/funcname_tests.json`
+
+#### Adding Support for a New Function
+
+To migrate a new function, you need to add it to `slatec_test_helper.py`:
+
+1. **Add test case generation** in `_generate_FUNCNAME_tests()`:
+```python
+def _generate_funcname_tests(self):
+    """Generate test cases for FUNCNAME"""
+    tests = []
+    
+    # Think about what to test:
+    # - Basic functionality
+    # - Edge cases (0, tiny, huge values)
+    # - Known mathematical properties
+    # - Numerical stability cases
+    
+    tests.append({
+        "description": "Basic test case",
+        "inputs": [1.0, 2.0],
+        "expected": None  # Will be filled by F77
+    })
+    
+    return tests
+```
+
+2. **Add F77 program generation** in `_generate_FUNCNAME_f77()`:
+```python
+def _generate_funcname_f77(self, test_cases, start_index):
+    """Generate F77 test program"""
+    program = f"""      PROGRAM TEST_FUNCNAME
       REAL FUNCNAME, ARG1, ARG2, RESULT
       EXTERNAL FUNCNAME
       
-C     Test 1
-      ARG1 = 1.0E0
-      ARG2 = 2.0E0
+"""
+    for i, test in enumerate(test_cases):
+        test_num = start_index + i + 1
+        arg1, arg2 = test['inputs']
+        program += f"""C     Test {test_num}
+      ARG1 = {arg1:e}
+      ARG2 = {arg2:e}
       RESULT = FUNCNAME(ARG1, ARG2)
-      WRITE(*,'(A,I3,A,E20.10)') 'TEST_', 1, '_RESULT: ', RESULT
+      WRITE(*,'(A,I5,A,E20.10)') 'TEST_', {test_num}, '_RESULT: ', RESULT
       
-      END
+"""
+    program += "      END"
+    return program
 ```
 
-For subroutines with multiple outputs:
-```fortran
-      PROGRAM TEST_SUB
-      REAL IN1, IN2, OUT1, OUT2
-      EXTERNAL SUBNAME
-      
-C     Test 1  
-      IN1 = 1.0E0
-      IN2 = 2.0E0
-      CALL SUBNAME(IN1, IN2, OUT1, OUT2)
-      WRITE(*,'(A,I3,A,E20.10,A,E20.10)') 'TEST_', 1, 
-     +    '_RESULT: ', OUT1, ', ', OUT2
-      
-      END
-```
+3. **Update the main generator** to call your functions
+4. **Update output parsing** if your function returns multiple values
 
-**Important**: If you have many test cases (>50), split into multiple programs to avoid F77 size limits.
-
-### Step 4: Compile and Run F77 Tests
-
-1. Save test program as `test_funcname.f`
-2. Compile: `gfortran -o test_funcname test_funcname.f src/funcname.f`
-3. Run: `./test_funcname > results.txt`
-4. Parse results to extract reference values
-5. Store complete test data in JSON format:
-
-```json
-{
-  "function": "funcname",
-  "signature": "FUNCTION FUNCNAME(ARG1, ARG2)",
-  "description": "Brief description of what function does",
-  "total_tests": 200,
-  "test_cases": [
-    {
-      "description": "Test description",
-      "inputs": [1.0, 2.0],
-      "expected": [3.14159],  // From F77 execution
-      "test_id": 1
-    }
-  ]
-}
-```
+The helper handles all the tedious parts:
+- **Compilation**: Automatic gfortran compilation with proper linking
+- **Batch processing**: Splits tests into chunks of 50 (F77 program size limit)
+- **Scientific notation parsing**: Handles F77 output format (e.g., `1.234567E+00`)
+- **JSON formatting**: Structured test data with descriptions and expected values
 
 ### Step 5: Create Modern Fortran Implementation
 
@@ -363,24 +399,25 @@ real, parameter :: one = 1.0, zero = 0.0
 
 ### Step 6: Test Modern Implementation
 
-Create test program using the modern module:
-```fortran
-program test_modern
-  use funcname_module, only: funcname
-  implicit none
-  
-  ! Test code comparing to reference values
-  
-end program test_modern
-```
+Validate your modern implementation against the test data:
 
-Compile and test:
 ```bash
-gfortran -o test_modern modern/funcname_modern.f90 test_modern.f90
-./test_modern
+python slatec_test_helper.py validate FUNCNAME
 ```
 
-Use relative tolerance of 1e-6 for single precision comparisons.
+This will:
+1. Load the test data from `test_data/funcname_tests.json`
+2. Compile your modern implementation from `modern/funcname_modern.f90`
+3. Run all test cases through your implementation
+4. Compare results with F77 reference values (using 1e-6 relative tolerance)
+5. Report pass/fail statistics
+
+The validation requires 100% pass rate. If any tests fail, the output will show:
+- Which tests failed
+- Expected vs actual values
+- Relative error
+
+You may need to add support for your function's modern test generation in `_generate_FUNCNAME_modern_test()` if it has a different signature than the examples.
 
 ### Step 7: Validation Criteria
 
@@ -399,6 +436,19 @@ The migration is successful when:
 - **Scaling properties**: Verify f(k*x) = k*f(x)
 - **Mathematical identities**: Pythagorean triples, norm inequalities
 - **Edge cases**: Empty, single element, all zeros
+
+**Example: PYTHAG Test Pattern**
+```python
+# Pythagorean triples at multiple scales
+triples = [(3,4,5), (5,12,13), (8,15,17), (7,24,25)]
+for a, b, c in triples:
+    for scale in [0.01, 0.1, 1, 10, 100, 1000]:
+        test_case = {
+            "description": f"Pythagorean triple ({a},{b},{c}) scaled by {scale}",
+            "inputs": [a*scale, b*scale],
+            "expected": None  # F77 will fill this
+        }
+```
 
 #### 2. Special Functions (BESI, GAMMA, ERF)
 - **Reference values**: From Abramowitz & Stegun, DLMF
@@ -463,6 +513,81 @@ slatec_test/
 5. **Function vs Subroutine**: Maintain the same interface type
 6. **Precision**: Use same precision as original
 
+### SLATEC Error Handling Convention
+
+When migrating functions that have error detection, be aware of SLATEC's error handling approach:
+
+1. **Error Flag Parameter**: User-callable routines that can detect errors have an integer error flag (often named INFO, IER, or IERR)
+2. **Return Values**:
+   - 0 = Success
+   - Positive = Warning or informational
+   - Negative = Error condition
+3. **XERMSG Calls**: If you see `CALL XERMSG(...)`, this is SLATEC's error reporting system
+4. **Modern Approach**: In modern Fortran, you might:
+   - Keep the error flag for compatibility
+   - Use optional STAT parameters
+   - Consider exceptions for fatal errors only
+
+Example:
+```fortran
+! F77 with SLATEC error handling:
+      IF (N .LT. 0) THEN
+         IER = -1
+         CALL XERMSG('SLATEC', 'MYFUNC', 'N must be non-negative', -1, 1)
+         RETURN
+      ENDIF
+
+! Modern Fortran:
+if (n < 0) then
+   ier = -1
+   ! Optionally: error stop "MYFUNC: N must be non-negative"
+   return
+end if
+```
+
+### Handling Complex F77 Constructs
+
+#### Functions with Many Parameters (>6)
+F77 uses continuation lines for long parameter lists:
+```fortran
+! F77:
+      SUBROUTINE FUNC(A, B, C, D, E, F,
+     +                G, H, I, J, K, L)
+
+! Modern:
+subroutine func(a, b, c, d, e, f, &
+                g, h, i, j, k, l)
+```
+
+#### COMMON Blocks
+If you encounter COMMON blocks:
+```fortran
+! F77:
+      COMMON /BLOCK1/ X, Y, Z
+
+! Modern: Convert to module variables
+module block1_module
+  implicit none
+  real :: x, y, z
+end module
+```
+
+#### EXTERNAL Function Parameters
+When a function takes another function as parameter:
+```fortran
+! F77:
+      REAL FUNCTION INTEGRATE(F, A, B)
+      EXTERNAL F
+
+! Modern:
+real function integrate(f, a, b)
+  interface
+    real function f(x)
+      real, intent(in) :: x
+    end function f
+  end interface
+```
+
 ### Troubleshooting
 
 **Tests fail with small differences**:
@@ -521,9 +646,9 @@ Study these for reference:
    - Complex division (a+bi)/(c+di)
    - Scaling algorithm to avoid overflow
 
-### Optional Test Helper Script
+### Test Helper Script
 
-A Python helper script `slatec_test_helper.py` is available to automate test generation and validation:
+A Python helper script `slatec_test_helper.py` is required to automate test generation and validation:
 
 ```bash
 # Generate test cases and get reference values from F77

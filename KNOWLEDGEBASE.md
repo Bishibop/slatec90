@@ -44,21 +44,26 @@ PROGRAM TEST05
 - **Foundation dependencies only**: 171 functions depend only on machine constants and error handling
 - **Complex functions**: 641 functions have 6+ dependencies
 
-## Proof of Concept Success
+## Migration Approach Evolution
 
-**Lambert W Function (`src/lamw.f`)** ✅
-- Successfully integrated with SLATEC conventions
-- 15/16 test cases passed with high numerical accuracy
-- Demonstrates feasibility of adding modern functions to legacy framework
-- Shows AI can successfully work within established coding patterns
+### Failed Approaches
+1. **LLM-based code generation** - o3-mini kept adding extraneous markdown
+2. **f2py wrapper approach** - Unnecessary complexity for our needs
+3. **Function-specific exceptions** - User rejected this approach
+
+### Successful Approach
+- Direct F77 compilation with gfortran
+- Batch processing to handle F77 program size limits
+- JSON-based test data storage
+- 100% test pass rate requirement (no exceptions)
 
 ## Resources Available
 
 ### Downloaded Files
 - `slatec_chk.tgz` - 54 test drivers extracted to root directory
-- `guide` - Official SLATEC documentation (114KB)
+- `guide` - Official SLATEC documentation (2,768 lines, comprehensive guide)
 - `tree` - Function dependency relationships (206KB)
-- `slatec_src.tgz` - Original source (736 files, 168,355 lines)
+- `slatec_src.tgz` - Original source (736 files, 290,907 lines in v4.1)
 
 ### Current Project State
 - Successfully migrated: PYTHAG (194 tests), CDIV (335 tests)
@@ -81,3 +86,63 @@ Our approach aligns with SLATEC's philosophy:
 - Focus on numerical correctness over exhaustive testing
 - Maintain SLATEC's pass/fail reporting style
 - Leverage the dependency tree for systematic migration ordering
+
+## Deep Insights from Official SLATEC Guide
+
+### Historical Context
+- **Formation**: 1974 by Sandia, Los Alamos, and Air Force Weapons Laboratory
+- **CML Started**: 1977 to provide portable software for supercomputers
+- **Version History**:
+  - v1.0 (1982): 491 user-callable routines
+  - v2.0 (1984): 646 routines
+  - v3.0 (1986): 704 routines
+  - v4.0 (1992): 901 routines
+  - v4.1 (1993): 902 routines (current)
+
+### Machine Constants Philosophy
+The I1MACH/R1MACH/D1MACH functions (from Bell Labs' PORT Library) don't just return hardware specs. They define a "safe subset" of floating point arithmetic where operations behave as expected. Key insight: *"Machine constants normally cannot be determined by reading a computer's hardware reference manual"* because manuals don't describe arithmetic unit errors.
+
+### Error Handling Architecture
+SLATEC's XERMSG system has sophisticated features:
+- **Three severity levels**: Warning (returns), Recoverable (may return), Fatal (terminates)
+- **Error memory**: System remembers last error number for user retrieval
+- **Subsidiary rule**: Lower-level routines should return error flags, not call XERMSG
+- **Message formatting**: Supports multi-line messages with '$$' as line separator
+- **Character concatenation**: Can build specific error messages with numeric values
+
+### Quick Check Testing Philosophy
+From Section 10: *"The quick checks are not meant to provide an exhaustive test of the Library. Instead they are designed to protect against gross errors, such as an unsatisfied external."*
+
+Key requirements:
+1. Test a few successfully solved problems
+2. Provide consistent "PASS"/"FAIL" output
+3. Test some error conditions purposefully
+4. Must execute correctly on any ANSI F77 system
+5. No test should require skipping to avoid aborts
+
+### Prologue Format Requirements
+Every SLATEC routine must have a rigidly formatted prologue:
+- Starts with `C***BEGIN PROLOGUE name`
+- Contains sections like PURPOSE, CATEGORY, TYPE, KEYWORDS
+- Self-contained documentation (no external docs)
+- Machine-processable for automatic extraction
+
+### Multiprocessing Considerations
+Section 6.9 explains why COMMON blocks and SAVE are forbidden:
+- Static allocation prevents simultaneous use by multiple processors
+- Only acceptable for read-only DATA loaded constants
+- Users must provide workspace via arguments for thread safety
+
+### Code Submission Process
+New routines underwent rigorous review:
+- Author works with committee member champion
+- Multiple meetings for discussion and revision
+- Testing at all member sites
+- Focus on usefulness, robustness, maintainability
+- Must be freely distributable (public domain)
+
+### GAMS Classification System
+SLATEC adopted the NIST GAMS (Guide to Available Mathematical Software) classification:
+- Hierarchical system (A through S, with sub-categories)
+- Enables systematic organization of mathematical software
+- Same system used by NIST for broader software collections
