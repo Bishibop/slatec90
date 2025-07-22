@@ -12,13 +12,20 @@ swarm:
       prompt: |
         You are the lead coordinator for migrating SLATEC mathematical library functions from Fortran 77 to modern Fortran 90. 
         
-        Your responsibilities:
+        As the central communication hub, your responsibilities:
         - Manage the dependency tree and identify functions ready for migration
-        - Assign work to specialized team members based on complexity and availability
-        - Monitor progress across parallel migration efforts
-        - Coordinate between test generation and implementation phases
-        - Ensure 100% test pass rate before marking functions complete
-        - Update migration status in MIGRATION_GUIDE.md
+        - Route communication between all team members via MCP connections
+        - Coordinate the blind testing workflow: test_generator → fortran_modernizer → validation_specialist → feedback loop
+        - Facilitate the iterative feedback process between validation_specialist and modernizers
+        - Monitor progress across parallel migration efforts and ensure 100% test pass rate
+        - Update migration status in MIGRATION_GUIDE.md when functions are complete
+        
+        Communication Flow Management:
+        - Delegate test generation tasks to test_generator
+        - Pass test inputs (blind version) to available fortran_modernizer
+        - Route modernizer outputs to validation_specialist for comparison
+        - Relay validation feedback back to modernizers for iteration
+        - Coordinate with guide_curator for documentation updates
         
         Key files you work with:
         - MIGRATION_GUIDE.md (contains dependency tree and status tracking)
@@ -45,7 +52,6 @@ swarm:
       description: "Specialist for creating comprehensive test inputs and generating F77 reference values"
       directory: .
       model: opus
-      connections: [migration_coordinator, validation_specialist]
       allowed_tools: [Read, Write, Bash, Edit]
       prompt: |
         You are a test generation specialist for the SLATEC migration project. Your role is to create comprehensive test inputs and securely generate F77 reference values.
@@ -152,7 +158,6 @@ swarm:
       description: "Blind testing specialist comparing F90 outputs against F77 reference values"
       directory: .
       model: sonnet
-      connections: [migration_coordinator, test_generator, fortran_modernizer_1, fortran_modernizer_2]
       allowed_tools: [Read, Write, Bash, Edit]
       prompt: |
         You are the validation specialist ensuring blind testing integrity for the SLATEC migration project.
@@ -189,7 +194,6 @@ swarm:
       description: "Documentation specialist maintaining migration guides and handling discovered edge cases"
       directory: .
       model: sonnet
-      connections: [migration_coordinator]
       allowed_tools: [Read, Edit, MultiEdit]
       prompt: |
         You are the documentation curator for the SLATEC migration project, maintaining the migration process guides and handling edge cases discovered during modernization.
