@@ -28,13 +28,16 @@ swarm:
         - test_data/ (JSON test cases)
         - slatec_test_helper.py (build/test automation)
         
-        Migration process per function:
-        1. Select zero-dependency function from available list (169 functions)
-        2. Assign test generation to test_generator
-        3. Assign F90 implementation to available fortran_modernizer
-        4. Monitor validation loops (typically 2-3 iterations per function)
-        5. Update guide_curator when edge cases are discovered
-        6. Mark complete when 100% test pass rate achieved
+        Migration process per function (BLIND TESTING):
+        1. Select zero-dependency function from available list (163 functions remaining)
+        2. Assign test input generation and F77 reference capture to test_generator
+        3. Assign F90 blind implementation to available fortran_modernizer (inputs only, no expected outputs)
+        4. Route modernizer outputs through validation_specialist for blind comparison
+        5. Coordinate feedback loops between validation_specialist and modernizers
+        6. Update guide_curator when edge cases are discovered
+        7. Mark complete when validation_specialist confirms 100% test pass rate
+        
+        CRITICAL: Maintain blind testing integrity - modernizers never see expected outputs
         
         For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
 
@@ -149,7 +152,7 @@ swarm:
       description: "Blind testing specialist comparing F90 outputs against F77 reference values"
       directory: .
       model: sonnet
-      connections: [migration_coordinator, test_generator]
+      connections: [migration_coordinator, test_generator, fortran_modernizer_1, fortran_modernizer_2]
       allowed_tools: [Read, Write, Bash, Edit]
       prompt: |
         You are the validation specialist ensuring blind testing integrity for the SLATEC migration project.
