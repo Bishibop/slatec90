@@ -44,8 +44,7 @@ These are recommended based on simplicity and usefulness:
 
 | Function | Description | Why Priority |
 |----------|-------------|--------------|
-| ENORM | Euclidean norm | Simple, widely used |
-| DENORM | Double precision norm | Pair with ENORM |
+| DENORM | Double precision norm | Pair with ENORM (already done) |
 | FDUMP | Error message dump | Part of error system |
 | J4SAVE | Save/recall error state | Foundation function |
 | LSAME | Compare characters (BLAS) | Simple utility |
@@ -67,7 +66,7 @@ DDNTP     DDPSC     DDSCL     DEFEHL    DENORM    DFEHL     DFSPVN    DHVNRM
 DINTP     DINTRV    DINTYD    DJAIRY    DNBDI     DPLPFL    DPOLCF    DPOLVL
 DQCHEB    DQFORM    DQMOMO    DQPSRT    DQRSLV    DQWGTC    DQWGTF    DQWGTS
 DRSCO     DSOSSL    DSTOR1    DSVCO     DUSRMT    DVNRMS    DWNLT2    DWUPDT
-DX        DX4       DXPSI     DXRED     DY        DY4       DYAIRY    ENORM
+DX        DX4       DXPSI     DXRED     DY        DY4       DYAIRY
 FDUMP     FFTDOC    FUNDOC    HVNRM     INDXA     INDXB     INDXC
 INTRV     INTYD     INXCA     INXCB     INXCC     J4SAVE    JAIRY     LA05ED
 LA05ES    LSAME     MC20AD    MC20AS    MINSO4    MINSOL    MPADD3    MPERR
@@ -93,7 +92,6 @@ Key categories:
 - **Utilities**: LSAME, INTRV, DINTRV, etc.
 
 ### Notes
-- ENORM has a modern/utilities/enorm_module.f90 from old approach but no test data - needs proper migration
 - DENORM also exists but marked as migrated in old approach - needs verification
 - Some functions like AAAAAA are just documentation and don't need migration
 - Functions ending in 1/2/3/4 are often variants that might share implementation
