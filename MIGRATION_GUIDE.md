@@ -264,7 +264,7 @@ for angle in range(0, 360, 30):
 
 **Phase 1: Test Generation (use Task tool)**
 ```
-Generate comprehensive test cases (150-200+)
+Generate comprehensive test cases (500+)
 Run F77 to get reference values
 Save full test data AND create blind version (no expected values)
 ```
@@ -337,7 +337,7 @@ Task("Validate ZABS", validation_prompt_zabs)
 
 #### Adding Support for a New Function
 
-For the test generation phase, you need to add support to `slatec_test_helper.py`:
+For the test generation phase, you need to add support to both `slatec_test_helper.py` and `optimized_test_helper.py` (the optimized version automatically uses the original for test case generation):
 
 1. **Add test case generation** in `_generate_FUNCNAME_tests()`:
 ```python
@@ -531,7 +531,7 @@ The key is maintaining blind testing integrity in each pipeline while maximizing
 task_prompt = """
 Generate comprehensive test cases for FUNCNAME:
 1. Read F77 source at src/funcname.f
-2. Create 150+ diverse test cases
+2. Create 500+ diverse test cases
 3. Run F77 to get expected outputs
 4. Save to test_data/funcname_tests.json
 5. Create blind version at test_data/funcname_tests_blind.json
@@ -829,7 +829,7 @@ Functions should achieve:
 Before marking a function as complete:
 - [ ] Selected function from zero-dependency list
 - [ ] Read and understood original F77 code
-- [ ] Generated comprehensive test cases (minimum 100, more for complex functions)
+- [ ] Generated comprehensive test cases (minimum 100-200 for simple, 500+ for comprehensive coverage)
 - [ ] Created F77 test program
 - [ ] Compiled and ran F77 tests successfully
 - [ ] Captured all reference values
@@ -902,10 +902,11 @@ Study these for reference:
    - Proper feedback loop identified infinity handling bug → 100% pass rate
    - **Key lesson**: Never dismiss validation failures - enhanced testing catches edge cases
 
-### Test Helper Script
+### Test Helper Scripts
 
-A Python helper script `slatec_test_helper.py` is required to automate test generation and validation:
+Two Python helper scripts are available for test generation and validation:
 
+#### **Standard Helper** (Compatible, Slower)
 ```bash
 # Generate test cases and get reference values from F77
 python slatec_test_helper.py generate PYTHAG
@@ -914,11 +915,33 @@ python slatec_test_helper.py generate PYTHAG
 python slatec_test_helper.py validate PYTHAG
 ```
 
-The script handles:
+#### **Optimized Helper** (Recommended, 3-8x Faster) 
+```bash
+# Generate test cases with parallel processing (3-8x speedup)
+python optimized_test_helper.py generate PYTHAG
+
+# Validate with vectorized operations (6-20x faster validation)
+python optimized_test_helper.py validate PYTHAG
+
+# Test multiple functions simultaneously
+python optimized_test_helper.py batch-test PYTHAG CDIV ENORM
+
+# Benchmark performance improvements
+python optimized_test_helper.py benchmark PYTHAG
+```
+
+**Performance Benefits of Optimized Helper:**
+- **Parallel F77 batch execution**: 1.5-4x speedup on multi-core systems
+- **Bulk test programs**: Eliminates 50-test limitation, single compilation per function
+- **Vectorized validation**: 6-20x faster result validation using NumPy
+- **Multi-function testing**: Test several functions simultaneously
+- **Compilation caching**: Near-instant repeated runs
+
+Both scripts handle:
 - Test case generation based on function type
-- Batch compilation and execution of F77 programs
-- Parsing F77 output to extract reference values
-- Validating modern implementations against test data
+- F77 compilation and execution with reference value extraction
+- Modern implementation validation against test data
+- 100% pass rate requirement enforcement
 
 To add support for a new function, implement:
 1. `_generate_FUNCNAME_tests()` - Test case generation
