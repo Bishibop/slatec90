@@ -1,0 +1,51 @@
+Validating 257 test cases...
+ 
+ DENORM Enhanced Validation
+ ==========================
+ 
+ Test 168 FAILED: Result is Infinity
+ 
+ Summary:
+ --------
+Passed: 256 / 257
+Success rate:  99.61%
+
+
+
+DETAILED ANALYSIS BY CATEGORY:
+==============================
+
+Boundary:
+  Passed: 10 / 10 (100.0%)
+
+Edge Case:
+  Passed: 9 / 9 (100.0%)
+
+Mixed:
+  Passed: 2 / 2 (100.0%)
+
+Overflow:
+  Passed: 11 / 11 (100.0%)
+
+Precision:
+  Passed: 1 / 1 (100.0%)
+
+Special:
+  Passed: 198 / 199 (99.5%)
+
+Subnormal:
+  Passed: 6 / 6 (100.0%)
+
+Underflow:
+  Passed: 20 / 20 (100.0%)
+
+
+SPECIAL CASE ANALYSIS:
+======================
+
+Large vectors (n > 1000): 0
+Single element vectors: 20
+Zero vector tests: 7
+
+
+Detailed report written to: validation/denorm_comprehensive_report.txt

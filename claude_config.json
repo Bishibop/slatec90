@@ -1,0 +1,85 @@
+{
+  "tools": {
+    "bash": {
+      "require_approval": false,
+      "timeout": 300000,
+      "default_working_directory": ".",
+      "environment": {
+        "FC": "gfortran",
+        "FFLAGS": "-Wall -Wextra -O2",
+        "F77FLAGS": "-std=legacy -fno-automatic",
+        "SLATEC_SRC": "./src",
+        "SLATEC_MODERN": "./modern",
+        "SLATEC_TEST_DATA": "./test_data"
+      }
+    },
+    "edit": {
+      "require_approval": false,
+      "prefer_multi_edit": true
+    },
+    "write": {
+      "require_approval": false
+    },
+    "read": {
+      "default_limit": 500,
+      "syntax_highlighting": true
+    }
+  },
+  "project": {
+    "name": "SLATEC F77 to F90 Migration",
+    "type": "fortran_migration",
+    "conventions": {
+      "fortran_standard": "f90",
+      "module_naming": "{function}_module",
+      "file_naming": "{function}_modern.f90",
+      "indent_style": "spaces",
+      "indent_size": 2
+    }
+  },
+  "automation": {
+    "pre_edit_checks": [
+      "read_file_first",
+      "check_syntax"
+    ],
+    "post_migration_tasks": [
+      "run_tests",
+      "update_migration_guide",
+      "commit_changes"
+    ],
+    "test_commands": {
+      "generate": "python slatec_test_helper.py generate {function}",
+      "validate": "python slatec_test_helper.py validate {function}",
+      "compile_f90": "gfortran -c modern/{function}_modern.f90",
+      "compile_f77": "gfortran -c src/{function}.f -std=legacy"
+    }
+  },
+  "prompts": {
+    "migration_checklist": [
+      "Read and understand F77 source",
+      "Generate comprehensive test cases (150+ tests)",
+      "Create blind test version",
+      "Implement F90 version",
+      "Validate with 100% pass rate",
+      "Update MIGRATION_GUIDE.md"
+    ],
+    "common_patterns": {
+      "goto_to_do_while": "Replace GOTO loops with do while constructs",
+      "data_to_parameter": "Convert DATA statements to parameter declarations",
+      "computed_goto": "Replace computed GOTO with select case"
+    }
+  },
+  "memory": {
+    "important_files": [
+      "MIGRATION_GUIDE.md",
+      "slatec_test_helper.py",
+      "tree",
+      "parallel_migration.py"
+    ],
+    "key_facts": [
+      "169 zero-dependency functions total",
+      "Blind testing methodology required",
+      "100% test pass rate required",
+      "Use gfortran for both F77 and F90"
+    ]
+  }
+}

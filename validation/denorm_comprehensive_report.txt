@@ -1,0 +1,41 @@
+DENORM ENHANCED VALIDATION REPORT
+=================================
+
+ 
+ DENORM Enhanced Validation
+ ==========================
+ 
+ Test 168 FAILED: Result is Infinity
+ 
+ Summary:
+ --------
+Passed: 256 / 257
+Success rate:  99.61%
+
+
+CATEGORY ANALYSIS:
+==================
+
+Boundary:
+  Passed: 10 / 10 (100.0%)
+
+Edge Case:
+  Passed: 9 / 9 (100.0%)
+
+Mixed:
+  Passed: 2 / 2 (100.0%)
+
+Overflow:
+  Passed: 11 / 11 (100.0%)
+
+Precision:
+  Passed: 1 / 1 (100.0%)
+
+Special:
+  Passed: 198 / 199 (99.5%)
+
+Subnormal:
+  Passed: 6 / 6 (100.0%)
+
+Underflow:
+  Passed: 20 / 20 (100.0%)
