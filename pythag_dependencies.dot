@@ -1,8 +1,0 @@
-digraph PYTHAG_Dependencies {
-  rankdir=TB;
-  node [shape=box, style=filled];
-  edge [color=gray];
-
-  "PYTHAG" [fillcolor="#90EE90", penwidth=3, color=red];
-
-}
