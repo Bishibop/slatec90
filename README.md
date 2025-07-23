@@ -6,11 +6,23 @@ Manual migration of the SLATEC mathematical library from FORTRAN 77 to modern Fo
 
 SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Committee) is a comprehensive FORTRAN 77 library containing 736 mathematical and statistical routines (168,355 lines). This project migrates functions to modern Fortran (F90+) while preserving numerical accuracy through exhaustive testing.
 
+### Important Note: SLATEC Subset
+
+This repository contains **738 of the 1,441 functions** from the complete SLATEC 4.1 library. The missing ~700 functions are primarily from the **Fullerton Special Function Library (FNLIB)**, which includes:
+
+- Elementary functions (ACOSH, ASINH, ATANH, etc.)
+- Bessel functions (BESI0, BESJ0, BESK0, BESY0, etc.)
+- Airy functions (AI, BI, AIE, BIE)
+- Error and exponential integrals (ERF, ERFC, E1, EI)
+- Complex and double precision variants
+
+The `tree` file shows dependencies for the complete SLATEC catalog, while migration efforts focus on the 738 functions available in `src/`. This explains why only 169 zero-dependency functions are listed for migration instead of the 338 shown in the complete dependency tree.
+
 ## Current Status
 
-✅ **Completed**: 2 of 169 zero-dependency functions  
-📊 **In Progress**: 0  
-🎯 **Available**: 167 (see MIGRATION_GUIDE.md for full list and status)
+✅ **Completed**: 6 of 169 zero-dependency functions  
+📊 **In Progress**: 1 (LSAME)  
+🎯 **Available**: 162 (see MIGRATION_GUIDE.md for full list and status)
 
 ## Prerequisites
 
@@ -37,7 +49,7 @@ All migrations require 100% test pass rate. See **MIGRATION_GUIDE.md** for detai
 
 ```
 slatec_test/
-├── src/                    # Original SLATEC F77 source (736 files)
+├── src/                    # Original SLATEC F77 source (738 files - subset of complete library)
 ├── modern/                 # Modern Fortran implementations
 │   ├── pythag_modern.f90   # Completed migration
 │   └── cdiv_modern.f90     # Completed migration
@@ -53,7 +65,7 @@ slatec_test/
 
 - **`MIGRATION_GUIDE.md`** - Complete migration instructions, strategies, and function list
 - **`slatec_test_helper.py`** - Required script for test generation and validation
-- **`tree`** - Function dependency relationships
+- **`tree`** - Function dependency relationships (complete SLATEC 1,441 function catalog)
 - **`KNOWLEDGEBASE.md`** - General SLATEC knowledge and insights
 
 ## Contributing
@@ -67,5 +79,6 @@ slatec_test/
 ## Original SLATEC Info
 
 - **Version**: 4.1 (July 1993)
-- **Size**: 736 files, 168,355 lines
+- **Complete Library Size**: 1,441 functions total
+- **This Repository**: 738 files, 168,355 lines (subset excluding Fullerton FNLIB)
 - **License**: Public domain

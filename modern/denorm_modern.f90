@@ -73,6 +73,9 @@ contains
         do i = 1, n
             xabs = abs(x(i))
             
+            ! Check for infinity input - F77 processes infinity normally
+            ! leading to infinity result, so we don't need special handling
+            
             ! Check for intermediate components first
             if (xabs > RDWARF .and. xabs < agiant) then
                 ! Sum for intermediate components

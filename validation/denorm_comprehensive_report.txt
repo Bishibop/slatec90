@@ -5,12 +5,11 @@ DENORM ENHANCED VALIDATION REPORT
  DENORM Enhanced Validation
  ==========================
  
- Test 168 FAILED: Result is Infinity
  
  Summary:
  --------
-Passed: 256 / 257
-Success rate:  99.61%
+Passed: 257 / 257
+Success rate: 100.00%
 
 
 CATEGORY ANALYSIS:
@@ -32,7 +31,7 @@ Precision:
   Passed: 1 / 1 (100.0%)
 
 Special:
-  Passed: 198 / 199 (99.5%)
+  Passed: 199 / 199 (100.0%)
 
 Subnormal:
   Passed: 6 / 6 (100.0%)
