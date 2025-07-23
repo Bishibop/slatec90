@@ -20,9 +20,9 @@ The `tree` file shows dependencies for the complete SLATEC catalog, while migrat
 
 ## Current Status
 
-✅ **Completed**: 9 of 209 zero-dependency functions  
+✅ **Completed**: 10 of 209 zero-dependency functions  
 📊 **In Progress**: 0  
-🎯 **Available**: 200 (see COMPREHENSIVE_MIGRATION_GUIDE.md for complete list and strategy)
+🎯 **Available**: 199 (see COMPREHENSIVE_MIGRATION_GUIDE.md for complete list and strategy)
 
 ## Prerequisites
 
@@ -33,14 +33,16 @@ The `tree` file shows dependencies for the complete SLATEC catalog, while migrat
 ## Quick Start
 
 1. **Choose a function** from the available list in COMPREHENSIVE_MIGRATION_GUIDE.md
-2. **Generate test cases**:
+2. **Generate test cases** (optimized recommended):
    ```bash
-   python slatec_test_helper.py generate FUNCNAME
+   python optimized_test_helper.py generate FUNCNAME  # 3-8x faster
+   # OR: python slatec_test_helper.py generate FUNCNAME  # standard version
    ```
 3. **Implement modern version** in `modern/funcname_modern.f90`
 4. **Validate implementation**:
    ```bash
-   python slatec_test_helper.py validate FUNCNAME
+   python optimized_test_helper.py validate FUNCNAME  # vectorized validation
+   # OR: python slatec_test_helper.py validate FUNCNAME  # standard version
    ```
 
 All migrations require 100% test pass rate. See **COMPREHENSIVE_MIGRATION_GUIDE.md** for complete function inventory and strategic migration plan.
@@ -65,7 +67,8 @@ slatec_test/
 
 - **`COMPREHENSIVE_MIGRATION_GUIDE.md`** - Complete function inventory and strategic migration plan for all 738 available functions
 - **`MIGRATION_GUIDE.md`** - Detailed migration instructions and methodologies
-- **`slatec_test_helper.py`** - Required script for test generation and validation
+- **`slatec_test_helper.py`** - Standard test generation and validation script
+- **`optimized_test_helper.py`** - High-performance version with 3-8x speedup (recommended)
 - **`tree`** - Function dependency relationships (complete SLATEC 1,441 function catalog)
 - **`KNOWLEDGEBASE.md`** - General SLATEC knowledge and insights
 

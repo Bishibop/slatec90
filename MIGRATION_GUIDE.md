@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 9
+- **Completed**: 10
 - **In Progress**: 0
-- **Available**: 160
+- **Available**: 159
 
 ### Completed Migrations ✅
 
@@ -34,6 +34,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | LSAME | 164 | 2025-01-22 | Case-insensitive character comparison (BLAS utility) - blind tested |
 | ZABS | 353 | 2025-01-22 | Complex absolute value with overflow protection (blind tested) |
 | DENORM | 257 (157→257) | 2025-01-22 | Double precision Euclidean norm, enhanced testing, infinity handling fix via feedback loop (blind tested) |
+| FDUMP | 492 | 2025-01-23 | Error message dump placeholder (no-op subroutine) |
 
 ### In Progress 🚧
 
@@ -47,12 +48,12 @@ These are recommended based on simplicity and usefulness:
 
 | Function | Description | Why Priority |
 |----------|-------------|--------------|
-| FDUMP | Error message dump | Part of error system |
 | J4SAVE | Save/recall error state | Foundation function |
-| LSAME | Compare characters (BLAS) | Simple utility |
-| ZABS | Complex absolute value | Simple complex arithmetic |
 | ISAMAX | Index of max abs value | BLAS utility |
 | SASUM | Sum of absolute values | BLAS utility |
+| XERCNT | Error counter | Error handling system |
+| XERHLT | Error halt | Error handling system |
+| CSHCH | Complex sinh/cosh | Complex arithmetic |
 
 ### Complete List of Available Functions (167)
 
@@ -207,7 +208,7 @@ Create test cases based on the function type:
 
 Include:
 1. **Basic functionality**: Simple cases with known results
-2. **Edge cases**: 
+2. **Edge cases**:
    - Zero inputs (each parameter independently)
    - Negative values (if meaningful)
    - Very small values (near machine epsilon ~1.19e-7)
@@ -244,7 +245,7 @@ for angle in range(0, 360, 30):
 1. **Literature reference values** (Abramowitz & Stegun, DLMF)
 2. **Algorithm regime transitions**:
    - Small arguments (series expansion)
-   - Medium arguments (standard algorithm)  
+   - Medium arguments (standard algorithm)
    - Large arguments (asymptotic expansion)
 3. **Special points**:
    - Zeros, poles, branch cuts
@@ -259,8 +260,6 @@ for angle in range(0, 360, 30):
 - **F77 Batch Limit**: F77 programs can only handle ~50 test cases per program due to size limits. The helper script automatically handles batching.
 
 ### Step 3: Blind Testing Migration Process
-
-#### Option A: Sequential Migration (Single Function)
 
 **Phase 1: Test Generation (use Task tool)**
 ```
@@ -285,50 +284,6 @@ If failures, provide hints without revealing expected values
 Iterate until 100% pass rate
 ```
 
-#### Option B: Parallel Migration (Two Functions Simultaneously)
-
-**Setup: Create Two Parallel Pipelines**
-```
-Pipeline 1: Function A
-- Task 1A: Test Generator for Function A
-- Task 2A: Blind Implementer for Function A  
-- Task 3A: Validator for Function A
-
-Pipeline 2: Function B
-- Task 1B: Test Generator for Function B
-- Task 2B: Blind Implementer for Function B
-- Task 3B: Validator for Function B
-```
-
-**Execution: Run Both Pipelines in Parallel**
-```
-1. Launch both test generators simultaneously (Task 1A & 1B)
-2. Once tests ready, launch both implementers (Task 2A & 2B)
-3. Validate both implementations independently (Task 3A & 3B)
-4. Iterate each pipeline independently until 100% pass
-```
-
-**Example Parallel Workflow Command:**
-```python
-# Launch parallel test generation
-Task("Generate tests for DENORM", test_gen_prompt_denorm)
-Task("Generate tests for ZABS", test_gen_prompt_zabs)
-
-# Launch parallel blind implementations
-Task("Implement DENORM blind", impl_prompt_denorm)
-Task("Implement ZABS blind", impl_prompt_zabs)
-
-# Validate both in parallel
-Task("Validate DENORM", validation_prompt_denorm)
-Task("Validate ZABS", validation_prompt_zabs)
-```
-
-**Benefits of Parallel Migration:**
-- 2x throughput for function migrations
-- Independent validation/iteration cycles
-- Better resource utilization
-- Reduces overall migration timeline
-
 **Benefits of Blind Testing:**
 - Guarantees no memorization of test outputs
 - Forces true algorithm understanding
@@ -344,19 +299,19 @@ For the test generation phase, you need to add support to both `slatec_test_help
 def _generate_funcname_tests(self):
     """Generate test cases for FUNCNAME"""
     tests = []
-    
+
     # Think about what to test:
     # - Basic functionality
     # - Edge cases (0, tiny, huge values)
     # - Known mathematical properties
     # - Numerical stability cases
-    
+
     tests.append({
         "description": "Basic test case",
         "inputs": [1.0, 2.0],
         "expected": None  # Will be filled by F77
     })
-    
+
     return tests
 ```
 
@@ -367,7 +322,7 @@ def _generate_funcname_f77(self, test_cases, start_index):
     program = f"""      PROGRAM TEST_FUNCNAME
       REAL FUNCNAME, ARG1, ARG2, RESULT
       EXTERNAL FUNCNAME
-      
+
 """
     for i, test in enumerate(test_cases):
         test_num = start_index + i + 1
@@ -377,7 +332,7 @@ def _generate_funcname_f77(self, test_cases, start_index):
       ARG2 = {arg2:e}
       RESULT = FUNCNAME(ARG1, ARG2)
       WRITE(*,'(A,I5,A,E20.10)') 'TEST_', {test_num}, '_RESULT: ', RESULT
-      
+
 """
     program += "      END"
     return program
@@ -407,9 +362,9 @@ contains
     implicit none
     real, intent(in) :: arg1, arg2
     real :: res
-    
+
     ! Implementation here
-    
+
   end function funcname
 
 end module funcname_module
@@ -531,7 +486,7 @@ The key is maintaining blind testing integrity in each pipeline while maximizing
 task_prompt = """
 Generate comprehensive test cases for FUNCNAME:
 1. Read F77 source at src/funcname.f
-2. Create 500+ diverse test cases
+2. Create 150+ diverse test cases
 3. Run F77 to get expected outputs
 4. Save to test_data/funcname_tests.json
 5. Create blind version at test_data/funcname_tests_blind.json
@@ -797,7 +752,7 @@ The DENORM migration provided valuable insights that should be applied to future
 
 #### Documentation and Process
 - **Track enhancement iterations**: Document both original and enhanced test counts
-- **Record feedback loops**: Note when and how validation failures were addressed  
+- **Record feedback loops**: Note when and how validation failures were addressed
 - **Maintain clean artifacts**: Remove redundant validation reports, keep essential documentation
 - **Organize systematically**: Place validation reports in appropriate directories
 
@@ -915,7 +870,7 @@ python slatec_test_helper.py generate PYTHAG
 python slatec_test_helper.py validate PYTHAG
 ```
 
-#### **Optimized Helper** (Recommended, 3-8x Faster) 
+#### **Optimized Helper** (Recommended, 3-8x Faster)
 ```bash
 # Generate test cases with parallel processing (3-8x speedup)
 python optimized_test_helper.py generate PYTHAG

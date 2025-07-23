@@ -183,9 +183,10 @@ More complex functions with deeper dependency chains
 
 ### Migration Process
 1. Choose function from Level 0 available list
-2. Use existing test helper: `python slatec_test_helper.py generate FUNCNAME`
+2. Use optimized test helper for faster processing: `python optimized_test_helper.py generate FUNCNAME`
+   - Alternative: Standard helper `python slatec_test_helper.py generate FUNCNAME` (3-8x slower)
 3. Implement using blind testing methodology
-4. Validate with 100% test pass rate
+4. Validate with 100% test pass rate using: `python optimized_test_helper.py validate FUNCNAME`
 
 ### Function Categories Guide
 - **Utilities**: General-purpose mathematical helpers
