@@ -33,7 +33,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | ENORM | 157 | 2025-01-22 | Euclidean norm with overflow protection (blind tested) |
 | LSAME | 164 | 2025-01-22 | Case-insensitive character comparison (BLAS utility) - blind tested |
 | ZABS | 353 | 2025-01-22 | Complex absolute value with overflow protection (blind tested) |
-| DENORM | 157 | 2025-01-22 | Double precision Euclidean norm with overflow protection (blind tested) |
+| DENORM | 257 (157→257) | 2025-01-22 | Double precision Euclidean norm, enhanced testing, infinity handling fix via feedback loop (blind tested) |
 
 ### In Progress 🚧
 
@@ -252,9 +252,10 @@ for angle in range(0, 360, 30):
 4. **Recurrence relations** and mathematical identities
 
 #### Number of Test Cases
-- Minimum: 50-100 for simple functions
-- Target: 200-500 for comprehensive coverage
-- Include both systematic combinations and edge cases
+- Minimum: 100-200 for simple functions
+- Target: 500+ for comprehensive coverage with heavy focus on edge cases
+- Essential: Cover all IEEE special values, boundary conditions, and algorithm transitions
+- Include both systematic combinations and extensive edge case coverage
 - **F77 Batch Limit**: F77 programs can only handle ~50 test cases per program due to size limits. The helper script automatically handles batching.
 
 ### Step 3: Blind Testing Migration Process
@@ -763,6 +764,64 @@ real function integrate(f, a, b)
 - Check for implicit behaviors (SAVE, initialization)
 - Verify loop bounds and conditions
 
+## Best Practices and Lessons Learned
+
+### Key Takeaways from DENORM Migration
+
+The DENORM migration provided valuable insights that should be applied to future migrations:
+
+#### Enhanced Testing Approach
+- **Start with comprehensive edge cases**: The original 157 tests missed critical scenarios
+- **Expand systematically**: Adding 100 more tests (257 total) caught infinity handling issues
+- **Focus on algorithm boundaries**: Test transitions between small/medium/large value handling
+- **Include IEEE special values**: Infinity, NaN, subnormals, and boundary values are critical
+
+#### Proper Feedback Loop Process
+- **Never dismiss validation failures**: The initial "99.61% pass rate" hid a real bug
+- **Use blind feedback**: Provide failure patterns without revealing expected values
+- **Trust the process**: The feedback loop correctly identified and fixed infinity handling
+- **Validate systematically**: Don't rationalize failures as "correct behavior"
+
+#### Implementation Quality Indicators
+1. **100% pass rate is non-negotiable**: Anything less indicates incomplete understanding
+2. **Edge cases reveal algorithm depth**: Infinity handling required understanding F77 overflow protection
+3. **Blind testing prevents memorization**: Forces true algorithm comprehension
+4. **Enhanced test suites catch subtle bugs**: More tests = higher confidence
+
+#### Test Generation Strategy
+- **Mathematical properties first**: Start with known relationships and identities
+- **IEEE compliance testing**: Every function must handle special floating-point values
+- **Algorithm stress testing**: Push functions to their computational limits
+- **Scaling behavior verification**: Test with values across the full range
+- **Boundary condition exploration**: Test exactly at thresholds (RDWARF, RGIANT, etc.)
+
+#### Documentation and Process
+- **Track enhancement iterations**: Document both original and enhanced test counts
+- **Record feedback loops**: Note when and how validation failures were addressed  
+- **Maintain clean artifacts**: Remove redundant validation reports, keep essential documentation
+- **Organize systematically**: Place validation reports in appropriate directories
+
+### Recommended Migration Workflow
+
+Based on DENORM experience:
+
+1. **Generate 500+ test cases** focusing heavily on edge cases
+2. **Run F77 to get reference values** with comprehensive coverage
+3. **Create blind implementation** without seeing expected outputs
+4. **Validate with zero tolerance** for failures - 100% pass rate required
+5. **Apply feedback loop** for any failures, maintaining blind testing integrity
+6. **Enhance test suite** if initial validation reveals gaps
+7. **Document lessons learned** for future migrations
+
+### Quality Metrics
+
+Functions should achieve:
+- ✅ **100% validation pass rate** (no exceptions)
+- ✅ **500+ comprehensive test cases** (edge case focused)
+- ✅ **IEEE compliance** (infinity, NaN, subnormal handling)
+- ✅ **Algorithm boundary testing** (small/medium/large transitions)
+- ✅ **Clean documentation** (implementation summary + final validation report)
+
 ## Validation and Quality
 
 ### Migration Requirements Checklist
@@ -827,6 +886,21 @@ Study these for reference:
    - **First function migrated using blind testing approach**
    - Implementation derived purely from F77 algorithm without seeing expected outputs
    - 100% test pass rate on first attempt validates the blind testing methodology
+
+7. **ZABS** (`modern/zabs_modern.f90`)
+   - 353 test cases in `test_data/zabs_tests.json`
+   - Complex absolute value with overflow protection
+   - **Parallel migration - achieved 100% pass rate on first blind attempt**
+   - Demonstrates scaling algorithm for extreme complex values
+   - Perfect example of successful blind testing methodology
+
+8. **DENORM** (`modern/denorm_modern.f90`)
+   - 257 test cases (157→257 enhanced) in `test_data/denorm_tests_enhanced.json`
+   - Double precision Euclidean norm with overflow/underflow protection
+   - **Parallel migration with enhanced testing and feedback loop demonstration**
+   - Initial implementation: 99.61% pass rate (dismissed as "correct")
+   - Proper feedback loop identified infinity handling bug → 100% pass rate
+   - **Key lesson**: Never dismiss validation failures - enhanced testing catches edge cases
 
 ### Test Helper Script
 
