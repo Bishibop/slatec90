@@ -16,13 +16,13 @@ This repository contains **738 of the 1,441 functions** from the complete SLATEC
 - Error and exponential integrals (ERF, ERFC, E1, EI)
 - Complex and double precision variants
 
-The `tree` file shows dependencies for the complete SLATEC catalog, while migration efforts focus on the 738 functions available in `src/`. This explains why only 169 zero-dependency functions are listed for migration instead of the 338 shown in the complete dependency tree.
+The `tree` file shows dependencies for the complete SLATEC catalog, while migration efforts focus on the 738 functions available in `src/`. This explains why only 209 zero-dependency functions are available for migration instead of the 338 shown in the complete dependency tree.
 
 ## Current Status
 
-✅ **Completed**: 6 of 169 zero-dependency functions  
-📊 **In Progress**: 1 (LSAME)  
-🎯 **Available**: 162 (see MIGRATION_GUIDE.md for full list and status)
+✅ **Completed**: 9 of 209 zero-dependency functions  
+📊 **In Progress**: 0  
+🎯 **Available**: 200 (see COMPREHENSIVE_MIGRATION_GUIDE.md for complete list and strategy)
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ The `tree` file shows dependencies for the complete SLATEC catalog, while migrat
 
 ## Quick Start
 
-1. **Choose a function** from the available list in MIGRATION_GUIDE.md
+1. **Choose a function** from the available list in COMPREHENSIVE_MIGRATION_GUIDE.md
 2. **Generate test cases**:
    ```bash
    python slatec_test_helper.py generate FUNCNAME
@@ -43,7 +43,7 @@ The `tree` file shows dependencies for the complete SLATEC catalog, while migrat
    python slatec_test_helper.py validate FUNCNAME
    ```
 
-All migrations require 100% test pass rate. See **MIGRATION_GUIDE.md** for detailed instructions.
+All migrations require 100% test pass rate. See **COMPREHENSIVE_MIGRATION_GUIDE.md** for complete function inventory and strategic migration plan.
 
 ## Project Structure
 
@@ -63,18 +63,19 @@ slatec_test/
 
 ## Key Files
 
-- **`MIGRATION_GUIDE.md`** - Complete migration instructions, strategies, and function list
+- **`COMPREHENSIVE_MIGRATION_GUIDE.md`** - Complete function inventory and strategic migration plan for all 738 available functions
+- **`MIGRATION_GUIDE.md`** - Detailed migration instructions and methodologies
 - **`slatec_test_helper.py`** - Required script for test generation and validation
 - **`tree`** - Function dependency relationships (complete SLATEC 1,441 function catalog)
 - **`KNOWLEDGEBASE.md`** - General SLATEC knowledge and insights
 
 ## Contributing
 
-1. Check MIGRATION_GUIDE.md for available functions
-2. Update the "In Progress" table before starting work
-3. Follow the test-driven migration process
-4. Ensure 100% test pass rate before marking complete
-5. Commit with descriptive message following the format in MIGRATION_GUIDE.md
+1. Check COMPREHENSIVE_MIGRATION_GUIDE.md for available functions and strategic priorities
+2. Follow the test-driven migration process  
+3. Ensure 100% test pass rate before marking complete
+4. Update migration status in both guides when complete
+5. Commit with descriptive message following conventional commit format
 
 ## Original SLATEC Info
 
