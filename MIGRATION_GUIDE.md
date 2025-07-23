@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 10
+- **Completed**: 11
 - **In Progress**: 0
-- **Available**: 159
+- **Available**: 158
 
 ### Completed Migrations ✅
 
@@ -35,6 +35,7 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | ZABS | 353 | 2025-01-22 | Complex absolute value with overflow protection (blind tested) |
 | DENORM | 257 (157→257) | 2025-01-22 | Double precision Euclidean norm, enhanced testing, infinity handling fix via feedback loop (blind tested) |
 | FDUMP | 492 | 2025-01-23 | Error message dump placeholder (no-op subroutine) |
+| J4SAVE | 209 | 2025-01-23 | Save/recall error handling parameters (blind tested) |
 
 ### In Progress 🚧
 
@@ -48,12 +49,12 @@ These are recommended based on simplicity and usefulness:
 
 | Function | Description | Why Priority |
 |----------|-------------|--------------|
-| J4SAVE | Save/recall error state | Foundation function |
-| ISAMAX | Index of max abs value | BLAS utility |
-| SASUM | Sum of absolute values | BLAS utility |
 | XERCNT | Error counter | Error handling system |
 | XERHLT | Error halt | Error handling system |
+| ISAMAX | Index of max abs value | BLAS utility |
+| SASUM | Sum of absolute values | BLAS utility |
 | CSHCH | Complex sinh/cosh | Complex arithmetic |
+| JAIRY | Airy function Ai(x) | Special function |
 
 ### Complete List of Available Functions (167)
 

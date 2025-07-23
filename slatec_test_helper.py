@@ -49,6 +49,8 @@ class SlatecTestHelper:
             return self._generate_zabs_tests()
         elif self.func_name == "FDUMP":
             return self._generate_fdump_tests()
+        elif self.func_name == "J4SAVE":
+            return self._generate_j4save_tests()
         else:
             print(f"No test generator for {self.func_name} yet")
             print("Please implement a generator based on the function's purpose")
@@ -2487,6 +2489,126 @@ class SlatecTestHelper:
         print(f"Generated {len(tests)} test cases for FDUMP")
         return tests
     
+    def _generate_j4save_tests(self):
+        """Generate test cases for J4SAVE (error handling parameter storage)"""
+        tests = []
+        
+        # J4SAVE(IWHICH, IVALUE, ISET) - saves/recalls error handling parameters
+        # IWHICH: 1-9 (parameter index)
+        # IVALUE: value to set (if ISET=.TRUE.)
+        # ISET: .TRUE. to set, .FALSE. to just retrieve
+        # Returns: old value of the parameter
+        
+        # Test 1: Initial state - retrieve all default values
+        for iwhich in range(1, 10):
+            tests.append({
+                "description": f"Retrieve initial value of parameter {iwhich}",
+                "inputs": [iwhich, 0, False],  # IWHICH, dummy IVALUE, ISET=.FALSE.
+                "expected": None
+            })
+        
+        # Test 2: Set and retrieve each parameter
+        test_values = {
+            1: [0, 1, -1, 100, 999],  # Error number
+            2: [0, 1, 2, -1],         # Error control flag
+            3: [0, 6, 9, -1],         # Unit number (0=standard)
+            4: [1, 5, 10, 50, 100],   # Max print count
+            5: [1, 2, 3, 4, 5],       # Number of units
+            6: [0, 6, 10],            # 2nd unit
+            7: [0, 7, 11],            # 3rd unit
+            8: [0, 8, 12],            # 4th unit
+            9: [0, 9, 13]             # 5th unit
+        }
+        
+        for iwhich, values in test_values.items():
+            for value in values:
+                # Set the value
+                tests.append({
+                    "description": f"Set parameter {iwhich} to {value}",
+                    "inputs": [iwhich, value, True],  # IWHICH, IVALUE, ISET=.TRUE.
+                    "expected": None
+                })
+                # Retrieve to verify it was set
+                tests.append({
+                    "description": f"Verify parameter {iwhich} is now {value}",
+                    "inputs": [iwhich, 0, False],  # IWHICH, dummy, ISET=.FALSE.
+                    "expected": None
+                })
+        
+        # Test 3: Edge cases - invalid indices
+        for iwhich in [0, -1, 10, 11, 100]:
+            tests.append({
+                "description": f"Test invalid parameter index {iwhich}",
+                "inputs": [iwhich, 0, False],
+                "expected": None
+            })
+        
+        # Test 4: State persistence - set all parameters then verify
+        set_values = [99, 1, 6, 20, 3, 7, 8, 9, 10]
+        for i, value in enumerate(set_values, 1):
+            tests.append({
+                "description": f"Set parameter {i} to {value} for persistence test",
+                "inputs": [i, value, True],
+                "expected": None
+            })
+        
+        # Verify all values persist
+        for i in range(1, 10):
+            tests.append({
+                "description": f"Verify parameter {i} persistence",
+                "inputs": [i, 0, False],
+                "expected": None
+            })
+        
+        # Test 5: Reset to defaults
+        default_values = [0, 2, 0, 10, 1, 0, 0, 0, 0]
+        for i, value in enumerate(default_values, 1):
+            tests.append({
+                "description": f"Reset parameter {i} to default {value}",
+                "inputs": [i, value, True],
+                "expected": None
+            })
+        
+        # Test 6: Rapid switching between parameters
+        for _ in range(20):
+            for iwhich in [1, 3, 5]:
+                tests.append({
+                    "description": f"Rapid access to parameter {iwhich}",
+                    "inputs": [iwhich, 0, False],
+                    "expected": None
+                })
+        
+        # Test 7: Large values
+        for iwhich in [1, 3, 4]:
+            for value in [32767, -32768, 65535]:
+                tests.append({
+                    "description": f"Set parameter {iwhich} to large value {value}",
+                    "inputs": [iwhich, value, True],
+                    "expected": None
+                })
+                tests.append({
+                    "description": f"Verify large value {value} in parameter {iwhich}",
+                    "inputs": [iwhich, 0, False],
+                    "expected": None
+                })
+        
+        # Test 8: Alternating set/get operations
+        for cycle in range(10):
+            iwhich = (cycle % 9) + 1
+            value = cycle * 10
+            tests.append({
+                "description": f"Cycle {cycle}: Set parameter {iwhich} to {value}",
+                "inputs": [iwhich, value, True],
+                "expected": None
+            })
+            tests.append({
+                "description": f"Cycle {cycle}: Get parameter {iwhich}",
+                "inputs": [iwhich, 0, False],
+                "expected": None
+            })
+        
+        return tests
+    
     def run_f77_reference(self, test_cases):
         """Run F77 implementation to get reference values"""
         all_results = []
@@ -2567,6 +2689,8 @@ class SlatecTestHelper:
             return self._generate_zabs_f77(test_cases, start_index)
         elif self.func_name == "FDUMP":
             return self._generate_fdump_f77(test_cases, start_index)
+        elif self.func_name == "J4SAVE":
+            return self._generate_j4save_f77(test_cases, start_index)
         else:
             raise NotImplementedError(f"No F77 generator for {self.func_name}")
     
@@ -2810,6 +2934,31 @@ class SlatecTestHelper:
         program += "      END"
         return program
     
+    def _generate_j4save_f77(self, test_cases, start_index):
+        """Generate F77 program for J4SAVE"""
+        program = f"""      PROGRAM TEST_J4SAVE
+      INTEGER J4SAVE, IWHICH, IVALUE, RESULT
+      LOGICAL ISET
+      EXTERNAL J4SAVE
+      
+"""
+        for i, test in enumerate(test_cases):
+            test_num = start_index + i + 1
+            iwhich, ivalue, iset = test['inputs']
+            # Convert Python boolean to Fortran logical
+            iset_str = '.TRUE.' if iset else '.FALSE.'
+            
+            program += f"""C     Test {test_num}: {test['description']}
+      IWHICH = {iwhich}
+      IVALUE = {ivalue}
+      ISET = {iset_str}
+      RESULT = J4SAVE(IWHICH, IVALUE, ISET)
+      WRITE(*,'(A,I5,A,I10)') 'TEST_', {test_num}, '_RESULT: ', RESULT
+      
+"""
+        program += "      END"
+        return program
+    
     def _parse_f77_output(self, output):
         """Parse F77 output to extract results"""
         results = []
@@ -2924,6 +3073,14 @@ class SlatecTestHelper:
                 test_num = int(match.group(1))
                 results.append((test_num, "CALLED"))
         
+        elif self.func_name == "J4SAVE":
+            # Integer result per test
+            pattern = r'TEST_\s*(\d+)_RESULT:\s*([-+]?\d+)'
+            for match in re.finditer(pattern, output):
+                test_num = int(match.group(1))
+                value = int(match.group(2))
+                results.append((test_num, value))
+        
         return results
     
     def save_test_data(self, test_cases, results):
@@ -2968,6 +3125,10 @@ class SlatecTestHelper:
         elif self.func_name == "FDUMP":
             for (test_num, value), test_case in zip(results, test_cases):
                 test_case['expected'] = value  # Should be "CALLED"
+                test_case['test_id'] = test_num
+        elif self.func_name == "J4SAVE":
+            for (test_num, value), test_case in zip(results, test_cases):
+                test_case['expected'] = value
                 test_case['test_id'] = test_num
         
         # Create output structure
@@ -3086,6 +3247,19 @@ class SlatecTestHelper:
                         print(f"  Expected: {expected}")
                         print(f"  Actual: {actual}")
                         
+            elif self.func_name == "J4SAVE":
+                actual = result[1]  # (test_num, value)
+                expected = test_case['expected']
+                
+                # For J4SAVE, exact integer match
+                if actual != expected:
+                    failures += 1
+                    if failures <= 5:
+                        print(f"\nTest {result[0]} FAILED:")
+                        print(f"  Description: {test_case['description']}")
+                        print(f"  Expected: {expected}")
+                        print(f"  Actual: {actual}")
+                        
         print(f"\n{len(test_cases) - failures} tests PASSED")
         print(f"{failures} tests FAILED")
         
@@ -3145,6 +3319,8 @@ class SlatecTestHelper:
             return self._generate_d1mach_modern_test(test_cases)
         elif self.func_name == "FDUMP":
             return self._generate_fdump_modern_test(test_cases)
+        elif self.func_name == "J4SAVE":
+            return self._generate_j4save_modern_test(test_cases)
         else:
             raise NotImplementedError(f"No modern test generator for {self.func_name}")
     
@@ -3271,6 +3447,32 @@ class SlatecTestHelper:
         program += "end program test_fdump"
         return program
     
+    def _generate_j4save_modern_test(self, test_cases):
+        """Generate modern F90 test for J4SAVE"""
+        program = f"""program test_j4save
+    use j4save_module, only: j4save
+    implicit none
+    
+    integer :: iwhich, ivalue, result
+    logical :: iset
+    
+"""
+        for idx, test in enumerate(test_cases[:self.batch_size]):
+            iwhich, ivalue, iset = test['inputs']
+            # Convert Python boolean to Fortran logical
+            iset_str = '.true.' if iset else '.false.'
+            
+            program += f"""    ! Test {idx+1}: {test['description']}
+    iwhich = {iwhich}
+    ivalue = {ivalue}
+    iset = {iset_str}
+    result = j4save(iwhich, ivalue, iset)
+    write(*,'(A,I5,A,I10)') 'TEST_', {idx+1}, '_RESULT: ', result
+    
+"""
+        program += "end program test_j4save"
+        return program
+    
     def _get_signature(self):
         """Get function signature"""
         signatures = {
@@ -3283,7 +3485,8 @@ class SlatecTestHelper:
             "LSAME": "LOGICAL FUNCTION LSAME(CA, CB)",
             "DENORM": "DOUBLE PRECISION FUNCTION DENORM(N, X)",
             "ZABS": "DOUBLE PRECISION FUNCTION ZABS(ZR, ZI)",
-            "FDUMP": "SUBROUTINE FDUMP"
+            "FDUMP": "SUBROUTINE FDUMP",
+            "J4SAVE": "INTEGER FUNCTION J4SAVE(IWHICH, IVALUE, ISET)"
         }
         return signatures.get(self.func_name, "Unknown")
     
@@ -3299,7 +3502,8 @@ class SlatecTestHelper:
             "LSAME": "Case-insensitive character comparison",
             "DENORM": "Compute double precision Euclidean norm of a vector with overflow/underflow protection",
             "ZABS": "Compute absolute value (magnitude) of a complex number with overflow/underflow protection",
-            "FDUMP": "Symbolic dump (error handling routine)"
+            "FDUMP": "Symbolic dump (error handling routine)",
+            "J4SAVE": "Save or recall global variables needed by error handling routines"
         }
         return descriptions.get(self.func_name, "No description")
 
