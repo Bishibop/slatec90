@@ -35,3 +35,19 @@ test_*
 # Logs (but keep the directory)
 logs/*
 !logs/.gitkeep
+
+# Work directories
+work/
+modern/
+compiled/
+
+# Object directories
+obj*/
+
+# Executables
+mega_validator_full
+fortran_validator/mega_validator_full
+
+# OS
+.DS_Store
+Thumbs.db

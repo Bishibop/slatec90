@@ -7,6 +7,7 @@ F90FLAGS = -O2
 # Directories
 SRC_DIR = ../src
 MODERN_DIR = ../modern
+PHASE0_DIR = ../modern/phase_0
 OBJ_DIR = obj_full
 
 $(shell mkdir -p $(OBJ_DIR))
@@ -18,22 +19,16 @@ ENHANCED_MODULES = $(OBJ_DIR)/error_analysis_module.o \
                   $(OBJ_DIR)/state_validation_module.o \
                   $(OBJ_DIR)/numerical_utils_module.o
 
-# Core modernized functions for testing
-CORE_F77_OBJS = $(OBJ_DIR)/pythag_f77.o $(OBJ_DIR)/bsplvn_f77.o \
-                $(OBJ_DIR)/i1mach_f77.o $(OBJ_DIR)/d1mach_f77.o \
-                $(OBJ_DIR)/r1mach_f77.o $(OBJ_DIR)/enorm_f77.o \
-                $(OBJ_DIR)/denorm_f77.o $(OBJ_DIR)/lsame_f77.o
+# Phase 0 functions for testing (PIMACH only for now)
+PHASE0_F77_OBJS = $(OBJ_DIR)/pimach_f77.o
 
-CORE_MODERN_OBJS = $(OBJ_DIR)/pythag_modern.o $(OBJ_DIR)/bsplvn_modern.o \
-                   $(OBJ_DIR)/i1mach_modern.o $(OBJ_DIR)/d1mach_modern.o \
-                   $(OBJ_DIR)/r1mach_modern.o $(OBJ_DIR)/enorm_modern.o \
-                   $(OBJ_DIR)/denorm_modern.o $(OBJ_DIR)/lsame_modern.o
+PHASE0_MODERN_OBJS = $(OBJ_DIR)/pimach_modern.o
 
-# Wrapper objects
-WRAPPER_OBJS = $(OBJ_DIR)/pythag_f77_wrapper.o $(OBJ_DIR)/bsplvn_f77_wrapper.o
+# Wrapper objects (commented out for now - not needed)
+# WRAPPER_OBJS = $(OBJ_DIR)/pythag_f77_wrapper.o $(OBJ_DIR)/bsplvn_f77_wrapper.o
 
 # Main target
-mega_validator_full: $(ENHANCED_MODULES) $(CORE_F77_OBJS) $(WRAPPER_OBJS) $(CORE_MODERN_OBJS) $(OBJ_DIR)/mega_validator_full.o
+mega_validator_full: $(ENHANCED_MODULES) $(PHASE0_F77_OBJS) $(PHASE0_MODERN_OBJS) $(OBJ_DIR)/mega_validator_full.o
 	$(FC) -o $@ $^
 
 # Module compilation
@@ -48,7 +43,10 @@ $(OBJ_DIR)/%_f77.o: $(SRC_DIR)/%.f
 $(OBJ_DIR)/%_f77_wrapper.o: %_f77_wrapper.f
 	$(FC) $(FFLAGS) -c $< -o $@
 
-# Modern compilation
+# Modern compilation - try phase_0 directory first, then modern
+$(OBJ_DIR)/%_modern.o: $(PHASE0_DIR)/%_module.f90
+	$(FC) $(F90FLAGS) -c $< -o $@
+
 $(OBJ_DIR)/%_modern.o: $(MODERN_DIR)/%_modern.f90
 	$(FC) $(F90FLAGS) -c $< -o $@
 
@@ -69,7 +67,7 @@ $(OBJ_DIR)/numerical_utils_module.o: numerical_utils_module.f90
 	$(FC) $(F90FLAGS) -c $< -o $@
 
 # Main program
-$(OBJ_DIR)/mega_validator_full.o: mega_validator_full.f90 $(ENHANCED_MODULES) $(CORE_MODERN_OBJS)
+$(OBJ_DIR)/mega_validator_full.o: mega_validator_full.f90 $(ENHANCED_MODULES) $(PHASE0_MODERN_OBJS)
 	$(FC) $(F90FLAGS) -c $< -o $@
 
 clean:
