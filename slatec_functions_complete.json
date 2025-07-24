@@ -1,0 +1,2946 @@
+{
+  "AAAAAA": {
+    "purpose": "SLATEC Common Mathematical Library disclaimer and version",
+    "file": "aaaaaa.f"
+  },
+  "ASYIK": {
+    "purpose": "Subsidiary to BESI and BESK",
+    "file": "asyik.f"
+  },
+  "ASYJY": {
+    "purpose": "Subsidiary to BESJ and BESY",
+    "file": "asyjy.f"
+  },
+  "AVINT": {
+    "purpose": "Integrate a function tabulated at arbitrarily spaced abscissas using overlapping parabolas",
+    "file": "avint.f"
+  },
+  "BCRH": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "bcrh.f"
+  },
+  "BDIFF": {
+    "purpose": "Subsidiary to BSKIN",
+    "file": "bdiff.f"
+  },
+  "BESI": {
+    "purpose": "Compute an N member sequence of I Bessel functions I/SUB(ALPHA+K-1)/(X), K=1,...,N or scaled Bessel functions EXP(-X)*I/SUB(ALPHA+K-1)/(X), K=1,...,N for non-negative ALPHA and X",
+    "file": "besi.f"
+  },
+  "BESJ": {
+    "purpose": "Compute an N member sequence of J Bessel functions J/SUB(ALPHA+K-1)/(X), K=1,...,N for non-negative ALPHA and X",
+    "file": "besj.f"
+  },
+  "BESK": {
+    "purpose": "Implement forward recursion on the three term recursion relation for a sequence of non-negative order Bessel functions K/SUB(FNU+I-1)/(X), or scaled Bessel functions EXP(X)*K/SUB(FNU+I-1)/(X), I=1,...,N for real, positive X and non-negative orders FNU",
+    "file": "besk.f"
+  },
+  "BESKNU": {
+    "purpose": "Subsidiary to BESK",
+    "file": "besknu.f"
+  },
+  "BESY": {
+    "purpose": "Implement forward recursion on the three term recursion relation for a sequence of non-negative order Bessel functions Y/SUB(FNU+I-1)/(X), I=1,...,N for real, positive X and non-negative orders FNU",
+    "file": "besy.f"
+  },
+  "BESYNU": {
+    "purpose": "Subsidiary to BESY",
+    "file": "besynu.f"
+  },
+  "BFQAD": {
+    "purpose": "Compute the integral of a product of a function and a derivative of a B-spline",
+    "file": "bfqad.f"
+  },
+  "BINT4": {
+    "purpose": "Compute the B-representation of a cubic spline which interpolates given data",
+    "file": "bint4.f"
+  },
+  "BINTK": {
+    "purpose": "Compute the B-representation of a spline which interpolates given data",
+    "file": "bintk.f"
+  },
+  "BKIAS": {
+    "purpose": "Subsidiary to BSKIN",
+    "file": "bkias.f"
+  },
+  "BKISR": {
+    "purpose": "Subsidiary to BSKIN",
+    "file": "bkisr.f"
+  },
+  "BKSOL": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "bksol.f"
+  },
+  "BLKTR1": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "blktr1.f"
+  },
+  "BNDACC": {
+    "purpose": "Compute the LU factorization of a banded matrices using sequential accumulation of rows of the data matrix. Exactly one right-hand side vector is permitted",
+    "file": "bndacc.f"
+  },
+  "BNDSOL": {
+    "purpose": "Solve the least squares problem for a banded matrix using sequential accumulation of rows of the data matrix. Exactly one right-hand side vector is permitted",
+    "file": "bndsol.f"
+  },
+  "BNFAC": {
+    "purpose": "Subsidiary to BINT4 and BINTK",
+    "file": "bnfac.f"
+  },
+  "BNSLV": {
+    "purpose": "Subsidiary to BINT4 and BINTK",
+    "file": "bnslv.f"
+  },
+  "BSGQ8": {
+    "purpose": "Subsidiary to BFQAD",
+    "file": "bsgq8.f"
+  },
+  "BSKIN": {
+    "purpose": "Compute repeated integrals of the K-zero Bessel function",
+    "file": "bskin.f"
+  },
+  "BSPDOC": {
+    "purpose": "Documentation for BSPLINE, a package of subprograms for working with piecewise polynomial functions in B-representation",
+    "file": "bspdoc.f"
+  },
+  "BSPDR": {
+    "purpose": "Use the B-representation to construct a divided difference table preparatory to a (right) derivative calculation",
+    "file": "bspdr.f"
+  },
+  "BSPEV": {
+    "purpose": "Calculate the value of the spline and its derivatives from the B-representation",
+    "file": "bspev.f"
+  },
+  "BSPLVD": {
+    "purpose": "Subsidiary to FC",
+    "file": "bsplvd.f"
+  },
+  "BSPLVN": {
+    "purpose": "Subsidiary to FC",
+    "file": "bsplvn.f"
+  },
+  "BSPPP": {
+    "purpose": "Convert the B-representation of a B-spline to the piecewise polynomial (PP) form",
+    "file": "bsppp.f"
+  },
+  "BSPVD": {
+    "purpose": "Calculate the value and all derivatives of order less than NDERIV of all basis functions which do not vanish at X",
+    "file": "bspvd.f"
+  },
+  "BSPVN": {
+    "purpose": "Calculate the value of all (possibly) nonzero basis functions at X",
+    "file": "bspvn.f"
+  },
+  "BSQAD": {
+    "purpose": "Compute the integral of a K-th order B-spline using the B-representation",
+    "file": "bsqad.f"
+  },
+  "BSRH": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "bsrh.f"
+  },
+  "BVALU": {
+    "purpose": "Evaluate the B-representation of a B-spline at X for the function value or any of its derivatives",
+    "file": "bvalu.f"
+  },
+  "BVDER": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "bvder.f"
+  },
+  "BVPOR": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "bvpor.f"
+  },
+  "BVSUP": {
+    "purpose": "Solve a linear two-point boundary value problem using superposition coupled with an orthonormalization procedure and a variable-step integration scheme",
+    "file": "bvsup.f"
+  },
+  "C1MERG": {
+    "purpose": "Merge two strings of complex numbers. Each string is ascending by the real part",
+    "file": "c1merg.f"
+  },
+  "CACAI": {
+    "purpose": "Subsidiary to CAIRY",
+    "file": "cacai.f"
+  },
+  "CACON": {
+    "purpose": "Subsidiary to CBESH and CBESK",
+    "file": "cacon.f"
+  },
+  "CAIRY": {
+    "purpose": "Compute the Airy function Ai(z) or its derivative dAi/dz for complex argument z. A scaling option is available to help avoid underflow and overflow",
+    "file": "cairy.f"
+  },
+  "CASYI": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "casyi.f"
+  },
+  "CBESH": {
+    "purpose": "Compute a sequence of the Hankel functions H(m,a,z) for superscript m=1 or 2, real nonnegative orders a=b, b+1,... where b>0, and nonzero complex argument z. A scaling option is available to help avoid overflow",
+    "file": "cbesh.f"
+  },
+  "CBESI": {
+    "purpose": "Compute a sequence of the Bessel functions I(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "cbesi.f"
+  },
+  "CBESJ": {
+    "purpose": "Compute a sequence of the Bessel functions J(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "cbesj.f"
+  },
+  "CBESK": {
+    "purpose": "Compute a sequence of the Bessel functions K(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "cbesk.f"
+  },
+  "CBESY": {
+    "purpose": "Compute a sequence of the Bessel functions Y(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "cbesy.f"
+  },
+  "CBINU": {
+    "purpose": "Subsidiary to CAIRY, CBESH, CBESI, CBESJ, CBESK and CBIRY",
+    "file": "cbinu.f"
+  },
+  "CBIRY": {
+    "purpose": "Compute the Airy function Bi(z) or its derivative dBi/dz for complex argument z. A scaling option is available to help avoid overflow",
+    "file": "cbiry.f"
+  },
+  "CBKNU": {
+    "purpose": "Subsidiary to CAIRY, CBESH, CBESI and CBESK",
+    "file": "cbknu.f"
+  },
+  "CBLKT1": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "cblkt1.f"
+  },
+  "CBUNI": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cbuni.f"
+  },
+  "CBUNK": {
+    "purpose": "Subsidiary to CBESH and CBESK",
+    "file": "cbunk.f"
+  },
+  "CCMPB": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "ccmpb.f"
+  },
+  "CDCOR": {
+    "purpose": "Subroutine CDCOR computes corrections to the Y array",
+    "file": "cdcor.f"
+  },
+  "CDCST": {
+    "purpose": "CDCST sets coefficients used by the core integrator CDSTP",
+    "file": "cdcst.f"
+  },
+  "CDIV": {
+    "purpose": "Compute the complex quotient of two complex numbers",
+    "file": "cdiv.f"
+  },
+  "CDNTL": {
+    "purpose": "Subroutine CDNTL is called to set parameters on the first call to CDSTP, on an internal restart, or when the user has altered MINT, MITER, and/or H",
+    "file": "cdntl.f"
+  },
+  "CDNTP": {
+    "purpose": "Subroutine CDNTP interpolates the K-th derivative of Y at TOUT, using the data in the YH array. If K has a value greater than NQ, the NQ-th derivative is calculated",
+    "file": "cdntp.f"
+  },
+  "CDPSC": {
+    "purpose": "Subroutine CDPSC computes the predicted YH values by effectively multiplying the YH array by the Pascal triangle matrix when KSGN is +1, and performs the inverse function when KSGN is -1",
+    "file": "cdpsc.f"
+  },
+  "CDPST": {
+    "purpose": "Subroutine CDPST evaluates the Jacobian matrix of the right hand side of the differential equations",
+    "file": "cdpst.f"
+  },
+  "CDRIV1": {
+    "purpose": "The function of CDRIV1 is to solve N (200 or fewer) ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. CDRIV1 allows complex-valued differential equations",
+    "file": "cdriv1.f"
+  },
+  "CDRIV2": {
+    "purpose": "The function of CDRIV2 is to solve N ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. The program has options to allow the solution of both stiff and non-stiff differential equations. CDRIV2 allows complex-valued differential equations",
+    "file": "cdriv2.f"
+  },
+  "CDRIV3": {
+    "purpose": "The function of CDRIV3 is to solve N ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. The program has options to allow the solution of both stiff and non-stiff differential equations. Other important options are available. CDRIV3 allows complex-valued differential equations",
+    "file": "cdriv3.f"
+  },
+  "CDSCL": {
+    "purpose": "Subroutine CDSCL rescales the YH array whenever the step size is changed",
+    "file": "cdscl.f"
+  },
+  "CDSTP": {
+    "purpose": "CDSTP performs one step of the integration of an initial value problem for a system of ordinary differential equations",
+    "file": "cdstp.f"
+  },
+  "CDZRO": {
+    "purpose": "CDZRO searches for a zero of a function F(N, T, Y, IROOT) between the given values B and C until the width of the interval (B, C) has collapsed to within a tolerance specified by the stopping criterion, ABS(B - C) .LE. 2.*(RW*ABS(B) + AE)",
+    "file": "cdzro.f"
+  },
+  "CFOD": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "cfod.f"
+  },
+  "CGEEV": {
+    "purpose": "Compute the eigenvalues and, optionally, the eigenvectors of a complex general matrix",
+    "file": "cgeev.f"
+  },
+  "CGEFS": {
+    "purpose": "Solve a general system of linear equations",
+    "file": "cgefs.f"
+  },
+  "CGEIR": {
+    "purpose": "Solve a general system of linear equations. Iterative refinement is used to obtain an error estimate",
+    "file": "cgeir.f"
+  },
+  "CHIEV": {
+    "purpose": "Compute the eigenvalues and, optionally, the eigenvectors of a complex Hermitian matrix",
+    "file": "chiev.f"
+  },
+  "CHKDER": {
+    "purpose": "Check the gradients of M nonlinear functions in N variables, evaluated at a point X, for consistency with the functions themselves",
+    "file": "chkder.f"
+  },
+  "CHKPR4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "chkpr4.f"
+  },
+  "CHKPRM": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "chkprm.f"
+  },
+  "CHKSN4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "chksn4.f"
+  },
+  "CHKSNG": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "chksng.f"
+  },
+  "CKSCL": {
+    "purpose": "Subsidiary to CBKNU, CUNK1 and CUNK2",
+    "file": "ckscl.f"
+  },
+  "CMLRI": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cmlri.f"
+  },
+  "CMPCSG": {
+    "purpose": "Subsidiary to CMGNBN",
+    "file": "cmpcsg.f"
+  },
+  "CMPOSD": {
+    "purpose": "Subsidiary to CMGNBN",
+    "file": "cmposd.f"
+  },
+  "CMPOSN": {
+    "purpose": "Subsidiary to CMGNBN",
+    "file": "cmposn.f"
+  },
+  "CMPOSP": {
+    "purpose": "Subsidiary to CMGNBN",
+    "file": "cmposp.f"
+  },
+  "CMPTR3": {
+    "purpose": "Subsidiary to CMGNBN",
+    "file": "cmptr3.f"
+  },
+  "CMPTRX": {
+    "purpose": "Subsidiary to CMGNBN",
+    "file": "cmptrx.f"
+  },
+  "CNBCO": {
+    "purpose": "Factor a band matrix using Gaussian elimination and estimate the condition number",
+    "file": "cnbco.f"
+  },
+  "CNBDI": {
+    "purpose": "Compute the determinant of a band matrix using the factors computed by CNBCO or CNBFA",
+    "file": "cnbdi.f"
+  },
+  "CNBFA": {
+    "purpose": "Factor a band matrix by elimination",
+    "file": "cnbfa.f"
+  },
+  "CNBFS": {
+    "purpose": "Solve a general nonsymmetric banded system of linear equations",
+    "file": "cnbfs.f"
+  },
+  "CNBIR": {
+    "purpose": "Solve a general nonsymmetric banded system of linear equations. Iterative refinement is used to obtain an error estimate",
+    "file": "cnbir.f"
+  },
+  "CNBSL": {
+    "purpose": "Solve a complex band system using the factors computed by CNBCO or CNBFA",
+    "file": "cnbsl.f"
+  },
+  "COMPB": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "compb.f"
+  },
+  "COSGEN": {
+    "purpose": "Subsidiary to GENBUN",
+    "file": "cosgen.f"
+  },
+  "CPADD": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "cpadd.f"
+  },
+  "CPEVL": {
+    "purpose": "Subsidiary to CPZERO",
+    "file": "cpevl.f"
+  },
+  "CPEVLR": {
+    "purpose": "Subsidiary to CPZERO",
+    "file": "cpevlr.f"
+  },
+  "CPOFS": {
+    "purpose": "Solve a positive definite symmetric complex system of linear equations",
+    "file": "cpofs.f"
+  },
+  "CPOIR": {
+    "purpose": "Solve a positive definite Hermitian system of linear equations. Iterative refinement is used to obtain an error estimate",
+    "file": "cpoir.f"
+  },
+  "CPQR79": {
+    "purpose": "Find the zeros of a polynomial with complex coefficients",
+    "file": "cpqr79.f"
+  },
+  "CPROC": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "cproc.f"
+  },
+  "CPROCP": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "cprocp.f"
+  },
+  "CPROD": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "cprod.f"
+  },
+  "CPRODP": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "cprodp.f"
+  },
+  "CPZERO": {
+    "purpose": "Find the zeros of a polynomial with complex coefficients",
+    "file": "cpzero.f"
+  },
+  "CRATI": {
+    "purpose": "Subsidiary to CBESH, CBESI and CBESK",
+    "file": "crati.f"
+  },
+  "CS1S2": {
+    "purpose": "Subsidiary to CAIRY and CBESK",
+    "file": "cs1s2.f"
+  },
+  "CSCALE": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "cscale.f"
+  },
+  "CSERI": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cseri.f"
+  },
+  "CSHCH": {
+    "purpose": "Subsidiary to CBESH and CBESK",
+    "file": "cshch.f"
+  },
+  "CSROOT": {
+    "purpose": "Compute the complex square root of a complex number",
+    "file": "csroot.f"
+  },
+  "CUCHK": {
+    "purpose": "Subsidiary to SERI, CUOIK, CUNK1, CUNK2, CUNI1, CUNI2 and CKSCL",
+    "file": "cuchk.f"
+  },
+  "CUNHJ": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cunhj.f"
+  },
+  "CUNI1": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cuni1.f"
+  },
+  "CUNI2": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cuni2.f"
+  },
+  "CUNIK": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cunik.f"
+  },
+  "CUNK1": {
+    "purpose": "Subsidiary to CBESK",
+    "file": "cunk1.f"
+  },
+  "CUNK2": {
+    "purpose": "Subsidiary to CBESK",
+    "file": "cunk2.f"
+  },
+  "CUOIK": {
+    "purpose": "Subsidiary to CBESH, CBESI and CBESK",
+    "file": "cuoik.f"
+  },
+  "CV": {
+    "purpose": "Evaluate the variance function of the curve obtained by the constrained B-spline fitting subprogram FC",
+    "file": "cv.f"
+  },
+  "CWRSK": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "file": "cwrsk.f"
+  },
+  "D1MACH": {
+    "purpose": "Return floating point machine dependent constants",
+    "file": "d1mach_ieee.f"
+  },
+  "D1MERG": {
+    "purpose": "Merge two strings of ascending double precision numbers",
+    "file": "d1merg.f"
+  },
+  "D1MPYQ": {
+    "purpose": "Subsidiary to DNSQ and DNSQE",
+    "file": "d1mpyq.f"
+  },
+  "D1UPDT": {
+    "purpose": "Subsidiary to DNSQ and DNSQE",
+    "file": "d1updt.f"
+  },
+  "DASYIK": {
+    "purpose": "Subsidiary to DBESI and DBESK",
+    "file": "dasyik.f"
+  },
+  "DASYJY": {
+    "purpose": "Subsidiary to DBESJ and DBESY",
+    "file": "dasyjy.f"
+  },
+  "DAVINT": {
+    "purpose": "Integrate a function tabulated at arbitrarily spaced abscissas using overlapping parabolas",
+    "file": "davint.f"
+  },
+  "DBDIFF": {
+    "purpose": "Subsidiary to DBSKIN",
+    "file": "dbdiff.f"
+  },
+  "DBESI": {
+    "purpose": "Compute an N member sequence of I Bessel functions I/SUB(ALPHA+K-1)/(X), K=1,...,N or scaled Bessel functions EXP(-X)*I/SUB(ALPHA+K-1)/(X), K=1,...,N for nonnegative ALPHA and X",
+    "file": "dbesi.f"
+  },
+  "DBESJ": {
+    "purpose": "Compute an N member sequence of J Bessel functions J/SUB(ALPHA+K-1)/(X), K=1,...,N for non-negative ALPHA and X",
+    "file": "dbesj.f"
+  },
+  "DBESK": {
+    "purpose": "Implement forward recursion on the three term recursion relation for a sequence of non-negative order Bessel functions K/SUB(FNU+I-1)/(X), or scaled Bessel functions EXP(X)*K/SUB(FNU+I-1)/(X), I=1,...,N for real, positive X and non-negative orders FNU",
+    "file": "dbesk.f"
+  },
+  "DBESY": {
+    "purpose": "Implement forward recursion on the three term recursion relation for a sequence of non-negative order Bessel functions Y/SUB(FNU+I-1)/(X), I=1,...,N for real, positive X and non-negative orders FNU",
+    "file": "dbesy.f"
+  },
+  "DBFQAD": {
+    "purpose": "Compute the integral of a product of a function and a derivative of a K-th order B-spline",
+    "file": "dbfqad.f"
+  },
+  "DBINT4": {
+    "purpose": "Compute the B-representation of a cubic spline which interpolates given data",
+    "file": "dbint4.f"
+  },
+  "DBINTK": {
+    "purpose": "Compute the B-representation of a spline which interpolates given data",
+    "file": "dbintk.f"
+  },
+  "DBKIAS": {
+    "purpose": "Subsidiary to DBSKIN",
+    "file": "dbkias.f"
+  },
+  "DBKISR": {
+    "purpose": "Subsidiary to DBSKIN",
+    "file": "dbkisr.f"
+  },
+  "DBKSOL": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dbksol.f"
+  },
+  "DBNDAC": {
+    "purpose": "Compute the LU factorization of a banded matrices using sequential accumulation of rows of the data matrix. Exactly one right-hand side vector is permitted",
+    "file": "dbndac.f"
+  },
+  "DBNDSL": {
+    "purpose": "Solve the least squares problem for a banded matrix using sequential accumulation of rows of the data matrix. Exactly one right-hand side vector is permitted",
+    "file": "dbndsl.f"
+  },
+  "DBNFAC": {
+    "purpose": "Subsidiary to DBINT4 and DBINTK",
+    "file": "dbnfac.f"
+  },
+  "DBNSLV": {
+    "purpose": "Subsidiary to DBINT4 and DBINTK",
+    "file": "dbnslv.f"
+  },
+  "DBOCLS": {
+    "purpose": "Solve the bounded and constrained least squares problem consisting of solving the equation E*X = F (in the least squares sense) subject to the linear constraints C*X = Y",
+    "file": "dbocls.f"
+  },
+  "DBOLS": {
+    "purpose": "Solve the problem E*X = F (in the least squares sense) with bounds on selected X values",
+    "file": "dbols.f"
+  },
+  "DBOLSM": {
+    "purpose": "Subsidiary to DBOCLS and DBOLS",
+    "file": "dbolsm.f"
+  },
+  "DBSGQ8": {
+    "purpose": "Subsidiary to DBFQAD",
+    "file": "dbsgq8.f"
+  },
+  "DBSKIN": {
+    "purpose": "Compute repeated integrals of the K-zero Bessel function",
+    "file": "dbskin.f"
+  },
+  "DBSKNU": {
+    "purpose": "Subsidiary to DBESK",
+    "file": "dbsknu.f"
+  },
+  "DBSPDR": {
+    "purpose": "Use the B-representation to construct a divided difference table preparatory to a (right) derivative calculation",
+    "file": "dbspdr.f"
+  },
+  "DBSPEV": {
+    "purpose": "Calculate the value of the spline and its derivatives from the B-representation",
+    "file": "dbspev.f"
+  },
+  "DBSPPP": {
+    "purpose": "Convert the B-representation of a B-spline to the piecewise polynomial (PP) form",
+    "file": "dbsppp.f"
+  },
+  "DBSPVD": {
+    "purpose": "Calculate the value and all derivatives of order less than NDERIV of all basis functions which do not vanish at X",
+    "file": "dbspvd.f"
+  },
+  "DBSPVN": {
+    "purpose": "Calculate the value of all (possibly) nonzero basis functions at X",
+    "file": "dbspvn.f"
+  },
+  "DBSQAD": {
+    "purpose": "Compute the integral of a K-th order B-spline using the B-representation",
+    "file": "dbsqad.f"
+  },
+  "DBSYNU": {
+    "purpose": "Subsidiary to DBESY",
+    "file": "dbsynu.f"
+  },
+  "DBVALU": {
+    "purpose": "Evaluate the B-representation of a B-spline at X for the function value or any of its derivatives",
+    "file": "dbvalu.f"
+  },
+  "DBVDER": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dbvder.f"
+  },
+  "DBVPOR": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dbvpor.f"
+  },
+  "DBVSUP": {
+    "purpose": "Solve a linear two-point boundary value problem using superposition coupled with an orthonormalization procedure and a variable-step integration scheme",
+    "file": "dbvsup.f"
+  },
+  "DCFOD": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dcfod.f"
+  },
+  "DCKDER": {
+    "purpose": "Check the gradients of M nonlinear functions in N variables, evaluated at a point X, for consistency with the functions themselves",
+    "file": "dckder.f"
+  },
+  "DCOEF": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dcoef.f"
+  },
+  "DCOV": {
+    "purpose": "Calculate the covariance matrix for a nonlinear data fitting problem. It is intended to be used after a successful return from either DNLS1 or DNLS1E",
+    "file": "dcov.f"
+  },
+  "DCSCAL": {
+    "purpose": "Subsidiary to DBVSUP and DSUDS",
+    "file": "dcscal.f"
+  },
+  "DCV": {
+    "purpose": "Evaluate the variance function of the curve obtained by the constrained B-spline fitting subprogram DFC",
+    "file": "dcv.f"
+  },
+  "DDAINI": {
+    "purpose": "Initialization routine for DDASSL",
+    "file": "ddaini.f"
+  },
+  "DDAJAC": {
+    "purpose": "Compute the iteration matrix for DDASSL and form the LU-decomposition",
+    "file": "ddajac.f"
+  },
+  "DDANRM": {
+    "purpose": "Compute vector norm for DDASSL",
+    "file": "ddanrm.f"
+  },
+  "DDASLV": {
+    "purpose": "Linear system solver for DDASSL",
+    "file": "ddaslv.f"
+  },
+  "DDASSL": {
+    "purpose": "This code solves a system of differential/algebraic equations of the form G(T,Y,YPRIME) = 0",
+    "file": "ddassl.f"
+  },
+  "DDASTP": {
+    "purpose": "Perform one step of the DDASSL integration",
+    "file": "ddastp.f"
+  },
+  "DDATRP": {
+    "purpose": "Interpolation routine for DDASSL",
+    "file": "ddatrp.f"
+  },
+  "DDAWTS": {
+    "purpose": "Set error weight vector for DDASSL",
+    "file": "ddawts.f"
+  },
+  "DDCOR": {
+    "purpose": "Subroutine DDCOR computes corrections to the Y array",
+    "file": "ddcor.f"
+  },
+  "DDCST": {
+    "purpose": "DDCST sets coefficients used by the core integrator DDSTP",
+    "file": "ddcst.f"
+  },
+  "DDEABM": {
+    "purpose": "Solve an initial value problem in ordinary differential equations using an Adams-Bashforth method",
+    "file": "ddeabm.f"
+  },
+  "DDEBDF": {
+    "purpose": "Solve an initial value problem in ordinary differential equations using backward differentiation formulas. It is intended primarily for stiff problems",
+    "file": "ddebdf.f"
+  },
+  "DDERKF": {
+    "purpose": "Solve an initial value problem in ordinary differential equations using a Runge-Kutta-Fehlberg scheme",
+    "file": "dderkf.f"
+  },
+  "DDES": {
+    "purpose": "Subsidiary to DDEABM",
+    "file": "ddes.f"
+  },
+  "DDNTL": {
+    "purpose": "Subroutine DDNTL is called to set parameters on the first call to DDSTP, on an internal restart, or when the user has altered MINT, MITER, and/or H",
+    "file": "ddntl.f"
+  },
+  "DDNTP": {
+    "purpose": "Subroutine DDNTP interpolates the K-th derivative of Y at TOUT, using the data in the YH array. If K has a value greater than NQ, the NQ-th derivative is calculated",
+    "file": "ddntp.f"
+  },
+  "DDOGLG": {
+    "purpose": "Subsidiary to DNSQ and DNSQE",
+    "file": "ddoglg.f"
+  },
+  "DDPSC": {
+    "purpose": "Subroutine DDPSC computes the predicted YH values by effectively multiplying the YH array by the Pascal triangle matrix when KSGN is +1, and performs the inverse function when KSGN is -1",
+    "file": "ddpsc.f"
+  },
+  "DDPST": {
+    "purpose": "Subroutine DDPST evaluates the Jacobian matrix of the right hand side of the differential equations",
+    "file": "ddpst.f"
+  },
+  "DDRIV1": {
+    "purpose": "The function of DDRIV1 is to solve N (200 or fewer) ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. DDRIV1 uses double precision arithmetic",
+    "file": "ddriv1.f"
+  },
+  "DDRIV2": {
+    "purpose": "The function of DDRIV2 is to solve N ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. The program has options to allow the solution of both stiff and non-stiff differential equations. DDRIV2 uses double precision arithmetic",
+    "file": "ddriv2.f"
+  },
+  "DDRIV3": {
+    "purpose": "The function of DDRIV3 is to solve N ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. The program has options to allow the solution of both stiff and non-stiff differential equations. Other important options are available. DDRIV3 uses double precision arithmetic",
+    "file": "ddriv3.f"
+  },
+  "DDSCL": {
+    "purpose": "Subroutine DDSCL rescales the YH array whenever the step size is changed",
+    "file": "ddscl.f"
+  },
+  "DDSTP": {
+    "purpose": "DDSTP performs one step of the integration of an initial value problem for a system of ordinary differential equations",
+    "file": "ddstp.f"
+  },
+  "DDZRO": {
+    "purpose": "DDZRO searches for a zero of a function F(N, T, Y, IROOT) between the given values B and C until the width of the interval (B, C) has collapsed to within a tolerance specified by the stopping criterion, ABS(B - C) .LE. 2.*(RW*ABS(B) + AE)",
+    "file": "ddzro.f"
+  },
+  "DEABM": {
+    "purpose": "Solve an initial value problem in ordinary differential equations using an Adams-Bashforth method",
+    "file": "deabm.f"
+  },
+  "DEBDF": {
+    "purpose": "Solve an initial value problem in ordinary differential equations using backward differentiation formulas. It is intended primarily for stiff problems",
+    "file": "debdf.f"
+  },
+  "DEFC": {
+    "purpose": "Fit a piecewise polynomial curve to discrete data. The piecewise polynomials are represented as B-splines. The fitting is done in a weighted least squares sense",
+    "file": "defc.f"
+  },
+  "DEFCMN": {
+    "purpose": "Subsidiary to DEFC",
+    "file": "defcmn.f"
+  },
+  "DEFE4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "defe4.f"
+  },
+  "DEFEHL": {
+    "purpose": "Subsidiary to DERKF",
+    "file": "defehl.f"
+  },
+  "DEFER": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "defer.f"
+  },
+  "DENORM": {
+    "purpose": "Subsidiary to DNSQ and DNSQE",
+    "file": "denorm.f"
+  },
+  "DERKF": {
+    "purpose": "Solve an initial value problem in ordinary differential equations using a Runge-Kutta-Fehlberg scheme",
+    "file": "derkf.f"
+  },
+  "DERKFS": {
+    "purpose": "Subsidiary to DERKF",
+    "file": "derkfs.f"
+  },
+  "DES": {
+    "purpose": "Subsidiary to DEABM",
+    "file": "des.f"
+  },
+  "DEXBVP": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dexbvp.f"
+  },
+  "DEXINT": {
+    "purpose": "Compute an M member sequence of exponential integrals E(N+K,X), K=0,1,...,M-1 for N .GE. 1 and X .GE. 0",
+    "file": "dexint.f"
+  },
+  "DFC": {
+    "purpose": "Fit a piecewise polynomial curve to discrete data. The piecewise polynomials are represented as B-splines. The fitting is done in a weighted least squares sense. Equality and inequality constraints can be imposed on the fitted curve",
+    "file": "dfc.f"
+  },
+  "DFCMN": {
+    "purpose": "Subsidiary to FC",
+    "file": "dfcmn.f"
+  },
+  "DFDJC1": {
+    "purpose": "Subsidiary to DNSQ and DNSQE",
+    "file": "dfdjc1.f"
+  },
+  "DFDJC3": {
+    "purpose": "Subsidiary to DNLS1 and DNLS1E",
+    "file": "dfdjc3.f"
+  },
+  "DFEHL": {
+    "purpose": "Subsidiary to DDERKF",
+    "file": "dfehl.f"
+  },
+  "DFSPVD": {
+    "purpose": "Subsidiary to DFC",
+    "file": "dfspvd.f"
+  },
+  "DFSPVN": {
+    "purpose": "Subsidiary to DFC",
+    "file": "dfspvn.f"
+  },
+  "DFULMT": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dfulmt.f"
+  },
+  "DFZERO": {
+    "purpose": "Search for a zero of a function F(X) in a given interval (B,C). It is designed primarily for problems where F(B) and F(C) have opposite signs",
+    "file": "dfzero.f"
+  },
+  "DGAMLN": {
+    "purpose": "Compute the logarithm of the Gamma function",
+    "file": "dgamln.f"
+  },
+  "DGAMRN": {
+    "purpose": "Subsidiary to DBSKIN",
+    "file": "dgamrn.f"
+  },
+  "DGAUS8": {
+    "purpose": "Integrate a real function of one variable over a finite interval using an adaptive 8-point Legendre-Gauss algorithm. Intended primarily for high accuracy integration or integration of smooth functions",
+    "file": "dgaus8.f"
+  },
+  "DGEFS": {
+    "purpose": "Solve a general system of linear equations",
+    "file": "dgefs.f"
+  },
+  "DGLSS": {
+    "purpose": "Solve a linear least squares problems by performing a QR factorization of the input matrix using Householder transformations. Emphasis is put on detecting possible rank deficiency",
+    "file": "dglss.f"
+  },
+  "DH12": {
+    "purpose": "Subsidiary to DHFTI, DLSEI and DWNNLS",
+    "file": "dh12.f"
+  },
+  "DHFTI": {
+    "purpose": "Solve a least squares problem for banded matrices using sequential accumulation of rows of the data matrix. Exactly one right-hand side vector is permitted",
+    "file": "dhfti.f"
+  },
+  "DHKSEQ": {
+    "purpose": "Subsidiary to DBSKIN",
+    "file": "dhkseq.f"
+  },
+  "DHSTRT": {
+    "purpose": "Subsidiary to DDEABM, DDEBDF and DDERKF",
+    "file": "dhstrt.f"
+  },
+  "DHVNRM": {
+    "purpose": "Subsidiary to DDEABM, DDEBDF and DDERKF",
+    "file": "dhvnrm.f"
+  },
+  "DINTP": {
+    "purpose": "Approximate the solution at XOUT by evaluating the polynomial computed in DSTEPS at XOUT. Must be used in conjunction with DSTEPS",
+    "file": "dintp.f"
+  },
+  "DINTRV": {
+    "purpose": "Compute the largest integer ILEFT in 1 .LE. ILEFT .LE. LXT such that XT(ILEFT) .LE. X where XT(*) is a subdivision of the X interval",
+    "file": "dintrv.f"
+  },
+  "DINTYD": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dintyd.f"
+  },
+  "DJAIRY": {
+    "purpose": "Subsidiary to DBESJ and DBESY",
+    "file": "djairy.f"
+  },
+  "DLLSIA": {
+    "purpose": "Solve linear least squares problems by performing a QR factorization of the input matrix using Householder transformations. Emphasis is put on detecting possible rank deficiency",
+    "file": "dllsia.f"
+  },
+  "DLPDP": {
+    "purpose": "Subsidiary to DLSEI",
+    "file": "dlpdp.f"
+  },
+  "DLSEI": {
+    "purpose": "Solve a linearly constrained least squares problem with equality and inequality constraints, and optionally compute a covariance matrix",
+    "file": "dlsei.f"
+  },
+  "DLSI": {
+    "purpose": "Subsidiary to DLSEI",
+    "file": "dlsi.f"
+  },
+  "DLSOD": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dlsod.f"
+  },
+  "DLSSUD": {
+    "purpose": "Subsidiary to DBVSUP and DSUDS",
+    "file": "dlssud.f"
+  },
+  "DMACON": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dmacon.f"
+  },
+  "DMGSBV": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dmgsbv.f"
+  },
+  "DMOUT": {
+    "purpose": "Subsidiary to DBOCLS and DFC",
+    "file": "dmout.f"
+  },
+  "DMPAR": {
+    "purpose": "Subsidiary to DNLS1 and DNLS1E",
+    "file": "dmpar.f"
+  },
+  "DNBCO": {
+    "purpose": "Factor a band matrix using Gaussian elimination and estimate the condition number",
+    "file": "dnbco.f"
+  },
+  "DNBDI": {
+    "purpose": "Compute the determinant of a band matrix using the factors computed by DNBCO or DNBFA",
+    "file": "dnbdi.f"
+  },
+  "DNBFA": {
+    "purpose": "Factor a band matrix by elimination",
+    "file": "dnbfa.f"
+  },
+  "DNBFS": {
+    "purpose": "Solve a general nonsymmetric banded system of linear equations",
+    "file": "dnbfs.f"
+  },
+  "DNBSL": {
+    "purpose": "Solve a real band system using the factors computed by DNBCO or DNBFA",
+    "file": "dnbsl.f"
+  },
+  "DNLS1": {
+    "purpose": "Minimize the sum of the squares of M nonlinear functions in N variables by a modification of the Levenberg-Marquardt algorithm",
+    "file": "dnls1.f"
+  },
+  "DNLS1E": {
+    "purpose": "An easy-to-use code which minimizes the sum of the squares of M nonlinear functions in N variables by a modification of the Levenberg-Marquardt algorithm",
+    "file": "dnls1e.f"
+  },
+  "DNSQ": {
+    "purpose": "Find a zero of a system of a N nonlinear functions in N variables by a modification of the Powell hybrid method",
+    "file": "dnsq.f"
+  },
+  "DNSQE": {
+    "purpose": "An easy-to-use code to find a zero of a system of N nonlinear functions in N variables by a modification of the Powell hybrid method",
+    "file": "dnsqe.f"
+  },
+  "DOGLEG": {
+    "purpose": "Subsidiary to SNSQ and SNSQE",
+    "file": "dogleg.f"
+  },
+  "DOHTRL": {
+    "purpose": "Subsidiary to DBVSUP and DSUDS",
+    "file": "dohtrl.f"
+  },
+  "DORTHR": {
+    "purpose": "Subsidiary to DBVSUP and DSUDS",
+    "file": "dorthr.f"
+  },
+  "DP1VLU": {
+    "purpose": "Use the coefficients generated by DPOLFT to evaluate the polynomial fit of degree L, along with the first NDER of its derivatives, at a specified point",
+    "file": "dp1vlu.f"
+  },
+  "DPCHNG": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dpchng.f"
+  },
+  "DPCOEF": {
+    "purpose": "Convert the DPOLFT coefficients to Taylor series form",
+    "file": "dpcoef.f"
+  },
+  "DPFQAD": {
+    "purpose": "Compute the integral on (X1,X2) of a product of a function F and the ID-th derivative of a B-spline, (PP-representation)",
+    "file": "dpfqad.f"
+  },
+  "DPINCW": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dpincw.f"
+  },
+  "DPINIT": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dpinit.f"
+  },
+  "DPINTM": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dpintm.f"
+  },
+  "DPJAC": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dpjac.f"
+  },
+  "DPLINT": {
+    "purpose": "Produce the polynomial which interpolates a set of discrete data points",
+    "file": "dplint.f"
+  },
+  "DPLPCE": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpce.f"
+  },
+  "DPLPDM": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpdm.f"
+  },
+  "DPLPFE": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpfe.f"
+  },
+  "DPLPFL": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpfl.f"
+  },
+  "DPLPMN": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpmn.f"
+  },
+  "DPLPMU": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpmu.f"
+  },
+  "DPLPUP": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dplpup.f"
+  },
+  "DPNNZR": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dpnnzr.f"
+  },
+  "DPOFS": {
+    "purpose": "Solve a positive definite symmetric system of linear equations",
+    "file": "dpofs.f"
+  },
+  "DPOLCF": {
+    "purpose": "Compute the coefficients of the polynomial fit (including Hermite polynomial fits) produced by a previous call to POLINT",
+    "file": "dpolcf.f"
+  },
+  "DPOLFT": {
+    "purpose": "Fit discrete data in a least squares sense by polynomials in one variable",
+    "file": "dpolft.f"
+  },
+  "DPOLVL": {
+    "purpose": "Calculate the value of a polynomial and its first NDER derivatives where the polynomial was produced by a previous call to DPLINT",
+    "file": "dpolvl.f"
+  },
+  "DPOPT": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dpopt.f"
+  },
+  "DPPERM": {
+    "purpose": "Rearrange a given array according to a prescribed permutation vector",
+    "file": "dpperm.f"
+  },
+  "DPPGQ8": {
+    "purpose": "Subsidiary to DPFQAD",
+    "file": "dppgq8.f"
+  },
+  "DPPQAD": {
+    "purpose": "Compute the integral on (X1,X2) of a K-th order B-spline using the piecewise polynomial (PP) representation",
+    "file": "dppqad.f"
+  },
+  "DPPVAL": {
+    "purpose": "Calculate the value of the IDERIV-th derivative of the B-spline from the PP-representation",
+    "file": "dppval.f"
+  },
+  "DPRVEC": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dprvec.f"
+  },
+  "DPRWPG": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dprwpg.f"
+  },
+  "DPRWVR": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dprwvr.f"
+  },
+  "DPSIFN": {
+    "purpose": "Compute derivatives of the Psi function",
+    "file": "dpsifn.f"
+  },
+  "DPSIXN": {
+    "purpose": "Subsidiary to DEXINT",
+    "file": "dpsixn.f"
+  },
+  "DPSORT": {
+    "purpose": "Return the permutation vector generated by sorting a given array and, optionally, rearrange the elements of the array. The array may be sorted in increasing or decreasing order. A slightly modified quicksort algorithm is used",
+    "file": "dpsort.f"
+  },
+  "DQAG": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESULT)LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqag.f"
+  },
+  "DQAGE": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESLT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqage.f"
+  },
+  "DQAGI": {
+    "purpose": "The routine calculates an approximation result to a given INTEGRAL I = Integral of F over (BOUND,+INFINITY) OR I = Integral of F over (-INFINITY,BOUND) OR I = Integral of F over (-INFINITY,+INFINITY) Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqagi.f"
+  },
+  "DQAGIE": {
+    "purpose": "The routine calculates an approximation result to a given integral I = Integral of F over (BOUND,+INFINITY) or I = Integral of F over (-INFINITY,BOUND) or I = Integral of F over (-INFINITY,+INFINITY), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqagie.f"
+  },
+  "DQAGP": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F over (A,B), hopefully satisfying following claim for accuracy break points of the integration interval, where local difficulties of the integrand may occur (e.g. SINGULARITIES, DISCONTINUITIES), are provided by the user",
+    "file": "dqagp.f"
+  },
+  "DQAGPE": {
+    "purpose": "Approximate a given definite integral I = Integral of F over (A,B), hopefully satisfying the accuracy claim: ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I)). Break points of the integration interval, where local difficulties of the integrand may occur (e.g. singularities or discontinuities) are provided by the user",
+    "file": "dqagpe.f"
+  },
+  "DQAGS": {
+    "purpose": "The routine calculates an approximation result to a given Definite integral I = Integral of F over (A,B), Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqags.f"
+  },
+  "DQAGSE": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqagse.f"
+  },
+  "DQAWC": {
+    "purpose": "The routine calculates an approximation result to a Cauchy principal value I = INTEGRAL of F*W over (A,B) (W(X) = 1/((X-C), C.NE.A, C.NE.B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABE,EPSREL*ABS(I))",
+    "file": "dqawc.f"
+  },
+  "DQAWCE": {
+    "purpose": "The routine calculates an approximation result to a CAUCHY PRINCIPAL VALUE I = Integral of F*W over (A,B) (W(X) = 1/(X-C), (C.NE.A, C.NE.B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqawce.f"
+  },
+  "DQAWF": {
+    "purpose": "The routine calculates an approximation result to a given Fourier integral I=Integral of F(X)*W(X) over (A,INFINITY) where W(X) = COS(OMEGA*X) or W(X) = SIN(OMEGA*X). Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.EPSABS",
+    "file": "dqawf.f"
+  },
+  "DQAWFE": {
+    "purpose": "The routine calculates an approximation result to a given Fourier integral I = Integral of F(X)*W(X) over (A,INFINITY) where W(X)=COS(OMEGA*X) or W(X)=SIN(OMEGA*X), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.EPSABS",
+    "file": "dqawfe.f"
+  },
+  "DQAWO": {
+    "purpose": "Calculate an approximation to a given definite integral I= Integral of F(X)*W(X) over (A,B), where W(X) = COS(OMEGA*X) or W(X) = SIN(OMEGA*X), hopefully satisfying the following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqawo.f"
+  },
+  "DQAWOE": {
+    "purpose": "Calculate an approximation to a given definite integral I = Integral of F(X)*W(X) over (A,B), where W(X) = COS(OMEGA*X) or W(X)=SIN(OMEGA*X), hopefully satisfying the following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqawoe.f"
+  },
+  "DQAWS": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F*W over (A,B), (where W shows a singular behaviour at the end points see parameter INTEGR). Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqaws.f"
+  },
+  "DQAWSE": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F*W over (A,B), (where W shows a singular behaviour at the end points, see parameter INTEGR). Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqawse.f"
+  },
+  "DQC25C": {
+    "purpose": "To compute I = Integral of F*W over (A,B) with error estimate, where W(X) = 1/(X-C)",
+    "file": "dqc25c.f"
+  },
+  "DQC25F": {
+    "purpose": "To compute the integral I=Integral of F(X) over (A,B) Where W(X) = COS(OMEGA*X) or W(X)=SIN(OMEGA*X) and to compute J = Integral of ABS(F) over (A,B). For small value of OMEGA or small intervals (A,B) the 15-point GAUSS-KRONRO Rule is used. Otherwise a generalized CLENSHAW-CURTIS method is used",
+    "file": "dqc25f.f"
+  },
+  "DQC25S": {
+    "purpose": "To compute I = Integral of F*W over (BL,BR), with error estimate, where the weight function W has a singular behaviour of ALGEBRAICO-LOGARITHMIC type at the points A and/or B. (BL,BR) is a part of (A,B)",
+    "file": "dqc25s.f"
+  },
+  "DQCHEB": {
+    "purpose": "This routine computes the CHEBYSHEV series expansion of degrees 12 and 24 of a function using A FAST FOURIER TRANSFORM METHOD F(X) = SUM(K=1,..,13) (CHEB12(K)*T(K-1,X)), F(X) = SUM(K=1,..,25) (CHEB24(K)*T(K-1,X)), Where T(K,X) is the CHEBYSHEV POLYNOMIAL OF DEGREE K",
+    "file": "dqcheb.f"
+  },
+  "DQDOTA": {
+    "purpose": "Compute the inner product of two vectors with extended precision accumulation and result",
+    "file": "dqdota.f"
+  },
+  "DQDOTI": {
+    "purpose": "Compute the inner product of two vectors with extended precision accumulation and result",
+    "file": "dqdoti.f"
+  },
+  "DQELG": {
+    "purpose": "The routine determines the limit of a given sequence of approximations, by means of the Epsilon algorithm of P.Wynn. An estimate of the absolute error is also given. The condensed Epsilon table is computed. Only those elements needed for the computation of the next diagonal are preserved",
+    "file": "dqelg.f"
+  },
+  "DQFORM": {
+    "purpose": "Subsidiary to DNSQ and DNSQE",
+    "file": "dqform.f"
+  },
+  "DQK15": {
+    "purpose": "To compute I = Integral of F over (A,B), with error estimate J = integral of ABS(F) over (A,B)",
+    "file": "dqk15.f"
+  },
+  "DQK15I": {
+    "purpose": "The original (infinite integration range is mapped onto the interval (0,1) and (A,B) is a part of (0,1). it is the purpose to compute I = Integral of transformed integrand over (A,B), J = Integral of ABS(Transformed Integrand) over (A,B)",
+    "file": "dqk15i.f"
+  },
+  "DQK15W": {
+    "purpose": "To compute I = Integral of F*W over (A,B), with error estimate J = Integral of ABS(F*W) over (A,B)",
+    "file": "dqk15w.f"
+  },
+  "DQK21": {
+    "purpose": "To compute I = Integral of F over (A,B), with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "dqk21.f"
+  },
+  "DQK31": {
+    "purpose": "To compute I = Integral of F over (A,B) with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "dqk31.f"
+  },
+  "DQK41": {
+    "purpose": "To compute I = Integral of F over (A,B), with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "dqk41.f"
+  },
+  "DQK51": {
+    "purpose": "To compute I = Integral of F over (A,B) with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "dqk51.f"
+  },
+  "DQK61": {
+    "purpose": "To compute I = Integral of F over (A,B) with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "dqk61.f"
+  },
+  "DQMOMO": {
+    "purpose": "This routine computes modified Chebyshev moments. The K-th modified Chebyshev moment is defined as the integral over (-1,1) of W(X)*T(K,X), where T(K,X) is the Chebyshev polynomial of degree K",
+    "file": "dqmomo.f"
+  },
+  "DQNC79": {
+    "purpose": "Integrate a function using a 7-point adaptive Newton-Cotes quadrature rule",
+    "file": "dqnc79.f"
+  },
+  "DQNG": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "dqng.f"
+  },
+  "DQPSRT": {
+    "purpose": "This routine maintains the descending ordering in the list of the local error estimated resulting from the interval subdivision process. At each call two error estimates are inserted using the sequential search method, top-down for the largest error estimate and bottom-up for the smallest error estimate",
+    "file": "dqpsrt.f"
+  },
+  "DQRFAC": {
+    "purpose": "Subsidiary to DNLS1, DNLS1E, DNSQ and DNSQE",
+    "file": "dqrfac.f"
+  },
+  "DQRSLV": {
+    "purpose": "Subsidiary to DNLS1 and DNLS1E",
+    "file": "dqrslv.f"
+  },
+  "DQWGTC": {
+    "purpose": "This function subprogram is used together with the routine DQAWC and defines the WEIGHT function",
+    "file": "dqwgtc.f"
+  },
+  "DQWGTF": {
+    "purpose": "This function subprogram is used together with the routine DQAWF and defines the WEIGHT function",
+    "file": "dqwgtf.f"
+  },
+  "DQWGTS": {
+    "purpose": "This function subprogram is used together with the routine DQAWS and defines the WEIGHT function",
+    "file": "dqwgts.f"
+  },
+  "DRC": {
+    "purpose": "Calculate a double precision approximation to DRC(X,Y) = Integral from zero to infinity of -1/2 -1 (1/2)(t+X) (t+Y) dt, where X is nonnegative and Y is positive",
+    "file": "drc.f"
+  },
+  "DRC3JJ": {
+    "purpose": "Evaluate the 3j symbol f(L1) = ( L1 L2 L3) (-M2-M3 M2 M3) for all allowed values of L1, the other parameters being held fixed",
+    "file": "drc3jj.f"
+  },
+  "DRC3JM": {
+    "purpose": "Evaluate the 3j symbol g(M2) = (L1 L2 L3 ) (M1 M2 -M1-M2) for all allowed values of M2, the other parameters being held fixed",
+    "file": "drc3jm.f"
+  },
+  "DRC6J": {
+    "purpose": "Evaluate the 6j symbol h(L1) = {L1 L2 L3} {L4 L5 L6} for all allowed values of L1, the other parameters being held fixed",
+    "file": "drc6j.f"
+  },
+  "DRD": {
+    "purpose": "Compute the incomplete or complete elliptic integral of the 2nd kind. For X and Y nonnegative, X+Y and Z positive, DRD(X,Y,Z) = Integral from zero to infinity of -1/2 -1/2 -3/2 (3/2)(t+X) (t+Y) (t+Z) dt. If X or Y is zero, the integral is complete",
+    "file": "drd.f"
+  },
+  "DREADP": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dreadp.f"
+  },
+  "DREORT": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dreort.f"
+  },
+  "DRF": {
+    "purpose": "Compute the incomplete or complete elliptic integral of the 1st kind. For X, Y, and Z non-negative and at most one of them zero, RF(X,Y,Z) = Integral from zero to infinity of -1/2 -1/2 -1/2 (1/2)(t+X) (t+Y) (t+Z) dt. If X, Y or Z is zero, the integral is complete",
+    "file": "drf.f"
+  },
+  "DRJ": {
+    "purpose": "Compute the incomplete or complete (X or Y or Z is zero) elliptic integral of the 3rd kind. For X, Y, and Z non- negative, at most one of them zero, and P positive, RJ(X,Y,Z,P) = Integral from zero to infinity of -1/2 -1/2 -1/2 -1 (3/2)(t+X) (t+Y) (t+Z) (t+P) dt",
+    "file": "drj.f"
+  },
+  "DRKFAB": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "drkfab.f"
+  },
+  "DRKFS": {
+    "purpose": "Subsidiary to DDERKF",
+    "file": "drkfs.f"
+  },
+  "DRSCO": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "drsco.f"
+  },
+  "DSLVS": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dslvs.f"
+  },
+  "DSORT": {
+    "purpose": "Sort an array and optionally make the same interchanges in an auxiliary array. The array may be sorted in increasing or decreasing order. A slightly modified QUICKSORT algorithm is used",
+    "file": "dsort.f"
+  },
+  "DSOS": {
+    "purpose": "Solve a square system of nonlinear equations",
+    "file": "dsos.f"
+  },
+  "DSOSEQ": {
+    "purpose": "Subsidiary to DSOS",
+    "file": "dsoseq.f"
+  },
+  "DSOSSL": {
+    "purpose": "Subsidiary to DSOS",
+    "file": "dsossl.f"
+  },
+  "DSPLP": {
+    "purpose": "Solve linear programming problems involving at most a few thousand constraints and variables. Takes advantage of sparsity in the constraint matrix",
+    "file": "dsplp.f"
+  },
+  "DSTEPS": {
+    "purpose": "Integrate a system of first order ordinary differential equations one step",
+    "file": "dsteps.f"
+  },
+  "DSTOD": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dstod.f"
+  },
+  "DSTOR1": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dstor1.f"
+  },
+  "DSTWAY": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dstway.f"
+  },
+  "DSUDS": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dsuds.f"
+  },
+  "DSVCO": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dsvco.f"
+  },
+  "DU11LS": {
+    "purpose": "Subsidiary to DLLSIA",
+    "file": "du11ls.f"
+  },
+  "DU11US": {
+    "purpose": "Subsidiary to DULSIA",
+    "file": "du11us.f"
+  },
+  "DU12LS": {
+    "purpose": "Subsidiary to DLLSIA",
+    "file": "du12ls.f"
+  },
+  "DU12US": {
+    "purpose": "Subsidiary to DULSIA",
+    "file": "du12us.f"
+  },
+  "DULSIA": {
+    "purpose": "Solve an underdetermined linear system of equations by performing an LQ factorization of the matrix using Householder transformations. Emphasis is put on detecting possible rank deficiency",
+    "file": "dulsia.f"
+  },
+  "DUSRMT": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dusrmt.f"
+  },
+  "DVECS": {
+    "purpose": "Subsidiary to DBVSUP",
+    "file": "dvecs.f"
+  },
+  "DVNRMS": {
+    "purpose": "Subsidiary to DDEBDF",
+    "file": "dvnrms.f"
+  },
+  "DVOUT": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dvout.f"
+  },
+  "DWNLIT": {
+    "purpose": "Subsidiary to DWNNLS",
+    "file": "dwnlit.f"
+  },
+  "DWNLSM": {
+    "purpose": "Subsidiary to DWNNLS",
+    "file": "dwnlsm.f"
+  },
+  "DWNLT1": {
+    "purpose": "Subsidiary to WNLIT",
+    "file": "dwnlt1.f"
+  },
+  "DWNLT2": {
+    "purpose": "Subsidiary to WNLIT",
+    "file": "dwnlt2.f"
+  },
+  "DWNLT3": {
+    "purpose": "Subsidiary to WNLIT",
+    "file": "dwnlt3.f"
+  },
+  "DWNNLS": {
+    "purpose": "Solve a linearly constrained least squares problem with equality constraints and nonnegativity constraints on selected variables",
+    "file": "dwnnls.f"
+  },
+  "DWRITP": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "dwritp.f"
+  },
+  "DWUPDT": {
+    "purpose": "Subsidiary to DNLS1 and DNLS1E",
+    "file": "dwupdt.f"
+  },
+  "DX": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "dx.f"
+  },
+  "DX4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "dx4.f"
+  },
+  "DXADD": {
+    "purpose": "To provide double-precision floating-point arithmetic with an extended exponent range",
+    "file": "dxadd.f"
+  },
+  "DXADJ": {
+    "purpose": "To provide double-precision floating-point arithmetic with an extended exponent range",
+    "file": "dxadj.f"
+  },
+  "DXC210": {
+    "purpose": "To provide double-precision floating-point arithmetic with an extended exponent range",
+    "file": "dxc210.f"
+  },
+  "DXCON": {
+    "purpose": "To provide double-precision floating-point arithmetic with an extended exponent range",
+    "file": "dxcon.f"
+  },
+  "DXLEGF": {
+    "purpose": "Compute normalized Legendre polynomials and associated Legendre functions",
+    "file": "dxlegf.f"
+  },
+  "DXNRMP": {
+    "purpose": "Compute normalized Legendre polynomials",
+    "file": "dxnrmp.f"
+  },
+  "DXPMU": {
+    "purpose": "To compute the values of Legendre functions for DXLEGF. Method: backward mu-wise recurrence for P(-MU,NU,X) for fixed nu to obtain P(-MU2,NU1,X), P(-(MU2-1),NU1,X), ..., P(-MU1,NU1,X) and store in ascending mu order",
+    "file": "dxpmu.f"
+  },
+  "DXPMUP": {
+    "purpose": "To compute the values of Legendre functions for DXLEGF. This subroutine transforms an array of Legendre functions of the first kind of negative order stored in array PQA into Legendre functions of the first kind of positive order stored in array PQA. The original array is destroyed",
+    "file": "dxpmup.f"
+  },
+  "DXPNRM": {
+    "purpose": "To compute the values of Legendre functions for DXLEGF. This subroutine transforms an array of Legendre functions of the first kind of negative order stored in array PQA into normalized Legendre polynomials stored in array PQA. The original array is destroyed",
+    "file": "dxpnrm.f"
+  },
+  "DXPQNU": {
+    "purpose": "To compute the values of Legendre functions for DXLEGF. This subroutine calculates initial values of P or Q using power series, then performs forward nu-wise recurrence to obtain P(-MU,NU,X), Q(0,NU,X), or Q(1,NU,X). The nu-wise recurrence is stable for P for all mu and for Q for mu=0,1",
+    "file": "dxpqnu.f"
+  },
+  "DXPSI": {
+    "purpose": "To compute values of the Psi function for DXLEGF",
+    "file": "dxpsi.f"
+  },
+  "DXQMU": {
+    "purpose": "To compute the values of Legendre functions for DXLEGF. Method: forward mu-wise recurrence for Q(MU,NU,X) for fixed nu to obtain Q(MU1,NU,X), Q(MU1+1,NU,X), ..., Q(MU2,NU,X)",
+    "file": "dxqmu.f"
+  },
+  "DXQNU": {
+    "purpose": "To compute the values of Legendre functions for DXLEGF. Method: backward nu-wise recurrence for Q(MU,NU,X) for fixed mu to obtain Q(MU1,NU1,X), Q(MU1,NU1+1,X), ..., Q(MU1,NU2,X)",
+    "file": "dxqnu.f"
+  },
+  "DXRED": {
+    "purpose": "To provide double-precision floating-point arithmetic with an extended exponent range",
+    "file": "dxred.f"
+  },
+  "DXSET": {
+    "purpose": "To provide double-precision floating-point arithmetic with an extended exponent range",
+    "file": "dxset.f"
+  },
+  "DY": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "dy.f"
+  },
+  "DY4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "dy4.f"
+  },
+  "DYAIRY": {
+    "purpose": "Subsidiary to DBESJ and DBESY",
+    "file": "dyairy.f"
+  },
+  "EFC": {
+    "purpose": "Fit a piecewise polynomial curve to discrete data. The piecewise polynomials are represented as B-splines. The fitting is done in a weighted least squares sense",
+    "file": "efc.f"
+  },
+  "EFCMN": {
+    "purpose": "Subsidiary to EFC",
+    "file": "efcmn.f"
+  },
+  "ENORM": {
+    "purpose": "Subsidiary to SNLS1, SNLS1E, SNSQ and SNSQE",
+    "file": "enorm.f"
+  },
+  "EXBVP": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "exbvp.f"
+  },
+  "EXINT": {
+    "purpose": "Compute an M member sequence of exponential integrals E(N+K,X), K=0,1,...,M-1 for N .GE. 1 and X .GE. 0",
+    "file": "exint.f"
+  },
+  "FC": {
+    "purpose": "Fit a piecewise polynomial curve to discrete data. The piecewise polynomials are represented as B-splines. The fitting is done in a weighted least squares sense. Equality and inequality constraints can be imposed on the fitted curve",
+    "file": "fc.f"
+  },
+  "FCMN": {
+    "purpose": "Subsidiary to FC",
+    "file": "fcmn.f"
+  },
+  "FDJAC1": {
+    "purpose": "Subsidiary to SNSQ and SNSQE",
+    "file": "fdjac1.f"
+  },
+  "FDJAC3": {
+    "purpose": "Subsidiary to SNLS1 and SNLS1E",
+    "file": "fdjac3.f"
+  },
+  "FDUMP": {
+    "purpose": "Symbolic dump (should be locally written)",
+    "file": "fdump.f"
+  },
+  "FFTDOC": {
+    "purpose": "Documentation for FFTPACK, a collection of Fast Fourier Transform routines",
+    "file": "fftdoc.f"
+  },
+  "FULMAT": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "fulmat.f"
+  },
+  "FUNDOC": {
+    "purpose": "Documentation for FNLIB, a collection of routines for evaluating elementary and special functions",
+    "file": "fundoc.f"
+  },
+  "FZERO": {
+    "purpose": "Search for a zero of a function F(X) in a given interval (B,C). It is designed primarily for problems where F(B) and F(C) have opposite signs",
+    "file": "fzero.f"
+  },
+  "GAMLN": {
+    "purpose": "Compute the logarithm of the Gamma function",
+    "file": "gamln.f"
+  },
+  "GAMRN": {
+    "purpose": "Subsidiary to BSKIN",
+    "file": "gamrn.f"
+  },
+  "GAUS8": {
+    "purpose": "Integrate a real function of one variable over a finite interval using an adaptive 8-point Legendre-Gauss algorithm. Intended primarily for high accuracy integration or integration of smooth functions",
+    "file": "gaus8.f"
+  },
+  "H12": {
+    "purpose": "Subsidiary to HFTI, LSEI and WNNLS",
+    "file": "h12.f"
+  },
+  "HFTI": {
+    "purpose": "Solve a linear least squares problems by performing a QR factorization of the matrix using Householder transformations",
+    "file": "hfti.f"
+  },
+  "HKSEQ": {
+    "purpose": "Subsidiary to BSKIN",
+    "file": "hkseq.f"
+  },
+  "HPPERM": {
+    "purpose": "Rearrange a given array according to a prescribed permutation vector",
+    "file": "hpperm.f"
+  },
+  "HPSORT": {
+    "purpose": "Return the permutation vector generated by sorting a substring within a character array and, optionally, rearrange the elements of the array. The array may be sorted in forward or reverse lexicographical order. A slightly modified quicksort algorithm is used",
+    "file": "hpsort.f"
+  },
+  "HSTART": {
+    "purpose": "Subsidiary to DEABM, DEBDF and DERKF",
+    "file": "hstart.f"
+  },
+  "HSTCS1": {
+    "purpose": "Subsidiary to HSTCSP",
+    "file": "hstcs1.f"
+  },
+  "HVNRM": {
+    "purpose": "Subsidiary to DEABM, DEBDF and DERKF",
+    "file": "hvnrm.f"
+  },
+  "HWSCS1": {
+    "purpose": "Subsidiary to HWSCSP",
+    "file": "hwscs1.f"
+  },
+  "HWSSS1": {
+    "purpose": "Subsidiary to HWSSSP",
+    "file": "hwsss1.f"
+  },
+  "I1MACH": {
+    "purpose": "Return integer machine dependent constants",
+    "file": "i1mach.f"
+  },
+  "I1MERG": {
+    "purpose": "Merge two strings of ascending integers",
+    "file": "i1merg.f"
+  },
+  "IDLOC": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "idloc.f"
+  },
+  "INDXA": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "indxa.f"
+  },
+  "INDXB": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "indxb.f"
+  },
+  "INDXC": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "indxc.f"
+  },
+  "INTRV": {
+    "purpose": "Compute the largest integer ILEFT in 1 .LE. ILEFT .LE. LXT such that XT(ILEFT) .LE. X where XT(*) is a subdivision of the X interval",
+    "file": "intrv.f"
+  },
+  "INTYD": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "intyd.f"
+  },
+  "INXCA": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "inxca.f"
+  },
+  "INXCB": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "inxcb.f"
+  },
+  "INXCC": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "inxcc.f"
+  },
+  "IPLOC": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "iploc.f"
+  },
+  "IPPERM": {
+    "purpose": "Rearrange a given array according to a prescribed permutation vector",
+    "file": "ipperm.f"
+  },
+  "IPSORT": {
+    "purpose": "Return the permutation vector generated by sorting a given array and, optionally, rearrange the elements of the array. The array may be sorted in increasing or decreasing order. A slightly modified quicksort algorithm is used",
+    "file": "ipsort.f"
+  },
+  "ISORT": {
+    "purpose": "Sort an array and optionally make the same interchanges in an auxiliary array. The array may be sorted in increasing or decreasing order. A slightly modified QUICKSORT algorithm is used",
+    "file": "isort.f"
+  },
+  "IVOUT": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "ivout.f"
+  },
+  "J4SAVE": {
+    "purpose": "Save or recall global variables needed by error handling routines",
+    "file": "j4save.f"
+  },
+  "JAIRY": {
+    "purpose": "Subsidiary to BESJ and BESY",
+    "file": "jairy.f"
+  },
+  "LA05AD": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "la05ad.f"
+  },
+  "LA05AS": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "la05as.f"
+  },
+  "LA05BD": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "la05bd.f"
+  },
+  "LA05BS": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "la05bs.f"
+  },
+  "LA05CD": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "la05cd.f"
+  },
+  "LA05CS": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "la05cs.f"
+  },
+  "LA05ED": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "la05ed.f"
+  },
+  "LA05ES": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "la05es.f"
+  },
+  "LAMW": {
+    "purpose": "Compute the principal branch of the Lambert W function",
+    "file": "lamw.f"
+  },
+  "LLSIA": {
+    "purpose": "Solve a linear least squares problems by performing a QR factorization of the matrix using Householder transformations. Emphasis is put on detecting possible rank deficiency",
+    "file": "llsia.f"
+  },
+  "LMPAR": {
+    "purpose": "Subsidiary to SNLS1 and SNLS1E",
+    "file": "lmpar.f"
+  },
+  "LPDP": {
+    "purpose": "Subsidiary to LSEI",
+    "file": "lpdp.f"
+  },
+  "LSAME": {
+    "purpose": "Test two characters to determine if they are the same letter, except for case",
+    "file": "lsame.f"
+  },
+  "LSEI": {
+    "purpose": "Solve a linearly constrained least squares problem with equality and inequality constraints, and optionally compute a covariance matrix",
+    "file": "lsei.f"
+  },
+  "LSI": {
+    "purpose": "Subsidiary to LSEI",
+    "file": "lsi.f"
+  },
+  "LSOD": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "lsod.f"
+  },
+  "LSSODS": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "lssods.f"
+  },
+  "LSSUDS": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "lssuds.f"
+  },
+  "MACON": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "macon.f"
+  },
+  "MC20AD": {
+    "purpose": "Subsidiary to DSPLP",
+    "file": "mc20ad.f"
+  },
+  "MC20AS": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "mc20as.f"
+  },
+  "MGSBV": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "mgsbv.f"
+  },
+  "MINSO4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "minso4.f"
+  },
+  "MINSOL": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "minsol.f"
+  },
+  "MPADD": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpadd.f"
+  },
+  "MPADD2": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpadd2.f"
+  },
+  "MPADD3": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpadd3.f"
+  },
+  "MPBLAS": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpblas.f"
+  },
+  "MPCDM": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpcdm.f"
+  },
+  "MPCHK": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpchk.f"
+  },
+  "MPCMD": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpcmd.f"
+  },
+  "MPDIVI": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpdivi.f"
+  },
+  "MPERR": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mperr.f"
+  },
+  "MPMAXR": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpmaxr.f"
+  },
+  "MPMLP": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpmlp.f"
+  },
+  "MPMUL": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpmul.f"
+  },
+  "MPMUL2": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpmul2.f"
+  },
+  "MPMULI": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpmuli.f"
+  },
+  "MPNZR": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpnzr.f"
+  },
+  "MPOVFL": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpovfl.f"
+  },
+  "MPSTR": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpstr.f"
+  },
+  "MPUNFL": {
+    "purpose": "Subsidiary to DQDOTA and DQDOTI",
+    "file": "mpunfl.f"
+  },
+  "NUMXER": {
+    "purpose": "Return the most recent error number",
+    "file": "numxer.f"
+  },
+  "OHTROL": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "ohtrol.f"
+  },
+  "OHTROR": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "ohtror.f"
+  },
+  "ORTHO4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "ortho4.f"
+  },
+  "ORTHOG": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "orthog.f"
+  },
+  "ORTHOL": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "orthol.f"
+  },
+  "ORTHOR": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "orthor.f"
+  },
+  "PCHNGS": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "pchngs.f"
+  },
+  "PCOEF": {
+    "purpose": "Convert the POLFIT coefficients to Taylor series form",
+    "file": "pcoef.f"
+  },
+  "PFQAD": {
+    "purpose": "Compute the integral on (X1,X2) of a product of a function F and the ID-th derivative of a B-spline, (PP-representation)",
+    "file": "pfqad.f"
+  },
+  "PGSF": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "pgsf.f"
+  },
+  "PIMACH": {
+    "purpose": "Subsidiary to HSTCSP, HSTSSP and HWSCSP",
+    "file": "pimach.f"
+  },
+  "PINITM": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "pinitm.f"
+  },
+  "PJAC": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "pjac.f"
+  },
+  "PNNZRS": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "pnnzrs.f"
+  },
+  "POISD2": {
+    "purpose": "Subsidiary to GENBUN",
+    "file": "poisd2.f"
+  },
+  "POISN2": {
+    "purpose": "Subsidiary to GENBUN",
+    "file": "poisn2.f"
+  },
+  "POISP2": {
+    "purpose": "Subsidiary to GENBUN",
+    "file": "poisp2.f"
+  },
+  "POLCOF": {
+    "purpose": "Compute the coefficients of the polynomial fit (including Hermite polynomial fits) produced by a previous call to POLINT",
+    "file": "polcof.f"
+  },
+  "POLFIT": {
+    "purpose": "Fit discrete data in a least squares sense by polynomials in one variable",
+    "file": "polfit.f"
+  },
+  "POLINT": {
+    "purpose": "Produce the polynomial which interpolates a set of discrete data points",
+    "file": "polint.f"
+  },
+  "POLYVL": {
+    "purpose": "Calculate the value of a polynomial and its first NDER derivatives where the polynomial was produced by a previous call to POLINT",
+    "file": "polyvl.f"
+  },
+  "POS3D1": {
+    "purpose": "Subsidiary to POIS3D",
+    "file": "pos3d1.f"
+  },
+  "POSTG2": {
+    "purpose": "Subsidiary to POISTG",
+    "file": "postg2.f"
+  },
+  "PPADD": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "ppadd.f"
+  },
+  "PPGQ8": {
+    "purpose": "Subsidiary to PFQAD",
+    "file": "ppgq8.f"
+  },
+  "PPGSF": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "ppgsf.f"
+  },
+  "PPPSF": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "pppsf.f"
+  },
+  "PPQAD": {
+    "purpose": "Compute the integral on (X1,X2) of a K-th order B-spline using the piecewise polynomial (PP) representation",
+    "file": "ppqad.f"
+  },
+  "PPSGF": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "ppsgf.f"
+  },
+  "PPSPF": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "ppspf.f"
+  },
+  "PPVAL": {
+    "purpose": "Calculate the value of the IDERIV-th derivative of the B-spline from the PP-representation",
+    "file": "ppval.f"
+  },
+  "PROC": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "proc.f"
+  },
+  "PROCP": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "procp.f"
+  },
+  "PROD": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "prod.f"
+  },
+  "PRODP": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "prodp.f"
+  },
+  "PRVEC": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "prvec.f"
+  },
+  "PRWPGE": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "prwpge.f"
+  },
+  "PRWVIR": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "prwvir.f"
+  },
+  "PSGF": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "psgf.f"
+  },
+  "PSIFN": {
+    "purpose": "Compute derivatives of the Psi function",
+    "file": "psifn.f"
+  },
+  "PSIXN": {
+    "purpose": "Subsidiary to EXINT",
+    "file": "psixn.f"
+  },
+  "PVALUE": {
+    "purpose": "Use the coefficients generated by POLFIT to evaluate the polynomial fit of degree L, along with the first NDER of its derivatives, at a specified point",
+    "file": "pvalue.f"
+  },
+  "PYTHAG": {
+    "purpose": "Compute the complex square root of a complex number without destructive overflow or underflow",
+    "file": "pythag.f"
+  },
+  "QAG": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESULT)LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qag.f"
+  },
+  "QAGE": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESLT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qage.f"
+  },
+  "QAGI": {
+    "purpose": "The routine calculates an approximation result to a given INTEGRAL I = Integral of F over (BOUND,+INFINITY) OR I = Integral of F over (-INFINITY,BOUND) OR I = Integral of F over (-INFINITY,+INFINITY) Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qagi.f"
+  },
+  "QAGIE": {
+    "purpose": "The routine calculates an approximation result to a given integral I = Integral of F over (BOUND,+INFINITY) or I = Integral of F over (-INFINITY,BOUND) or I = Integral of F over (-INFINITY,+INFINITY), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qagie.f"
+  },
+  "QAGP": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F over (A,B), hopefully satisfying following claim for accuracy break points of the integration interval, where local difficulties of the integrand may occur(e.g. SINGULARITIES, DISCONTINUITIES), are provided by the user",
+    "file": "qagp.f"
+  },
+  "QAGPE": {
+    "purpose": "Approximate a given definite integral I = Integral of F over (A,B), hopefully satisfying the accuracy claim: ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I)). Break points of the integration interval, where local difficulties of the integrand may occur (e.g. singularities or discontinuities) are provided by the user",
+    "file": "qagpe.f"
+  },
+  "QAGS": {
+    "purpose": "The routine calculates an approximation result to a given Definite integral I = Integral of F over (A,B), Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qags.f"
+  },
+  "QAGSE": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qagse.f"
+  },
+  "QAWC": {
+    "purpose": "The routine calculates an approximation result to a Cauchy principal value I = INTEGRAL of F*W over (A,B) (W(X) = 1/((X-C), C.NE.A, C.NE.B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABE,EPSREL*ABS(I))",
+    "file": "qawc.f"
+  },
+  "QAWCE": {
+    "purpose": "The routine calculates an approximation result to a CAUCHY PRINCIPAL VALUE I = Integral of F*W over (A,B) (W(X) = 1/(X-C), (C.NE.A, C.NE.B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qawce.f"
+  },
+  "QAWF": {
+    "purpose": "The routine calculates an approximation result to a given Fourier integral I = Integral of F(X)*W(X) over (A,INFINITY) where W(X) = COS(OMEGA*X) or W(X) = SIN(OMEGA*X). Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.EPSABS",
+    "file": "qawf.f"
+  },
+  "QAWFE": {
+    "purpose": "The routine calculates an approximation result to a given Fourier integral I = Integral of F(X)*W(X) over (A,INFINITY) where W(X) = COS(OMEGA*X) or W(X) = SIN(OMEGA*X), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.EPSABS",
+    "file": "qawfe.f"
+  },
+  "QAWO": {
+    "purpose": "Calculate an approximation to a given definite integral I = Integral of F(X)*W(X) over (A,B), where W(X) = COS(OMEGA*X) or W(X) = SIN(OMEGA*X), hopefully satisfying the following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qawo.f"
+  },
+  "QAWOE": {
+    "purpose": "Calculate an approximation to a given definite integral I = Integral of F(X)*W(X) over (A,B), where W(X) = COS(OMEGA*X) or W(X) = SIN(OMEGA*X), hopefully satisfying the following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qawoe.f"
+  },
+  "QAWS": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F*W over (A,B), (where W shows a singular behaviour at the end points see parameter INTEGR). Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qaws.f"
+  },
+  "QAWSE": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = Integral of F*W over (A,B), (where W shows a singular behaviour at the end points, see parameter INTEGR). Hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qawse.f"
+  },
+  "QC25C": {
+    "purpose": "To compute I = Integral of F*W over (A,B) with error estimate, where W(X) = 1/(X-C)",
+    "file": "qc25c.f"
+  },
+  "QC25F": {
+    "purpose": "To compute the integral I=Integral of F(X) over (A,B) Where W(X) = COS(OMEGA*X) Or (WX)=SIN(OMEGA*X) and to compute J=Integral of ABS(F) over (A,B). For small value of OMEGA or small intervals (A,B) 15-point GAUSS- KRONROD Rule used. Otherwise generalized CLENSHAW-CURTIS us",
+    "file": "qc25f.f"
+  },
+  "QC25S": {
+    "purpose": "To compute I = Integral of F*W over (BL,BR), with error estimate, where the weight function W has a singular behaviour of ALGEBRAICO-LOGARITHMIC type at the points A and/or B. (BL,BR) is a part of (A,B)",
+    "file": "qc25s.f"
+  },
+  "QCHEB": {
+    "purpose": "This routine computes the CHEBYSHEV series expansion of degrees 12 and 24 of a function using A FAST FOURIER TRANSFORM METHOD F(X) = SUM(K=1,..,13) (CHEB12(K)*T(K-1,X)), F(X) = SUM(K=1,..,25) (CHEB24(K)*T(K-1,X)), Where T(K,X) is the CHEBYSHEV POLYNOMIAL OF DEGREE K",
+    "file": "qcheb.f"
+  },
+  "QELG": {
+    "purpose": "The routine determines the limit of a given sequence of approximations, by means of the Epsilon algorithm of P. Wynn. An estimate of the absolute error is also given. The condensed Epsilon table is computed. Only those elements needed for the computation of the next diagonal are preserved",
+    "file": "qelg.f"
+  },
+  "QFORM": {
+    "purpose": "Subsidiary to SNSQ and SNSQE",
+    "file": "qform.f"
+  },
+  "QK15": {
+    "purpose": "To compute I = Integral of F over (A,B), with error estimate J = integral of ABS(F) over (A,B)",
+    "file": "qk15.f"
+  },
+  "QK15I": {
+    "purpose": "The original (infinite integration range is mapped onto the interval (0,1) and (A,B) is a part of (0,1). it is the purpose to compute I = Integral of transformed integrand over (A,B), J = Integral of ABS(Transformed Integrand) over (A,B)",
+    "file": "qk15i.f"
+  },
+  "QK15W": {
+    "purpose": "To compute I = Integral of F*W over (A,B), with error estimate J = Integral of ABS(F*W) over (A,B)",
+    "file": "qk15w.f"
+  },
+  "QK21": {
+    "purpose": "To compute I = Integral of F over (A,B), with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "qk21.f"
+  },
+  "QK31": {
+    "purpose": "To compute I = Integral of F over (A,B) with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "qk31.f"
+  },
+  "QK41": {
+    "purpose": "To compute I = Integral of F over (A,B), with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "qk41.f"
+  },
+  "QK51": {
+    "purpose": "To compute I = Integral of F over (A,B) with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "qk51.f"
+  },
+  "QK61": {
+    "purpose": "To compute I = Integral of F over (A,B) with error estimate J = Integral of ABS(F) over (A,B)",
+    "file": "qk61.f"
+  },
+  "QMOMO": {
+    "purpose": "This routine computes modified Chebyshev moments. The K-th modified Chebyshev moment is defined as the integral over (-1,1) of W(X)*T(K,X), where T(K,X) is the Chebyshev polynomial of degree K",
+    "file": "qmomo.f"
+  },
+  "QNC79": {
+    "purpose": "Integrate a function using a 7-point adaptive Newton-Cotes quadrature rule",
+    "file": "qnc79.f"
+  },
+  "QNG": {
+    "purpose": "The routine calculates an approximation result to a given definite integral I = integral of F over (A,B), hopefully satisfying following claim for accuracy ABS(I-RESULT).LE.MAX(EPSABS,EPSREL*ABS(I))",
+    "file": "qng.f"
+  },
+  "QPDOC": {
+    "purpose": "Documentation for QUADPACK, a package of subprograms for automatic evaluation of one-dimensional definite integrals",
+    "file": "qpdoc.f"
+  },
+  "QPSRT": {
+    "purpose": "Subsidiary to QAGE, QAGIE, QAGPE, QAGSE, QAWCE, QAWOE and QAWSE",
+    "file": "qpsrt.f"
+  },
+  "QRFAC": {
+    "purpose": "Subsidiary to SNLS1, SNLS1E, SNSQ and SNSQE",
+    "file": "qrfac.f"
+  },
+  "QRSOLV": {
+    "purpose": "Subsidiary to SNLS1 and SNLS1E",
+    "file": "qrsolv.f"
+  },
+  "QWGTC": {
+    "purpose": "This function subprogram is used together with the routine QAWC and defines the WEIGHT function",
+    "file": "qwgtc.f"
+  },
+  "QWGTF": {
+    "purpose": "This function subprogram is used together with the routine QAWF and defines the WEIGHT function",
+    "file": "qwgtf.f"
+  },
+  "QWGTS": {
+    "purpose": "This function subprogram is used together with the routine QAWS and defines the WEIGHT function",
+    "file": "qwgts.f"
+  },
+  "R1MACH": {
+    "purpose": "Return floating point machine dependent constants",
+    "file": "r1mach_ieee.f"
+  },
+  "R1MPYQ": {
+    "purpose": "Subsidiary to SNSQ and SNSQE",
+    "file": "r1mpyq.f"
+  },
+  "R1UPDT": {
+    "purpose": "Subsidiary to SNSQ and SNSQE",
+    "file": "r1updt.f"
+  },
+  "RC": {
+    "purpose": "Calculate an approximation to RC(X,Y) = Integral from zero to infinity of -1/2 -1 (1/2)(t+X) (t+Y) dt, where X is nonnegative and Y is positive",
+    "file": "rc.f"
+  },
+  "RC3JJ": {
+    "purpose": "Evaluate the 3j symbol f(L1) = ( L1 L2 L3) (-M2-M3 M2 M3) for all allowed values of L1, the other parameters being held fixed",
+    "file": "rc3jj.f"
+  },
+  "RC3JM": {
+    "purpose": "Evaluate the 3j symbol g(M2) = (L1 L2 L3 ) (M1 M2 -M1-M2) for all allowed values of M2, the other parameters being held fixed",
+    "file": "rc3jm.f"
+  },
+  "RC6J": {
+    "purpose": "Evaluate the 6j symbol h(L1) = {L1 L2 L3} {L4 L5 L6} for all allowed values of L1, the other parameters being held fixed",
+    "file": "rc6j.f"
+  },
+  "RD": {
+    "purpose": "Compute the incomplete or complete elliptic integral of the 2nd kind. For X and Y nonnegative, X+Y and Z positive, RD(X,Y,Z) = Integral from zero to infinity of -1/2 -1/2 -3/2 (3/2)(t+X) (t+Y) (t+Z) dt. If X or Y is zero, the integral is complete",
+    "file": "rd.f"
+  },
+  "REORT": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "reort.f"
+  },
+  "RF": {
+    "purpose": "Compute the incomplete or complete elliptic integral of the 1st kind. For X, Y, and Z non-negative and at most one of them zero, RF(X,Y,Z) = Integral from zero to infinity of -1/2 -1/2 -1/2 (1/2)(t+X) (t+Y) (t+Z) dt. If X, Y or Z is zero, the integral is complete",
+    "file": "rf.f"
+  },
+  "RJ": {
+    "purpose": "Compute the incomplete or complete (X or Y or Z is zero) elliptic integral of the 3rd kind. For X, Y, and Z non- negative, at most one of them zero, and P positive, RJ(X,Y,Z,P) = Integral from zero to infinity of -1/2 -1/2 -1/2 -1 (3/2)(t+X) (t+Y) (t+Z) (t+P) dt",
+    "file": "rj.f"
+  },
+  "RKFAB": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "rkfab.f"
+  },
+  "RPQR79": {
+    "purpose": "Find the zeros of a polynomial with real coefficients",
+    "file": "rpqr79.f"
+  },
+  "RPZERO": {
+    "purpose": "Find the zeros of a polynomial with real coefficients",
+    "file": "rpzero.f"
+  },
+  "RSCO": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "rsco.f"
+  },
+  "RWUPDT": {
+    "purpose": "Subsidiary to SNLS1 and SNLS1E",
+    "file": "rwupdt.f"
+  },
+  "S1MERG": {
+    "purpose": "Merge two strings of ascending real numbers",
+    "file": "s1merg.f"
+  },
+  "SBOCLS": {
+    "purpose": "Solve the bounded and constrained least squares problem consisting of solving the equation E*X = F (in the least squares sense) subject to the linear constraints C*X = Y",
+    "file": "sbocls.f"
+  },
+  "SBOLS": {
+    "purpose": "Solve the problem E*X = F (in the least squares sense) with bounds on selected X values",
+    "file": "sbols.f"
+  },
+  "SBOLSM": {
+    "purpose": "Subsidiary to SBOCLS and SBOLS",
+    "file": "sbolsm.f"
+  },
+  "SCLOSM": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "sclosm.f"
+  },
+  "SCOEF": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "scoef.f"
+  },
+  "SCOV": {
+    "purpose": "Calculate the covariance matrix for a nonlinear data fitting problem. It is intended to be used after a successful return from either SNLS1 or SNLS1E",
+    "file": "scov.f"
+  },
+  "SDAINI": {
+    "purpose": "Initialization routine for SDASSL",
+    "file": "sdaini.f"
+  },
+  "SDAJAC": {
+    "purpose": "Compute the iteration matrix for SDASSL and form the LU-decomposition",
+    "file": "sdajac.f"
+  },
+  "SDANRM": {
+    "purpose": "Compute vector norm for SDASSL",
+    "file": "sdanrm.f"
+  },
+  "SDASLV": {
+    "purpose": "Linear system solver for SDASSL",
+    "file": "sdaslv.f"
+  },
+  "SDASSL": {
+    "purpose": "This code solves a system of differential/algebraic equations of the form G(T,Y,YPRIME) = 0",
+    "file": "sdassl.f"
+  },
+  "SDASTP": {
+    "purpose": "Perform one step of the SDASSL integration",
+    "file": "sdastp.f"
+  },
+  "SDATRP": {
+    "purpose": "Interpolation routine for SDASSL",
+    "file": "sdatrp.f"
+  },
+  "SDAWTS": {
+    "purpose": "Set error weight vector for SDASSL",
+    "file": "sdawts.f"
+  },
+  "SDCOR": {
+    "purpose": "Subroutine SDCOR computes corrections to the Y array",
+    "file": "sdcor.f"
+  },
+  "SDCST": {
+    "purpose": "SDCST sets coefficients used by the core integrator SDSTP",
+    "file": "sdcst.f"
+  },
+  "SDNTL": {
+    "purpose": "Subroutine SDNTL is called to set parameters on the first call to SDSTP, on an internal restart, or when the user has altered MINT, MITER, and/or H",
+    "file": "sdntl.f"
+  },
+  "SDNTP": {
+    "purpose": "Subroutine SDNTP interpolates the K-th derivative of Y at TOUT, using the data in the YH array. If K has a value greater than NQ, the NQ-th derivative is calculated",
+    "file": "sdntp.f"
+  },
+  "SDPSC": {
+    "purpose": "Subroutine SDPSC computes the predicted YH values by effectively multiplying the YH array by the Pascal triangle matrix when KSGN is +1, and performs the inverse function when KSGN is -1",
+    "file": "sdpsc.f"
+  },
+  "SDPST": {
+    "purpose": "Subroutine SDPST evaluates the Jacobian matrix of the right hand side of the differential equations",
+    "file": "sdpst.f"
+  },
+  "SDRIV1": {
+    "purpose": "The function of SDRIV1 is to solve N (200 or fewer) ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. SDRIV1 uses single precision arithmetic",
+    "file": "sdriv1.f"
+  },
+  "SDRIV2": {
+    "purpose": "The function of SDRIV2 is to solve N ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. The program has options to allow the solution of both stiff and non-stiff differential equations. SDRIV2 uses single precision arithmetic",
+    "file": "sdriv2.f"
+  },
+  "SDRIV3": {
+    "purpose": "The function of SDRIV3 is to solve N ordinary differential equations of the form dY(I)/dT = F(Y(I),T), given the initial conditions Y(I) = YI. The program has options to allow the solution of both stiff and non-stiff differential equations. Other important options are available. SDRIV3 uses single precision arithmetic",
+    "file": "sdriv3.f"
+  },
+  "SDSCL": {
+    "purpose": "Subroutine SDSCL rescales the YH array whenever the step size is changed",
+    "file": "sdscl.f"
+  },
+  "SDSTP": {
+    "purpose": "SDSTP performs one step of the integration of an initial value problem for a system of ordinary differential equations",
+    "file": "sdstp.f"
+  },
+  "SDZRO": {
+    "purpose": "SDZRO searches for a zero of a function F(N, T, Y, IROOT) between the given values B and C until the width of the interval (B, C) has collapsed to within a tolerance specified by the stopping criterion, ABS(B - C) .LE. 2.*(RW*ABS(B) + AE)",
+    "file": "sdzro.f"
+  },
+  "SGEEV": {
+    "purpose": "Compute the eigenvalues and, optionally, the eigenvectors of a real general matrix",
+    "file": "sgeev.f"
+  },
+  "SGEFS": {
+    "purpose": "Solve a general system of linear equations",
+    "file": "sgefs.f"
+  },
+  "SGEIR": {
+    "purpose": "Solve a general system of linear equations. Iterative refinement is used to obtain an error estimate",
+    "file": "sgeir.f"
+  },
+  "SGLSS": {
+    "purpose": "Solve a linear least squares problems by performing a QR factorization of the matrix using Householder transformations. Emphasis is put on detecting possible rank deficiency",
+    "file": "sglss.f"
+  },
+  "SINTRP": {
+    "purpose": "Approximate the solution at XOUT by evaluating the polynomial computed in STEPS at XOUT. Must be used in conjunction with STEPS",
+    "file": "sintrp.f"
+  },
+  "SLVS": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "slvs.f"
+  },
+  "SMOUT": {
+    "purpose": "Subsidiary to FC and SBOCLS",
+    "file": "smout.f"
+  },
+  "SNBCO": {
+    "purpose": "Factor a band matrix using Gaussian elimination and estimate the condition number",
+    "file": "snbco.f"
+  },
+  "SNBDI": {
+    "purpose": "Compute the determinant of a band matrix using the factors computed by SNBCO or SNBFA",
+    "file": "snbdi.f"
+  },
+  "SNBFA": {
+    "purpose": "Factor a real band matrix by elimination",
+    "file": "snbfa.f"
+  },
+  "SNBFS": {
+    "purpose": "Solve a general nonsymmetric banded system of linear equations",
+    "file": "snbfs.f"
+  },
+  "SNBIR": {
+    "purpose": "Solve a general nonsymmetric banded system of linear equations. Iterative refinement is used to obtain an error estimate",
+    "file": "snbir.f"
+  },
+  "SNBSL": {
+    "purpose": "Solve a real band system using the factors computed by SNBCO or SNBFA",
+    "file": "snbsl.f"
+  },
+  "SNLS1": {
+    "purpose": "Minimize the sum of the squares of M nonlinear functions in N variables by a modification of the Levenberg-Marquardt algorithm",
+    "file": "snls1.f"
+  },
+  "SNLS1E": {
+    "purpose": "An easy-to-use code which minimizes the sum of the squares of M nonlinear functions in N variables by a modification of the Levenberg-Marquardt algorithm",
+    "file": "snls1e.f"
+  },
+  "SNSQ": {
+    "purpose": "Find a zero of a system of a N nonlinear functions in N variables by a modification of the Powell hybrid method",
+    "file": "snsq.f"
+  },
+  "SNSQE": {
+    "purpose": "An easy-to-use code to find a zero of a system of N nonlinear functions in N variables by a modification of the Powell hybrid method",
+    "file": "snsqe.f"
+  },
+  "SODS": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "sods.f"
+  },
+  "SOPENM": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "sopenm.f"
+  },
+  "SOS": {
+    "purpose": "Solve a square system of nonlinear equations",
+    "file": "sos.f"
+  },
+  "SOSEQS": {
+    "purpose": "Subsidiary to SOS",
+    "file": "soseqs.f"
+  },
+  "SOSSOL": {
+    "purpose": "Subsidiary to SOS",
+    "file": "sossol.f"
+  },
+  "SPELI4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "speli4.f"
+  },
+  "SPELIP": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "spelip.f"
+  },
+  "SPINCW": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "spincw.f"
+  },
+  "SPINIT": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "spinit.f"
+  },
+  "SPLP": {
+    "purpose": "Solve linear programming problems involving at most a few thousand constraints and variables. Takes advantage of sparsity in the constraint matrix",
+    "file": "splp.f"
+  },
+  "SPLPCE": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpce.f"
+  },
+  "SPLPDM": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpdm.f"
+  },
+  "SPLPFE": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpfe.f"
+  },
+  "SPLPFL": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpfl.f"
+  },
+  "SPLPMN": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpmn.f"
+  },
+  "SPLPMU": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpmu.f"
+  },
+  "SPLPUP": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "splpup.f"
+  },
+  "SPOFS": {
+    "purpose": "Solve a positive definite symmetric system of linear equations",
+    "file": "spofs.f"
+  },
+  "SPOIR": {
+    "purpose": "Solve a positive definite symmetric system of linear equations. Iterative refinement is used to obtain an error estimate",
+    "file": "spoir.f"
+  },
+  "SPOPT": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "spopt.f"
+  },
+  "SPPERM": {
+    "purpose": "Rearrange a given array according to a prescribed permutation vector",
+    "file": "spperm.f"
+  },
+  "SPSORT": {
+    "purpose": "Return the permutation vector generated by sorting a given array and, optionally, rearrange the elements of the array. The array may be sorted in increasing or decreasing order. A slightly modified quicksort algorithm is used",
+    "file": "spsort.f"
+  },
+  "SREADP": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "sreadp.f"
+  },
+  "SSIEV": {
+    "purpose": "Compute the eigenvalues and, optionally, the eigenvectors of a real symmetric matrix",
+    "file": "ssiev.f"
+  },
+  "SSORT": {
+    "purpose": "Sort an array and optionally make the same interchanges in an auxiliary array. The array may be sorted in increasing or decreasing order. A slightly modified QUICKSORT algorithm is used",
+    "file": "ssort.f"
+  },
+  "STEPS": {
+    "purpose": "Integrate a system of first order ordinary differential equations one step",
+    "file": "steps.f"
+  },
+  "STOD": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "stod.f"
+  },
+  "STOR1": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "stor1.f"
+  },
+  "STWAY": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "stway.f"
+  },
+  "SUDS": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "suds.f"
+  },
+  "SVCO": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "svco.f"
+  },
+  "SVD": {
+    "purpose": "Perform the singular value decomposition of a rectangular matrix",
+    "file": "svd.f"
+  },
+  "SVECS": {
+    "purpose": "Subsidiary to BVSUP",
+    "file": "svecs.f"
+  },
+  "SVOUT": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "svout.f"
+  },
+  "SWRITP": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "swritp.f"
+  },
+  "TEVLC": {
+    "purpose": "Subsidiary to CBLKTR",
+    "file": "tevlc.f"
+  },
+  "TEVLS": {
+    "purpose": "Subsidiary to BLKTRI",
+    "file": "tevls.f"
+  },
+  "TRI3": {
+    "purpose": "Subsidiary to GENBUN",
+    "file": "tri3.f"
+  },
+  "TRIDQ": {
+    "purpose": "Subsidiary to POIS3D",
+    "file": "tridq.f"
+  },
+  "TRIS4": {
+    "purpose": "Subsidiary to SEPX4",
+    "file": "tris4.f"
+  },
+  "TRISP": {
+    "purpose": "Subsidiary to SEPELI",
+    "file": "trisp.f"
+  },
+  "TRIX": {
+    "purpose": "Subsidiary to GENBUN",
+    "file": "trix.f"
+  },
+  "U11LS": {
+    "purpose": "Subsidiary to LLSIA",
+    "file": "u11ls.f"
+  },
+  "U11US": {
+    "purpose": "Subsidiary to ULSIA",
+    "file": "u11us.f"
+  },
+  "U12LS": {
+    "purpose": "Subsidiary to LLSIA",
+    "file": "u12ls.f"
+  },
+  "U12US": {
+    "purpose": "Subsidiary to ULSIA",
+    "file": "u12us.f"
+  },
+  "ULSIA": {
+    "purpose": "Solve an underdetermined linear system of equations by performing an LQ factorization of the matrix using Householder transformations. Emphasis is put on detecting possible rank deficiency",
+    "file": "ulsia.f"
+  },
+  "USRMAT": {
+    "purpose": "Subsidiary to SPLP",
+    "file": "usrmat.f"
+  },
+  "VNWRMS": {
+    "purpose": "Subsidiary to DEBDF",
+    "file": "vnwrms.f"
+  },
+  "WNLIT": {
+    "purpose": "Subsidiary to WNNLS",
+    "file": "wnlit.f"
+  },
+  "WNLSM": {
+    "purpose": "Subsidiary to WNNLS",
+    "file": "wnlsm.f"
+  },
+  "WNLT1": {
+    "purpose": "Subsidiary to WNLIT",
+    "file": "wnlt1.f"
+  },
+  "WNLT2": {
+    "purpose": "Subsidiary to WNLIT",
+    "file": "wnlt2.f"
+  },
+  "WNLT3": {
+    "purpose": "Subsidiary to WNLIT",
+    "file": "wnlt3.f"
+  },
+  "WNNLS": {
+    "purpose": "Solve a linearly constrained least squares problem with equality constraints and nonnegativity constraints on selected variables",
+    "file": "wnnls.f"
+  },
+  "XADD": {
+    "purpose": "To provide single-precision floating-point arithmetic with an extended exponent range",
+    "file": "xadd.f"
+  },
+  "XADJ": {
+    "purpose": "To provide single-precision floating-point arithmetic with an extended exponent range",
+    "file": "xadj.f"
+  },
+  "XC210": {
+    "purpose": "To provide single-precision floating-point arithmetic with an extended exponent range",
+    "file": "xc210.f"
+  },
+  "XCON": {
+    "purpose": "To provide single-precision floating-point arithmetic with an extended exponent range",
+    "file": "xcon.f"
+  },
+  "XERBLA": {
+    "purpose": "Error handler for the Level 2 and Level 3 BLAS Routines",
+    "file": "xerbla.f"
+  },
+  "XERCLR": {
+    "purpose": "Reset current error number to zero",
+    "file": "xerclr.f"
+  },
+  "XERCNT": {
+    "purpose": "Allow user control over handling of errors",
+    "file": "xercnt.f"
+  },
+  "XERDMP": {
+    "purpose": "Print the error tables and then clear them",
+    "file": "xerdmp.f"
+  },
+  "XERHLT": {
+    "purpose": "Abort program execution and print error message",
+    "file": "xerhlt.f"
+  },
+  "XERMAX": {
+    "purpose": "Set maximum number of times any error message is to be printed",
+    "file": "xermax.f"
+  },
+  "XERMSG": {
+    "purpose": "Process error messages for SLATEC and other libraries",
+    "file": "xermsg.f"
+  },
+  "XERPRN": {
+    "purpose": "Print error messages processed by XERMSG",
+    "file": "xerprn.f"
+  },
+  "XERSVE": {
+    "purpose": "Record that an error has occurred",
+    "file": "xersve.f"
+  },
+  "XGETF": {
+    "purpose": "Return the current value of the error control flag",
+    "file": "xgetf.f"
+  },
+  "XGETUA": {
+    "purpose": "Return unit number(s) to which error messages are being sent",
+    "file": "xgetua.f"
+  },
+  "XGETUN": {
+    "purpose": "Return the (first) output file to which error messages are being sent",
+    "file": "xgetun.f"
+  },
+  "XLEGF": {
+    "purpose": "Compute normalized Legendre polynomials and associated Legendre functions",
+    "file": "xlegf.f"
+  },
+  "XNRMP": {
+    "purpose": "Compute normalized Legendre polynomials",
+    "file": "xnrmp.f"
+  },
+  "XPMU": {
+    "purpose": "To compute the values of Legendre functions for XLEGF. Method: backward mu-wise recurrence for P(-MU,NU,X) for fixed nu to obtain P(-MU2,NU1,X), P(-(MU2-1),NU1,X), ..., P(-MU1,NU1,X) and store in ascending mu order",
+    "file": "xpmu.f"
+  },
+  "XPMUP": {
+    "purpose": "To compute the values of Legendre functions for XLEGF. This subroutine transforms an array of Legendre functions of the first kind of negative order stored in array PQA into Legendre functions of the first kind of positive order stored in array PQA. The original array is destroyed",
+    "file": "xpmup.f"
+  },
+  "XPNRM": {
+    "purpose": "To compute the values of Legendre functions for XLEGF. This subroutine transforms an array of Legendre functions of the first kind of negative order stored in array PQA into normalized Legendre polynomials stored in array PQA. The original array is destroyed",
+    "file": "xpnrm.f"
+  },
+  "XPQNU": {
+    "purpose": "To compute the values of Legendre functions for XLEGF. This subroutine calculates initial values of P or Q using power series, then performs forward nu-wise recurrence to obtain P(-MU,NU,X), Q(0,NU,X), or Q(1,NU,X). The nu-wise recurrence is stable for P for all mu and for Q for mu=0,1",
+    "file": "xpqnu.f"
+  },
+  "XPSI": {
+    "purpose": "To compute values of the Psi function for XLEGF",
+    "file": "xpsi.f"
+  },
+  "XQMU": {
+    "purpose": "To compute the values of Legendre functions for XLEGF. Method: forward mu-wise recurrence for Q(MU,NU,X) for fixed nu to obtain Q(MU1,NU,X), Q(MU1+1,NU,X), ..., Q(MU2,NU,X)",
+    "file": "xqmu.f"
+  },
+  "XQNU": {
+    "purpose": "To compute the values of Legendre functions for XLEGF. Method: backward nu-wise recurrence for Q(MU,NU,X) for fixed mu to obtain Q(MU1,NU1,X), Q(MU1,NU1+1,X), ..., Q(MU1,NU2,X)",
+    "file": "xqnu.f"
+  },
+  "XRED": {
+    "purpose": "To provide single-precision floating-point arithmetic with an extended exponent range",
+    "file": "xred.f"
+  },
+  "XSET": {
+    "purpose": "To provide single-precision floating-point arithmetic with an extended exponent range",
+    "file": "xset.f"
+  },
+  "XSETF": {
+    "purpose": "Set the error control flag",
+    "file": "xsetf.f"
+  },
+  "XSETUA": {
+    "purpose": "Set logical unit numbers (up to 5) to which error messages are to be sent",
+    "file": "xsetua.f"
+  },
+  "XSETUN": {
+    "purpose": "Set output file to which error messages are to be sent",
+    "file": "xsetun.f"
+  },
+  "YAIRY": {
+    "purpose": "Subsidiary to BESJ and BESY",
+    "file": "yairy.f"
+  },
+  "ZABS": {
+    "purpose": "Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and ZBIRY",
+    "file": "zabs.f"
+  },
+  "ZACAI": {
+    "purpose": "Subsidiary to ZAIRY",
+    "file": "zacai.f"
+  },
+  "ZACON": {
+    "purpose": "Subsidiary to ZBESH and ZBESK",
+    "file": "zacon.f"
+  },
+  "ZAIRY": {
+    "purpose": "Compute the Airy function Ai(z) or its derivative dAi/dz for complex argument z. A scaling option is available to help avoid underflow and overflow",
+    "file": "zairy.f"
+  },
+  "ZASYI": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zasyi.f"
+  },
+  "ZBESH": {
+    "purpose": "Compute a sequence of the Hankel functions H(m,a,z) for superscript m=1 or 2, real nonnegative orders a=b, b+1,... where b>0, and nonzero complex argument z. A scaling option is available to help avoid overflow",
+    "file": "zbesh.f"
+  },
+  "ZBESI": {
+    "purpose": "Compute a sequence of the Bessel functions I(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "zbesi.f"
+  },
+  "ZBESJ": {
+    "purpose": "Compute a sequence of the Bessel functions J(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "zbesj.f"
+  },
+  "ZBESK": {
+    "purpose": "Compute a sequence of the Bessel functions K(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "zbesk.f"
+  },
+  "ZBESY": {
+    "purpose": "Compute a sequence of the Bessel functions Y(a,z) for complex argument z and real nonnegative orders a=b,b+1, b+2,... where b>0. A scaling option is available to help avoid overflow",
+    "file": "zbesy.f"
+  },
+  "ZBINU": {
+    "purpose": "Subsidiary to ZAIRY, ZBESH, ZBESI, ZBESJ, ZBESK and ZBIRY",
+    "file": "zbinu.f"
+  },
+  "ZBIRY": {
+    "purpose": "Compute the Airy function Bi(z) or its derivative dBi/dz for complex argument z. A scaling option is available to help avoid overflow",
+    "file": "zbiry.f"
+  },
+  "ZBKNU": {
+    "purpose": "Subsidiary to ZAIRY, ZBESH, ZBESI and ZBESK",
+    "file": "zbknu.f"
+  },
+  "ZBUNI": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zbuni.f"
+  },
+  "ZBUNK": {
+    "purpose": "Subsidiary to ZBESH and ZBESK",
+    "file": "zbunk.f"
+  },
+  "ZDIV": {
+    "purpose": "Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and ZBIRY",
+    "file": "zdiv.f"
+  },
+  "ZEXP": {
+    "purpose": "Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and ZBIRY",
+    "file": "zexp.f"
+  },
+  "ZKSCL": {
+    "purpose": "Subsidiary to ZBESK",
+    "file": "zkscl.f"
+  },
+  "ZLOG": {
+    "purpose": "Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and ZBIRY",
+    "file": "zlog.f"
+  },
+  "ZMLRI": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zmlri.f"
+  },
+  "ZMLT": {
+    "purpose": "Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and ZBIRY",
+    "file": "zmlt.f"
+  },
+  "ZRATI": {
+    "purpose": "Subsidiary to ZBESH, ZBESI and ZBESK",
+    "file": "zrati.f"
+  },
+  "ZS1S2": {
+    "purpose": "Subsidiary to ZAIRY and ZBESK",
+    "file": "zs1s2.f"
+  },
+  "ZSERI": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zseri.f"
+  },
+  "ZSHCH": {
+    "purpose": "Subsidiary to ZBESH and ZBESK",
+    "file": "zshch.f"
+  },
+  "ZSQRT": {
+    "purpose": "Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and ZBIRY",
+    "file": "zsqrt.f"
+  },
+  "ZUCHK": {
+    "purpose": "Subsidiary to SERI, ZUOIK, ZUNK1, ZUNK2, ZUNI1, ZUNI2 and ZKSCL",
+    "file": "zuchk.f"
+  },
+  "ZUNHJ": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zunhj.f"
+  },
+  "ZUNI1": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zuni1.f"
+  },
+  "ZUNI2": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zuni2.f"
+  },
+  "ZUNIK": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zunik.f"
+  },
+  "ZUNK1": {
+    "purpose": "Subsidiary to ZBESK",
+    "file": "zunk1.f"
+  },
+  "ZUNK2": {
+    "purpose": "Subsidiary to ZBESK",
+    "file": "zunk2.f"
+  },
+  "ZUOIK": {
+    "purpose": "Subsidiary to ZBESH, ZBESI and ZBESK",
+    "file": "zuoik.f"
+  },
+  "ZWRSK": {
+    "purpose": "Subsidiary to ZBESI and ZBESK",
+    "file": "zwrsk.f"
+  }
+}

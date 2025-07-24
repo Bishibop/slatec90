@@ -1,0 +1,252 @@
+{
+  "ASYIK": {
+    "purpose": "Subsidiary to BESI and BESK",
+    "type": "SINGLE PRECISION (ASYIK-S, DASYIK-D)",
+    "parameters": "X, FNU, KODE, FLGIK, RA, ARG, IN, Y"
+  },
+  "ASYJY": {
+    "purpose": "Subsidiary to BESJ and BESY",
+    "type": "SINGLE PRECISION (ASYJY-S, DASYJY-D)",
+    "parameters": "FUNJY, X, FNU, FLGJY, IN, Y, WK, IFLW"
+  },
+  "AVINT": {
+    "purpose": "Integrate a function tabulated at arbitrarily spaced",
+    "type": "SINGLE PRECISION (AVINT-S, DAVINT-D)",
+    "parameters": "X, Y, N, XLO, XUP, ANS, IERR"
+  },
+  "BCRH": {
+    "purpose": "Subsidiary to CBLKTR",
+    "type": "SINGLE PRECISION (BCRH-S, BSRH-S)",
+    "parameters": "XLL, XRR, IZ, C, A, BH, F, SGN"
+  },
+  "BDIFF": {
+    "purpose": "Subsidiary to BSKIN",
+    "type": "SINGLE PRECISION (BDIFF-S, DBDIFF-D)",
+    "parameters": "L, V"
+  },
+  "BESI": {
+    "purpose": "Compute an N member sequence of I Bessel functions",
+    "type": "SINGLE PRECISION (BESI-S, DBESI-D)",
+    "parameters": "X, ALPHA, KODE, N, Y, NZ"
+  },
+  "BESJ": {
+    "purpose": "Compute an N member sequence of J Bessel functions",
+    "type": "SINGLE PRECISION (BESJ-S, DBESJ-D)",
+    "parameters": "X, ALPHA, N, Y, NZ"
+  },
+  "BESK": {
+    "purpose": "Implement forward recursion on the three term recursion",
+    "type": "SINGLE PRECISION (BESK-S, DBESK-D)",
+    "parameters": "X, FNU, KODE, N, Y, NZ"
+  },
+  "BESKNU": {
+    "purpose": "Subsidiary to BESK",
+    "type": "SINGLE PRECISION (BESKNU-S, DBSKNU-D)",
+    "parameters": "X, FNU, KODE, N, Y, NZ"
+  },
+  "BESY": {
+    "purpose": "Implement forward recursion on the three term recursion",
+    "type": "SINGLE PRECISION (BESY-S, DBESY-D)",
+    "parameters": "X, FNU, N, Y"
+  },
+  "BESYNU": {
+    "purpose": "Subsidiary to BESY",
+    "type": "SINGLE PRECISION (BESYNU-S, DBSYNU-D)",
+    "parameters": "X, FNU, N, Y"
+  },
+  "BFQAD": {
+    "purpose": "Compute the integral of a product of a function and a",
+    "type": "SINGLE PRECISION (BFQAD-S, DBFQAD-D)",
+    "parameters": "F, T, BCOEF, N, K, ID, X1, X2, TOL, QUAD, IERR,\n     +   WORK"
+  },
+  "BINT4": {
+    "purpose": "Compute the B-representation of a cubic spline",
+    "type": "SINGLE PRECISION (BINT4-S, DBINT4-D)",
+    "parameters": "X, Y, NDATA, IBCL, IBCR, FBCL, FBCR, KNTOPT, T,\n     +   BCOEF, N, K, W"
+  },
+  "BINTK": {
+    "purpose": "Compute the B-representation of a spline which interpolates",
+    "type": "SINGLE PRECISION (BINTK-S, DBINTK-D)",
+    "parameters": "X, Y, T, N, K, BCOEF, Q, WORK"
+  },
+  "BKIAS": {
+    "purpose": "Subsidiary to BSKIN",
+    "type": "SINGLE PRECISION (BKIAS-S, DBKIAS-D)",
+    "parameters": "X, N, KTRMS, T, ANS, IND, MS, GMRN, H, IERR"
+  },
+  "BKISR": {
+    "purpose": "Subsidiary to BSKIN",
+    "type": "SINGLE PRECISION (BKISR-S, DBKISR-D)",
+    "parameters": "X, N, SUM, IERR"
+  },
+  "BKSOL": {
+    "purpose": "Subsidiary to BVSUP",
+    "type": "SINGLE PRECISION (BKSOL-S, DBKSOL-D)",
+    "parameters": "N, A, X"
+  },
+  "BLKTR1": {
+    "purpose": "Subsidiary to BLKTRI",
+    "type": "SINGLE PRECISION (BLKTR1-S, CBLKT1-C)",
+    "parameters": "N, AN, BN, CN, M, AM, BM, CM, IDIMY, Y, B, W1,\n     +   W2, W3, WD, WW, WU, PRDCT, CPRDCT"
+  },
+  "BNDACC": {
+    "purpose": "Compute the LU factorization of a banded matrices using",
+    "type": "SINGLE PRECISION (BNDACC-S, DBNDAC-D)",
+    "parameters": "G, MDG, NB, IP, IR, MT, JT"
+  },
+  "BNDSOL": {
+    "purpose": "Solve the least squares problem for a banded matrix using",
+    "type": "SINGLE PRECISION (BNDSOL-S, DBNDSL-D)",
+    "parameters": "MODE, G, MDG, NB, IP, IR, X, N, RNORM"
+  },
+  "BNFAC": {
+    "purpose": "Subsidiary to BINT4 and BINTK",
+    "type": "SINGLE PRECISION (BNFAC-S, DBNFAC-D)",
+    "parameters": "W, NROWW, NROW, NBANDL, NBANDU, IFLAG"
+  },
+  "BNSLV": {
+    "purpose": "Subsidiary to BINT4 and BINTK",
+    "type": "SINGLE PRECISION (BNSLV-S, DBNSLV-D)",
+    "parameters": "W, NROWW, NROW, NBANDL, NBANDU, B"
+  },
+  "BSGQ8": {
+    "purpose": "Subsidiary to BFQAD",
+    "type": "SINGLE PRECISION (BSGQ8-S, DBSGQ8-D)",
+    "parameters": "FUN, XT, BC, N, KK, ID, A, B, INBV, ERR, ANS,\n     +   IERR, WORK"
+  },
+  "BSKIN": {
+    "purpose": "Compute repeated integrals of the K-zero Bessel function.",
+    "type": "SINGLE PRECISION (BSKIN-S, DBSKIN-D)",
+    "parameters": "X, N, KODE, M, Y, NZ, IERR"
+  },
+  "BSPDR": {
+    "purpose": "Use the B-representation to construct a divided difference",
+    "type": "SINGLE PRECISION (BSPDR-S, DBSPDR-D)",
+    "parameters": "T, A, N, K, NDERIV, AD"
+  },
+  "BSPEV": {
+    "purpose": "Calculate the value of the spline and its derivatives from",
+    "type": "SINGLE PRECISION (BSPEV-S, DBSPEV-D)",
+    "parameters": "T, AD, N, K, NDERIV, X, INEV, SVALUE, WORK"
+  },
+  "BSPLVD": {
+    "purpose": "Subsidiary to FC",
+    "type": "SINGLE PRECISION (BSPLVD-S, DFSPVD-D)",
+    "parameters": "T, K, X, ILEFT, VNIKX, NDERIV"
+  },
+  "BSPLVN": {
+    "purpose": "Subsidiary to FC",
+    "type": "SINGLE PRECISION (BSPLVN-S, DFSPVN-D)",
+    "parameters": "T, JHIGH, INDEX, X, ILEFT, VNIKX"
+  },
+  "BSPPP": {
+    "purpose": "Convert the B-representation of a B-spline to the piecewise",
+    "type": "SINGLE PRECISION (BSPPP-S, DBSPPP-D)",
+    "parameters": "T, A, N, K, LDC, C, XI, LXI, WORK"
+  },
+  "BSPVD": {
+    "purpose": "Calculate the value and all derivatives of order less than",
+    "type": "SINGLE PRECISION (BSPVD-S, DBSPVD-D)",
+    "parameters": "T, K, NDERIV, X, ILEFT, LDVNIK, VNIKX, WORK"
+  },
+  "BSPVN": {
+    "purpose": "Calculate the value of all (possibly) nonzero basis",
+    "type": "SINGLE PRECISION (BSPVN-S, DBSPVN-D)",
+    "parameters": "T, JHIGH, K, INDEX, X, ILEFT, VNIKX, WORK,\n     +   IWORK"
+  },
+  "BSQAD": {
+    "purpose": "Compute the integral of a K-th order B-spline using the",
+    "type": "SINGLE PRECISION (BSQAD-S, DBSQAD-D)",
+    "parameters": "T, BCOEF, N, K, X1, X2, BQUAD, WORK"
+  },
+  "BSRH": {
+    "purpose": "Subsidiary to BLKTRI",
+    "type": "SINGLE PRECISION (BCRH-S, BSRH-S)",
+    "parameters": "XLL, XRR, IZ, C, A, BH, F, SGN"
+  },
+  "BVALU": {
+    "purpose": "Evaluate the B-representation of a B-spline at X for the",
+    "type": "SINGLE PRECISION (BVALU-S, DBVALU-D)",
+    "parameters": "T, A, N, K, IDERIV, X, INBV, WORK"
+  },
+  "BVDER": {
+    "purpose": "Subsidiary to BVSUP",
+    "type": "SINGLE PRECISION (BVDER-S, DBVDER-D)",
+    "parameters": "X, Y, YP, G, IPAR"
+  },
+  "BVPOR": {
+    "purpose": "Subsidiary to BVSUP",
+    "type": "SINGLE PRECISION (BVPOR-S, DBVPOR-D)",
+    "parameters": "Y, NROWY, NCOMP, XPTS, NXPTS, A, NROWA, ALPHA,\n     +   NIC, B, NROWB, BETA, NFC, IFLAG, Z, MXNON, P, NTP, IP, W, NIV,\n     +   YHP, U, V, COEF, S, STOWA, G, WORK, IWORK, NFCC"
+  },
+  "BVSUP": {
+    "purpose": "Solve a linear two-point boundary value problem using",
+    "type": "SINGLE PRECISION (BVSUP-S, DBVSUP-D)",
+    "parameters": "Y, NROWY, NCOMP, XPTS, NXPTS, A, NROWA, ALPHA,\n     +   NIC, B, NROWB, BETA, NFC, IGOFX, RE, AE, IFLAG, WORK, NDW,\n     +   IWORK, NDIW, NEQIVP"
+  },
+  "C1MERG": {
+    "purpose": "Merge two strings of complex numbers.  Each string is",
+    "type": "COMPLEX (S1MERG-S, D1MERG-D, C1MERG-C, I1MERG-I)",
+    "parameters": "TCOS, I1, M1, I2, M2, I3"
+  },
+  "CACAI": {
+    "purpose": "Subsidiary to CAIRY",
+    "type": "ALL (CACAI-A, ZACAI-A)",
+    "parameters": "Z, FNU, KODE, MR, N, Y, NZ, RL, TOL, ELIM, ALIM"
+  },
+  "CACON": {
+    "purpose": "Subsidiary to CBESH and CBESK",
+    "type": "ALL (CACON-A, ZACON-A)",
+    "parameters": "Z, FNU, KODE, MR, N, Y, NZ, RL, FNUL, TOL, ELIM,\n     +   ALIM"
+  },
+  "CAIRY": {
+    "purpose": "Compute the Airy function Ai(z) or its derivative dAi/dz",
+    "type": "COMPLEX (CAIRY-C, ZAIRY-C)",
+    "parameters": "Z, ID, KODE, AI, NZ, IERR"
+  },
+  "CASYI": {
+    "purpose": "Subsidiary to CBESI and CBESK",
+    "type": "ALL (CASYI-A, ZASYI-A)",
+    "parameters": "Z, FNU, KODE, N, Y, NZ, RL, TOL, ELIM, ALIM"
+  },
+  "CBESH": {
+    "purpose": "Compute a sequence of the Hankel functions H(m,a,z)",
+    "type": "COMPLEX (CBESH-C, ZBESH-C)",
+    "parameters": "Z, FNU, KODE, M, N, CY, NZ, IERR"
+  },
+  "CBESI": {
+    "purpose": "Compute a sequence of the Bessel functions I(a,z) for",
+    "type": "COMPLEX (CBESI-C, ZBESI-C)",
+    "parameters": "Z, FNU, KODE, N, CY, NZ, IERR"
+  },
+  "CBESJ": {
+    "purpose": "Compute a sequence of the Bessel functions J(a,z) for",
+    "type": "COMPLEX (CBESJ-C, ZBESJ-C)",
+    "parameters": "Z, FNU, KODE, N, CY, NZ, IERR"
+  },
+  "CBESK": {
+    "purpose": "Compute a sequence of the Bessel functions K(a,z) for",
+    "type": "COMPLEX (CBESK-C, ZBESK-C)",
+    "parameters": "Z, FNU, KODE, N, CY, NZ, IERR"
+  },
+  "CBESY": {
+    "purpose": "Compute a sequence of the Bessel functions Y(a,z) for",
+    "type": "COMPLEX (CBESY-C, ZBESY-C)",
+    "parameters": "Z, FNU, KODE, N, CY, NZ, CWRK, IERR"
+  },
+  "CBINU": {
+    "purpose": "Subsidiary to CAIRY, CBESH, CBESI, CBESJ, CBESK and CBIRY",
+    "type": "ALL (CBINU-A, ZBINU-A)",
+    "parameters": "Z, FNU, KODE, N, CY, NZ, RL, FNUL, TOL, ELIM,\n     +   ALIM"
+  },
+  "CBIRY": {
+    "purpose": "Compute the Airy function Bi(z) or its derivative dBi/dz",
+    "type": "COMPLEX (CBIRY-C, ZBIRY-C)",
+    "parameters": "Z, ID, KODE, BI, IERR"
+  },
+  "CBKNU": {
+    "purpose": "Subsidiary to CAIRY, CBESH, CBESI and CBESK",
+    "type": "ALL (CBKNU-A, ZBKNU-A)",
+    "parameters": "Z, FNU, KODE, N, Y, NZ, TOL, ELIM, ALIM"
+  }
+}
