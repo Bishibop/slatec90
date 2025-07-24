@@ -8,8 +8,14 @@ program mega_validator_full
     use state_validation_module
     use numerical_utils_module
     
-    ! Include Phase 0 modernized function modules (PIMACH only for now)
+    ! Include Phase 0 modernized function modules (with optional availability)
     use pimach_module, only: pimach_modern => pimach
+    use aaaaaa_module, only: aaaaaa_modern => aaaaaa
+    use fdump_module, only: fdump_modern => fdump
+    use lsame_module, only: lsame_modern => lsame  
+    use i1mach_module, only: i1mach_modern => i1mach
+    use r1mach_module, only: r1mach_modern => r1mach
+    use d1mach_module, only: d1mach_modern => d1mach
     
     implicit none
     
@@ -202,6 +208,18 @@ contains
         select case(trim(func_upper))
             case('PIMACH')
                 call validate_pimach()
+            case('AAAAAA')
+                call validate_aaaaaa()
+            case('FDUMP')
+                call validate_fdump()
+            case('LSAME')
+                call validate_lsame()
+            case('I1MACH')
+                call validate_i1mach()
+            case('R1MACH')
+                call validate_r1mach()
+            case('D1MACH')
+                call validate_d1mach()
             case default
                 print *, 'Function not implemented: ', trim(function_name)
                 failed_count = failed_count + 1
@@ -234,6 +252,132 @@ contains
             failed_count = failed_count + 1
             print '(A,A)', 'FAIL: ', trim(description)
             print '(A,ES16.8,A,ES16.8)', '  F77: ', result_f77, ' Modern: ', result_modern
+        end if
+    end subroutine
+    
+    subroutine validate_aaaaaa()
+        character(len=16) :: ver_f77, ver_modern
+        external aaaaaa
+        
+        ! No parameters for AAAAAA
+        
+        ! Call both versions
+        call aaaaaa(ver_f77)
+        call aaaaaa_modern(ver_modern)
+        
+        ! Compare results (trim whitespace for comparison)
+        if (trim(ver_f77) == trim(ver_modern)) then
+            passed_count = passed_count + 1
+            print '(A,A)', 'PASS: ', trim(description)
+        else
+            failed_count = failed_count + 1
+            print '(A,A)', 'FAIL: ', trim(description)
+            print '(A,A,A,A,A)', '  F77="', trim(ver_f77), '" Modern="', trim(ver_modern), '"'
+        end if
+    end subroutine
+    
+    subroutine validate_fdump()
+        external fdump
+        logical :: test_passed
+        
+        ! FDUMP has no parameters and no return value
+        ! We just call both versions and ensure they don't crash
+        test_passed = .true.
+        
+        ! Call F77 version
+        call fdump()
+        
+        ! Call modern version  
+        call fdump_modern()
+        
+        ! If we get here, both versions executed without crashing
+        if (test_passed) then
+            passed_count = passed_count + 1
+            print '(A,A)', 'PASS: ', trim(description)
+        else
+            failed_count = failed_count + 1
+            print '(A,A)', 'FAIL: ', trim(description)
+        end if
+    end subroutine
+    
+    subroutine validate_lsame()
+        logical :: result_f77, result_modern
+        logical :: lsame
+        external lsame
+        
+        result_f77 = lsame(char_params(1)(1:1), char_params(2)(1:1))
+        result_modern = lsame_modern(char_params(1)(1:1), char_params(2)(1:1))
+        
+        if (result_f77 .eqv. result_modern) then
+            passed_count = passed_count + 1
+            print '(A,A)', 'PASS: ', trim(description)
+        else
+            failed_count = failed_count + 1
+            print '(A,A)', 'FAIL: ', trim(description)
+            print '(A,L1,A,L1)', '  F77: ', result_f77, ' Modern: ', result_modern
+        end if
+    end subroutine
+    
+    subroutine validate_i1mach()
+        integer :: iwhich, result_f77, result_modern
+        integer :: i1mach
+        external i1mach
+        
+        iwhich = int_params(1)
+        
+        result_f77 = i1mach(iwhich)
+        result_modern = i1mach_modern(iwhich)
+        
+        if (result_f77 == result_modern) then
+            passed_count = passed_count + 1
+            print '(A,A)', 'PASS: ', trim(description)
+        else
+            failed_count = failed_count + 1
+            print '(A,A)', 'FAIL: ', trim(description)
+            print '(A,I0,A,I0)', '  F77: ', result_f77, ' Modern: ', result_modern
+        end if
+    end subroutine
+    
+    subroutine validate_r1mach()
+        integer :: iwhich
+        real :: result_f77, result_modern
+        real :: r1mach
+        external r1mach
+        
+        iwhich = int_params(1)
+        
+        result_f77 = r1mach(iwhich)
+        result_modern = r1mach_modern(iwhich)
+        
+        if (values_equal(result_f77, result_modern, 'simple_arithmetic')) then
+            passed_count = passed_count + 1
+            print '(A,A)', 'PASS: ', trim(description)
+        else
+            failed_count = failed_count + 1
+            print '(A,A)', 'FAIL: ', trim(description)
+            print '(A,ES16.8,A,ES16.8)', '  F77: ', result_f77, ' Modern: ', result_modern
+        end if
+    end subroutine
+    
+    subroutine validate_d1mach()
+        integer :: iwhich
+        real(8) :: result_f77, result_modern
+        real(8) :: d1mach
+        external d1mach
+        
+        iwhich = int_params(1)
+        
+        result_f77 = d1mach(iwhich)
+        result_modern = d1mach_modern(iwhich)
+        
+        ! Use double precision comparison
+        if (abs(result_f77 - result_modern) < 1e-15_8) then
+            passed_count = passed_count + 1
+            print '(A,A)', 'PASS: ', trim(description)
+        else
+            failed_count = failed_count + 1
+            print '(A,A)', 'FAIL: ', trim(description)
+            print '(A,ES24.16,A,ES24.16)', '  F77: ', result_f77, ' Modern: ', result_modern
         end if
     end subroutine
     

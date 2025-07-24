@@ -19,16 +19,24 @@ ENHANCED_MODULES = $(OBJ_DIR)/error_analysis_module.o \
                   $(OBJ_DIR)/state_validation_module.o \
                   $(OBJ_DIR)/numerical_utils_module.o
 
-# Phase 0 functions for testing (PIMACH only for now)
-PHASE0_F77_OBJS = $(OBJ_DIR)/pimach_f77.o
+# Phase 0 functions for testing - F77 versions (should always exist)
+PHASE0_F77_OBJS = $(OBJ_DIR)/pimach_f77.o $(OBJ_DIR)/aaaaaa_f77.o \
+                  $(OBJ_DIR)/fdump_f77.o $(OBJ_DIR)/lsame_f77.o \
+                  $(OBJ_DIR)/i1mach_f77.o $(OBJ_DIR)/r1mach_f77.o \
+                  $(OBJ_DIR)/d1mach_f77.o
 
-PHASE0_MODERN_OBJS = $(OBJ_DIR)/pimach_modern.o
+# Phase 0 modern versions - build real ones if they exist, stubs otherwise
+AVAILABLE_MODERN_SOURCES := $(wildcard $(PHASE0_DIR)/*_module.f90)
+PHASE0_MODERN_OBJS := $(patsubst $(PHASE0_DIR)/%_module.f90,$(OBJ_DIR)/%_modern.o,$(AVAILABLE_MODERN_SOURCES))
+
+# Always include stub modules to provide fallbacks
+STUB_OBJS = $(OBJ_DIR)/stub_modules.o $(OBJ_DIR)/xermsg_stub.o
 
 # Wrapper objects (commented out for now - not needed)
 # WRAPPER_OBJS = $(OBJ_DIR)/pythag_f77_wrapper.o $(OBJ_DIR)/bsplvn_f77_wrapper.o
 
 # Main target
-mega_validator_full: $(ENHANCED_MODULES) $(PHASE0_F77_OBJS) $(PHASE0_MODERN_OBJS) $(OBJ_DIR)/mega_validator_full.o
+mega_validator_full: $(ENHANCED_MODULES) $(PHASE0_F77_OBJS) $(PHASE0_MODERN_OBJS) $(STUB_OBJS) $(OBJ_DIR)/mega_validator_full.o
 	$(FC) -o $@ $^
 
 # Module compilation
@@ -65,6 +73,13 @@ $(OBJ_DIR)/state_validation_module.o: state_validation_module.f90
 
 $(OBJ_DIR)/numerical_utils_module.o: numerical_utils_module.f90
 	$(FC) $(F90FLAGS) -c $< -o $@
+
+# Stub modules
+$(OBJ_DIR)/stub_modules.o: stub_modules.f90
+	$(FC) $(F90FLAGS) -c $< -o $@
+
+$(OBJ_DIR)/xermsg_stub.o: xermsg_stub.f
+	$(FC) $(FFLAGS) -c $< -o $@
 
 # Main program
 $(OBJ_DIR)/mega_validator_full.o: mega_validator_full.f90 $(ENHANCED_MODULES) $(PHASE0_MODERN_OBJS)
