@@ -10,7 +10,8 @@
         "F77FLAGS": "-std=legacy -fno-automatic",
         "SLATEC_SRC": "./src",
         "SLATEC_MODERN": "./modern",
-        "SLATEC_TEST_DATA": "./test_data"
+        "SLATEC_TEST_DATA": "./test_data",
+        "PYTHON_CMD": "${PYTHON_CMD:-python3}"
       }
     },
     "edit": {
@@ -47,8 +48,8 @@
       "commit_changes"
     ],
     "test_commands": {
-      "generate": "python slatec_test_helper.py generate {function}",
-      "validate": "python slatec_test_helper.py validate {function}",
+      "generate": "${PYTHON_CMD:-python3} slatec_test_helper.py generate {function}",
+      "validate": "${PYTHON_CMD:-python3} slatec_test_helper.py validate {function}",
       "compile_f90": "gfortran -c modern/{function}_modern.f90",
       "compile_f77": "gfortran -c src/{function}.f -std=legacy"
     }

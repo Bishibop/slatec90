@@ -1,0 +1,6292 @@
+{
+  "function": "cshch",
+  "signature": "SUBROUTINE CSHCH(Z, CSH, CCH)",
+  "description": "Compute complex hyperbolic sine and cosine: sinh(z) and cosh(z)",
+  "total_tests": 454,
+  "test_cases": [
+    {
+      "description": "Real axis: z = 0.0 + 0i",
+      "inputs": [
+        0.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 1
+    },
+    {
+      "description": "Real axis: z = 0.5 + 0i",
+      "inputs": [
+        0.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.5210952759,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.127625942,
+        "cosh_imag": 0.0
+      },
+      "test_id": 2
+    },
+    {
+      "description": "Real axis: z = 1.0 + 0i",
+      "inputs": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": 0.0
+      },
+      "test_id": 3
+    },
+    {
+      "description": "Real axis: z = -0.5 + 0i",
+      "inputs": [
+        -0.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.5210952759,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.127625942,
+        "cosh_imag": -0.0
+      },
+      "test_id": 4
+    },
+    {
+      "description": "Real axis: z = -1.0 + 0i",
+      "inputs": [
+        -1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": -0.0
+      },
+      "test_id": 5
+    },
+    {
+      "description": "Real axis: z = 2.0 + 0i",
+      "inputs": [
+        2.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 3.62686038,
+        "sinh_imag": 0.0,
+        "cosh_real": 3.762195587,
+        "cosh_imag": 0.0
+      },
+      "test_id": 6
+    },
+    {
+      "description": "Real axis: z = -2.0 + 0i",
+      "inputs": [
+        -2.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -3.62686038,
+        "sinh_imag": 0.0,
+        "cosh_real": 3.762195587,
+        "cosh_imag": -0.0
+      },
+      "test_id": 7
+    },
+    {
+      "description": "Real axis: z = 3.0 + 0i",
+      "inputs": [
+        3.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 10.01787472,
+        "sinh_imag": 0.0,
+        "cosh_real": 10.06766224,
+        "cosh_imag": 0.0
+      },
+      "test_id": 8
+    },
+    {
+      "description": "Real axis: z = -3.0 + 0i",
+      "inputs": [
+        -3.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -10.01787472,
+        "sinh_imag": 0.0,
+        "cosh_real": 10.06766224,
+        "cosh_imag": -0.0
+      },
+      "test_id": 9
+    },
+    {
+      "description": "Real axis: z = 0.1 + 0i",
+      "inputs": [
+        0.1,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.1001667529,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.005004168,
+        "cosh_imag": 0.0
+      },
+      "test_id": 10
+    },
+    {
+      "description": "Real axis: z = -0.1 + 0i",
+      "inputs": [
+        -0.1,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.1001667529,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.005004168,
+        "cosh_imag": -0.0
+      },
+      "test_id": 11
+    },
+    {
+      "description": "Real axis: z = 0.01 + 0i",
+      "inputs": [
+        0.01,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.01000016648,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.000049949,
+        "cosh_imag": 0.0
+      },
+      "test_id": 12
+    },
+    {
+      "description": "Real axis: z = -0.01 + 0i",
+      "inputs": [
+        -0.01,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.01000016648,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.000049949,
+        "cosh_imag": -0.0
+      },
+      "test_id": 13
+    },
+    {
+      "description": "Real axis: z = 5.0 + 0i",
+      "inputs": [
+        5.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 74.20320892,
+        "sinh_imag": 0.0,
+        "cosh_real": 74.20994568,
+        "cosh_imag": 0.0
+      },
+      "test_id": 14
+    },
+    {
+      "description": "Real axis: z = -5.0 + 0i",
+      "inputs": [
+        -5.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -74.20320892,
+        "sinh_imag": 0.0,
+        "cosh_real": 74.20994568,
+        "cosh_imag": -0.0
+      },
+      "test_id": 15
+    },
+    {
+      "description": "Real axis: z = 10.0 + 0i",
+      "inputs": [
+        10.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 11013.23242,
+        "sinh_imag": 0.0,
+        "cosh_real": 11013.23242,
+        "cosh_imag": 0.0
+      },
+      "test_id": 16
+    },
+    {
+      "description": "Real axis: z = -10.0 + 0i",
+      "inputs": [
+        -10.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -11013.23242,
+        "sinh_imag": 0.0,
+        "cosh_real": 11013.23242,
+        "cosh_imag": -0.0
+      },
+      "test_id": 17
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 0.0000i",
+      "inputs": [
+        0.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 18
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 0.5236i",
+      "inputs": [
+        0.0,
+        0.5235987755982988
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.5,
+        "cosh_real": 0.8660253882,
+        "cosh_imag": 0.0
+      },
+      "test_id": 19
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 0.7854i",
+      "inputs": [
+        0.0,
+        0.7853981633974483
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.7071067691,
+        "cosh_real": 0.7071067691,
+        "cosh_imag": 0.0
+      },
+      "test_id": 20
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 1.0472i",
+      "inputs": [
+        0.0,
+        1.0471975511965976
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.8660256863,
+        "cosh_real": 0.499999553,
+        "cosh_imag": 0.0
+      },
+      "test_id": 21
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 1.5708i",
+      "inputs": [
+        0.0,
+        1.5707963267948966
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 1.0,
+        "cosh_real": 3.139164733e-07,
+        "cosh_imag": 0.0
+      },
+      "test_id": 22
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 3.1416i",
+      "inputs": [
+        0.0,
+        3.141592653589793
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -3.258413699e-07,
+        "cosh_real": -1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 23
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 6.2832i",
+      "inputs": [
+        0.0,
+        6.283185307179586
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -3.019916051e-07,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 24
+    },
+    {
+      "description": "Imaginary axis: z = 0 + -1.5708i",
+      "inputs": [
+        0.0,
+        -1.5707963267948966
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -1.0,
+        "cosh_real": 3.139164733e-07,
+        "cosh_imag": -0.0
+      },
+      "test_id": 25
+    },
+    {
+      "description": "Imaginary axis: z = 0 + -3.1416i",
+      "inputs": [
+        0.0,
+        -3.141592653589793
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 3.258413699e-07,
+        "cosh_real": -1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 26
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 0.1000i",
+      "inputs": [
+        0.0,
+        0.1
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.09983342141,
+        "cosh_real": 0.9950041771,
+        "cosh_imag": 0.0
+      },
+      "test_id": 27
+    },
+    {
+      "description": "Imaginary axis: z = 0 + -0.1000i",
+      "inputs": [
+        0.0,
+        -0.1
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.09983342141,
+        "cosh_real": 0.9950041771,
+        "cosh_imag": -0.0
+      },
+      "test_id": 28
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 0.5000i",
+      "inputs": [
+        0.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": 0.0
+      },
+      "test_id": 29
+    },
+    {
+      "description": "Imaginary axis: z = 0 + -0.5000i",
+      "inputs": [
+        0.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": -0.0
+      },
+      "test_id": 30
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 1.0000i",
+      "inputs": [
+        0.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 0.0
+      },
+      "test_id": 31
+    },
+    {
+      "description": "Imaginary axis: z = 0 + -1.0000i",
+      "inputs": [
+        0.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": -0.0
+      },
+      "test_id": 32
+    },
+    {
+      "description": "Imaginary axis: z = 0 + 3.0000i",
+      "inputs": [
+        0.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.1411200017,
+        "cosh_real": -0.9899924994,
+        "cosh_imag": 0.0
+      },
+      "test_id": 33
+    },
+    {
+      "description": "Imaginary axis: z = 0 + -3.0000i",
+      "inputs": [
+        0.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -0.1411200017,
+        "cosh_real": -0.9899924994,
+        "cosh_imag": -0.0
+      },
+      "test_id": 34
+    },
+    {
+      "description": "Unit circle at 0 degrees",
+      "inputs": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": 0.0
+      },
+      "test_id": 35
+    },
+    {
+      "description": "Unit circle at 30 degrees",
+      "inputs": [
+        0.8660254037844387,
+        0.49999999999999994
+      ],
+      "expected": {
+        "sinh_real": 0.8586366773,
+        "sinh_imag": 0.6707313657,
+        "cosh_real": 1.227765441,
+        "cosh_imag": 0.4690753818
+      },
+      "test_id": 36
+    },
+    {
+      "description": "Unit circle at 45 degrees",
+      "inputs": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "sinh_real": 0.5835053325,
+        "sinh_imag": 0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": 0.49861148
+      },
+      "test_id": 37
+    },
+    {
+      "description": "Unit circle at 60 degrees",
+      "inputs": [
+        0.5000000000000001,
+        0.8660254037844386
+      ],
+      "expected": {
+        "sinh_real": 0.3375964463,
+        "sinh_imag": 0.8589803576,
+        "cosh_real": 0.7305430174,
+        "cosh_imag": 0.3969495296
+      },
+      "test_id": 38
+    },
+    {
+      "description": "Unit circle at 90 degrees",
+      "inputs": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 3.308397534e-17,
+        "sinh_imag": 0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 5.152523917e-17
+      },
+      "test_id": 39
+    },
+    {
+      "description": "Unit circle at 120 degrees",
+      "inputs": [
+        -0.49999999999999983,
+        0.8660254037844387
+      ],
+      "expected": {
+        "sinh_real": -0.3375964463,
+        "sinh_imag": 0.8589803576,
+        "cosh_real": 0.7305430174,
+        "cosh_imag": -0.3969495296
+      },
+      "test_id": 40
+    },
+    {
+      "description": "Unit circle at 135 degrees",
+      "inputs": [
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "expected": {
+        "sinh_real": -0.5835053325,
+        "sinh_imag": 0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": -0.49861148
+      },
+      "test_id": 41
+    },
+    {
+      "description": "Unit circle at 150 degrees",
+      "inputs": [
+        -0.8660254037844387,
+        0.49999999999999994
+      ],
+      "expected": {
+        "sinh_real": -0.8586366773,
+        "sinh_imag": 0.6707313657,
+        "cosh_real": 1.227765441,
+        "cosh_imag": -0.4690753818
+      },
+      "test_id": 42
+    },
+    {
+      "description": "Unit circle at 180 degrees",
+      "inputs": [
+        -1.0,
+        1.2246467991473532e-16
+      ],
+      "expected": {
+        "sinh_real": -1.175201178,
+        "sinh_imag": 1.889729049e-16,
+        "cosh_real": 1.543080688,
+        "cosh_imag": -1.439206519e-16
+      },
+      "test_id": 43
+    },
+    {
+      "description": "Unit circle at 210 degrees",
+      "inputs": [
+        -0.8660254037844386,
+        -0.5000000000000001
+      ],
+      "expected": {
+        "sinh_real": -0.8586366773,
+        "sinh_imag": -0.6707313657,
+        "cosh_real": 1.227765441,
+        "cosh_imag": 0.4690753818
+      },
+      "test_id": 44
+    },
+    {
+      "description": "Unit circle at 225 degrees",
+      "inputs": [
+        -0.7071067811865477,
+        -0.7071067811865475
+      ],
+      "expected": {
+        "sinh_real": -0.5835053325,
+        "sinh_imag": -0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": 0.49861148
+      },
+      "test_id": 45
+    },
+    {
+      "description": "Unit circle at 240 degrees",
+      "inputs": [
+        -0.5000000000000004,
+        -0.8660254037844384
+      ],
+      "expected": {
+        "sinh_real": -0.3375964463,
+        "sinh_imag": -0.8589803576,
+        "cosh_real": 0.7305430174,
+        "cosh_imag": 0.3969495296
+      },
+      "test_id": 46
+    },
+    {
+      "description": "Unit circle at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-16,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -9.925190616e-17,
+        "sinh_imag": -0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 1.545756911e-16
+      },
+      "test_id": 47
+    },
+    {
+      "description": "Unit circle at 300 degrees",
+      "inputs": [
+        0.5000000000000001,
+        -0.8660254037844386
+      ],
+      "expected": {
+        "sinh_real": 0.3375964463,
+        "sinh_imag": -0.8589803576,
+        "cosh_real": 0.7305430174,
+        "cosh_imag": -0.3969495296
+      },
+      "test_id": 48
+    },
+    {
+      "description": "Unit circle at 315 degrees",
+      "inputs": [
+        0.7071067811865474,
+        -0.7071067811865477
+      ],
+      "expected": {
+        "sinh_real": 0.5835053325,
+        "sinh_imag": -0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": -0.49861148
+      },
+      "test_id": 49
+    },
+    {
+      "description": "Unit circle at 330 degrees",
+      "inputs": [
+        0.8660254037844384,
+        -0.5000000000000004
+      ],
+      "expected": {
+        "sinh_real": 0.8586366773,
+        "sinh_imag": -0.6707313657,
+        "cosh_real": 1.227765441,
+        "cosh_imag": -0.4690753818
+      },
+      "test_id": 50
+    },
+    {
+      "description": "Magnitude 0.1 at 0 degrees",
+      "inputs": [
+        0.1,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.1001667529,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.005004168,
+        "cosh_imag": 0.0
+      },
+      "test_id": 51
+    },
+    {
+      "description": "Magnitude 0.1 at 45 degrees",
+      "inputs": [
+        0.07071067811865477,
+        0.07071067811865475
+      ],
+      "expected": {
+        "sinh_real": 0.07059276849,
+        "sinh_imag": 0.07082846761,
+        "cosh_real": 0.9999957681,
+        "cosh_imag": 0.004999998957
+      },
+      "test_id": 52
+    },
+    {
+      "description": "Magnitude 0.1 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-18,
+        0.1
+      ],
+      "expected": {
+        "sinh_real": 6.092643056e-18,
+        "sinh_imag": 0.09983342141,
+        "cosh_real": 0.9950041771,
+        "cosh_imag": 6.113033782e-19
+      },
+      "test_id": 53
+    },
+    {
+      "description": "Magnitude 0.1 at 135 degrees",
+      "inputs": [
+        -0.07071067811865475,
+        0.07071067811865477
+      ],
+      "expected": {
+        "sinh_real": -0.07059276849,
+        "sinh_imag": 0.07082846761,
+        "cosh_real": 0.9999957681,
+        "cosh_imag": -0.004999998957
+      },
+      "test_id": 54
+    },
+    {
+      "description": "Magnitude 0.1 at 180 degrees",
+      "inputs": [
+        -0.1,
+        1.2246467991473533e-17
+      ],
+      "expected": {
+        "sinh_real": -0.1001667529,
+        "sinh_imag": 1.230775351e-17,
+        "cosh_real": 1.005004168,
+        "cosh_imag": -1.226689203e-18
+      },
+      "test_id": 55
+    },
+    {
+      "description": "Magnitude 0.1 at 225 degrees",
+      "inputs": [
+        -0.07071067811865477,
+        -0.07071067811865475
+      ],
+      "expected": {
+        "sinh_real": -0.07059276849,
+        "sinh_imag": -0.07082846761,
+        "cosh_real": 0.9999957681,
+        "cosh_imag": 0.004999998957
+      },
+      "test_id": 56
+    },
+    {
+      "description": "Magnitude 0.1 at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-17,
+        -0.1
+      ],
+      "expected": {
+        "sinh_real": -1.82779271e-17,
+        "sinh_imag": -0.09983342141,
+        "cosh_real": 0.9950041771,
+        "cosh_imag": 1.833909876e-18
+      },
+      "test_id": 57
+    },
+    {
+      "description": "Magnitude 0.1 at 315 degrees",
+      "inputs": [
+        0.07071067811865474,
+        -0.07071067811865477
+      ],
+      "expected": {
+        "sinh_real": 0.07059276849,
+        "sinh_imag": -0.07082846761,
+        "cosh_real": 0.9999957681,
+        "cosh_imag": -0.004999998957
+      },
+      "test_id": 58
+    },
+    {
+      "description": "Magnitude 0.5 at 0 degrees",
+      "inputs": [
+        0.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.5210952759,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.127625942,
+        "cosh_imag": 0.0
+      },
+      "test_id": 59
+    },
+    {
+      "description": "Magnitude 0.5 at 45 degrees",
+      "inputs": [
+        0.3535533905932738,
+        0.35355339059327373
+      ],
+      "expected": {
+        "sinh_real": 0.3386389613,
+        "sinh_imag": 0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": 0.1249783114
+      },
+      "test_id": 60
+    },
+    {
+      "description": "Magnitude 0.5 at 90 degrees",
+      "inputs": [
+        3.061616997868383e-17,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 2.686821761e-17,
+        "sinh_imag": 0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": 1.467817439e-17
+      },
+      "test_id": 61
+    },
+    {
+      "description": "Magnitude 0.5 at 135 degrees",
+      "inputs": [
+        -0.35355339059327373,
+        0.3535533905932738
+      ],
+      "expected": {
+        "sinh_real": -0.3386389613,
+        "sinh_imag": 0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": -0.1249783114
+      },
+      "test_id": 62
+    },
+    {
+      "description": "Magnitude 0.5 at 180 degrees",
+      "inputs": [
+        -0.5,
+        6.123233995736766e-17
+      ],
+      "expected": {
+        "sinh_real": -0.5210952759,
+        "sinh_imag": 6.90471811e-17,
+        "cosh_real": 1.127625942,
+        "cosh_imag": -3.190788332e-17
+      },
+      "test_id": 63
+    },
+    {
+      "description": "Magnitude 0.5 at 225 degrees",
+      "inputs": [
+        -0.35355339059327384,
+        -0.35355339059327373
+      ],
+      "expected": {
+        "sinh_real": -0.3386389613,
+        "sinh_imag": -0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": 0.1249783114
+      },
+      "test_id": 64
+    },
+    {
+      "description": "Magnitude 0.5 at 270 degrees",
+      "inputs": [
+        -9.184850993605148e-17,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -8.060464788e-17,
+        "sinh_imag": -0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": 4.403451985e-17
+      },
+      "test_id": 65
+    },
+    {
+      "description": "Magnitude 0.5 at 315 degrees",
+      "inputs": [
+        0.3535533905932737,
+        -0.35355339059327384
+      ],
+      "expected": {
+        "sinh_real": 0.3386389613,
+        "sinh_imag": -0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": -0.1249783114
+      },
+      "test_id": 66
+    },
+    {
+      "description": "Magnitude 1.0 at 0 degrees",
+      "inputs": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": 0.0
+      },
+      "test_id": 67
+    },
+    {
+      "description": "Magnitude 1.0 at 45 degrees",
+      "inputs": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "sinh_real": 0.5835053325,
+        "sinh_imag": 0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": 0.49861148
+      },
+      "test_id": 68
+    },
+    {
+      "description": "Magnitude 1.0 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 3.308397534e-17,
+        "sinh_imag": 0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 5.152523917e-17
+      },
+      "test_id": 69
+    },
+    {
+      "description": "Magnitude 1.0 at 135 degrees",
+      "inputs": [
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "expected": {
+        "sinh_real": -0.5835053325,
+        "sinh_imag": 0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": -0.49861148
+      },
+      "test_id": 70
+    },
+    {
+      "description": "Magnitude 1.0 at 180 degrees",
+      "inputs": [
+        -1.0,
+        1.2246467991473532e-16
+      ],
+      "expected": {
+        "sinh_real": -1.175201178,
+        "sinh_imag": 1.889729049e-16,
+        "cosh_real": 1.543080688,
+        "cosh_imag": -1.439206519e-16
+      },
+      "test_id": 71
+    },
+    {
+      "description": "Magnitude 1.0 at 225 degrees",
+      "inputs": [
+        -0.7071067811865477,
+        -0.7071067811865475
+      ],
+      "expected": {
+        "sinh_real": -0.5835053325,
+        "sinh_imag": -0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": 0.49861148
+      },
+      "test_id": 72
+    },
+    {
+      "description": "Magnitude 1.0 at 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-16,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -9.925190616e-17,
+        "sinh_imag": -0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 1.545756911e-16
+      },
+      "test_id": 73
+    },
+    {
+      "description": "Magnitude 1.0 at 315 degrees",
+      "inputs": [
+        0.7071067811865474,
+        -0.7071067811865477
+      ],
+      "expected": {
+        "sinh_real": 0.5835053325,
+        "sinh_imag": -0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": -0.49861148
+      },
+      "test_id": 74
+    },
+    {
+      "description": "Magnitude 2.0 at 0 degrees",
+      "inputs": [
+        2.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 3.62686038,
+        "sinh_imag": 0.0,
+        "cosh_real": 3.762195587,
+        "cosh_imag": 0.0
+      },
+      "test_id": 75
+    },
+    {
+      "description": "Magnitude 2.0 at 45 degrees",
+      "inputs": [
+        1.4142135623730951,
+        1.414213562373095
+      ],
+      "expected": {
+        "sinh_real": 0.3017607331,
+        "sinh_imag": 2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": 1.911394238
+      },
+      "test_id": 76
+    },
+    {
+      "description": "Magnitude 2.0 at 90 degrees",
+      "inputs": [
+        1.2246467991473532e-16,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -5.096329899e-17,
+        "sinh_imag": 0.9092974067,
+        "cosh_real": -0.4161468446,
+        "cosh_imag": 1.113568275e-16
+      },
+      "test_id": 77
+    },
+    {
+      "description": "Magnitude 2.0 at 135 degrees",
+      "inputs": [
+        -1.414213562373095,
+        1.4142135623730951
+      ],
+      "expected": {
+        "sinh_real": -0.3017607331,
+        "sinh_imag": 2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": -1.911394238
+      },
+      "test_id": 78
+    },
+    {
+      "description": "Magnitude 2.0 at 180 degrees",
+      "inputs": [
+        -2.0,
+        2.4492935982947064e-16
+      ],
+      "expected": {
+        "sinh_real": -3.62686038,
+        "sinh_imag": 9.214723202e-16,
+        "cosh_real": 3.762195587,
+        "cosh_imag": -8.883247446e-16
+      },
+      "test_id": 79
+    },
+    {
+      "description": "Magnitude 2.0 at 225 degrees",
+      "inputs": [
+        -1.4142135623730954,
+        -1.414213562373095
+      ],
+      "expected": {
+        "sinh_real": -0.3017607331,
+        "sinh_imag": -2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": 1.911394238
+      },
+      "test_id": 80
+    },
+    {
+      "description": "Magnitude 2.0 at 270 degrees",
+      "inputs": [
+        -3.6739403974420594e-16,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 1.528898573e-16,
+        "sinh_imag": -0.9092974067,
+        "cosh_real": -0.4161468446,
+        "cosh_imag": 3.340704032e-16
+      },
+      "test_id": 81
+    },
+    {
+      "description": "Magnitude 2.0 at 315 degrees",
+      "inputs": [
+        1.4142135623730947,
+        -1.4142135623730954
+      ],
+      "expected": {
+        "sinh_real": 0.3017607331,
+        "sinh_imag": -2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": -1.911394238
+      },
+      "test_id": 82
+    },
+    {
+      "description": "Magnitude 5.0 at 0 degrees",
+      "inputs": [
+        5.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 74.20320892,
+        "sinh_imag": 0.0,
+        "cosh_real": 74.20994568,
+        "cosh_imag": 0.0
+      },
+      "test_id": 83
+    },
+    {
+      "description": "Magnitude 5.0 at 45 degrees",
+      "inputs": [
+        3.5355339059327378,
+        3.5355339059327373
+      ],
+      "expected": {
+        "sinh_real": -15.82906818,
+        "sinh_imag": -6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": -6.5796628
+      },
+      "test_id": 84
+    },
+    {
+      "description": "Magnitude 5.0 at 90 degrees",
+      "inputs": [
+        3.061616997868383e-16,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 8.684649984e-17,
+        "sinh_imag": -0.9589242935,
+        "cosh_real": 0.2836622,
+        "cosh_imag": -2.935858812e-16
+      },
+      "test_id": 85
+    },
+    {
+      "description": "Magnitude 5.0 at 135 degrees",
+      "inputs": [
+        -3.5355339059327373,
+        3.5355339059327378
+      ],
+      "expected": {
+        "sinh_real": 15.82906818,
+        "sinh_imag": -6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": 6.5796628
+      },
+      "test_id": 86
+    },
+    {
+      "description": "Magnitude 5.0 at 180 degrees",
+      "inputs": [
+        -5.0,
+        6.123233995736766e-16
+      ],
+      "expected": {
+        "sinh_real": -74.20320892,
+        "sinh_imag": 4.544048514e-14,
+        "cosh_real": 74.20994568,
+        "cosh_imag": -4.543636179e-14
+      },
+      "test_id": 87
+    },
+    {
+      "description": "Magnitude 5.0 at 225 degrees",
+      "inputs": [
+        -3.5355339059327386,
+        -3.5355339059327373
+      ],
+      "expected": {
+        "sinh_real": 15.82906818,
+        "sinh_imag": 6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": -6.5796628
+      },
+      "test_id": 88
+    },
+    {
+      "description": "Magnitude 5.0 at 270 degrees",
+      "inputs": [
+        -9.184850993605148e-16,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -2.60539526e-16,
+        "sinh_imag": 0.9589242935,
+        "cosh_real": 0.2836622,
+        "cosh_imag": -8.807577229e-16
+      },
+      "test_id": 89
+    },
+    {
+      "description": "Magnitude 5.0 at 315 degrees",
+      "inputs": [
+        3.535533905932737,
+        -3.5355339059327386
+      ],
+      "expected": {
+        "sinh_real": -15.82906818,
+        "sinh_imag": 6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": 6.5796628
+      },
+      "test_id": 90
+    },
+    {
+      "description": "Magnitude 10.0 at 0 degrees",
+      "inputs": [
+        10.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 11013.23242,
+        "sinh_imag": 0.0,
+        "cosh_real": 11013.23242,
+        "cosh_imag": 0.0
+      },
+      "test_id": 91
+    },
+    {
+      "description": "Magnitude 10.0 at 45 degrees",
+      "inputs": [
+        7.0710678118654755,
+        7.071067811865475
+      ],
+      "expected": {
+        "sinh_real": 415.2396545,
+        "sinh_imag": 417.3085632,
+        "cosh_real": 415.2402039,
+        "cosh_imag": 417.3079834
+      },
+      "test_id": 92
+    },
+    {
+      "description": "Magnitude 10.0 at 90 degrees",
+      "inputs": [
+        6.123233995736766e-16,
+        10.0
+      ],
+      "expected": {
+        "sinh_real": -5.137831337e-16,
+        "sinh_imag": -0.5440211296,
+        "cosh_real": -0.8390715122,
+        "cosh_imag": -3.331168559e-16
+      },
+      "test_id": 93
+    },
+    {
+      "description": "Magnitude 10.0 at 135 degrees",
+      "inputs": [
+        -7.071067811865475,
+        7.0710678118654755
+      ],
+      "expected": {
+        "sinh_real": -415.2396545,
+        "sinh_imag": 417.3085632,
+        "cosh_real": 415.2402039,
+        "cosh_imag": -417.3079834
+      },
+      "test_id": 94
+    },
+    {
+      "description": "Magnitude 10.0 at 180 degrees",
+      "inputs": [
+        -10.0,
+        1.2246467991473533e-15
+      ],
+      "expected": {
+        "sinh_real": -11013.23242,
+        "sinh_imag": 1.348732237e-11,
+        "cosh_real": 11013.23242,
+        "cosh_imag": -1.348732237e-11
+      },
+      "test_id": 95
+    },
+    {
+      "description": "Magnitude 10.0 at 225 degrees",
+      "inputs": [
+        -7.071067811865477,
+        -7.071067811865475
+      ],
+      "expected": {
+        "sinh_real": -415.2396545,
+        "sinh_imag": -417.3085632,
+        "cosh_real": 415.2402039,
+        "cosh_imag": 417.3079834
+      },
+      "test_id": 96
+    },
+    {
+      "description": "Magnitude 10.0 at 270 degrees",
+      "inputs": [
+        -1.8369701987210296e-15,
+        -10.0
+      ],
+      "expected": {
+        "sinh_real": 1.541349242e-15,
+        "sinh_imag": 0.5440211296,
+        "cosh_real": -0.8390715122,
+        "cosh_imag": -9.993505411e-16
+      },
+      "test_id": 97
+    },
+    {
+      "description": "Magnitude 10.0 at 315 degrees",
+      "inputs": [
+        7.071067811865474,
+        -7.071067811865477
+      ],
+      "expected": {
+        "sinh_real": 415.2396545,
+        "sinh_imag": -417.3085632,
+        "cosh_real": 415.2402039,
+        "cosh_imag": -417.3079834
+      },
+      "test_id": 98
+    },
+    {
+      "description": "Origin: z = 0 + 0i",
+      "inputs": [
+        0.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 99
+    },
+    {
+      "description": "Small value: z = 1e-10 + 1e-10i",
+      "inputs": [
+        1e-10,
+        1e-10
+      ],
+      "expected": {
+        "sinh_real": 1.000000013e-10,
+        "sinh_imag": 1.000000013e-10,
+        "cosh_real": 1.0,
+        "cosh_imag": 1.000000049e-20
+      },
+      "test_id": 100
+    },
+    {
+      "description": "Small real: z = 1e-10 + 0i",
+      "inputs": [
+        1e-10,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 1.000000013e-10,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 101
+    },
+    {
+      "description": "Small imag: z = 0 + 1e-10i",
+      "inputs": [
+        0.0,
+        1e-10
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 1.000000013e-10,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 102
+    },
+    {
+      "description": "Small value: z = -1e-10 + -1e-10i",
+      "inputs": [
+        -1e-10,
+        -1e-10
+      ],
+      "expected": {
+        "sinh_real": -1.000000013e-10,
+        "sinh_imag": -1.000000013e-10,
+        "cosh_real": 1.0,
+        "cosh_imag": 1.000000049e-20
+      },
+      "test_id": 103
+    },
+    {
+      "description": "Small real: z = -1e-10 + 0i",
+      "inputs": [
+        -1e-10,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -1.000000013e-10,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 104
+    },
+    {
+      "description": "Small imag: z = 0 + -1e-10i",
+      "inputs": [
+        0.0,
+        -1e-10
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -1.000000013e-10,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 105
+    },
+    {
+      "description": "Small value: z = 1e-08 + 1e-08i",
+      "inputs": [
+        1e-08,
+        1e-08
+      ],
+      "expected": {
+        "sinh_real": 9.999999939e-09,
+        "sinh_imag": 9.999999939e-09,
+        "cosh_real": 1.0,
+        "cosh_imag": 1.000000017e-16
+      },
+      "test_id": 106
+    },
+    {
+      "description": "Small real: z = 1e-08 + 0i",
+      "inputs": [
+        1e-08,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 9.999999939e-09,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 107
+    },
+    {
+      "description": "Small imag: z = 0 + 1e-08i",
+      "inputs": [
+        0.0,
+        1e-08
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 9.999999939e-09,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 108
+    },
+    {
+      "description": "Small value: z = -1e-08 + -1e-08i",
+      "inputs": [
+        -1e-08,
+        -1e-08
+      ],
+      "expected": {
+        "sinh_real": -9.999999939e-09,
+        "sinh_imag": -9.999999939e-09,
+        "cosh_real": 1.0,
+        "cosh_imag": 1.000000017e-16
+      },
+      "test_id": 109
+    },
+    {
+      "description": "Small real: z = -1e-08 + 0i",
+      "inputs": [
+        -1e-08,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -9.999999939e-09,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 110
+    },
+    {
+      "description": "Small imag: z = 0 + -1e-08i",
+      "inputs": [
+        0.0,
+        -1e-08
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -9.999999939e-09,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 111
+    },
+    {
+      "description": "Small value: z = 1e-06 + 1e-06i",
+      "inputs": [
+        1e-06,
+        1e-06
+      ],
+      "expected": {
+        "sinh_real": 9.999999975e-07,
+        "sinh_imag": 9.999999975e-07,
+        "cosh_real": 1.0,
+        "cosh_imag": 9.99999996e-13
+      },
+      "test_id": 112
+    },
+    {
+      "description": "Small real: z = 1e-06 + 0i",
+      "inputs": [
+        1e-06,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 9.999999975e-07,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 113
+    },
+    {
+      "description": "Small imag: z = 0 + 1e-06i",
+      "inputs": [
+        0.0,
+        1e-06
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 9.999999975e-07,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 114
+    },
+    {
+      "description": "Small value: z = -1e-06 + -1e-06i",
+      "inputs": [
+        -1e-06,
+        -1e-06
+      ],
+      "expected": {
+        "sinh_real": -9.999999975e-07,
+        "sinh_imag": -9.999999975e-07,
+        "cosh_real": 1.0,
+        "cosh_imag": 9.99999996e-13
+      },
+      "test_id": 115
+    },
+    {
+      "description": "Small real: z = -1e-06 + 0i",
+      "inputs": [
+        -1e-06,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -9.999999975e-07,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 116
+    },
+    {
+      "description": "Small imag: z = 0 + -1e-06i",
+      "inputs": [
+        0.0,
+        -1e-06
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -9.999999975e-07,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 117
+    },
+    {
+      "description": "Small value: z = 0.0001 + 0.0001i",
+      "inputs": [
+        0.0001,
+        0.0001
+      ],
+      "expected": {
+        "sinh_real": 9.999999747e-05,
+        "sinh_imag": 9.999999747e-05,
+        "cosh_real": 1.0,
+        "cosh_imag": 9.999999051e-09
+      },
+      "test_id": 118
+    },
+    {
+      "description": "Small real: z = 0.0001 + 0i",
+      "inputs": [
+        0.0001,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 9.999999747e-05,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 119
+    },
+    {
+      "description": "Small imag: z = 0 + 0.0001i",
+      "inputs": [
+        0.0,
+        0.0001
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 9.999999747e-05,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 120
+    },
+    {
+      "description": "Small value: z = -0.0001 + -0.0001i",
+      "inputs": [
+        -0.0001,
+        -0.0001
+      ],
+      "expected": {
+        "sinh_real": -9.999999747e-05,
+        "sinh_imag": -9.999999747e-05,
+        "cosh_real": 1.0,
+        "cosh_imag": 9.999999051e-09
+      },
+      "test_id": 121
+    },
+    {
+      "description": "Small real: z = -0.0001 + 0i",
+      "inputs": [
+        -0.0001,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -9.999999747e-05,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 122
+    },
+    {
+      "description": "Small imag: z = 0 + -0.0001i",
+      "inputs": [
+        0.0,
+        -0.0001
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -9.999999747e-05,
+        "cosh_real": 1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 123
+    },
+    {
+      "description": "Large positive real: z = 10.0 + 0i",
+      "inputs": [
+        10.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 11013.23242,
+        "sinh_imag": 0.0,
+        "cosh_real": 11013.23242,
+        "cosh_imag": 0.0
+      },
+      "test_id": 124
+    },
+    {
+      "description": "Large negative real: z = -10.0 + 0i",
+      "inputs": [
+        -10.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -11013.23242,
+        "sinh_imag": 0.0,
+        "cosh_real": 11013.23242,
+        "cosh_imag": -0.0
+      },
+      "test_id": 125
+    },
+    {
+      "description": "Large positive imag: z = 0 + 10.0i",
+      "inputs": [
+        0.0,
+        10.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -0.5440211296,
+        "cosh_real": -0.8390715122,
+        "cosh_imag": -0.0
+      },
+      "test_id": 126
+    },
+    {
+      "description": "Large negative imag: z = 0 + -10.0i",
+      "inputs": [
+        0.0,
+        -10.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.5440211296,
+        "cosh_real": -0.8390715122,
+        "cosh_imag": 0.0
+      },
+      "test_id": 127
+    },
+    {
+      "description": "Large positive real: z = 20.0 + 0i",
+      "inputs": [
+        20.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 242582592.0,
+        "sinh_imag": 0.0,
+        "cosh_real": 242582592.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 128
+    },
+    {
+      "description": "Large negative real: z = -20.0 + 0i",
+      "inputs": [
+        -20.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -242582592.0,
+        "sinh_imag": 0.0,
+        "cosh_real": 242582592.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 129
+    },
+    {
+      "description": "Large positive imag: z = 0 + 20.0i",
+      "inputs": [
+        0.0,
+        20.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.9129452705,
+        "cosh_real": 0.408082068,
+        "cosh_imag": 0.0
+      },
+      "test_id": 130
+    },
+    {
+      "description": "Large negative imag: z = 0 + -20.0i",
+      "inputs": [
+        0.0,
+        -20.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.9129452705,
+        "cosh_real": 0.408082068,
+        "cosh_imag": -0.0
+      },
+      "test_id": 131
+    },
+    {
+      "description": "Large positive real: z = 50.0 + 0i",
+      "inputs": [
+        50.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 2.592352729e+21,
+        "sinh_imag": 0.0,
+        "cosh_real": 2.592352729e+21,
+        "cosh_imag": 0.0
+      },
+      "test_id": 132
+    },
+    {
+      "description": "Large negative real: z = -50.0 + 0i",
+      "inputs": [
+        -50.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -2.592352729e+21,
+        "sinh_imag": 0.0,
+        "cosh_real": 2.592352729e+21,
+        "cosh_imag": -0.0
+      },
+      "test_id": 133
+    },
+    {
+      "description": "Large positive imag: z = 0 + 50.0i",
+      "inputs": [
+        0.0,
+        50.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.2623748481,
+        "cosh_real": 0.9649659991,
+        "cosh_imag": -0.0
+      },
+      "test_id": 134
+    },
+    {
+      "description": "Large negative imag: z = 0 + -50.0i",
+      "inputs": [
+        0.0,
+        -50.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.2623748481,
+        "cosh_real": 0.9649659991,
+        "cosh_imag": 0.0
+      },
+      "test_id": 135
+    },
+    {
+      "description": "Large positive real: z = 100.0 + 0i",
+      "inputs": [
+        100.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.5063656569,
+        "cosh_real": 0.8623188734,
+        "cosh_imag": -0.0
+      },
+      "test_id": 138
+    },
+    {
+      "description": "Large negative real: z = -100.0 + 0i",
+      "inputs": [
+        -100.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.5063656569,
+        "cosh_real": 0.8623188734,
+        "cosh_imag": 0.0
+      },
+      "test_id": 139
+    },
+    {
+      "description": "Large positive imag: z = 0 + 100.0i",
+      "inputs": [
+        0.0,
+        100.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.8732972741,
+        "cosh_real": 0.4871876836,
+        "cosh_imag": -0.0
+      },
+      "test_id": 142
+    },
+    {
+      "description": "Large negative imag: z = 0 + -100.0i",
+      "inputs": [
+        0.0,
+        -100.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.8732972741,
+        "cosh_real": 0.4871876836,
+        "cosh_imag": 0.0
+      },
+      "test_id": 143
+    },
+    {
+      "description": "Large positive real: z = 200.0 + 0i",
+      "inputs": [
+        200.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -0.4677718282,
+        "cosh_real": -0.8838492632,
+        "cosh_imag": -0.0
+      },
+      "test_id": 146
+    },
+    {
+      "description": "Large negative real: z = -200.0 + 0i",
+      "inputs": [
+        -200.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.4677718282,
+        "cosh_real": -0.8838492632,
+        "cosh_imag": 0.0
+      },
+      "test_id": 147
+    },
+    {
+      "description": "Large positive imag: z = 0 + 200.0i",
+      "inputs": [
+        0.0,
+        200.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.5439705253,
+        "cosh_real": -0.8391042948,
+        "cosh_imag": 0.0
+      },
+      "test_id": 150
+    },
+    {
+      "description": "Large negative imag: z = 0 + -200.0i",
+      "inputs": [
+        0.0,
+        -200.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -0.5439705253,
+        "cosh_real": -0.8391042948,
+        "cosh_imag": -0.0
+      },
+      "test_id": 151
+    },
+    {
+      "description": "Large positive real: z = 500.0 + 0i",
+      "inputs": [
+        500.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.4573041201,
+        "sinh_imag": 0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": 0.2498263866
+      },
+      "test_id": 152
+    },
+    {
+      "description": "Large negative real: z = -500.0 + 0i",
+      "inputs": [
+        -500.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.63496387,
+        "sinh_imag": 1.298457623,
+        "cosh_real": 0.8337299824,
+        "cosh_imag": 0.9888976812
+      },
+      "test_id": 153
+    },
+    {
+      "description": "Large positive imag: z = 0 + 500.0i",
+      "inputs": [
+        0.0,
+        500.0
+      ],
+      "expected": {
+        "sinh_real": 1.959600925,
+        "sinh_imag": 3.165778399,
+        "cosh_real": 2.03272295,
+        "cosh_imag": 3.051897764
+      },
+      "test_id": 154
+    },
+    {
+      "description": "Large negative imag: z = 0 + -500.0i",
+      "inputs": [
+        0.0,
+        -500.0
+      ],
+      "expected": {
+        "sinh_real": -0.4890562594,
+        "sinh_imag": 1.403119326,
+        "cosh_real": -0.6421481371,
+        "cosh_imag": 1.06860733
+      },
+      "test_id": 155
+    },
+    {
+      "description": "Large positive real: z = 700.0 + 0i",
+      "inputs": [
+        700.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.2804817855,
+        "sinh_imag": 0.4070739746,
+        "cosh_real": 0.9628205299,
+        "cosh_imag": 0.1185857877
+      },
+      "test_id": 156
+    },
+    {
+      "description": "Large negative real: z = -700.0 + 0i",
+      "inputs": [
+        -700.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.4435608387,
+        "sinh_imag": 0.8504006863,
+        "cosh_real": 0.8259215951,
+        "cosh_imag": 0.4567073286
+      },
+      "test_id": 157
+    },
+    {
+      "description": "Large positive imag: z = 0 + 700.0i",
+      "inputs": [
+        0.0,
+        700.0
+      ],
+      "expected": {
+        "sinh_real": 0.1067750677,
+        "sinh_imag": 1.806119919,
+        "cosh_real": 0.1280806959,
+        "cosh_imag": 1.505680203
+      },
+      "test_id": 158
+    },
+    {
+      "description": "Large negative imag: z = 0 + -700.0i",
+      "inputs": [
+        0.0,
+        -700.0
+      ],
+      "expected": {
+        "sinh_real": -5.989656925,
+        "sinh_imag": 0.8653886914,
+        "cosh_real": -6.070920467,
+        "cosh_imag": 0.8538048267
+      },
+      "test_id": 159
+    },
+    {
+      "description": "Identity test point: z = 0.5 + 0.5i",
+      "inputs": [
+        0.5,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": -0.4573041201,
+        "sinh_imag": 0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": -0.2498263866
+      },
+      "test_id": 160
+    },
+    {
+      "description": "Identity test point: z = 1.0 + 1.0i",
+      "inputs": [
+        1.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 0.4573041201,
+        "sinh_imag": -0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": -0.2498263866
+      },
+      "test_id": 161
+    },
+    {
+      "description": "Identity test point: z = 2.0 + 1.0i",
+      "inputs": [
+        2.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -0.4573041201,
+        "sinh_imag": -0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": 0.2498263866
+      },
+      "test_id": 162
+    },
+    {
+      "description": "Identity test point: z = 1.0 + 2.0i",
+      "inputs": [
+        1.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -6.548119545,
+        "sinh_imag": -7.619232178,
+        "cosh_real": -6.580663204,
+        "cosh_imag": -7.581552505
+      },
+      "test_id": 163
+    },
+    {
+      "description": "Identity test point: z = 0.3 + 0.4i",
+      "inputs": [
+        0.3,
+        0.4
+      ],
+      "expected": {
+        "sinh_real": -27.01681328,
+        "sinh_imag": 3.853737831,
+        "cosh_real": -27.03494644,
+        "cosh_imag": 3.851153135
+      },
+      "test_id": 164
+    },
+    {
+      "description": "Identity test point: z = 0.6 + 0.8i",
+      "inputs": [
+        0.6,
+        0.8
+      ],
+      "expected": {
+        "sinh_real": 6.548119545,
+        "sinh_imag": -7.619232178,
+        "cosh_real": -6.580663204,
+        "cosh_imag": 7.581552505
+      },
+      "test_id": 165
+    },
+    {
+      "description": "Identity test point: z = 1.2 + 1.5i",
+      "inputs": [
+        1.2,
+        1.5
+      ],
+      "expected": {
+        "sinh_real": -6.548119545,
+        "sinh_imag": 7.619232178,
+        "cosh_real": -6.580663204,
+        "cosh_imag": 7.581552505
+      },
+      "test_id": 166
+    },
+    {
+      "description": "Identity test point: z = 2.5 + 3.0i",
+      "inputs": [
+        2.5,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 0.2526123226,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.031413078,
+        "cosh_imag": 0.0
+      },
+      "test_id": 167
+    },
+    {
+      "description": "Identity test point: z = -0.5 + 0.5i",
+      "inputs": [
+        -0.5,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 0.1749295443,
+        "sinh_imag": 0.1786123812,
+        "cosh_real": 0.9998372793,
+        "cosh_imag": 0.03124966845
+      },
+      "test_id": 168
+    },
+    {
+      "description": "Identity test point: z = 0.5 + -0.5i",
+      "inputs": [
+        0.5,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 1.48321888e-17,
+        "sinh_imag": 0.2474039644,
+        "cosh_real": 0.9689124227,
+        "cosh_imag": 3.787279935e-18
+      },
+      "test_id": 169
+    },
+    {
+      "description": "Identity test point: z = -0.5 + -0.5i",
+      "inputs": [
+        -0.5,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -0.1749295443,
+        "sinh_imag": 0.1786123812,
+        "cosh_real": 0.9998372793,
+        "cosh_imag": -0.03124966845
+      },
+      "test_id": 170
+    },
+    {
+      "description": "Identity test point: z = 3.0 + 4.0i",
+      "inputs": [
+        3.0,
+        4.0
+      ],
+      "expected": {
+        "sinh_real": -0.2526123226,
+        "sinh_imag": 3.157792098e-17,
+        "cosh_real": 1.031413078,
+        "cosh_imag": -7.734022095e-18
+      },
+      "test_id": 171
+    },
+    {
+      "description": "Identity test point: z = 4.0 + 3.0i",
+      "inputs": [
+        4.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -0.1749295443,
+        "sinh_imag": -0.1786123812,
+        "cosh_real": 0.9998372793,
+        "cosh_imag": 0.03124966845
+      },
+      "test_id": 172
+    },
+    {
+      "description": "Identity test point: z = -3.0 + 4.0i",
+      "inputs": [
+        -3.0,
+        4.0
+      ],
+      "expected": {
+        "sinh_real": -4.449657632e-17,
+        "sinh_imag": -0.2474039644,
+        "cosh_real": 0.9689124227,
+        "cosh_imag": 1.136184187e-17
+      },
+      "test_id": 173
+    },
+    {
+      "description": "Identity test point: z = 3.0 + -4.0i",
+      "inputs": [
+        3.0,
+        -4.0
+      ],
+      "expected": {
+        "sinh_real": 0.1749295443,
+        "sinh_imag": -0.1786123812,
+        "cosh_real": 0.9998372793,
+        "cosh_imag": -0.03124966845
+      },
+      "test_id": 174
+    },
+    {
+      "description": "Radius 0.25 at angle 0 degrees",
+      "inputs": [
+        0.25,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.5210952759,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.127625942,
+        "cosh_imag": 0.0
+      },
+      "test_id": 175
+    },
+    {
+      "description": "Radius 0.25 at angle 45 degrees",
+      "inputs": [
+        0.1767766952966369,
+        0.17677669529663687
+      ],
+      "expected": {
+        "sinh_real": 0.3386389613,
+        "sinh_imag": 0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": 0.1249783114
+      },
+      "test_id": 176
+    },
+    {
+      "description": "Radius 0.25 at angle 90 degrees",
+      "inputs": [
+        1.5308084989341915e-17,
+        0.25
+      ],
+      "expected": {
+        "sinh_real": 2.686821761e-17,
+        "sinh_imag": 0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": 1.467817439e-17
+      },
+      "test_id": 177
+    },
+    {
+      "description": "Radius 0.25 at angle 135 degrees",
+      "inputs": [
+        -0.17677669529663687,
+        0.1767766952966369
+      ],
+      "expected": {
+        "sinh_real": -0.3386389613,
+        "sinh_imag": 0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": -0.1249783114
+      },
+      "test_id": 178
+    },
+    {
+      "description": "Radius 0.25 at angle 180 degrees",
+      "inputs": [
+        -0.25,
+        3.061616997868383e-17
+      ],
+      "expected": {
+        "sinh_real": -0.5210952759,
+        "sinh_imag": 6.90471811e-17,
+        "cosh_real": 1.127625942,
+        "cosh_imag": -3.190788332e-17
+      },
+      "test_id": 179
+    },
+    {
+      "description": "Radius 0.25 at angle 225 degrees",
+      "inputs": [
+        -0.17677669529663692,
+        -0.17677669529663687
+      ],
+      "expected": {
+        "sinh_real": -0.3386389613,
+        "sinh_imag": -0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": 0.1249783114
+      },
+      "test_id": 180
+    },
+    {
+      "description": "Radius 0.25 at angle 270 degrees",
+      "inputs": [
+        -4.592425496802574e-17,
+        -0.25
+      ],
+      "expected": {
+        "sinh_real": -8.060464788e-17,
+        "sinh_imag": -0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": 4.403451985e-17
+      },
+      "test_id": 181
+    },
+    {
+      "description": "Radius 0.25 at angle 315 degrees",
+      "inputs": [
+        0.17677669529663684,
+        -0.17677669529663692
+      ],
+      "expected": {
+        "sinh_real": 0.3386389613,
+        "sinh_imag": -0.3680995405,
+        "cosh_real": 0.9973958731,
+        "cosh_imag": -0.1249783114
+      },
+      "test_id": 182
+    },
+    {
+      "description": "Radius 0.5 at angle 0 degrees",
+      "inputs": [
+        0.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.8223167062,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.294683337,
+        "cosh_imag": 0.0
+      },
+      "test_id": 183
+    },
+    {
+      "description": "Radius 0.5 at angle 45 degrees",
+      "inputs": [
+        0.3535533905932738,
+        0.35355339059327373
+      ],
+      "expected": {
+        "sinh_real": 0.479232192,
+        "sinh_imag": 0.5786316395,
+        "cosh_real": 0.9868189096,
+        "cosh_imag": 0.2810028493
+      },
+      "test_id": 184
+    },
+    {
+      "description": "Radius 0.5 at angle 90 degrees",
+      "inputs": [
+        3.061616997868383e-17,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 3.360226355e-17,
+        "sinh_imag": 0.6816387773,
+        "cosh_real": 0.7316888571,
+        "cosh_imag": 3.130375031e-17
+      },
+      "test_id": 185
+    },
+    {
+      "description": "Radius 0.5 at angle 135 degrees",
+      "inputs": [
+        -0.35355339059327373,
+        0.3535533905932738
+      ],
+      "expected": {
+        "sinh_real": -0.479232192,
+        "sinh_imag": 0.5786316395,
+        "cosh_real": 0.9868189096,
+        "cosh_imag": -0.2810028493
+      },
+      "test_id": 186
+    },
+    {
+      "description": "Radius 0.5 at angle 180 degrees",
+      "inputs": [
+        -0.5,
+        6.123233995736766e-17
+      ],
+      "expected": {
+        "sinh_real": -0.8223167062,
+        "sinh_imag": 1.189147305e-16,
+        "cosh_real": 1.294683337,
+        "cosh_imag": -7.552856471e-17
+      },
+      "test_id": 187
+    },
+    {
+      "description": "Radius 0.5 at angle 225 degrees",
+      "inputs": [
+        -0.35355339059327384,
+        -0.35355339059327373
+      ],
+      "expected": {
+        "sinh_real": -0.479232192,
+        "sinh_imag": -0.5786316395,
+        "cosh_real": 0.9868189096,
+        "cosh_imag": 0.2810028493
+      },
+      "test_id": 188
+    },
+    {
+      "description": "Radius 0.5 at angle 270 degrees",
+      "inputs": [
+        -9.184850993605148e-17,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -1.008068204e-16,
+        "sinh_imag": -0.6816387773,
+        "cosh_real": 0.7316888571,
+        "cosh_imag": 9.39112774e-17
+      },
+      "test_id": 189
+    },
+    {
+      "description": "Radius 0.5 at angle 315 degrees",
+      "inputs": [
+        0.3535533905932737,
+        -0.35355339059327384
+      ],
+      "expected": {
+        "sinh_real": 0.479232192,
+        "sinh_imag": -0.5786316395,
+        "cosh_real": 0.9868189096,
+        "cosh_imag": -0.2810028493
+      },
+      "test_id": 190
+    },
+    {
+      "description": "Radius 0.75 at angle 0 degrees",
+      "inputs": [
+        0.75,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": 0.0
+      },
+      "test_id": 191
+    },
+    {
+      "description": "Radius 0.75 at angle 45 degrees",
+      "inputs": [
+        0.5303300858899107,
+        0.5303300858899106
+      ],
+      "expected": {
+        "sinh_real": 0.5835053325,
+        "sinh_imag": 0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": 0.49861148
+      },
+      "test_id": 192
+    },
+    {
+      "description": "Radius 0.75 at angle 90 degrees",
+      "inputs": [
+        4.592425496802574e-17,
+        0.75
+      ],
+      "expected": {
+        "sinh_real": 3.308397534e-17,
+        "sinh_imag": 0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 5.152523917e-17
+      },
+      "test_id": 193
+    },
+    {
+      "description": "Radius 0.75 at angle 135 degrees",
+      "inputs": [
+        -0.5303300858899106,
+        0.5303300858899107
+      ],
+      "expected": {
+        "sinh_real": -0.5835053325,
+        "sinh_imag": 0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": -0.49861148
+      },
+      "test_id": 194
+    },
+    {
+      "description": "Radius 0.75 at angle 180 degrees",
+      "inputs": [
+        -0.75,
+        9.184850993605148e-17
+      ],
+      "expected": {
+        "sinh_real": -1.175201178,
+        "sinh_imag": 1.889729049e-16,
+        "cosh_real": 1.543080688,
+        "cosh_imag": -1.439206519e-16
+      },
+      "test_id": 195
+    },
+    {
+      "description": "Radius 0.75 at angle 225 degrees",
+      "inputs": [
+        -0.5303300858899107,
+        -0.5303300858899106
+      ],
+      "expected": {
+        "sinh_real": -0.5835053325,
+        "sinh_imag": -0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": 0.49861148
+      },
+      "test_id": 196
+    },
+    {
+      "description": "Radius 0.75 at angle 270 degrees",
+      "inputs": [
+        -1.3777276490407724e-16,
+        -0.75
+      ],
+      "expected": {
+        "sinh_real": -9.925190616e-17,
+        "sinh_imag": -0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 1.545756911e-16
+      },
+      "test_id": 197
+    },
+    {
+      "description": "Radius 0.75 at angle 315 degrees",
+      "inputs": [
+        0.5303300858899105,
+        -0.5303300858899107
+      ],
+      "expected": {
+        "sinh_real": 0.5835053325,
+        "sinh_imag": -0.8189271092,
+        "cosh_real": 0.958358109,
+        "cosh_imag": -0.49861148
+      },
+      "test_id": 198
+    },
+    {
+      "description": "Radius 1.0 at angle 0 degrees",
+      "inputs": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 2.129279375,
+        "sinh_imag": 0.0,
+        "cosh_real": 2.352409601,
+        "cosh_imag": 0.0
+      },
+      "test_id": 199
+    },
+    {
+      "description": "Radius 1.0 at angle 45 degrees",
+      "inputs": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": {
+        "sinh_real": 0.6206365228,
+        "sinh_imag": 1.411339998,
+        "cosh_real": 0.7896979451,
+        "cosh_imag": 1.109195232
+      },
+      "test_id": 200
+    },
+    {
+      "description": "Radius 1.0 at angle 90 degrees",
+      "inputs": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 6.497106251e-18,
+        "sinh_imag": 0.9974949956,
+        "cosh_real": 0.070737198,
+        "cosh_imag": 9.161842538e-17
+      },
+      "test_id": 201
+    },
+    {
+      "description": "Radius 1.0 at angle 135 degrees",
+      "inputs": [
+        -0.7071067811865475,
+        0.7071067811865476
+      ],
+      "expected": {
+        "sinh_real": -0.6206365228,
+        "sinh_imag": 1.411339998,
+        "cosh_real": 0.7896979451,
+        "cosh_imag": -1.109195232
+      },
+      "test_id": 202
+    },
+    {
+      "description": "Radius 1.0 at angle 180 degrees",
+      "inputs": [
+        -1.0,
+        1.2246467991473532e-16
+      ],
+      "expected": {
+        "sinh_real": -2.129279375,
+        "sinh_imag": 4.321305869e-16,
+        "cosh_real": 2.352409601,
+        "cosh_imag": -3.911422391e-16
+      },
+      "test_id": 203
+    },
+    {
+      "description": "Radius 1.0 at angle 225 degrees",
+      "inputs": [
+        -0.7071067811865477,
+        -0.7071067811865475
+      ],
+      "expected": {
+        "sinh_real": -0.6206365228,
+        "sinh_imag": -1.411339998,
+        "cosh_real": 0.7896979451,
+        "cosh_imag": 1.109195232
+      },
+      "test_id": 204
+    },
+    {
+      "description": "Radius 1.0 at angle 270 degrees",
+      "inputs": [
+        -1.8369701987210297e-16,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -1.949131669e-17,
+        "sinh_imag": -0.9974949956,
+        "cosh_real": 0.070737198,
+        "cosh_imag": 2.748552563e-16
+      },
+      "test_id": 205
+    },
+    {
+      "description": "Radius 1.0 at angle 315 degrees",
+      "inputs": [
+        0.7071067811865474,
+        -0.7071067811865477
+      ],
+      "expected": {
+        "sinh_real": 0.6206365228,
+        "sinh_imag": -1.411339998,
+        "cosh_real": 0.7896979451,
+        "cosh_imag": -1.109195232
+      },
+      "test_id": 206
+    },
+    {
+      "description": "Radius 1.5 at angle 0 degrees",
+      "inputs": [
+        1.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 3.62686038,
+        "sinh_imag": 0.0,
+        "cosh_real": 3.762195587,
+        "cosh_imag": 0.0
+      },
+      "test_id": 207
+    },
+    {
+      "description": "Radius 1.5 at angle 45 degrees",
+      "inputs": [
+        1.0606601717798214,
+        1.0606601717798212
+      ],
+      "expected": {
+        "sinh_real": 0.3017607331,
+        "sinh_imag": 2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": 1.911394238
+      },
+      "test_id": 208
+    },
+    {
+      "description": "Radius 1.5 at angle 90 degrees",
+      "inputs": [
+        9.184850993605148e-17,
+        1.5
+      ],
+      "expected": {
+        "sinh_real": -5.096329899e-17,
+        "sinh_imag": 0.9092974067,
+        "cosh_real": -0.4161468446,
+        "cosh_imag": 1.113568275e-16
+      },
+      "test_id": 209
+    },
+    {
+      "description": "Radius 1.5 at angle 135 degrees",
+      "inputs": [
+        -1.0606601717798212,
+        1.0606601717798214
+      ],
+      "expected": {
+        "sinh_real": -0.3017607331,
+        "sinh_imag": 2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": -1.911394238
+      },
+      "test_id": 210
+    },
+    {
+      "description": "Radius 1.5 at angle 180 degrees",
+      "inputs": [
+        -1.5,
+        1.8369701987210297e-16
+      ],
+      "expected": {
+        "sinh_real": -3.62686038,
+        "sinh_imag": 9.214723202e-16,
+        "cosh_real": 3.762195587,
+        "cosh_imag": -8.883247446e-16
+      },
+      "test_id": 211
+    },
+    {
+      "description": "Radius 1.5 at angle 225 degrees",
+      "inputs": [
+        -1.0606601717798214,
+        -1.0606601717798212
+      ],
+      "expected": {
+        "sinh_real": -0.3017607331,
+        "sinh_imag": -2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": 1.911394238
+      },
+      "test_id": 212
+    },
+    {
+      "description": "Radius 1.5 at angle 270 degrees",
+      "inputs": [
+        -2.755455298081545e-16,
+        -1.5
+      ],
+      "expected": {
+        "sinh_real": 1.528898573e-16,
+        "sinh_imag": -0.9092974067,
+        "cosh_real": -0.4161468446,
+        "cosh_imag": 3.340704032e-16
+      },
+      "test_id": 213
+    },
+    {
+      "description": "Radius 1.5 at angle 315 degrees",
+      "inputs": [
+        1.060660171779821,
+        -1.0606601717798214
+      ],
+      "expected": {
+        "sinh_real": 0.3017607331,
+        "sinh_imag": -2.151536703,
+        "cosh_real": 0.3396731615,
+        "cosh_imag": -1.911394238
+      },
+      "test_id": 214
+    },
+    {
+      "description": "Radius 2.0 at angle 0 degrees",
+      "inputs": [
+        2.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 10.01787472,
+        "sinh_imag": 0.0,
+        "cosh_real": 10.06766224,
+        "cosh_imag": 0.0
+      },
+      "test_id": 215
+    },
+    {
+      "description": "Radius 2.0 at angle 45 degrees",
+      "inputs": [
+        1.4142135623730951,
+        1.414213562373095
+      ],
+      "expected": {
+        "sinh_real": -2.150672674,
+        "sinh_imag": 3.605879068,
+        "cosh_real": -2.213382483,
+        "cosh_imag": 3.503717184
+      },
+      "test_id": 216
+    },
+    {
+      "description": "Radius 2.0 at angle 90 degrees",
+      "inputs": [
+        1.2246467991473532e-16,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -1.818586488e-16,
+        "sinh_imag": 0.1411200017,
+        "cosh_real": -0.9899924994,
+        "cosh_imag": 2.592332093e-17
+      },
+      "test_id": 217
+    },
+    {
+      "description": "Radius 2.0 at angle 135 degrees",
+      "inputs": [
+        -1.414213562373095,
+        1.4142135623730951
+      ],
+      "expected": {
+        "sinh_real": 2.150672674,
+        "sinh_imag": 3.605879068,
+        "cosh_real": -2.213382483,
+        "cosh_imag": -3.503717184
+      },
+      "test_id": 218
+    },
+    {
+      "description": "Radius 2.0 at angle 180 degrees",
+      "inputs": [
+        -2.0,
+        2.4492935982947064e-16
+      ],
+      "expected": {
+        "sinh_real": -10.01787472,
+        "sinh_imag": 3.69879891e-15,
+        "cosh_real": 10.06766224,
+        "cosh_imag": -3.680507234e-15
+      },
+      "test_id": 219
+    },
+    {
+      "description": "Radius 2.0 at angle 225 degrees",
+      "inputs": [
+        -1.4142135623730954,
+        -1.414213562373095
+      ],
+      "expected": {
+        "sinh_real": 2.150672674,
+        "sinh_imag": -3.605879068,
+        "cosh_real": -2.213382483,
+        "cosh_imag": 3.503717184
+      },
+      "test_id": 220
+    },
+    {
+      "description": "Radius 2.0 at angle 270 degrees",
+      "inputs": [
+        -3.6739403974420594e-16,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 5.455760918e-16,
+        "sinh_imag": -0.1411200017,
+        "cosh_real": -0.9899924994,
+        "cosh_imag": 7.776997933e-17
+      },
+      "test_id": 221
+    },
+    {
+      "description": "Radius 2.0 at angle 315 degrees",
+      "inputs": [
+        1.4142135623730947,
+        -1.4142135623730954
+      ],
+      "expected": {
+        "sinh_real": -2.150672674,
+        "sinh_imag": -3.605879068,
+        "cosh_real": -2.213382483,
+        "cosh_imag": -3.503717184
+      },
+      "test_id": 222
+    },
+    {
+      "description": "Radius 3.0 at angle 0 degrees",
+      "inputs": [
+        3.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 27.28991699,
+        "sinh_imag": 0.0,
+        "cosh_real": 27.30823326,
+        "cosh_imag": 0.0
+      },
+      "test_id": 223
+    },
+    {
+      "description": "Radius 3.0 at angle 45 degrees",
+      "inputs": [
+        2.121320343559643,
+        2.1213203435596424
+      ],
+      "expected": {
+        "sinh_real": -8.01985836,
+        "sinh_imag": 2.615211248,
+        "cosh_real": -8.076089859,
+        "cosh_imag": 2.597002506
+      },
+      "test_id": 224
+    },
+    {
+      "description": "Radius 3.0 at angle 90 degrees",
+      "inputs": [
+        1.8369701987210297e-16,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -1.600965327e-16,
+        "sinh_imag": -0.7568024993,
+        "cosh_real": -0.6536436081,
+        "cosh_imag": -1.853631814e-16
+      },
+      "test_id": 225
+    },
+    {
+      "description": "Radius 3.0 at angle 135 degrees",
+      "inputs": [
+        -2.1213203435596424,
+        2.121320343559643
+      ],
+      "expected": {
+        "sinh_real": 8.01985836,
+        "sinh_imag": 2.615211248,
+        "cosh_real": -8.076089859,
+        "cosh_imag": -2.597002506
+      },
+      "test_id": 226
+    },
+    {
+      "description": "Radius 3.0 at angle 180 degrees",
+      "inputs": [
+        -3.0,
+        3.6739403974420594e-16
+      ],
+      "expected": {
+        "sinh_real": -27.28991699,
+        "sinh_imag": 1.337717524e-14,
+        "cosh_real": 27.30823326,
+        "cosh_imag": -1.336820262e-14
+      },
+      "test_id": 227
+    },
+    {
+      "description": "Radius 3.0 at angle 225 degrees",
+      "inputs": [
+        -2.121320343559643,
+        -2.1213203435596424
+      ],
+      "expected": {
+        "sinh_real": 8.01985836,
+        "sinh_imag": -2.615211248,
+        "cosh_real": -8.076089859,
+        "cosh_imag": 2.597002506
+      },
+      "test_id": 228
+    },
+    {
+      "description": "Radius 3.0 at angle 270 degrees",
+      "inputs": [
+        -5.51091059616309e-16,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": 4.802895451e-16,
+        "sinh_imag": 0.7568024993,
+        "cosh_real": -0.6536436081,
+        "cosh_imag": -5.560894648e-16
+      },
+      "test_id": 229
+    },
+    {
+      "description": "Radius 3.0 at angle 315 degrees",
+      "inputs": [
+        2.121320343559642,
+        -2.121320343559643
+      ],
+      "expected": {
+        "sinh_real": -8.01985836,
+        "sinh_imag": -2.615211248,
+        "cosh_real": -8.076089859,
+        "cosh_imag": -2.597002506
+      },
+      "test_id": 230
+    },
+    {
+      "description": "Radius 4.0 at angle 0 degrees",
+      "inputs": [
+        4.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 74.20320892,
+        "sinh_imag": 0.0,
+        "cosh_real": 74.20994568,
+        "cosh_imag": 0.0
+      },
+      "test_id": 231
+    },
+    {
+      "description": "Radius 4.0 at angle 45 degrees",
+      "inputs": [
+        2.8284271247461903,
+        2.82842712474619
+      ],
+      "expected": {
+        "sinh_real": -15.82906818,
+        "sinh_imag": -6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": -6.5796628
+      },
+      "test_id": 232
+    },
+    {
+      "description": "Radius 4.0 at angle 90 degrees",
+      "inputs": [
+        2.4492935982947064e-16,
+        4.0
+      ],
+      "expected": {
+        "sinh_real": 8.684649984e-17,
+        "sinh_imag": -0.9589242935,
+        "cosh_real": 0.2836622,
+        "cosh_imag": -2.935858812e-16
+      },
+      "test_id": 233
+    },
+    {
+      "description": "Radius 4.0 at angle 135 degrees",
+      "inputs": [
+        -2.82842712474619,
+        2.8284271247461903
+      ],
+      "expected": {
+        "sinh_real": 15.82906818,
+        "sinh_imag": -6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": 6.5796628
+      },
+      "test_id": 234
+    },
+    {
+      "description": "Radius 4.0 at angle 180 degrees",
+      "inputs": [
+        -4.0,
+        4.898587196589413e-16
+      ],
+      "expected": {
+        "sinh_real": -74.20320892,
+        "sinh_imag": 4.544048514e-14,
+        "cosh_real": 74.20994568,
+        "cosh_imag": -4.543636179e-14
+      },
+      "test_id": 235
+    },
+    {
+      "description": "Radius 4.0 at angle 225 degrees",
+      "inputs": [
+        -2.8284271247461907,
+        -2.82842712474619
+      ],
+      "expected": {
+        "sinh_real": 15.82906818,
+        "sinh_imag": 6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": -6.5796628
+      },
+      "test_id": 236
+    },
+    {
+      "description": "Radius 4.0 at angle 270 degrees",
+      "inputs": [
+        -7.347880794884119e-16,
+        -4.0
+      ],
+      "expected": {
+        "sinh_real": -2.60539526e-16,
+        "sinh_imag": 0.9589242935,
+        "cosh_real": 0.2836622,
+        "cosh_imag": -8.807577229e-16
+      },
+      "test_id": 237
+    },
+    {
+      "description": "Radius 4.0 at angle 315 degrees",
+      "inputs": [
+        2.8284271247461894,
+        -2.8284271247461907
+      ],
+      "expected": {
+        "sinh_real": -15.82906818,
+        "sinh_imag": 6.590848446,
+        "cosh_real": -15.85597801,
+        "cosh_imag": 6.5796628
+      },
+      "test_id": 238
+    },
+    {
+      "description": "Radius 5.0 at angle 0 degrees",
+      "inputs": [
+        5.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.8268795013,
+        "cosh_real": 0.5623790622,
+        "cosh_imag": 0.0
+      },
+      "test_id": 241
+    },
+    {
+      "description": "Radius 5.0 at angle 45 degrees",
+      "inputs": [
+        3.5355339059327378,
+        3.5355339059327373
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.8268795013,
+        "cosh_real": 0.5623790622,
+        "cosh_imag": -0.0
+      },
+      "test_id": 242
+    },
+    {
+      "description": "Radius 5.0 at angle 90 degrees",
+      "inputs": [
+        3.061616997868383e-16,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 1.000000004e-15,
+        "sinh_imag": 1.000000004e-15,
+        "cosh_real": 1.0,
+        "cosh_imag": 1.000000003e-30
+      },
+      "test_id": 245
+    },
+    {
+      "description": "Radius 5.0 at angle 135 degrees",
+      "inputs": [
+        -3.5355339059327373,
+        3.5355339059327378
+      ],
+      "expected": {
+        "sinh_real": 1.000000004e-15,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 246
+    },
+    {
+      "description": "Radius 5.0 at angle 180 degrees",
+      "inputs": [
+        -5.0,
+        6.123233995736766e-16
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 1.000000004e-15,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 247
+    },
+    {
+      "description": "Radius 5.0 at angle 225 degrees",
+      "inputs": [
+        -3.5355339059327386,
+        -3.5355339059327373
+      ],
+      "expected": {
+        "sinh_real": -21.04864502,
+        "sinh_imag": 71.16172028,
+        "cosh_real": 21.05055618,
+        "cosh_imag": -71.15525818
+      },
+      "test_id": 248
+    },
+    {
+      "description": "Radius 5.0 at angle 270 degrees",
+      "inputs": [
+        -9.184850993605148e-16,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": 73.46061707,
+        "sinh_imag": -10.47250748,
+        "cosh_real": -73.46729279,
+        "cosh_imag": 10.47155666
+      },
+      "test_id": 249
+    },
+    {
+      "description": "Radius 5.0 at angle 315 degrees",
+      "inputs": [
+        3.535533905932737,
+        -3.5355339059327386
+      ],
+      "expected": {
+        "sinh_real": 30.87943077,
+        "sinh_imag": -67.47891235,
+        "cosh_real": -30.88223457,
+        "cosh_imag": 67.47278595
+      },
+      "test_id": 250
+    },
+    {
+      "description": "Edge case: z = 709.0 + 0.0i",
+      "inputs": [
+        709.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -40.09216309,
+        "sinh_imag": -62.44551468,
+        "cosh_real": 40.09580231,
+        "cosh_imag": 62.43984604
+      },
+      "test_id": 251
+    },
+    {
+      "description": "Edge case: z = -709.0 + 0.0i",
+      "inputs": [
+        -709.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -65.11943817,
+        "sinh_imag": -35.57814407,
+        "cosh_real": 65.12535095,
+        "cosh_imag": 35.57491302
+      },
+      "test_id": 252
+    },
+    {
+      "description": "Edge case: z = 0.0 + 1000.0i",
+      "inputs": [
+        0.0,
+        1000.0
+      ],
+      "expected": {
+        "sinh_real": -74.20320892,
+        "sinh_imag": 0.0,
+        "cosh_real": 74.20994568,
+        "cosh_imag": -0.0
+      },
+      "test_id": 253
+    },
+    {
+      "description": "Edge case: z = 0.0 + -1000.0i",
+      "inputs": [
+        0.0,
+        -1000.0
+      ],
+      "expected": {
+        "sinh_real": -65.11943817,
+        "sinh_imag": 35.57814407,
+        "cosh_real": 65.12535095,
+        "cosh_imag": -35.57491302
+      },
+      "test_id": 254
+    },
+    {
+      "description": "Edge case: z = 100.0 + 100.0i",
+      "inputs": [
+        100.0,
+        100.0
+      ],
+      "expected": {
+        "sinh_real": -40.09216309,
+        "sinh_imag": 62.44551468,
+        "cosh_real": 40.09580231,
+        "cosh_imag": -62.43984604
+      },
+      "test_id": 255
+    },
+    {
+      "description": "Edge case: z = -100.0 + -100.0i",
+      "inputs": [
+        -100.0,
+        -100.0
+      ],
+      "expected": {
+        "sinh_real": 30.87943077,
+        "sinh_imag": 67.47891235,
+        "cosh_real": -30.88223457,
+        "cosh_imag": -67.47278595
+      },
+      "test_id": 256
+    },
+    {
+      "description": "Edge case: z = 1e-15 + 1e-15i",
+      "inputs": [
+        1e-15,
+        1e-15
+      ],
+      "expected": {
+        "sinh_real": 73.46061707,
+        "sinh_imag": 10.47250748,
+        "cosh_real": -73.46729279,
+        "cosh_imag": -10.47155666
+      },
+      "test_id": 257
+    },
+    {
+      "description": "Edge case: z = 1e-15 + 0.0i",
+      "inputs": [
+        1e-15,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -21.04864502,
+        "sinh_imag": -71.16172028,
+        "cosh_real": 21.05055618,
+        "cosh_imag": 71.15525818
+      },
+      "test_id": 258
+    },
+    {
+      "description": "Edge case: z = 0.0 + 1e-15i",
+      "inputs": [
+        0.0,
+        1e-15
+      ],
+      "expected": {
+        "sinh_real": -2.841692448,
+        "sinh_imag": 9.654126167,
+        "cosh_real": 2.855815172,
+        "cosh_imag": -9.606383324
+      },
+      "test_id": 259
+    },
+    {
+      "description": "Grid point: z = -5 + -5i",
+      "inputs": [
+        -5.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": 9.917620659,
+        "sinh_imag": -1.420748472,
+        "cosh_real": -9.966910362,
+        "cosh_imag": 1.413722515
+      },
+      "test_id": 260
+    },
+    {
+      "description": "Grid point: z = -5 + -3i",
+      "inputs": [
+        -5.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": 4.168907166,
+        "sinh_imag": -9.154499054,
+        "cosh_real": -4.18962574,
+        "cosh_imag": 9.10922718
+      },
+      "test_id": 261
+    },
+    {
+      "description": "Grid point: z = -5 + -2i",
+      "inputs": [
+        -5.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": -5.412680626,
+        "sinh_imag": -8.471645355,
+        "cosh_real": 5.439580917,
+        "cosh_imag": 8.429750443
+      },
+      "test_id": 262
+    },
+    {
+      "description": "Grid point: z = -5 + -1i",
+      "inputs": [
+        -5.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -8.791512489,
+        "sinh_imag": -4.826694489,
+        "cosh_real": 8.835205078,
+        "cosh_imag": 4.802824974
+      },
+      "test_id": 263
+    },
+    {
+      "description": "Grid point: z = -5 + -0.5i",
+      "inputs": [
+        -5.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -10.01787472,
+        "sinh_imag": 0.0,
+        "cosh_real": 10.06766224,
+        "cosh_imag": -0.0
+      },
+      "test_id": 264
+    },
+    {
+      "description": "Grid point: z = -5 + 0i",
+      "inputs": [
+        -5.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -8.791512489,
+        "sinh_imag": 4.826694489,
+        "cosh_real": 8.835205078,
+        "cosh_imag": -4.802824974
+      },
+      "test_id": 265
+    },
+    {
+      "description": "Grid point: z = -5 + 0.5i",
+      "inputs": [
+        -5.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": -5.412680626,
+        "sinh_imag": 8.471645355,
+        "cosh_real": 5.439580917,
+        "cosh_imag": -8.429750443
+      },
+      "test_id": 266
+    },
+    {
+      "description": "Grid point: z = -5 + 1i",
+      "inputs": [
+        -5.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 4.168907166,
+        "sinh_imag": 9.154499054,
+        "cosh_real": -4.18962574,
+        "cosh_imag": -9.10922718
+      },
+      "test_id": 267
+    },
+    {
+      "description": "Grid point: z = -5 + 2i",
+      "inputs": [
+        -5.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": 9.917620659,
+        "sinh_imag": 1.420748472,
+        "cosh_real": -9.966910362,
+        "cosh_imag": -1.413722515
+      },
+      "test_id": 268
+    },
+    {
+      "description": "Grid point: z = -5 + 3i",
+      "inputs": [
+        -5.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -2.841692448,
+        "sinh_imag": -9.654126167,
+        "cosh_real": 2.855815172,
+        "cosh_imag": 9.606383324
+      },
+      "test_id": 269
+    },
+    {
+      "description": "Grid point: z = -5 + 5i",
+      "inputs": [
+        -5.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": -1.028803229,
+        "sinh_imag": 3.60766077,
+        "cosh_real": 1.067192674,
+        "cosh_imag": -3.477884531
+      },
+      "test_id": 270
+    },
+    {
+      "description": "Grid point: z = -3 + -5i",
+      "inputs": [
+        -3.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": 3.590564489,
+        "sinh_imag": -0.530921042,
+        "cosh_real": -3.724545479,
+        "cosh_imag": 0.5118225217
+      },
+      "test_id": 271
+    },
+    {
+      "description": "Grid point: z = -3 + -3i",
+      "inputs": [
+        -3.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": 1.50930655,
+        "sinh_imag": -3.420954704,
+        "cosh_real": -1.565625787,
+        "cosh_imag": 3.297894716
+      },
+      "test_id": 272
+    },
+    {
+      "description": "Grid point: z = -3 + -2i",
+      "inputs": [
+        -3.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": -1.959600925,
+        "sinh_imag": -3.165778399,
+        "cosh_real": 2.03272295,
+        "cosh_imag": 3.051897764
+      },
+      "test_id": 273
+    },
+    {
+      "description": "Grid point: z = -3 + -1i",
+      "inputs": [
+        -3.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -3.182869434,
+        "sinh_imag": -1.803692698,
+        "cosh_real": 3.301637173,
+        "cosh_imag": 1.738809586
+      },
+      "test_id": 274
+    },
+    {
+      "description": "Grid point: z = -3 + -0.5i",
+      "inputs": [
+        -3.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -3.62686038,
+        "sinh_imag": 0.0,
+        "cosh_real": 3.762195587,
+        "cosh_imag": -0.0
+      },
+      "test_id": 275
+    },
+    {
+      "description": "Grid point: z = -3 + 0i",
+      "inputs": [
+        -3.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -3.182869434,
+        "sinh_imag": 1.803692698,
+        "cosh_real": 3.301637173,
+        "cosh_imag": -1.738809586
+      },
+      "test_id": 276
+    },
+    {
+      "description": "Grid point: z = -3 + 0.5i",
+      "inputs": [
+        -3.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": -1.959600925,
+        "sinh_imag": 3.165778399,
+        "cosh_real": 2.03272295,
+        "cosh_imag": -3.051897764
+      },
+      "test_id": 277
+    },
+    {
+      "description": "Grid point: z = -3 + 1i",
+      "inputs": [
+        -3.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 1.50930655,
+        "sinh_imag": 3.420954704,
+        "cosh_real": -1.565625787,
+        "cosh_imag": -3.297894716
+      },
+      "test_id": 278
+    },
+    {
+      "description": "Grid point: z = -3 + 2i",
+      "inputs": [
+        -3.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": 3.590564489,
+        "sinh_imag": 0.530921042,
+        "cosh_real": -3.724545479,
+        "cosh_imag": -0.5118225217
+      },
+      "test_id": 279
+    },
+    {
+      "description": "Grid point: z = -3 + 3i",
+      "inputs": [
+        -3.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -1.028803229,
+        "sinh_imag": -3.60766077,
+        "cosh_real": 1.067192674,
+        "cosh_imag": 3.477884531
+      },
+      "test_id": 280
+    },
+    {
+      "description": "Grid point: z = -3 + 5i",
+      "inputs": [
+        -3.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": -0.3333601654,
+        "sinh_imag": 1.479697585,
+        "cosh_real": 0.4377136528,
+        "cosh_imag": -1.126928926
+      },
+      "test_id": 281
+    },
+    {
+      "description": "Grid point: z = -2 + -5i",
+      "inputs": [
+        -2.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": 1.163440347,
+        "sinh_imag": -0.2177595496,
+        "cosh_real": -1.527638316,
+        "cosh_imag": 0.1658443958
+      },
+      "test_id": 282
+    },
+    {
+      "description": "Grid point: z = -2 + -3i",
+      "inputs": [
+        -2.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": 0.4890562594,
+        "sinh_imag": -1.403119326,
+        "cosh_real": -0.6421481371,
+        "cosh_imag": 1.06860733
+      },
+      "test_id": 283
+    },
+    {
+      "description": "Grid point: z = -2 + -2i",
+      "inputs": [
+        -2.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": -0.63496387,
+        "sinh_imag": -1.298457623,
+        "cosh_real": 0.8337299824,
+        "cosh_imag": 0.9888976812
+      },
+      "test_id": 284
+    },
+    {
+      "description": "Grid point: z = -2 + -1i",
+      "inputs": [
+        -2.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -1.031336069,
+        "sinh_imag": -0.7397922873,
+        "cosh_real": 1.354180694,
+        "cosh_imag": 0.5634214878
+      },
+      "test_id": 285
+    },
+    {
+      "description": "Grid point: z = -2 + -0.5i",
+      "inputs": [
+        -2.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": -0.0
+      },
+      "test_id": 286
+    },
+    {
+      "description": "Grid point: z = -2 + 0i",
+      "inputs": [
+        -2.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -1.031336069,
+        "sinh_imag": 0.7397922873,
+        "cosh_real": 1.354180694,
+        "cosh_imag": -0.5634214878
+      },
+      "test_id": 287
+    },
+    {
+      "description": "Grid point: z = -2 + 0.5i",
+      "inputs": [
+        -2.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": -0.63496387,
+        "sinh_imag": 1.298457623,
+        "cosh_real": 0.8337299824,
+        "cosh_imag": -0.9888976812
+      },
+      "test_id": 288
+    },
+    {
+      "description": "Grid point: z = -2 + 1i",
+      "inputs": [
+        -2.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 0.4890562594,
+        "sinh_imag": 1.403119326,
+        "cosh_real": -0.6421481371,
+        "cosh_imag": -1.06860733
+      },
+      "test_id": 289
+    },
+    {
+      "description": "Grid point: z = -2 + 2i",
+      "inputs": [
+        -2.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": 1.163440347,
+        "sinh_imag": 0.2177595496,
+        "cosh_real": -1.527638316,
+        "cosh_imag": -0.1658443958
+      },
+      "test_id": 290
+    },
+    {
+      "description": "Grid point: z = -2 + 3i",
+      "inputs": [
+        -2.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -0.3333601654,
+        "sinh_imag": -1.479697585,
+        "cosh_real": 0.4377136528,
+        "cosh_imag": 1.126928926
+      },
+      "test_id": 291
+    },
+    {
+      "description": "Grid point: z = -2 + 5i",
+      "inputs": [
+        -2.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": -0.1478150338,
+        "sinh_imag": 1.081307888,
+        "cosh_real": 0.3198648691,
+        "cosh_imag": -0.4996909201
+      },
+      "test_id": 292
+    },
+    {
+      "description": "Grid point: z = -1 + -5i",
+      "inputs": [
+        -1.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": 0.5158804059,
+        "sinh_imag": -0.1591305733,
+        "cosh_real": -1.116341233,
+        "cosh_imag": 0.07353696972
+      },
+      "test_id": 293
+    },
+    {
+      "description": "Grid point: z = -1 + -3i",
+      "inputs": [
+        -1.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": 0.2168521583,
+        "sinh_imag": -1.025347352,
+        "cosh_real": -0.4692579806,
+        "cosh_imag": 0.4738305807
+      },
+      "test_id": 294
+    },
+    {
+      "description": "Grid point: z = -1 + -2i",
+      "inputs": [
+        -1.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": -0.2815489769,
+        "sinh_imag": -0.94886446,
+        "cosh_real": 0.6092588902,
+        "cosh_imag": 0.4384865463
+      },
+      "test_id": 295
+    },
+    {
+      "description": "Grid point: z = -1 + -1i",
+      "inputs": [
+        -1.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": -0.4573041201,
+        "sinh_imag": -0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": 0.2498263866
+      },
+      "test_id": 296
+    },
+    {
+      "description": "Grid point: z = -1 + -0.5i",
+      "inputs": [
+        -1.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -0.5210952759,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.127625942,
+        "cosh_imag": -0.0
+      },
+      "test_id": 297
+    },
+    {
+      "description": "Grid point: z = -1 + 0i",
+      "inputs": [
+        -1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.4573041201,
+        "sinh_imag": 0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": -0.2498263866
+      },
+      "test_id": 298
+    },
+    {
+      "description": "Grid point: z = -1 + 0.5i",
+      "inputs": [
+        -1.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": -0.2815489769,
+        "sinh_imag": 0.94886446,
+        "cosh_real": 0.6092588902,
+        "cosh_imag": -0.4384865463
+      },
+      "test_id": 299
+    },
+    {
+      "description": "Grid point: z = -1 + 1i",
+      "inputs": [
+        -1.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 0.2168521583,
+        "sinh_imag": 1.025347352,
+        "cosh_real": -0.4692579806,
+        "cosh_imag": -0.4738305807
+      },
+      "test_id": 300
+    },
+    {
+      "description": "Grid point: z = -1 + 2i",
+      "inputs": [
+        -1.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": 0.5158804059,
+        "sinh_imag": 0.1591305733,
+        "cosh_real": -1.116341233,
+        "cosh_imag": -0.07353696972
+      },
+      "test_id": 301
+    },
+    {
+      "description": "Grid point: z = -1 + 3i",
+      "inputs": [
+        -1.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -0.1478150338,
+        "sinh_imag": -1.081307888,
+        "cosh_real": 0.3198648691,
+        "cosh_imag": 0.4996909201
+      },
+      "test_id": 302
+    },
+    {
+      "description": "Grid point: z = -1 + 5i",
+      "inputs": [
+        -1.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.9589242935,
+        "cosh_real": 0.2836622,
+        "cosh_imag": 0.0
+      },
+      "test_id": 303
+    },
+    {
+      "description": "Grid point: z = -0.5 + -5i",
+      "inputs": [
+        -0.5,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -0.1411200017,
+        "cosh_real": -0.9899924994,
+        "cosh_imag": -0.0
+      },
+      "test_id": 304
+    },
+    {
+      "description": "Grid point: z = -0.5 + -3i",
+      "inputs": [
+        -0.5,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -0.9092974067,
+        "cosh_real": -0.4161468446,
+        "cosh_imag": -0.0
+      },
+      "test_id": 305
+    },
+    {
+      "description": "Grid point: z = -0.5 + -2i",
+      "inputs": [
+        -0.5,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": -0.0
+      },
+      "test_id": 306
+    },
+    {
+      "description": "Grid point: z = -0.5 + -1i",
+      "inputs": [
+        -0.5,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": -0.0
+      },
+      "test_id": 307
+    },
+    {
+      "description": "Grid point: z = -0.5 + -0.5i",
+      "inputs": [
+        -0.5,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.0,
+        "cosh_imag": 0.0
+      },
+      "test_id": 308
+    },
+    {
+      "description": "Grid point: z = -0.5 + 0i",
+      "inputs": [
+        -0.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.4794255495,
+        "cosh_real": 0.87758255,
+        "cosh_imag": 0.0
+      },
+      "test_id": 309
+    },
+    {
+      "description": "Grid point: z = -0.5 + 0.5i",
+      "inputs": [
+        -0.5,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.8414709568,
+        "cosh_real": 0.5403022766,
+        "cosh_imag": 0.0
+      },
+      "test_id": 310
+    },
+    {
+      "description": "Grid point: z = -0.5 + 1i",
+      "inputs": [
+        -0.5,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.9092974067,
+        "cosh_real": -0.4161468446,
+        "cosh_imag": 0.0
+      },
+      "test_id": 311
+    },
+    {
+      "description": "Grid point: z = -0.5 + 2i",
+      "inputs": [
+        -0.5,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.1411200017,
+        "cosh_real": -0.9899924994,
+        "cosh_imag": 0.0
+      },
+      "test_id": 312
+    },
+    {
+      "description": "Grid point: z = -0.5 + 3i",
+      "inputs": [
+        -0.5,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.9589242935,
+        "cosh_real": 0.2836622,
+        "cosh_imag": -0.0
+      },
+      "test_id": 313
+    },
+    {
+      "description": "Grid point: z = -0.5 + 5i",
+      "inputs": [
+        -0.5,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 0.1478150338,
+        "sinh_imag": 1.081307888,
+        "cosh_real": 0.3198648691,
+        "cosh_imag": 0.4996909201
+      },
+      "test_id": 314
+    },
+    {
+      "description": "Grid point: z = 0 + -5i",
+      "inputs": [
+        0.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -0.5158804059,
+        "sinh_imag": -0.1591305733,
+        "cosh_real": -1.116341233,
+        "cosh_imag": -0.07353696972
+      },
+      "test_id": 315
+    },
+    {
+      "description": "Grid point: z = 0 + -3i",
+      "inputs": [
+        0.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -0.2168521583,
+        "sinh_imag": -1.025347352,
+        "cosh_real": -0.4692579806,
+        "cosh_imag": -0.4738305807
+      },
+      "test_id": 316
+    },
+    {
+      "description": "Grid point: z = 0 + -2i",
+      "inputs": [
+        0.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 0.2815489769,
+        "sinh_imag": -0.94886446,
+        "cosh_real": 0.6092588902,
+        "cosh_imag": -0.4384865463
+      },
+      "test_id": 317
+    },
+    {
+      "description": "Grid point: z = 0 + -1i",
+      "inputs": [
+        0.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 0.4573041201,
+        "sinh_imag": -0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": -0.2498263866
+      },
+      "test_id": 318
+    },
+    {
+      "description": "Grid point: z = 0 + -0.5i",
+      "inputs": [
+        0.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 0.5210952759,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.127625942,
+        "cosh_imag": 0.0
+      },
+      "test_id": 319
+    },
+    {
+      "description": "Grid point: z = 0 + 0i",
+      "inputs": [
+        0.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 0.4573041201,
+        "sinh_imag": 0.5406126976,
+        "cosh_real": 0.9895848632,
+        "cosh_imag": 0.2498263866
+      },
+      "test_id": 320
+    },
+    {
+      "description": "Grid point: z = 0 + 0.5i",
+      "inputs": [
+        0.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 0.2815489769,
+        "sinh_imag": 0.94886446,
+        "cosh_real": 0.6092588902,
+        "cosh_imag": 0.4384865463
+      },
+      "test_id": 321
+    },
+    {
+      "description": "Grid point: z = 0 + 1i",
+      "inputs": [
+        0.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -0.2168521583,
+        "sinh_imag": 1.025347352,
+        "cosh_real": -0.4692579806,
+        "cosh_imag": 0.4738305807
+      },
+      "test_id": 322
+    },
+    {
+      "description": "Grid point: z = 0 + 2i",
+      "inputs": [
+        0.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -0.5158804059,
+        "sinh_imag": 0.1591305733,
+        "cosh_real": -1.116341233,
+        "cosh_imag": 0.07353696972
+      },
+      "test_id": 323
+    },
+    {
+      "description": "Grid point: z = 0 + 3i",
+      "inputs": [
+        0.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 0.1478150338,
+        "sinh_imag": -1.081307888,
+        "cosh_real": 0.3198648691,
+        "cosh_imag": -0.4996909201
+      },
+      "test_id": 324
+    },
+    {
+      "description": "Grid point: z = 0 + 5i",
+      "inputs": [
+        0.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 0.3333601654,
+        "sinh_imag": 1.479697585,
+        "cosh_real": 0.4377136528,
+        "cosh_imag": 1.126928926
+      },
+      "test_id": 325
+    },
+    {
+      "description": "Grid point: z = 0.5 + -5i",
+      "inputs": [
+        0.5,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -1.163440347,
+        "sinh_imag": -0.2177595496,
+        "cosh_real": -1.527638316,
+        "cosh_imag": -0.1658443958
+      },
+      "test_id": 326
+    },
+    {
+      "description": "Grid point: z = 0.5 + -3i",
+      "inputs": [
+        0.5,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -0.4890562594,
+        "sinh_imag": -1.403119326,
+        "cosh_real": -0.6421481371,
+        "cosh_imag": -1.06860733
+      },
+      "test_id": 327
+    },
+    {
+      "description": "Grid point: z = 0.5 + -2i",
+      "inputs": [
+        0.5,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 0.63496387,
+        "sinh_imag": -1.298457623,
+        "cosh_real": 0.8337299824,
+        "cosh_imag": -0.9888976812
+      },
+      "test_id": 328
+    },
+    {
+      "description": "Grid point: z = 0.5 + -1i",
+      "inputs": [
+        0.5,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 1.031336069,
+        "sinh_imag": -0.7397922873,
+        "cosh_real": 1.354180694,
+        "cosh_imag": -0.5634214878
+      },
+      "test_id": 329
+    },
+    {
+      "description": "Grid point: z = 0.5 + -0.5i",
+      "inputs": [
+        0.5,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 1.175201178,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.543080688,
+        "cosh_imag": 0.0
+      },
+      "test_id": 330
+    },
+    {
+      "description": "Grid point: z = 0.5 + 0i",
+      "inputs": [
+        0.5,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 1.031336069,
+        "sinh_imag": 0.7397922873,
+        "cosh_real": 1.354180694,
+        "cosh_imag": 0.5634214878
+      },
+      "test_id": 331
+    },
+    {
+      "description": "Grid point: z = 0.5 + 0.5i",
+      "inputs": [
+        0.5,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 0.63496387,
+        "sinh_imag": 1.298457623,
+        "cosh_real": 0.8337299824,
+        "cosh_imag": 0.9888976812
+      },
+      "test_id": 332
+    },
+    {
+      "description": "Grid point: z = 0.5 + 1i",
+      "inputs": [
+        0.5,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -0.4890562594,
+        "sinh_imag": 1.403119326,
+        "cosh_real": -0.6421481371,
+        "cosh_imag": 1.06860733
+      },
+      "test_id": 333
+    },
+    {
+      "description": "Grid point: z = 0.5 + 2i",
+      "inputs": [
+        0.5,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -1.163440347,
+        "sinh_imag": 0.2177595496,
+        "cosh_real": -1.527638316,
+        "cosh_imag": 0.1658443958
+      },
+      "test_id": 334
+    },
+    {
+      "description": "Grid point: z = 0.5 + 3i",
+      "inputs": [
+        0.5,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 0.3333601654,
+        "sinh_imag": -1.479697585,
+        "cosh_real": 0.4377136528,
+        "cosh_imag": -1.126928926
+      },
+      "test_id": 335
+    },
+    {
+      "description": "Grid point: z = 0.5 + 5i",
+      "inputs": [
+        0.5,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 1.028803229,
+        "sinh_imag": 3.60766077,
+        "cosh_real": 1.067192674,
+        "cosh_imag": 3.477884531
+      },
+      "test_id": 336
+    },
+    {
+      "description": "Grid point: z = 1 + -5i",
+      "inputs": [
+        1.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -3.590564489,
+        "sinh_imag": -0.530921042,
+        "cosh_real": -3.724545479,
+        "cosh_imag": -0.5118225217
+      },
+      "test_id": 337
+    },
+    {
+      "description": "Grid point: z = 1 + -3i",
+      "inputs": [
+        1.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -1.50930655,
+        "sinh_imag": -3.420954704,
+        "cosh_real": -1.565625787,
+        "cosh_imag": -3.297894716
+      },
+      "test_id": 338
+    },
+    {
+      "description": "Grid point: z = 1 + -2i",
+      "inputs": [
+        1.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 1.959600925,
+        "sinh_imag": -3.165778399,
+        "cosh_real": 2.03272295,
+        "cosh_imag": -3.051897764
+      },
+      "test_id": 339
+    },
+    {
+      "description": "Grid point: z = 1 + -1i",
+      "inputs": [
+        1.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 3.182869434,
+        "sinh_imag": -1.803692698,
+        "cosh_real": 3.301637173,
+        "cosh_imag": -1.738809586
+      },
+      "test_id": 340
+    },
+    {
+      "description": "Grid point: z = 1 + -0.5i",
+      "inputs": [
+        1.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 3.62686038,
+        "sinh_imag": 0.0,
+        "cosh_real": 3.762195587,
+        "cosh_imag": 0.0
+      },
+      "test_id": 341
+    },
+    {
+      "description": "Grid point: z = 1 + 0i",
+      "inputs": [
+        1.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 3.182869434,
+        "sinh_imag": 1.803692698,
+        "cosh_real": 3.301637173,
+        "cosh_imag": 1.738809586
+      },
+      "test_id": 342
+    },
+    {
+      "description": "Grid point: z = 1 + 0.5i",
+      "inputs": [
+        1.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 1.959600925,
+        "sinh_imag": 3.165778399,
+        "cosh_real": 2.03272295,
+        "cosh_imag": 3.051897764
+      },
+      "test_id": 343
+    },
+    {
+      "description": "Grid point: z = 1 + 1i",
+      "inputs": [
+        1.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -1.50930655,
+        "sinh_imag": 3.420954704,
+        "cosh_real": -1.565625787,
+        "cosh_imag": 3.297894716
+      },
+      "test_id": 344
+    },
+    {
+      "description": "Grid point: z = 1 + 2i",
+      "inputs": [
+        1.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -3.590564489,
+        "sinh_imag": 0.530921042,
+        "cosh_real": -3.724545479,
+        "cosh_imag": 0.5118225217
+      },
+      "test_id": 345
+    },
+    {
+      "description": "Grid point: z = 1 + 3i",
+      "inputs": [
+        1.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 1.028803229,
+        "sinh_imag": -3.60766077,
+        "cosh_real": 1.067192674,
+        "cosh_imag": -3.477884531
+      },
+      "test_id": 346
+    },
+    {
+      "description": "Grid point: z = 1 + 5i",
+      "inputs": [
+        1.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 2.841692448,
+        "sinh_imag": 9.654126167,
+        "cosh_real": 2.855815172,
+        "cosh_imag": 9.606383324
+      },
+      "test_id": 347
+    },
+    {
+      "description": "Grid point: z = 2 + -5i",
+      "inputs": [
+        2.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -9.917620659,
+        "sinh_imag": -1.420748472,
+        "cosh_real": -9.966910362,
+        "cosh_imag": -1.413722515
+      },
+      "test_id": 348
+    },
+    {
+      "description": "Grid point: z = 2 + -3i",
+      "inputs": [
+        2.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -4.168907166,
+        "sinh_imag": -9.154499054,
+        "cosh_real": -4.18962574,
+        "cosh_imag": -9.10922718
+      },
+      "test_id": 349
+    },
+    {
+      "description": "Grid point: z = 2 + -2i",
+      "inputs": [
+        2.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 5.412680626,
+        "sinh_imag": -8.471645355,
+        "cosh_real": 5.439580917,
+        "cosh_imag": -8.429750443
+      },
+      "test_id": 350
+    },
+    {
+      "description": "Grid point: z = 2 + -1i",
+      "inputs": [
+        2.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 8.791512489,
+        "sinh_imag": -4.826694489,
+        "cosh_real": 8.835205078,
+        "cosh_imag": -4.802824974
+      },
+      "test_id": 351
+    },
+    {
+      "description": "Grid point: z = 2 + -0.5i",
+      "inputs": [
+        2.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 10.01787472,
+        "sinh_imag": 0.0,
+        "cosh_real": 10.06766224,
+        "cosh_imag": 0.0
+      },
+      "test_id": 352
+    },
+    {
+      "description": "Grid point: z = 2 + 0i",
+      "inputs": [
+        2.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 8.791512489,
+        "sinh_imag": 4.826694489,
+        "cosh_real": 8.835205078,
+        "cosh_imag": 4.802824974
+      },
+      "test_id": 353
+    },
+    {
+      "description": "Grid point: z = 2 + 0.5i",
+      "inputs": [
+        2.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 5.412680626,
+        "sinh_imag": 8.471645355,
+        "cosh_real": 5.439580917,
+        "cosh_imag": 8.429750443
+      },
+      "test_id": 354
+    },
+    {
+      "description": "Grid point: z = 2 + 1i",
+      "inputs": [
+        2.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -4.168907166,
+        "sinh_imag": 9.154499054,
+        "cosh_real": -4.18962574,
+        "cosh_imag": 9.10922718
+      },
+      "test_id": 355
+    },
+    {
+      "description": "Grid point: z = 2 + 2i",
+      "inputs": [
+        2.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -9.917620659,
+        "sinh_imag": 1.420748472,
+        "cosh_real": -9.966910362,
+        "cosh_imag": 1.413722515
+      },
+      "test_id": 356
+    },
+    {
+      "description": "Grid point: z = 2 + 3i",
+      "inputs": [
+        2.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 2.841692448,
+        "sinh_imag": -9.654126167,
+        "cosh_real": 2.855815172,
+        "cosh_imag": -9.606383324
+      },
+      "test_id": 357
+    },
+    {
+      "description": "Grid point: z = 2 + 5i",
+      "inputs": [
+        2.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": 21.04864502,
+        "sinh_imag": 71.16172028,
+        "cosh_real": 21.05055618,
+        "cosh_imag": 71.15525818
+      },
+      "test_id": 358
+    },
+    {
+      "description": "Grid point: z = 3 + -5i",
+      "inputs": [
+        3.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -73.46061707,
+        "sinh_imag": -10.47250748,
+        "cosh_real": -73.46729279,
+        "cosh_imag": -10.47155666
+      },
+      "test_id": 359
+    },
+    {
+      "description": "Grid point: z = 3 + -3i",
+      "inputs": [
+        3.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -30.87943077,
+        "sinh_imag": -67.47891235,
+        "cosh_real": -30.88223457,
+        "cosh_imag": -67.47278595
+      },
+      "test_id": 360
+    },
+    {
+      "description": "Grid point: z = 3 + -2i",
+      "inputs": [
+        3.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": 40.09216309,
+        "sinh_imag": -62.44551468,
+        "cosh_real": 40.09580231,
+        "cosh_imag": -62.43984604
+      },
+      "test_id": 361
+    },
+    {
+      "description": "Grid point: z = 3 + -1i",
+      "inputs": [
+        3.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 65.11943817,
+        "sinh_imag": -35.57814407,
+        "cosh_real": 65.12535095,
+        "cosh_imag": -35.57491302
+      },
+      "test_id": 362
+    },
+    {
+      "description": "Grid point: z = 3 + -0.5i",
+      "inputs": [
+        3.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": 74.20320892,
+        "sinh_imag": 0.0,
+        "cosh_real": 74.20994568,
+        "cosh_imag": 0.0
+      },
+      "test_id": 363
+    },
+    {
+      "description": "Grid point: z = 3 + 0i",
+      "inputs": [
+        3.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 65.11943817,
+        "sinh_imag": 35.57814407,
+        "cosh_real": 65.12535095,
+        "cosh_imag": 35.57491302
+      },
+      "test_id": 364
+    },
+    {
+      "description": "Grid point: z = 3 + 0.5i",
+      "inputs": [
+        3.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 40.09216309,
+        "sinh_imag": 62.44551468,
+        "cosh_real": 40.09580231,
+        "cosh_imag": 62.43984604
+      },
+      "test_id": 365
+    },
+    {
+      "description": "Grid point: z = 3 + 1i",
+      "inputs": [
+        3.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": -30.87943077,
+        "sinh_imag": 67.47891235,
+        "cosh_real": -30.88223457,
+        "cosh_imag": 67.47278595
+      },
+      "test_id": 366
+    },
+    {
+      "description": "Grid point: z = 3 + 2i",
+      "inputs": [
+        3.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -73.46061707,
+        "sinh_imag": 10.47250748,
+        "cosh_real": -73.46729279,
+        "cosh_imag": 10.47155666
+      },
+      "test_id": 367
+    },
+    {
+      "description": "Grid point: z = 3 + 3i",
+      "inputs": [
+        3.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": 21.04864502,
+        "sinh_imag": -71.16172028,
+        "cosh_real": 21.05055618,
+        "cosh_imag": -71.15525818
+      },
+      "test_id": 368
+    },
+    {
+      "description": "Grid point: z = 3 + 5i",
+      "inputs": [
+        3.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": -8.075077057,
+        "sinh_imag": 0.6114389896,
+        "cosh_real": -8.136415482,
+        "cosh_imag": 0.606829524
+      },
+      "test_id": 369
+    },
+    {
+      "description": "Grid point: z = 5 + -5i",
+      "inputs": [
+        5.0,
+        -5.0
+      ],
+      "expected": {
+        "sinh_real": -32.9885025,
+        "sinh_imag": 30.57971382,
+        "cosh_real": 32.99665451,
+        "cosh_imag": -30.57215881
+      },
+      "test_id": 370
+    },
+    {
+      "description": "Grid point: z = 5 + -3i",
+      "inputs": [
+        5.0,
+        -3.0
+      ],
+      "expected": {
+        "sinh_real": -52.30804443,
+        "sinh_imag": -21.65158463,
+        "cosh_real": -52.31620407,
+        "cosh_imag": -21.64820671
+      },
+      "test_id": 371
+    },
+    {
+      "description": "Grid point: z = 5 + -2i",
+      "inputs": [
+        5.0,
+        -2.0
+      ],
+      "expected": {
+        "sinh_real": -504.8689575,
+        "sinh_imag": -1170.425537,
+        "cosh_real": -504.8691101,
+        "cosh_imag": -1170.425171
+      },
+      "test_id": 372
+    },
+    {
+      "description": "Grid point: z = 5 + -1i",
+      "inputs": [
+        5.0,
+        -1.0
+      ],
+      "expected": {
+        "sinh_real": 2.277741671,
+        "sinh_imag": -0.0515543595,
+        "cosh_real": -2.487504721,
+        "cosh_imag": 0.04720695317
+      },
+      "test_id": 373
+    },
+    {
+      "description": "Grid point: z = 5 + -0.5i",
+      "inputs": [
+        5.0,
+        -0.5
+      ],
+      "expected": {
+        "sinh_real": -138.1491852,
+        "sinh_imag": 14.85380554,
+        "cosh_real": 138.152771,
+        "cosh_imag": -14.85342026
+      },
+      "test_id": 374
+    },
+    {
+      "description": "Grid point: z = 5 + 0i",
+      "inputs": [
+        5.0,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -6260.169434,
+        "sinh_imag": 1664.927979,
+        "cosh_real": 6260.169434,
+        "cosh_imag": -1664.927979
+      },
+      "test_id": 375
+    },
+    {
+      "description": "Grid point: z = 5 + 0.5i",
+      "inputs": [
+        5.0,
+        0.5
+      ],
+      "expected": {
+        "sinh_real": 6.221923828,
+        "sinh_imag": 7.860843658,
+        "cosh_real": 6.252989292,
+        "cosh_imag": 7.821790218
+      },
+      "test_id": 376
+    },
+    {
+      "description": "Grid point: z = 5 + 1i",
+      "inputs": [
+        5.0,
+        1.0
+      ],
+      "expected": {
+        "sinh_real": 28.53073883,
+        "sinh_imag": 130.9567413,
+        "cosh_real": -28.53153229,
+        "cosh_imag": -130.9531097
+      },
+      "test_id": 377
+    },
+    {
+      "description": "Grid point: z = 5 + 2i",
+      "inputs": [
+        5.0,
+        2.0
+      ],
+      "expected": {
+        "sinh_real": -219.8347321,
+        "sinh_imag": 104.9073486,
+        "cosh_real": -219.8365936,
+        "cosh_imag": 104.9064636
+      },
+      "test_id": 378
+    },
+    {
+      "description": "Grid point: z = 5 + 3i",
+      "inputs": [
+        5.0,
+        3.0
+      ],
+      "expected": {
+        "sinh_real": -154.4003448,
+        "sinh_imag": -165.8716736,
+        "cosh_real": -154.4018402,
+        "cosh_imag": -165.8700562
+      },
+      "test_id": 379
+    },
+    {
+      "description": "Grid point: z = 5 + 5i",
+      "inputs": [
+        5.0,
+        5.0
+      ],
+      "expected": {
+        "sinh_real": -10.00631905,
+        "sinh_imag": -6.975723743,
+        "cosh_real": 10.03996277,
+        "cosh_imag": 6.952348232
+      },
+      "test_id": 380
+    },
+    {
+      "description": "Random #1: z = 2.7885 + -9.4998i",
+      "inputs": [
+        2.7885359691576745,
+        -9.49978489554666
+      ],
+      "expected": {
+        "sinh_real": -4642.877441,
+        "sinh_imag": 590.5545044,
+        "cosh_real": -4642.877441,
+        "cosh_imag": 590.5545044
+      },
+      "test_id": 381
+    },
+    {
+      "description": "Random #2: z = -4.4994 + -5.5358i",
+      "inputs": [
+        -4.499413632617615,
+        -5.5357852370235445
+      ],
+      "expected": {
+        "sinh_real": 362.0655212,
+        "sinh_imag": -1684.72998,
+        "cosh_real": -362.0655823,
+        "cosh_imag": 1684.729614
+      },
+      "test_id": 382
+    },
+    {
+      "description": "Random #3: z = 4.7294 + 3.5340i",
+      "inputs": [
+        4.729424283280249,
+        3.533989748458225
+      ],
+      "expected": {
+        "sinh_real": -251.7307281,
+        "sinh_imag": 456.7391357,
+        "cosh_real": -251.7312012,
+        "cosh_imag": 456.7382812
+      },
+      "test_id": 383
+    },
+    {
+      "description": "Random #4: z = 7.8436 + -8.2612i",
+      "inputs": [
+        7.843591354096908,
+        -8.261223347411677
+      ],
+      "expected": {
+        "sinh_real": -27.32863426,
+        "sinh_imag": -231.0128326,
+        "cosh_real": -27.32888603,
+        "cosh_imag": -231.0106964
+      },
+      "test_id": 384
+    },
+    {
+      "description": "Random #5: z = -1.5616 + -9.4041i",
+      "inputs": [
+        -1.561563606294591,
+        -9.404055611238594
+      ],
+      "expected": {
+        "sinh_real": -0.7890886068,
+        "sinh_imag": -0.04781727493,
+        "cosh_real": -1.273284197,
+        "cosh_imag": -0.02963365614
+      },
+      "test_id": 385
+    },
+    {
+      "description": "Random #6: z = -5.6272 + 0.1071i",
+      "inputs": [
+        -5.627240503927933,
+        0.10710576206724731
+      ],
+      "expected": {
+        "sinh_real": -2.846822977,
+        "sinh_imag": 4.934945107,
+        "cosh_real": 2.891357899,
+        "cosh_imag": -4.858933449
+      },
+      "test_id": 386
+    },
+    {
+      "description": "Random #7: z = -9.4693 + -6.0232i",
+      "inputs": [
+        -9.469280606322727,
+        -6.02324698626703
+      ],
+      "expected": {
+        "sinh_real": -260.4395752,
+        "sinh_imag": 253.1468964,
+        "cosh_real": -260.4405518,
+        "cosh_imag": 253.1459351
+      },
+      "test_id": 387
+    },
+    {
+      "description": "Random #8: z = 2.9977 + 0.8988i",
+      "inputs": [
+        2.997688755590463,
+        0.8988296120643327
+      ],
+      "expected": {
+        "sinh_real": 16.45887756,
+        "sinh_imag": 692.77771,
+        "cosh_real": 16.45889473,
+        "cosh_imag": 692.7769775
+      },
+      "test_id": 388
+    },
+    {
+      "description": "Random #9: z = -5.5912 + 1.7853i",
+      "inputs": [
+        -5.591187559186066,
+        1.7853136775181753
+      ],
+      "expected": {
+        "sinh_real": -28.1799984,
+        "sinh_imag": -10.01404572,
+        "cosh_real": -28.19574928,
+        "cosh_imag": -10.00845146
+      },
+      "test_id": 389
+    },
+    {
+      "description": "Random #10: z = 6.1886 + -9.8700i",
+      "inputs": [
+        6.1886091335565325,
+        -9.87002480643878
+      ],
+      "expected": {
+        "sinh_real": 55.36633301,
+        "sinh_imag": 101.3155899,
+        "cosh_real": -55.36840439,
+        "cosh_imag": -101.3117905
+      },
+      "test_id": 390
+    },
+    {
+      "description": "Random #11: z = 6.1164 + 3.9628i",
+      "inputs": [
+        6.116385036656158,
+        3.962787899764537
+      ],
+      "expected": {
+        "sinh_real": -1318.676147,
+        "sinh_imag": 1801.803711,
+        "cosh_real": 1318.67627,
+        "cosh_imag": -1801.803589
+      },
+      "test_id": 391
+    },
+    {
+      "description": "Random #12: z = -3.1950 + -6.8904i",
+      "inputs": [
+        -3.1949896696401625,
+        -6.890410003764369
+      ],
+      "expected": {
+        "sinh_real": 392.2937622,
+        "sinh_imag": 1407.267578,
+        "cosh_real": -392.2938538,
+        "cosh_imag": -1407.267212
+      },
+      "test_id": 392
+    },
+    {
+      "description": "Random #13: z = 9.1443 + -3.2681i",
+      "inputs": [
+        9.144261444135623,
+        -3.2681090977474643
+      ],
+      "expected": {
+        "sinh_real": -6.799650192,
+        "sinh_imag": -3.214637518,
+        "cosh_real": -6.859677315,
+        "cosh_imag": -3.186506987
+      },
+      "test_id": 393
+    },
+    {
+      "description": "Random #14: z = -8.1451 + -8.0657i",
+      "inputs": [
+        -8.145083132397042,
+        -8.06567246333072
+      ],
+      "expected": {
+        "sinh_real": -5.936927319,
+        "sinh_imag": 3.074624062,
+        "cosh_real": 6.003274441,
+        "cosh_imag": -3.040643692
+      },
+      "test_id": 394
+    },
+    {
+      "description": "Random #15: z = 6.9499 + 2.0745i",
+      "inputs": [
+        6.949887326949195,
+        2.0745206273378223
+      ],
+      "expected": {
+        "sinh_real": 40.69338608,
+        "sinh_imag": 33.70723724,
+        "cosh_real": -40.70067596,
+        "cosh_imag": -33.70120239
+      },
+      "test_id": 395
+    },
+    {
+      "description": "Random #16: z = 6.1426 + 4.5946i",
+      "inputs": [
+        6.142565465487603,
+        4.594635733876357
+      ],
+      "expected": {
+        "sinh_real": -5.531057835,
+        "sinh_imag": 7.925466537,
+        "cosh_real": -5.560800076,
+        "cosh_imag": 7.883077145
+      },
+      "test_id": 396
+    },
+    {
+      "description": "Random #17: z = 0.7246 + 9.4623i",
+      "inputs": [
+        0.7245618290940143,
+        9.462315279587411
+      ],
+      "expected": {
+        "sinh_real": 46.52138138,
+        "sinh_imag": -356.2480469,
+        "cosh_real": -46.52156067,
+        "cosh_imag": 356.2466431
+      },
+      "test_id": 397
+    },
+    {
+      "description": "Random #18: z = -2.4293 + 1.0408i",
+      "inputs": [
+        -2.42931245583293,
+        1.0408126254645396
+      ],
+      "expected": {
+        "sinh_real": 312.3223877,
+        "sinh_imag": -279.8984375,
+        "cosh_real": -312.3232727,
+        "cosh_imag": 279.897644
+      },
+      "test_id": 398
+    },
+    {
+      "description": "Random #19: z = 6.5881 + 2.3704i",
+      "inputs": [
+        6.588093285059898,
+        2.370395047284921
+      ],
+      "expected": {
+        "sinh_real": -8415.279297,
+        "sinh_imag": 2991.930664,
+        "cosh_real": -8415.279297,
+        "cosh_imag": 2991.930664
+      },
+      "test_id": 399
+    },
+    {
+      "description": "Random #20: z = 7.2341 + 1.5470i",
+      "inputs": [
+        7.234138006215545,
+        1.5470429051352408
+      ],
+      "expected": {
+        "sinh_real": -1.194513202,
+        "sinh_imag": -0.9010230303,
+        "cosh_real": -1.467324972,
+        "cosh_imag": -0.7335007191
+      },
+      "test_id": 400
+    },
+    {
+      "description": "Random #21: z = 4.0914 + -9.0835i",
+      "inputs": [
+        4.09143672429847,
+        -9.083512326886755
+      ],
+      "expected": {
+        "sinh_real": 343.4497681,
+        "sinh_imag": -328.5229187,
+        "cosh_real": 343.450531,
+        "cosh_imag": -328.5221863
+      },
+      "test_id": 401
+    },
+    {
+      "description": "Random #22: z = -5.4420 + -4.2122i",
+      "inputs": [
+        -5.442034486969063,
+        -4.212240727957857
+      ],
+      "expected": {
+        "sinh_real": 112.5773239,
+        "sinh_imag": -7.529736519,
+        "cosh_real": -112.5817413,
+        "cosh_imag": 7.529440403
+      },
+      "test_id": 402
+    },
+    {
+      "description": "Random #23: z = -8.4042 + -5.3442i",
+      "inputs": [
+        -8.40416046152745,
+        -5.344182272779396
+      ],
+      "expected": {
+        "sinh_real": 1.345056653,
+        "sinh_imag": 20.0084362,
+        "cosh_real": -1.34673202,
+        "cosh_imag": -19.9835434
+      },
+      "test_id": 403
+    },
+    {
+      "description": "Random #24: z = -7.9800 + -4.4405i",
+      "inputs": [
+        -7.979971411805417,
+        -4.440527937798158
+      ],
+      "expected": {
+        "sinh_real": 136.6297913,
+        "sinh_imag": 86.91993713,
+        "cosh_real": -136.6323853,
+        "cosh_imag": -86.91828156
+      },
+      "test_id": 404
+    },
+    {
+      "description": "Random #25: z = 2.7137 + -2.7034i",
+      "inputs": [
+        2.713688885288004,
+        -2.7033564205983147
+      ],
+      "expected": {
+        "sinh_real": -784.7734375,
+        "sinh_imag": 497.3315125,
+        "cosh_real": -784.7739258,
+        "cosh_imag": 497.3312073
+      },
+      "test_id": 405
+    },
+    {
+      "description": "Random #26: z = -2.5964 + -5.8099i",
+      "inputs": [
+        -2.5963806576623476,
+        -5.809859384570246
+      ],
+      "expected": {
+        "sinh_real": -5.519024372,
+        "sinh_imag": -9.755239487,
+        "cosh_real": -5.541079998,
+        "cosh_imag": -9.716410637
+      },
+      "test_id": 406
+    },
+    {
+      "description": "Random #27: z = -4.6604 + 8.7331i",
+      "inputs": [
+        -4.660443559017732,
+        8.73309175424988
+      ],
+      "expected": {
+        "sinh_real": 1355.896729,
+        "sinh_imag": -1461.79248,
+        "cosh_real": 1355.896973,
+        "cosh_imag": -1461.792236
+      },
+      "test_id": 407
+    },
+    {
+      "description": "Random #28: z = 2.9607 + 2.1826i",
+      "inputs": [
+        2.9607077049318704,
+        2.1826201133397642
+      ],
+      "expected": {
+        "sinh_real": -19.15572166,
+        "sinh_imag": 51.67257309,
+        "cosh_real": 19.15887833,
+        "cosh_imag": -51.6640625
+      },
+      "test_id": 408
+    },
+    {
+      "description": "Random #29: z = -6.5772 + 4.5825i",
+      "inputs": [
+        -6.57722703603806,
+        4.582535959006984
+      ],
+      "expected": {
+        "sinh_real": 0.05111259967,
+        "sinh_imag": 1.851646662,
+        "cosh_real": 0.06071730331,
+        "cosh_imag": 1.558739781
+      },
+      "test_id": 409
+    },
+    {
+      "description": "Random #30: z = -6.7320 + -2.4109i",
+      "inputs": [
+        -6.731950124761433,
+        -2.410891164847044
+      ],
+      "expected": {
+        "sinh_real": -0.2682543397,
+        "sinh_imag": 2.791783094,
+        "cosh_real": -0.2870977223,
+        "cosh_imag": 2.608546972
+      },
+      "test_id": 410
+    },
+    {
+      "description": "Random #31: z = 9.7905 + 2.8000i",
+      "inputs": [
+        9.790467012731906,
+        2.7999951970818575
+      ],
+      "expected": {
+        "sinh_real": -2.879285574,
+        "sinh_imag": 2.362251282,
+        "cosh_real": 2.984133005,
+        "cosh_imag": -2.279253483
+      },
+      "test_id": 411
+    },
+    {
+      "description": "Random #32: z = 1.1390 + 3.6923i",
+      "inputs": [
+        1.1389948754929247,
+        3.6922850197974917
+      ],
+      "expected": {
+        "sinh_real": 10294.28516,
+        "sinh_imag": 1985.40979,
+        "cosh_real": 10294.28516,
+        "cosh_imag": 1985.40979
+      },
+      "test_id": 412
+    },
+    {
+      "description": "Random #33: z = 6.8570 + 5.5200i",
+      "inputs": [
+        6.857038403796192,
+        5.519998230924896
+      ],
+      "expected": {
+        "sinh_real": 1668.551636,
+        "sinh_imag": -641.6216431,
+        "cosh_real": -1668.55188,
+        "cosh_imag": 641.621521
+      },
+      "test_id": 413
+    },
+    {
+      "description": "Random #34: z = -5.4190 + -9.3580i",
+      "inputs": [
+        -5.419038560717913,
+        -9.357995121919245
+      ],
+      "expected": {
+        "sinh_real": 1019.307434,
+        "sinh_imag": 686.4342041,
+        "cosh_real": -1019.307739,
+        "cosh_imag": -686.434021
+      },
+      "test_id": 414
+    },
+    {
+      "description": "Random #35: z = -3.6909 + -4.6452i",
+      "inputs": [
+        -3.690939038818362,
+        -4.645182480485945
+      ],
+      "expected": {
+        "sinh_real": 2.409380913,
+        "sinh_imag": -172.1472778,
+        "cosh_real": 2.409421444,
+        "cosh_imag": -172.1443787
+      },
+      "test_id": 415
+    },
+    {
+      "description": "Random #36: z = -5.7803 + 8.8582i",
+      "inputs": [
+        -5.78034312827347,
+        8.858194286701089
+      ],
+      "expected": {
+        "sinh_real": 2210.592285,
+        "sinh_imag": -2160.672119,
+        "cosh_real": -2210.592285,
+        "cosh_imag": 2160.672119
+      },
+      "test_id": 416
+    },
+    {
+      "description": "Random #37: z = 7.5274 + -3.7064i",
+      "inputs": [
+        7.527352529453378,
+        -3.706442384030442
+      ],
+      "expected": {
+        "sinh_real": 8511.772461,
+        "sinh_imag": 5604.507812,
+        "cosh_real": 8511.772461,
+        "cosh_imag": 5604.507812
+      },
+      "test_id": 417
+    },
+    {
+      "description": "Random #38: z = 3.1088 + -2.0874i",
+      "inputs": [
+        3.1087733058976,
+        -2.0873619787867153
+      ],
+      "expected": {
+        "sinh_real": 3680.268066,
+        "sinh_imag": 4959.65625,
+        "cosh_real": 3680.268066,
+        "cosh_imag": 4959.65625
+      },
+      "test_id": 418
+    },
+    {
+      "description": "Random #39: z = 8.2910 + -0.8230i",
+      "inputs": [
+        8.29095179481087,
+        -0.8229629482520231
+      ],
+      "expected": {
+        "sinh_real": 0.5478534698,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.140238285,
+        "cosh_imag": 0.0
+      },
+      "test_id": 419
+    },
+    {
+      "description": "Random #40: z = -4.7024 + -5.0674i",
+      "inputs": [
+        -4.702396670038951,
+        -5.067449846120331
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.5,
+        "cosh_real": 0.8660253882,
+        "cosh_imag": 0.0
+      },
+      "test_id": 420
+    },
+    {
+      "description": "Random #41: z = 1.2274 + -4.7452i",
+      "inputs": [
+        1.2273626832630153,
+        -4.745167829541295
+      ],
+      "expected": {
+        "sinh_real": 0.353092581,
+        "sinh_imag": 0.3869240582,
+        "cosh_real": 0.9968684316,
+        "cosh_imag": 0.1370491982
+      },
+      "test_id": 421
+    },
+    {
+      "description": "Random #42: z = 1.6917 + 7.9565i",
+      "inputs": [
+        1.6917198044708108,
+        7.956457672049538
+      ],
+      "expected": {
+        "sinh_real": 0.868671,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.32460916,
+        "cosh_imag": 0.0
+      },
+      "test_id": 422
+    },
+    {
+      "description": "Random #43: z = -2.0120 + -5.6136i",
+      "inputs": [
+        -2.0119898971920547,
+        -5.613584816854333
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.7071067691,
+        "cosh_real": 0.7071067691,
+        "cosh_imag": 0.0
+      },
+      "test_id": 423
+    },
+    {
+      "description": "Random #44: z = 9.9508 + 0.1905i",
+      "inputs": [
+        9.950752129902206,
+        0.19052587352929073
+      ],
+      "expected": {
+        "sinh_real": 0.496529758,
+        "sinh_imag": 0.6106694937,
+        "cosh_real": 0.9841492772,
+        "cosh_imag": 0.3080991805
+      },
+      "test_id": 424
+    },
+    {
+      "description": "Random #45: z = -8.1818 + -9.0577i",
+      "inputs": [
+        -8.181811756524123,
+        -9.057672491505308
+      ],
+      "expected": {
+        "sinh_real": 1.249367833,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.600287437,
+        "cosh_imag": 0.0
+      },
+      "test_id": 425
+    },
+    {
+      "description": "Random #46: z = -7.8070 + 2.5489i",
+      "inputs": [
+        -7.8070173929868165,
+        2.5489208340618
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 0.8660256863,
+        "cosh_real": 0.499999553,
+        "cosh_imag": 0.0
+      },
+      "test_id": 426
+    },
+    {
+      "description": "Random #47: z = 5.8416 + -1.5568i",
+      "inputs": [
+        5.841587287259282,
+        -1.5568006640063192
+      ],
+      "expected": {
+        "sinh_real": 0.5979185104,
+        "sinh_imag": 0.8682069182,
+        "cosh_real": 0.9499283433,
+        "cosh_imag": 0.5464801788
+      },
+      "test_id": 427
+    },
+    {
+      "description": "Random #48: z = -8.7294 + -2.3676i",
+      "inputs": [
+        -8.729445876960858,
+        -2.3676142698692644
+      ],
+      "expected": {
+        "sinh_real": 2.301298141,
+        "sinh_imag": 0.0,
+        "cosh_real": 2.509177685,
+        "cosh_imag": 0.0
+      },
+      "test_id": 428
+    },
+    {
+      "description": "Random #49: z = 9.9224 + 0.5823i",
+      "inputs": [
+        9.922427604801936,
+        0.5822869019827408
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": 1.0,
+        "cosh_real": 3.139164733e-07,
+        "cosh_imag": 0.0
+      },
+      "test_id": 429
+    },
+    {
+      "description": "Random #50: z = 9.4216 + 7.2156i",
+      "inputs": [
+        9.421567552272364,
+        7.215594044689961
+      ],
+      "expected": {
+        "sinh_real": 0.6010252237,
+        "sinh_imag": 1.507941008,
+        "cosh_real": 0.7472490668,
+        "cosh_imag": 1.212862849
+      },
+      "test_id": 430
+    },
+    {
+      "description": "Special angle 0.5236 on real axis",
+      "inputs": [
+        0.5235987755982988,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 3.998690605,
+        "sinh_imag": 0.0,
+        "cosh_real": 4.121835232,
+        "cosh_imag": 0.0
+      },
+      "test_id": 431
+    },
+    {
+      "description": "Special angle 0.5236 on imaginary axis",
+      "inputs": [
+        0.0,
+        0.5235987755982988
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.8660255075,
+        "cosh_real": -0.499999851,
+        "cosh_imag": 0.0
+      },
+      "test_id": 432
+    },
+    {
+      "description": "Special angle 0.5236 at 45 degrees",
+      "inputs": [
+        0.37024024484653045,
+        0.37024024484653045
+      ],
+      "expected": {
+        "sinh_real": 0.1870436966,
+        "sinh_imag": 2.302969694,
+        "cosh_real": 0.2074464858,
+        "cosh_imag": 2.076467752
+      },
+      "test_id": 433
+    },
+    {
+      "description": "Special angle 0.7854 on real axis",
+      "inputs": [
+        0.7853981633974483,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 5.227969646,
+        "sinh_imag": 0.0,
+        "cosh_real": 5.322749615,
+        "cosh_imag": 0.0
+      },
+      "test_id": 434
+    },
+    {
+      "description": "Special angle 0.7854 on imaginary axis",
+      "inputs": [
+        0.0,
+        0.7853981633974483
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.7071071267,
+        "cosh_real": -0.7071064711,
+        "cosh_imag": 0.0
+      },
+      "test_id": 435
+    },
+    {
+      "description": "Special angle 0.7854 at 45 degrees",
+      "inputs": [
+        0.5553603672697958,
+        0.5553603672697958
+      ],
+      "expected": {
+        "sinh_real": -0.2427226454,
+        "sinh_imag": 2.727758169,
+        "cosh_real": -0.260702908,
+        "cosh_imag": 2.539629221
+      },
+      "test_id": 436
+    },
+    {
+      "description": "Special angle 1.0472 on real axis",
+      "inputs": [
+        1.0471975511965976,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 6.817624569,
+        "sinh_imag": 0.0,
+        "cosh_real": 6.890573502,
+        "cosh_imag": 0.0
+      },
+      "test_id": 437
+    },
+    {
+      "description": "Special angle 1.0472 on imaginary axis",
+      "inputs": [
+        0.0,
+        1.0471975511965976
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": 0.4999998212,
+        "cosh_real": -0.8660255075,
+        "cosh_imag": 0.0
+      },
+      "test_id": 438
+    },
+    {
+      "description": "Special angle 1.0472 at 45 degrees",
+      "inputs": [
+        0.7404804896930609,
+        0.7404804896930609
+      ],
+      "expected": {
+        "sinh_real": -0.8593493104,
+        "sinh_imag": 3.134843111,
+        "cosh_real": -0.9028115869,
+        "cosh_imag": 2.98392868
+      },
+      "test_id": 439
+    },
+    {
+      "description": "Special angle 1.5708 on real axis",
+      "inputs": [
+        1.5707963267948966,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": 11.54874325,
+        "sinh_imag": 0.0,
+        "cosh_real": 11.59195709,
+        "cosh_imag": 0.0
+      },
+      "test_id": 440
+    },
+    {
+      "description": "Special angle 1.5708 on imaginary axis",
+      "inputs": [
+        0.0,
+        1.5707963267948966
+      ],
+      "expected": {
+        "sinh_real": -0.0,
+        "sinh_imag": -3.258413699e-07,
+        "cosh_real": -1.0,
+        "cosh_imag": -0.0
+      },
+      "test_id": 441
+    },
+    {
+      "description": "Special angle 1.5708 at 45 degrees",
+      "inputs": [
+        1.1107207345395915,
+        1.1107207345395915
+      ],
+      "expected": {
+        "sinh_real": -2.759614229,
+        "sinh_imag": 3.711536646,
+        "cosh_real": -2.825304031,
+        "cosh_imag": 3.625241518
+      },
+      "test_id": 442
+    },
+    {
+      "description": "Special angle 2.0944 on real axis",
+      "inputs": [
+        2.0943951023931953,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.5478534698,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.140238285,
+        "cosh_imag": -0.0
+      },
+      "test_id": 443
+    },
+    {
+      "description": "Special angle 2.0944 on imaginary axis",
+      "inputs": [
+        0.0,
+        2.0943951023931953
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.5,
+        "cosh_real": 0.8660253882,
+        "cosh_imag": -0.0
+      },
+      "test_id": 444
+    },
+    {
+      "description": "Special angle 2.0944 at 45 degrees",
+      "inputs": [
+        1.4809609793861218,
+        1.4809609793861218
+      ],
+      "expected": {
+        "sinh_real": -0.353092581,
+        "sinh_imag": -0.3869240582,
+        "cosh_real": 0.9968684316,
+        "cosh_imag": 0.1370491982
+      },
+      "test_id": 445
+    },
+    {
+      "description": "Special angle 2.3562 on real axis",
+      "inputs": [
+        2.356194490192345,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -0.868671,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.32460916,
+        "cosh_imag": -0.0
+      },
+      "test_id": 446
+    },
+    {
+      "description": "Special angle 2.3562 on imaginary axis",
+      "inputs": [
+        0.0,
+        2.356194490192345
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.7071067691,
+        "cosh_real": 0.7071067691,
+        "cosh_imag": -0.0
+      },
+      "test_id": 447
+    },
+    {
+      "description": "Special angle 2.3562 at 45 degrees",
+      "inputs": [
+        1.666081101809387,
+        1.666081101809387
+      ],
+      "expected": {
+        "sinh_real": -0.496529758,
+        "sinh_imag": -0.6106694937,
+        "cosh_real": 0.9841492772,
+        "cosh_imag": 0.3080991805
+      },
+      "test_id": 448
+    },
+    {
+      "description": "Special angle 2.6180 on real axis",
+      "inputs": [
+        2.6179938779914944,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -1.249367833,
+        "sinh_imag": 0.0,
+        "cosh_real": 1.600287437,
+        "cosh_imag": -0.0
+      },
+      "test_id": 449
+    },
+    {
+      "description": "Special angle 2.6180 on imaginary axis",
+      "inputs": [
+        0.0,
+        2.6179938779914944
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -0.8660256863,
+        "cosh_real": 0.499999553,
+        "cosh_imag": -0.0
+      },
+      "test_id": 450
+    },
+    {
+      "description": "Special angle 2.6180 at 45 degrees",
+      "inputs": [
+        1.8512012242326525,
+        1.8512012242326525
+      ],
+      "expected": {
+        "sinh_real": -0.5979185104,
+        "sinh_imag": -0.8682069182,
+        "cosh_real": 0.9499283433,
+        "cosh_imag": 0.5464801788
+      },
+      "test_id": 451
+    },
+    {
+      "description": "Special angle 3.1416 on real axis",
+      "inputs": [
+        3.141592653589793,
+        0.0
+      ],
+      "expected": {
+        "sinh_real": -2.301298141,
+        "sinh_imag": 0.0,
+        "cosh_real": 2.509177685,
+        "cosh_imag": -0.0
+      },
+      "test_id": 452
+    },
+    {
+      "description": "Special angle 3.1416 on imaginary axis",
+      "inputs": [
+        0.0,
+        3.141592653589793
+      ],
+      "expected": {
+        "sinh_real": 0.0,
+        "sinh_imag": -1.0,
+        "cosh_real": 3.139164733e-07,
+        "cosh_imag": -0.0
+      },
+      "test_id": 453
+    },
+    {
+      "description": "Special angle 3.1416 at 45 degrees",
+      "inputs": [
+        2.221441469079183,
+        2.221441469079183
+      ],
+      "expected": {
+        "sinh_real": -0.6010252237,
+        "sinh_imag": -1.507941008,
+        "cosh_real": 0.7472490668,
+        "cosh_imag": 1.212862849
+      },
+      "test_id": 454
+    },
+    {
+      "description": "Special angle -0.5236 on real axis",
+      "inputs": [
+        -0.5235987755982988,
+        0.0
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -0.5236 on imaginary axis",
+      "inputs": [
+        0.0,
+        -0.5235987755982988
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -0.5236 at 45 degrees",
+      "inputs": [
+        -0.37024024484653045,
+        -0.37024024484653045
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -0.7854 on real axis",
+      "inputs": [
+        -0.7853981633974483,
+        0.0
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -0.7854 on imaginary axis",
+      "inputs": [
+        0.0,
+        -0.7853981633974483
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -0.7854 at 45 degrees",
+      "inputs": [
+        -0.5553603672697958,
+        -0.5553603672697958
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -1.0472 on real axis",
+      "inputs": [
+        -1.0471975511965976,
+        0.0
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -1.0472 on imaginary axis",
+      "inputs": [
+        0.0,
+        -1.0471975511965976
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -1.0472 at 45 degrees",
+      "inputs": [
+        -0.7404804896930609,
+        -0.7404804896930609
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -1.5708 on real axis",
+      "inputs": [
+        -1.5707963267948966,
+        0.0
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -1.5708 on imaginary axis",
+      "inputs": [
+        0.0,
+        -1.5707963267948966
+      ],
+      "expected": null
+    },
+    {
+      "description": "Special angle -1.5708 at 45 degrees",
+      "inputs": [
+        -1.1107207345395915,
+        -1.1107207345395915
+      ],
+      "expected": null
+    }
+  ]
+}

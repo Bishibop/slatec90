@@ -17,9 +17,9 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 
 ### Summary
 - **Total Zero-Dependency Functions**: 169
-- **Completed**: 11
-- **In Progress**: 0
-- **Available**: 158
+- **Completed**: 15
+- **In Progress**: 2
+- **Available**: 152
 
 ### Completed Migrations ✅
 
@@ -36,12 +36,17 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 | DENORM | 257 (157→257) | 2025-01-22 | Double precision Euclidean norm, enhanced testing, infinity handling fix via feedback loop (blind tested) |
 | FDUMP | 492 | 2025-01-23 | Error message dump placeholder (no-op subroutine) |
 | J4SAVE | 209 | 2025-01-23 | Save/recall error handling parameters (blind tested) |
+| XERCNT | 162 | 2025-07-23 | User error handling control hook (no-op stub) |
+| XERHLT | 156 | 2025-07-23 | Error halt function (calls STOP) - blind tested |
+| BDIFF | 262 | 2025-07-23 | Backward difference computation - blind tested |
+| INTRV | 500 | 2025-07-23 | Interval search in sorted arrays - blind tested |
 
 ### In Progress 🚧
 
 | Function | Developer | Started | Notes |
 |----------|-----------|---------|-------|
-| (none) | | | |
+| BSPLVN | Modernizer #2 | 2025-07-23 | Failed validation (0% pass) - needs complete rewrite |
+| CSHCH | Modernizer #3 | 2025-07-23 | Failed validation (28.5% pass) - formula errors |
 
 ### Next Priority Functions 🎯
 
@@ -49,19 +54,19 @@ These are recommended based on simplicity and usefulness:
 
 | Function | Description | Why Priority |
 |----------|-------------|--------------|
-| XERCNT | Error counter | Error handling system |
-| XERHLT | Error halt | Error handling system |
 | ISAMAX | Index of max abs value | BLAS utility |
 | SASUM | Sum of absolute values | BLAS utility |
-| CSHCH | Complex sinh/cosh | Complex arithmetic |
 | JAIRY | Airy function Ai(x) | Special function |
+| POLCOF | Polynomial coefficients | Utility function |
+| QFORM | Quadrature formula | Integration utility |
+| XRED | Extended precision reduction | Numeric utility |
 
-### Complete List of Available Functions (167)
+### Complete List of Available Functions (155)
 
 All zero-dependency functions available for migration:
 
 ```
-AAAAAA    BCRH      BDIFF     BNFAC     BNSLV     BSPDOC    BSPLVN    BSRH
+AAAAAA    BCRH      BNFAC     BNSLV     BSPDOC    BSPLVN    BSRH
 BVDER     CDCST     CDNTP     CDPSC     CDSCL     CFOD      CHKPR4    CHKPRM
 CHKSN4    CHKSNG    CMPTR3    CMPTRX    CNBDI     CPEVLR    CPROC     CPROCP
 CPROD     CPRODP    CRATI     CS1S2     CSHCH     CUCHK     D1MPYQ    DBDIFF
@@ -71,8 +76,8 @@ DINTP     DINTRV    DINTYD    DJAIRY    DNBDI     DPLPFL    DPOLCF    DPOLVL
 DQCHEB    DQFORM    DQMOMO    DQPSRT    DQRSLV    DQWGTC    DQWGTF    DQWGTS
 DRSCO     DSOSSL    DSTOR1    DSVCO     DUSRMT    DVNRMS    DWNLT2    DWUPDT
 DX        DX4       DXPSI     DXRED     DY        DY4       DYAIRY
-FDUMP     FFTDOC    FUNDOC    HVNRM     INDXA     INDXB     INDXC
-INTRV     INTYD     INXCA     INXCB     INXCC     J4SAVE    JAIRY     LA05ED
+FFTDOC    FUNDOC    HVNRM     INDXA     INDXB     INDXC
+INTYD     INXCA     INXCB     INXCC     JAIRY     LA05ED
 LA05ES    LSAME     MC20AD    MC20AS    MINSO4    MINSOL    MPADD3    MPERR
 MPMLP     MPSTR     ORTHO4    ORTHOG    PGSF      PIMACH    POLCOF    POLYVL
 PPGSF     PPPSF     PPSGF     PPSPF     PROC      PROCP     PROD      PRODP
@@ -80,7 +85,7 @@ PSGF      QCHEB     QFORM     QMOMO     QPDOC     QPSRT     QRSOLV    QWGTC
 QWGTF     QWGTS     R1MPYQ    RSCO      RWUPDT    SDANRM    SDATRP    SDAWTS
 SDCST     SDNTP     SDPSC     SDSCL     SINTRP    SNBDI     SOSSOL    SPLPFL
 STOR1     SVCO      TEVLC     TEVLS     TRI3      TRIDQ     TRIS4     TRISP
-TRIX      USRMAT    VNWRMS    WNLT2     XERCNT    XERHLT    XPSI      XRED
+TRIX      USRMAT    VNWRMS    WNLT2     XPSI      XRED
 YAIRY     ZEXP      ZMLT      ZSHCH     ZUCHK
 ```
 
@@ -181,15 +186,19 @@ To check a function's dependencies, look for:
 ### Step 1: Select and Claim a Function
 
 1. Check the Migration Status section above to see what's available
-2. Choose a function that:
+
+3. Choose a function that:
    - Is computational (not documentation like AAAAAA)
    - Has clear mathematical purpose
    - Exists in `src/` directory
    - Isn't already in progress or completed
 
-3. Update this guide's "In Progress" table with your function and commit immediately to avoid conflicts
+4. **IMMEDIATELY mark as in progress** (before any work begins):
+   - Update this guide's "In Progress" table with your function name and current date
+   - Commit and push this change right away to avoid conflicts
+   - This prevents multiple agents/developers from duplicating work
 
-4. Read the function's source file to understand:
+5. Read the function's source file to understand:
    - Its mathematical purpose (check the PURPOSE comment)
    - Input/output parameters
    - Any special algorithms or numerical considerations
@@ -463,22 +472,6 @@ To ensure implementations are derived from algorithm understanding rather than m
 - 157 test cases generated covering all edge cases
 - Blind implementation achieved 100% pass rate on first attempt
 - Validates both the implementation and the blind testing methodology
-
-### Parallel Migration Strategy
-
-For increased throughput, you can run multiple blind testing pipelines in parallel:
-
-1. **Select 2 Compatible Functions**: Choose functions that don't depend on each other
-2. **Launch Parallel Tasks**: Use multiple Task tool invocations simultaneously
-3. **Independent Validation**: Each pipeline validates and iterates independently
-4. **Merge Results**: Update migration guide after both complete
-
-Example compatible pairs:
-- DENORM & ZABS (different types of math operations)
-- FDUMP & J4SAVE (both error handling but independent)
-- ISAMAX & SASUM (both BLAS utilities)
-
-The key is maintaining blind testing integrity in each pipeline while maximizing throughput.
 
 ### Implementing Blind Testing with Task Tool
 

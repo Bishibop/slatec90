@@ -1,0 +1,1094 @@
+[
+  {
+    "description": "Empty error message",
+    "inputs": [
+      ""
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: ERROR",
+    "inputs": [
+      "ERROR"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: FATAL",
+    "inputs": [
+      "FATAL"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: ABORT",
+    "inputs": [
+      "ABORT"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: STOP",
+    "inputs": [
+      "STOP"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: HALT",
+    "inputs": [
+      "HALT"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: FAIL",
+    "inputs": [
+      "FAIL"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: DIV BY 0",
+    "inputs": [
+      "DIV BY 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: OVERFLOW",
+    "inputs": [
+      "OVERFLOW"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: UNDERFLOW",
+    "inputs": [
+      "UNDERFLOW"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: NAN",
+    "inputs": [
+      "NAN"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Short error message: INF",
+    "inputs": [
+      "INF"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: SLATEC     PYTHAG     OVERFLOW...",
+    "inputs": [
+      "SLATEC     PYTHAG     OVERFLOW HAS OCCURRED."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: SLATEC     GAMMA      X IS A N...",
+    "inputs": [
+      "SLATEC     GAMMA      X IS A NEGATIVE INTEGER."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: SLATEC     BESI       OVERFLOW...",
+    "inputs": [
+      "SLATEC     BESI       OVERFLOW, X TOO LARGE."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: SLATEC     BESJ       ORDER, A...",
+    "inputs": [
+      "SLATEC     BESJ       ORDER, ALPHA, LESS THAN ZERO."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: SLATEC     ENORM      N LESS T...",
+    "inputs": [
+      "SLATEC     ENORM      N LESS THAN 1."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: SLATEC     CDIV       DIVISION...",
+    "inputs": [
+      "SLATEC     CDIV       DIVISION BY ZERO."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: LINPACK    SGEFA      SINGULAR...",
+    "inputs": [
+      "LINPACK    SGEFA      SINGULAR MATRIX ENCOUNTERED."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: EISPACK    RS         NO CONVE...",
+    "inputs": [
+      "EISPACK    RS         NO CONVERGENCE IN 30 ITERATIONS."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: BLAS       SAXPY      N IS LES...",
+    "inputs": [
+      "BLAS       SAXPY      N IS LESS THAN OR EQUAL TO 0."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC error: LAPACK     DGESV      THE FACT...",
+    "inputs": [
+      "LAPACK     DGESV      THE FACTOR U IS SINGULAR."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Long error message 1 (80 chars)",
+    "inputs": [
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Long error message 2 (132 chars)",
+    "inputs": [
+      "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Long error message 3 (207 chars)",
+    "inputs": [
+      "ERROR: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Long error message 4 (167 chars)",
+    "inputs": [
+      "FATAL ERROR IN SUBROUTINE XYZ: INVALID PARAMETER VALUE DETECTED. THE INPUT PARAMETER N MUST BE POSITIVE BUT WAS NEGATIVE. PLEASE CHECK YOUR INPUT VALUES AND TRY AGAIN."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Long error message 5 (470 chars)",
+    "inputs": [
+      "CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: ERROR: Value = -1.234E+56...",
+    "inputs": [
+      "ERROR: Value = -1.234E+56"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: HALT: Matrix(1,1) = NaN...",
+    "inputs": [
+      "HALT: Matrix(1,1) = NaN"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: ABORT: |X| > 1.0E+100...",
+    "inputs": [
+      "ABORT: |X| > 1.0E+100"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: STOP: A(I,J) != B(J,I)...",
+    "inputs": [
+      "STOP: A(I,J) != B(J,I)"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: FATAL: X < 0.0 OR X > 1.0...",
+    "inputs": [
+      "FATAL: X < 0.0 OR X > 1.0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: ERROR: SQRT(-1) ATTEMPTED...",
+    "inputs": [
+      "ERROR: SQRT(-1) ATTEMPTED"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: HALT: 1/0 DIVISION...",
+    "inputs": [
+      "HALT: 1/0 DIVISION"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: ABORT: LOG(0) UNDEFINED...",
+    "inputs": [
+      "ABORT: LOG(0) UNDEFINED"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: STOP: SIN(X)/COS(X) WHERE...",
+    "inputs": [
+      "STOP: SIN(X)/COS(X) WHERE COS(X)=0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special chars: FATAL: EXP(X) OVERFLOW, X...",
+    "inputs": [
+      "FATAL: EXP(X) OVERFLOW, X=1000"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted:    ERROR: LEADING SP...",
+    "inputs": [
+      "   ERROR: LEADING SPACES"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: ERROR: TRAILING SPAC...",
+    "inputs": [
+      "ERROR: TRAILING SPACES   "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: ERROR:    MULTIPLE  ...",
+    "inputs": [
+      "ERROR:    MULTIPLE    SPACES"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: ERROR:\tTAB\tCHARACTER...",
+    "inputs": [
+      "ERROR:\tTAB\tCHARACTERS"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: ERROR:\nNEWLINE\nCHARA...",
+    "inputs": [
+      "ERROR:\nNEWLINE\nCHARACTERS"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: ERROR: MIXED   \t  WH...",
+    "inputs": [
+      "ERROR: MIXED   \t  WHITESPACE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: *** ERROR ***...",
+    "inputs": [
+      "*** ERROR ***"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: >>> FATAL ERROR <<<...",
+    "inputs": [
+      ">>> FATAL ERROR <<<"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: !!! ABORT !!!...",
+    "inputs": [
+      "!!! ABORT !!!"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Formatted: ### SYSTEM HALT ###...",
+    "inputs": [
+      "### SYSTEM HALT ###"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: ERROR CODE 1",
+    "inputs": [
+      "ERROR CODE 1"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: ERROR CODE 12345",
+    "inputs": [
+      "ERROR CODE 12345"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: ERROR -999",
+    "inputs": [
+      "ERROR -999"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: IERR = 0",
+    "inputs": [
+      "IERR = 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: INFO = -1",
+    "inputs": [
+      "INFO = -1"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: IFLAG = 2",
+    "inputs": [
+      "IFLAG = 2"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: STATUS = 404",
+    "inputs": [
+      "STATUS = 404"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: RETURN CODE: -1.0E+10",
+    "inputs": [
+      "RETURN CODE: -1.0E+10"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: EXIT STATUS: 255",
+    "inputs": [
+      "EXIT STATUS: 255"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Numeric code: HALT: CODE 0x1234",
+    "inputs": [
+      "HALT: CODE 0x1234"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Detailed: ERROR IN SUBROUTINE SOLVE: MAT...",
+    "inputs": [
+      "ERROR IN SUBROUTINE SOLVE: MATRIX IS SINGULAR AT ROW 5"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Detailed: FATAL: INVALID INPUT PARAMETER...",
+    "inputs": [
+      "FATAL: INVALID INPUT PARAMETERS DETECTED IN ROUTINE CALCULATE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Detailed: ABORT: NUMERICAL INSTABILITY I...",
+    "inputs": [
+      "ABORT: NUMERICAL INSTABILITY IN ITERATION 1000 OF SOLVER"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Detailed: HALT: CONVERGENCE FAILURE AFTE...",
+    "inputs": [
+      "HALT: CONVERGENCE FAILURE AFTER MAXIMUM ITERATIONS EXCEEDED"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Detailed: STOP: MEMORY ALLOCATION FAILED...",
+    "inputs": [
+      "STOP: MEMORY ALLOCATION FAILED FOR ARRAY OF SIZE 1000000"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: ' '",
+    "inputs": [
+      " "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '  '",
+    "inputs": [
+      "  "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '\t'",
+    "inputs": [
+      "\t"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '.'",
+    "inputs": [
+      "."
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '!'",
+    "inputs": [
+      "!"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '?'",
+    "inputs": [
+      "?"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '0'",
+    "inputs": [
+      "0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '-1'",
+    "inputs": [
+      "-1"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '1.0E+308'",
+    "inputs": [
+      "1.0E+308"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: 'NaN'",
+    "inputs": [
+      "NaN"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: 'Inf'",
+    "inputs": [
+      "Inf"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Edge case: '-Inf'",
+    "inputs": [
+      "-Inf"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERMSG     INVALID ...",
+    "inputs": [
+      "SLATEC     XERMSG     INVALID ERROR NUMBER"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERSVE     INVALID ...",
+    "inputs": [
+      "SLATEC     XERSVE     INVALID ENTRY NUMBER"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XGETUA     INVALID ...",
+    "inputs": [
+      "SLATEC     XGETUA     INVALID UNIT NUMBER"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     J4SAVE     INVALID ...",
+    "inputs": [
+      "SLATEC     J4SAVE     INVALID PARAMETER NUMBER"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     FDUMP      UNIT NUM...",
+    "inputs": [
+      "SLATEC     FDUMP      UNIT NUMBER OUT OF RANGE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     I1MACH     I OUT OF...",
+    "inputs": [
+      "SLATEC     I1MACH     I OUT OF BOUNDS"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     R1MACH     I OUT OF...",
+    "inputs": [
+      "SLATEC     R1MACH     I OUT OF BOUNDS"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     D1MACH     I OUT OF...",
+    "inputs": [
+      "SLATEC     D1MACH     I OUT OF BOUNDS"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERMAX     INVALID ...",
+    "inputs": [
+      "SLATEC     XERMAX     INVALID CALL"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERCNT     INVALID ...",
+    "inputs": [
+      "SLATEC     XERCNT     INVALID CONTROL VALUE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: Error: Mixed Case Message...",
+    "inputs": [
+      "Error: Mixed Case Message"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: ERROR: MIXED CASE MESSAGE...",
+    "inputs": [
+      "ERROR: MIXED CASE MESSAGE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: error: mixed case message...",
+    "inputs": [
+      "error: mixed case message"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: ErRoR: mIxEd CaSe MeSsAgE...",
+    "inputs": [
+      "ErRoR: mIxEd CaSe MeSsAgE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: FATAL Error: System Failu...",
+    "inputs": [
+      "FATAL Error: System Failure"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: Fatal ERROR: SYSTEM failu...",
+    "inputs": [
+      "Fatal ERROR: SYSTEM failure"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: AbOrT: InVaLiD VaLuE...",
+    "inputs": [
+      "AbOrT: InVaLiD VaLuE"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Mixed case: HaLt: OvErFlOw DeTeCteD...",
+    "inputs": [
+      "HaLt: OvErFlOw DeTeCteD"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: ERROR: Array(10) out of b...",
+    "inputs": [
+      "ERROR: Array(10) out of bounds"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: HALT: Matrix[5,5] singula...",
+    "inputs": [
+      "HALT: Matrix[5,5] singular"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: ABORT: Function(x,y) unde...",
+    "inputs": [
+      "ABORT: Function(x,y) undefined"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: STOP: Vector<double> over...",
+    "inputs": [
+      "STOP: Vector<double> overflow"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: FATAL: {invalid state}...",
+    "inputs": [
+      "FATAL: {invalid state}"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: ERROR: (x < 0) || (x > 10...",
+    "inputs": [
+      "ERROR: (x < 0) || (x > 100)"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: HALT: [CRITICAL] System e...",
+    "inputs": [
+      "HALT: [CRITICAL] System error"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Brackets: ABORT: <EOF> reached unex...",
+    "inputs": [
+      "ABORT: <EOF> reached unexpectedly"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: ERROR: x^2 + y^2 > MAX_VA...",
+    "inputs": [
+      "ERROR: x^2 + y^2 > MAX_VAL"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: HALT: sqrt(x) undefined f...",
+    "inputs": [
+      "HALT: sqrt(x) undefined for x<0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: ABORT: |det(A)| < epsilon...",
+    "inputs": [
+      "ABORT: |det(A)| < epsilon"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: STOP: sum(x_i) != expecte...",
+    "inputs": [
+      "STOP: sum(x_i) != expected"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: FATAL: integral diverges...",
+    "inputs": [
+      "FATAL: integral diverges"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: ERROR: d/dx f(x) unstable...",
+    "inputs": [
+      "ERROR: d/dx f(x) unstable"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: HALT: lim(x->0) undefined...",
+    "inputs": [
+      "HALT: lim(x->0) undefined"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Math expr: ABORT: eigenvalue lambda ...",
+    "inputs": [
+      "ABORT: eigenvalue lambda < 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: ERROR: Cannot open file.d...",
+    "inputs": [
+      "ERROR: Cannot open file.dat"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: HALT: /usr/lib/data not f...",
+    "inputs": [
+      "HALT: /usr/lib/data not found"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: ABORT: C:\\temp\\data.txt l...",
+    "inputs": [
+      "ABORT: C:\\temp\\data.txt locked"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: STOP: ~/home/user/file mi...",
+    "inputs": [
+      "STOP: ~/home/user/file missing"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: FATAL: ./relative/path er...",
+    "inputs": [
+      "FATAL: ./relative/path error"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: ERROR: File_001.txt corru...",
+    "inputs": [
+      "ERROR: File_001.txt corrupted"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: HALT: data*.csv pattern f...",
+    "inputs": [
+      "HALT: data*.csv pattern failed"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "File error: ABORT: backup-2024-01-01....",
+    "inputs": [
+      "ABORT: backup-2024-01-01.tar.gz"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: ERROR: Connection timeout...",
+    "inputs": [
+      "ERROR: Connection timeout 30s"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: HALT: Port 8080 already i...",
+    "inputs": [
+      "HALT: Port 8080 already in use"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: ABORT: Memory allocation ...",
+    "inputs": [
+      "ABORT: Memory allocation failed"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: STOP: CPU usage > 95%...",
+    "inputs": [
+      "STOP: CPU usage > 95%"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: FATAL: Disk space < 100MB...",
+    "inputs": [
+      "FATAL: Disk space < 100MB"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: ERROR: Process PID=1234 k...",
+    "inputs": [
+      "ERROR: Process PID=1234 killed"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: HALT: Signal SIGTERM rece...",
+    "inputs": [
+      "HALT: Signal SIGTERM received"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "System: ABORT: Segmentation fault...",
+    "inputs": [
+      "ABORT: Segmentation fault at 0x0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: ERROR: Invalid date 2024-...",
+    "inputs": [
+      "ERROR: Invalid date 2024-13-01"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: HALT: Time 25:00:00 out o...",
+    "inputs": [
+      "HALT: Time 25:00:00 out of range"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: ABORT: Timestamp overflow...",
+    "inputs": [
+      "ABORT: Timestamp overflow 2038"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: STOP: Duration -5 seconds...",
+    "inputs": [
+      "STOP: Duration -5 seconds invalid"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: FATAL: Timezone UTC+25 un...",
+    "inputs": [
+      "FATAL: Timezone UTC+25 unknown"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: ERROR: Leap year calculat...",
+    "inputs": [
+      "ERROR: Leap year calculation fail"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: HALT: Daylight saving tim...",
+    "inputs": [
+      "HALT: Daylight saving time error"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "DateTime: ABORT: Epoch time < 0...",
+    "inputs": [
+      "ABORT: Epoch time < 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: ERROR: Temperature > 100 ...",
+    "inputs": [
+      "ERROR: Temperature > 100 deg C"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: HALT: Angle = 45 deg inva...",
+    "inputs": [
+      "HALT: Angle = 45 deg invalid"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: ABORT: Currency $1000 exc...",
+    "inputs": [
+      "ABORT: Currency $1000 exceeded"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: STOP: Percentage 110% err...",
+    "inputs": [
+      "STOP: Percentage 110% error"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: FATAL: Coordinate (+/-10,...",
+    "inputs": [
+      "FATAL: Coordinate (+/-10,+/-20)"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: ERROR: Condition #1 faile...",
+    "inputs": [
+      "ERROR: Condition #1 failed"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: HALT: Reference [*] not f...",
+    "inputs": [
+      "HALT: Reference [*] not found"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Special: ABORT: Value ~= expected...",
+    "inputs": [
+      "ABORT: Value ~= expected"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     BESI0      OVERFLOW...",
+    "inputs": [
+      "SLATEC     BESI0      OVERFLOW, X > 88"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     BESJ0      X < 0 IN...",
+    "inputs": [
+      "SLATEC     BESJ0      X < 0 INVALID"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     GAMMA      X = 0 OR...",
+    "inputs": [
+      "SLATEC     GAMMA      X = 0 OR NEGATIVE INTEGER"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     BETA       X OR Y <...",
+    "inputs": [
+      "SLATEC     BETA       X OR Y <= 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     ERF        |X| > XM...",
+    "inputs": [
+      "SLATEC     ERF        |X| > XMAX"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     ALOG       X <= 0...",
+    "inputs": [
+      "SLATEC     ALOG       X <= 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     SQRT       X < 0...",
+    "inputs": [
+      "SLATEC     SQRT       X < 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "SLATEC func: SLATEC     ATAN2      X = Y = ...",
+    "inputs": [
+      "SLATEC     ATAN2      X = Y = 0"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 1: ********************... (80 chars)",
+    "inputs": [
+      "********************************************************************************"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 2: ====================... (80 chars)",
+    "inputs": [
+      "================================================================================"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 3: --------------------... (80 chars)",
+    "inputs": [
+      "--------------------------------------------------------------------------------"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 4: ERROR! ERROR! ERROR!... (70 chars)",
+    "inputs": [
+      "ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 5: STOP STOP STOP STOP ... (100 chars)",
+    "inputs": [
+      "STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 6: 123456789 123456789 ... (80 chars)",
+    "inputs": [
+      "123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 "
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 7: ABCDEFGHIJABCDEFGHIJ... (80 chars)",
+    "inputs": [
+      "ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJ"
+    ],
+    "note": "Function halts execution with STOP"
+  },
+  {
+    "description": "Pattern 8: !@#$%^&*() !@#$%^&*(... (88 chars)",
+    "inputs": [
+      "!@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#"
+    ],
+    "note": "Function halts execution with STOP"
+  }
+]

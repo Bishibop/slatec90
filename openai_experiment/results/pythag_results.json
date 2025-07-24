@@ -1,0 +1,17 @@
+{
+  "name": "PYTHAG",
+  "description": "Computes the hypotenuse sqrt(A**2+B**2) while avoiding destructive overflow and underflow.",
+  "algorithm_analysis": "The original algorithm first determines which of the absolute values of A and B is larger, storing it in P, and the smaller in Q. If Q is zero, the result is P. Otherwise, it iteratively refines the value of P by computing a relative ratio (R = (Q/P)**2) and using it to update P and Q until this ratio becomes extremely small (indicated by T equaling 4). This iterative process avoids overflow or underflow when dealing with very large or small values.",
+  "modernization_notes": "The modernization replaces GOTOs with a DO WHILE loop, uses a module with 'implicit none', and adds 'intent(in)' specifications for the input parameters. The function is declared as 'pure' since it has no side-effects, and the overall structure conforms to Fortran 90/95 standards while preserving the mathematical behavior and precision of the original Fortran 77 code.",
+  "f90_code": "module slatec_pythag_module\n  implicit none\ncontains\n\n  pure function PYTHAG(a, b) result(res)\n    implicit none\n    real, intent(in) :: a, b\n    real :: res\n    real :: p, q, r, s, t\n\n    ! Assign maximum and minimum absolute values to p and q\n    p = max(abs(a), abs(b))\n    q = min(abs(a), abs(b))\n\n    if (q == 0.0) then\n      res = p\n      return\n    end if\n\n    ! Iteratively refine p until corrections become negligible\n    do\n      r = (q / p)**2\n      t = 4.0 + r\n      if (t == 4.0) exit\n      s = r / t\n      p = p + 2.0 * p * s\n      q = q * s\n    end do\n\n    res = p\n  end function PYTHAG\n\nend module slatec_pythag_module\n",
+  "elapsed_time": 17.41744613647461,
+  "model": "o3-mini",
+  "total_tokens": 2173,
+  "cost": 0.0034839999999999997,
+  "validation": {
+    "stdout": "Validating 61 test cases...\n\n61 tests PASSED\n0 tests FAILED\n",
+    "stderr": "",
+    "return_code": 0,
+    "success": true
+  }
+}

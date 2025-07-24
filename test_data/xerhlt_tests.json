@@ -1,0 +1,1406 @@
+[
+  {
+    "description": "Empty error message",
+    "inputs": [
+      ""
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: ERROR",
+    "inputs": [
+      "ERROR"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: FATAL",
+    "inputs": [
+      "FATAL"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: ABORT",
+    "inputs": [
+      "ABORT"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: STOP",
+    "inputs": [
+      "STOP"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: HALT",
+    "inputs": [
+      "HALT"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: FAIL",
+    "inputs": [
+      "FAIL"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: DIV BY 0",
+    "inputs": [
+      "DIV BY 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: OVERFLOW",
+    "inputs": [
+      "OVERFLOW"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: UNDERFLOW",
+    "inputs": [
+      "UNDERFLOW"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: NAN",
+    "inputs": [
+      "NAN"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Short error message: INF",
+    "inputs": [
+      "INF"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: SLATEC     PYTHAG     OVERFLOW...",
+    "inputs": [
+      "SLATEC     PYTHAG     OVERFLOW HAS OCCURRED."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: SLATEC     GAMMA      X IS A N...",
+    "inputs": [
+      "SLATEC     GAMMA      X IS A NEGATIVE INTEGER."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: SLATEC     BESI       OVERFLOW...",
+    "inputs": [
+      "SLATEC     BESI       OVERFLOW, X TOO LARGE."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: SLATEC     BESJ       ORDER, A...",
+    "inputs": [
+      "SLATEC     BESJ       ORDER, ALPHA, LESS THAN ZERO."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: SLATEC     ENORM      N LESS T...",
+    "inputs": [
+      "SLATEC     ENORM      N LESS THAN 1."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: SLATEC     CDIV       DIVISION...",
+    "inputs": [
+      "SLATEC     CDIV       DIVISION BY ZERO."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: LINPACK    SGEFA      SINGULAR...",
+    "inputs": [
+      "LINPACK    SGEFA      SINGULAR MATRIX ENCOUNTERED."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: EISPACK    RS         NO CONVE...",
+    "inputs": [
+      "EISPACK    RS         NO CONVERGENCE IN 30 ITERATIONS."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: BLAS       SAXPY      N IS LES...",
+    "inputs": [
+      "BLAS       SAXPY      N IS LESS THAN OR EQUAL TO 0."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC error: LAPACK     DGESV      THE FACT...",
+    "inputs": [
+      "LAPACK     DGESV      THE FACTOR U IS SINGULAR."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Long error message 1 (80 chars)",
+    "inputs": [
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Long error message 2 (132 chars)",
+    "inputs": [
+      "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Long error message 3 (207 chars)",
+    "inputs": [
+      "ERROR: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Long error message 4 (167 chars)",
+    "inputs": [
+      "FATAL ERROR IN SUBROUTINE XYZ: INVALID PARAMETER VALUE DETECTED. THE INPUT PARAMETER N MUST BE POSITIVE BUT WAS NEGATIVE. PLEASE CHECK YOUR INPUT VALUES AND TRY AGAIN."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Long error message 5 (470 chars)",
+    "inputs": [
+      "CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. CATASTROPHIC FAILURE: MEMORY ALLOCATION ERROR. "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: ERROR: Value = -1.234E+56...",
+    "inputs": [
+      "ERROR: Value = -1.234E+56"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: HALT: Matrix(1,1) = NaN...",
+    "inputs": [
+      "HALT: Matrix(1,1) = NaN"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: ABORT: |X| > 1.0E+100...",
+    "inputs": [
+      "ABORT: |X| > 1.0E+100"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: STOP: A(I,J) != B(J,I)...",
+    "inputs": [
+      "STOP: A(I,J) != B(J,I)"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: FATAL: X < 0.0 OR X > 1.0...",
+    "inputs": [
+      "FATAL: X < 0.0 OR X > 1.0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: ERROR: SQRT(-1) ATTEMPTED...",
+    "inputs": [
+      "ERROR: SQRT(-1) ATTEMPTED"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: HALT: 1/0 DIVISION...",
+    "inputs": [
+      "HALT: 1/0 DIVISION"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: ABORT: LOG(0) UNDEFINED...",
+    "inputs": [
+      "ABORT: LOG(0) UNDEFINED"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: STOP: SIN(X)/COS(X) WHERE...",
+    "inputs": [
+      "STOP: SIN(X)/COS(X) WHERE COS(X)=0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special chars: FATAL: EXP(X) OVERFLOW, X...",
+    "inputs": [
+      "FATAL: EXP(X) OVERFLOW, X=1000"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted:    ERROR: LEADING SP...",
+    "inputs": [
+      "   ERROR: LEADING SPACES"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: ERROR: TRAILING SPAC...",
+    "inputs": [
+      "ERROR: TRAILING SPACES   "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: ERROR:    MULTIPLE  ...",
+    "inputs": [
+      "ERROR:    MULTIPLE    SPACES"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: ERROR:\tTAB\tCHARACTER...",
+    "inputs": [
+      "ERROR:\tTAB\tCHARACTERS"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: ERROR:\nNEWLINE\nCHARA...",
+    "inputs": [
+      "ERROR:\nNEWLINE\nCHARACTERS"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: ERROR: MIXED   \t  WH...",
+    "inputs": [
+      "ERROR: MIXED   \t  WHITESPACE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: *** ERROR ***...",
+    "inputs": [
+      "*** ERROR ***"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: >>> FATAL ERROR <<<...",
+    "inputs": [
+      ">>> FATAL ERROR <<<"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: !!! ABORT !!!...",
+    "inputs": [
+      "!!! ABORT !!!"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Formatted: ### SYSTEM HALT ###...",
+    "inputs": [
+      "### SYSTEM HALT ###"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: ERROR CODE 1",
+    "inputs": [
+      "ERROR CODE 1"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: ERROR CODE 12345",
+    "inputs": [
+      "ERROR CODE 12345"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: ERROR -999",
+    "inputs": [
+      "ERROR -999"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: IERR = 0",
+    "inputs": [
+      "IERR = 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: INFO = -1",
+    "inputs": [
+      "INFO = -1"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: IFLAG = 2",
+    "inputs": [
+      "IFLAG = 2"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: STATUS = 404",
+    "inputs": [
+      "STATUS = 404"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: RETURN CODE: -1.0E+10",
+    "inputs": [
+      "RETURN CODE: -1.0E+10"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: EXIT STATUS: 255",
+    "inputs": [
+      "EXIT STATUS: 255"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Numeric code: HALT: CODE 0x1234",
+    "inputs": [
+      "HALT: CODE 0x1234"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Detailed: ERROR IN SUBROUTINE SOLVE: MAT...",
+    "inputs": [
+      "ERROR IN SUBROUTINE SOLVE: MATRIX IS SINGULAR AT ROW 5"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Detailed: FATAL: INVALID INPUT PARAMETER...",
+    "inputs": [
+      "FATAL: INVALID INPUT PARAMETERS DETECTED IN ROUTINE CALCULATE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Detailed: ABORT: NUMERICAL INSTABILITY I...",
+    "inputs": [
+      "ABORT: NUMERICAL INSTABILITY IN ITERATION 1000 OF SOLVER"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Detailed: HALT: CONVERGENCE FAILURE AFTE...",
+    "inputs": [
+      "HALT: CONVERGENCE FAILURE AFTER MAXIMUM ITERATIONS EXCEEDED"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Detailed: STOP: MEMORY ALLOCATION FAILED...",
+    "inputs": [
+      "STOP: MEMORY ALLOCATION FAILED FOR ARRAY OF SIZE 1000000"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: ' '",
+    "inputs": [
+      " "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '  '",
+    "inputs": [
+      "  "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '\t'",
+    "inputs": [
+      "\t"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '.'",
+    "inputs": [
+      "."
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '!'",
+    "inputs": [
+      "!"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '?'",
+    "inputs": [
+      "?"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '0'",
+    "inputs": [
+      "0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '-1'",
+    "inputs": [
+      "-1"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '1.0E+308'",
+    "inputs": [
+      "1.0E+308"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: 'NaN'",
+    "inputs": [
+      "NaN"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: 'Inf'",
+    "inputs": [
+      "Inf"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Edge case: '-Inf'",
+    "inputs": [
+      "-Inf"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERMSG     INVALID ...",
+    "inputs": [
+      "SLATEC     XERMSG     INVALID ERROR NUMBER"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERSVE     INVALID ...",
+    "inputs": [
+      "SLATEC     XERSVE     INVALID ENTRY NUMBER"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XGETUA     INVALID ...",
+    "inputs": [
+      "SLATEC     XGETUA     INVALID UNIT NUMBER"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     J4SAVE     INVALID ...",
+    "inputs": [
+      "SLATEC     J4SAVE     INVALID PARAMETER NUMBER"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     FDUMP      UNIT NUM...",
+    "inputs": [
+      "SLATEC     FDUMP      UNIT NUMBER OUT OF RANGE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     I1MACH     I OUT OF...",
+    "inputs": [
+      "SLATEC     I1MACH     I OUT OF BOUNDS"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     R1MACH     I OUT OF...",
+    "inputs": [
+      "SLATEC     R1MACH     I OUT OF BOUNDS"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     D1MACH     I OUT OF...",
+    "inputs": [
+      "SLATEC     D1MACH     I OUT OF BOUNDS"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERMAX     INVALID ...",
+    "inputs": [
+      "SLATEC     XERMAX     INVALID CALL"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Real SLATEC: SLATEC     XERCNT     INVALID ...",
+    "inputs": [
+      "SLATEC     XERCNT     INVALID CONTROL VALUE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: Error: Mixed Case Message...",
+    "inputs": [
+      "Error: Mixed Case Message"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: ERROR: MIXED CASE MESSAGE...",
+    "inputs": [
+      "ERROR: MIXED CASE MESSAGE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: error: mixed case message...",
+    "inputs": [
+      "error: mixed case message"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: ErRoR: mIxEd CaSe MeSsAgE...",
+    "inputs": [
+      "ErRoR: mIxEd CaSe MeSsAgE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: FATAL Error: System Failu...",
+    "inputs": [
+      "FATAL Error: System Failure"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: Fatal ERROR: SYSTEM failu...",
+    "inputs": [
+      "Fatal ERROR: SYSTEM failure"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: AbOrT: InVaLiD VaLuE...",
+    "inputs": [
+      "AbOrT: InVaLiD VaLuE"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Mixed case: HaLt: OvErFlOw DeTeCteD...",
+    "inputs": [
+      "HaLt: OvErFlOw DeTeCteD"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: ERROR: Array(10) out of b...",
+    "inputs": [
+      "ERROR: Array(10) out of bounds"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: HALT: Matrix[5,5] singula...",
+    "inputs": [
+      "HALT: Matrix[5,5] singular"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: ABORT: Function(x,y) unde...",
+    "inputs": [
+      "ABORT: Function(x,y) undefined"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: STOP: Vector<double> over...",
+    "inputs": [
+      "STOP: Vector<double> overflow"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: FATAL: {invalid state}...",
+    "inputs": [
+      "FATAL: {invalid state}"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: ERROR: (x < 0) || (x > 10...",
+    "inputs": [
+      "ERROR: (x < 0) || (x > 100)"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: HALT: [CRITICAL] System e...",
+    "inputs": [
+      "HALT: [CRITICAL] System error"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Brackets: ABORT: <EOF> reached unex...",
+    "inputs": [
+      "ABORT: <EOF> reached unexpectedly"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: ERROR: x^2 + y^2 > MAX_VA...",
+    "inputs": [
+      "ERROR: x^2 + y^2 > MAX_VAL"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: HALT: sqrt(x) undefined f...",
+    "inputs": [
+      "HALT: sqrt(x) undefined for x<0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: ABORT: |det(A)| < epsilon...",
+    "inputs": [
+      "ABORT: |det(A)| < epsilon"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: STOP: sum(x_i) != expecte...",
+    "inputs": [
+      "STOP: sum(x_i) != expected"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: FATAL: integral diverges...",
+    "inputs": [
+      "FATAL: integral diverges"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: ERROR: d/dx f(x) unstable...",
+    "inputs": [
+      "ERROR: d/dx f(x) unstable"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: HALT: lim(x->0) undefined...",
+    "inputs": [
+      "HALT: lim(x->0) undefined"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Math expr: ABORT: eigenvalue lambda ...",
+    "inputs": [
+      "ABORT: eigenvalue lambda < 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: ERROR: Cannot open file.d...",
+    "inputs": [
+      "ERROR: Cannot open file.dat"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: HALT: /usr/lib/data not f...",
+    "inputs": [
+      "HALT: /usr/lib/data not found"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: ABORT: C:\\temp\\data.txt l...",
+    "inputs": [
+      "ABORT: C:\\temp\\data.txt locked"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: STOP: ~/home/user/file mi...",
+    "inputs": [
+      "STOP: ~/home/user/file missing"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: FATAL: ./relative/path er...",
+    "inputs": [
+      "FATAL: ./relative/path error"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: ERROR: File_001.txt corru...",
+    "inputs": [
+      "ERROR: File_001.txt corrupted"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: HALT: data*.csv pattern f...",
+    "inputs": [
+      "HALT: data*.csv pattern failed"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "File error: ABORT: backup-2024-01-01....",
+    "inputs": [
+      "ABORT: backup-2024-01-01.tar.gz"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: ERROR: Connection timeout...",
+    "inputs": [
+      "ERROR: Connection timeout 30s"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: HALT: Port 8080 already i...",
+    "inputs": [
+      "HALT: Port 8080 already in use"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: ABORT: Memory allocation ...",
+    "inputs": [
+      "ABORT: Memory allocation failed"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: STOP: CPU usage > 95%...",
+    "inputs": [
+      "STOP: CPU usage > 95%"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: FATAL: Disk space < 100MB...",
+    "inputs": [
+      "FATAL: Disk space < 100MB"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: ERROR: Process PID=1234 k...",
+    "inputs": [
+      "ERROR: Process PID=1234 killed"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: HALT: Signal SIGTERM rece...",
+    "inputs": [
+      "HALT: Signal SIGTERM received"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "System: ABORT: Segmentation fault...",
+    "inputs": [
+      "ABORT: Segmentation fault at 0x0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: ERROR: Invalid date 2024-...",
+    "inputs": [
+      "ERROR: Invalid date 2024-13-01"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: HALT: Time 25:00:00 out o...",
+    "inputs": [
+      "HALT: Time 25:00:00 out of range"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: ABORT: Timestamp overflow...",
+    "inputs": [
+      "ABORT: Timestamp overflow 2038"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: STOP: Duration -5 seconds...",
+    "inputs": [
+      "STOP: Duration -5 seconds invalid"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: FATAL: Timezone UTC+25 un...",
+    "inputs": [
+      "FATAL: Timezone UTC+25 unknown"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: ERROR: Leap year calculat...",
+    "inputs": [
+      "ERROR: Leap year calculation fail"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: HALT: Daylight saving tim...",
+    "inputs": [
+      "HALT: Daylight saving time error"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "DateTime: ABORT: Epoch time < 0...",
+    "inputs": [
+      "ABORT: Epoch time < 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: ERROR: Temperature > 100 ...",
+    "inputs": [
+      "ERROR: Temperature > 100 deg C"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: HALT: Angle = 45 deg inva...",
+    "inputs": [
+      "HALT: Angle = 45 deg invalid"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: ABORT: Currency $1000 exc...",
+    "inputs": [
+      "ABORT: Currency $1000 exceeded"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: STOP: Percentage 110% err...",
+    "inputs": [
+      "STOP: Percentage 110% error"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: FATAL: Coordinate (+/-10,...",
+    "inputs": [
+      "FATAL: Coordinate (+/-10,+/-20)"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: ERROR: Condition #1 faile...",
+    "inputs": [
+      "ERROR: Condition #1 failed"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: HALT: Reference [*] not f...",
+    "inputs": [
+      "HALT: Reference [*] not found"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Special: ABORT: Value ~= expected...",
+    "inputs": [
+      "ABORT: Value ~= expected"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     BESI0      OVERFLOW...",
+    "inputs": [
+      "SLATEC     BESI0      OVERFLOW, X > 88"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     BESJ0      X < 0 IN...",
+    "inputs": [
+      "SLATEC     BESJ0      X < 0 INVALID"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     GAMMA      X = 0 OR...",
+    "inputs": [
+      "SLATEC     GAMMA      X = 0 OR NEGATIVE INTEGER"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     BETA       X OR Y <...",
+    "inputs": [
+      "SLATEC     BETA       X OR Y <= 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     ERF        |X| > XM...",
+    "inputs": [
+      "SLATEC     ERF        |X| > XMAX"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     ALOG       X <= 0...",
+    "inputs": [
+      "SLATEC     ALOG       X <= 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     SQRT       X < 0...",
+    "inputs": [
+      "SLATEC     SQRT       X < 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "SLATEC func: SLATEC     ATAN2      X = Y = ...",
+    "inputs": [
+      "SLATEC     ATAN2      X = Y = 0"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 1: ********************... (80 chars)",
+    "inputs": [
+      "********************************************************************************"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 2: ====================... (80 chars)",
+    "inputs": [
+      "================================================================================"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 3: --------------------... (80 chars)",
+    "inputs": [
+      "--------------------------------------------------------------------------------"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 4: ERROR! ERROR! ERROR!... (70 chars)",
+    "inputs": [
+      "ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! ERROR! "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 5: STOP STOP STOP STOP ... (100 chars)",
+    "inputs": [
+      "STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP STOP "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 6: 123456789 123456789 ... (80 chars)",
+    "inputs": [
+      "123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 "
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 7: ABCDEFGHIJABCDEFGHIJ... (80 chars)",
+    "inputs": [
+      "ABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJ"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  },
+  {
+    "description": "Pattern 8: !@#$%^&*() !@#$%^&*(... (88 chars)",
+    "inputs": [
+      "!@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#$%^&*() !@#"
+    ],
+    "expected": "STOP",
+    "note": "Function halts execution with STOP",
+    "behavior": "Program terminates with STOP statement"
+  }
+]
