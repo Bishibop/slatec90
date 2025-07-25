@@ -1,0 +1,10 @@
+{
+    "source_dir": "src",
+    "modern_dir": "modern/phase_0",
+    "test_dir": "test_cases/phase_0",
+    "log_dir": "logs/phase_0",
+    "work_dir": "work/phase_0",
+    "max_iterations": 5,
+    "parallel_workers": 4,
+    "validator_executable": "fortran_validator/mega_validator_full"
+}

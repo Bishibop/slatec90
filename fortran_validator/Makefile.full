@@ -29,8 +29,10 @@ PHASE0_F77_OBJS = $(OBJ_DIR)/pimach_f77.o $(OBJ_DIR)/aaaaaa_f77.o \
 AVAILABLE_MODERN_SOURCES := $(wildcard $(PHASE0_DIR)/*_module.f90)
 PHASE0_MODERN_OBJS := $(patsubst $(PHASE0_DIR)/%_module.f90,$(OBJ_DIR)/%_modern.o,$(AVAILABLE_MODERN_SOURCES))
 
-# Always include stub modules to provide fallbacks
-STUB_OBJS = $(OBJ_DIR)/stub_modules.o $(OBJ_DIR)/xermsg_stub.o
+# Only include stub modules if no real implementations exist
+# Since we now have all implementations, skip stubs to avoid conflicts
+# STUB_OBJS = $(OBJ_DIR)/stub_modules.o
+STUB_OBJS = $(OBJ_DIR)/xermsg_stub.o
 
 # Wrapper objects (commented out for now - not needed)
 # WRAPPER_OBJS = $(OBJ_DIR)/pythag_f77_wrapper.o $(OBJ_DIR)/bsplvn_f77_wrapper.o

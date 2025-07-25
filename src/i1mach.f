@@ -795,24 +795,24 @@ C     DATA IMACH(14) /         53 /
 C     DATA IMACH(15) /      -1021 /
 C     DATA IMACH(16) /       1024 /
 C
-C     MACHINE CONSTANTS FOR THE SUN
+C     MACHINE CONSTANTS FOR THE DEC ALPHA IEEE_FLOAT (Modern IEEE)
 C
-C     DATA IMACH( 1) /          5 /
-C     DATA IMACH( 2) /          6 /
-C     DATA IMACH( 3) /          6 /
-C     DATA IMACH( 4) /          6 /
-C     DATA IMACH( 5) /         32 /
-C     DATA IMACH( 6) /          4 /
-C     DATA IMACH( 7) /          2 /
-C     DATA IMACH( 8) /         31 /
-C     DATA IMACH( 9) / 2147483647 /
-C     DATA IMACH(10) /          2 /
-C     DATA IMACH(11) /         24 /
-C     DATA IMACH(12) /       -125 /
-C     DATA IMACH(13) /        128 /
-C     DATA IMACH(14) /         53 /
-C     DATA IMACH(15) /      -1021 /
-C     DATA IMACH(16) /       1024 /
+      DATA IMACH( 1) /          5 /
+      DATA IMACH( 2) /          6 /
+      DATA IMACH( 3) /          6 /
+      DATA IMACH( 4) /          6 /
+      DATA IMACH( 5) /         32 /
+      DATA IMACH( 6) /          4 /
+      DATA IMACH( 7) /          2 /
+      DATA IMACH( 8) /         31 /
+      DATA IMACH( 9) / 2147483647 /
+      DATA IMACH(10) /          2 /
+      DATA IMACH(11) /         24 /
+      DATA IMACH(12) /       -125 /
+      DATA IMACH(13) /        128 /
+      DATA IMACH(14) /         53 /
+      DATA IMACH(15) /      -1021 /
+      DATA IMACH(16) /       1024 /
 C
 C     MACHINE CONSTANTS FOR THE SUN
 C     USING THE -r8 COMPILER OPTION
