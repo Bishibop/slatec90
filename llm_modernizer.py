@@ -50,14 +50,14 @@ Validation errors to fix:
 {json.dumps(validation_errors, indent=2)}
 
 Please analyze the errors and provide a corrected version. Common issues:
-- Module name mismatches
+- Module name mismatches (should be {func_name.lower()}_module)
 - Interface differences between F77 and F90
-- Precision mismatches
+- Precision mismatches (use ISO_FORTRAN_ENV kinds)
 - Missing PURE/ELEMENTAL attributes
-- Dependency module names (e.g., use pythag_module not pythag)
-- Array parameter declarations (assumed-size vs assumed-shape)
-- Complex arithmetic interface preservation
-- Format string handling in output functions
+- Incorrect INTENT specifications
+- Array parameter declarations (use assumed-size (*) to match F77)
+- Missing implicit none statements
+- Incorrect handling of dependencies
 
 Respond with a JSON object containing:
 {{
@@ -97,15 +97,16 @@ Compilation errors:
 {compilation_errors}
 
 Common issues:
-- Missing USE statements
-- Incorrect module/function names
-- Type mismatches
-- Missing IMPLICIT NONE
-- Incorrect INTENT specifications
-- For dependencies: use pythag_module, only: pythag
-- Array declarations: real, intent(in) :: array(*) not array(:)
-- Complex functions: separate real/imaginary components
-- Output functions: character(*) for format strings
+- Missing USE statements for dependencies
+- Incorrect module/function names (module should be {func_name.lower()}_module)
+- Type mismatches between F77 and F90
+- Missing IMPLICIT NONE in module or procedures
+- Incorrect or missing INTENT specifications
+- Array declarations: use assumed-size (*) not assumed-shape (:)
+- For dependencies: use module_name, only: function_name
+- Character arguments: use CHARACTER(*) for assumed length
+
+IMPORTANT: The module must contain ONLY the {func_name} function. Do not include any other functions.
 
 Respond with JSON containing the corrected f90_code."""
 
@@ -127,7 +128,9 @@ Respond with JSON containing the corrected f90_code."""
         """Create the modernization prompt"""
         return f"""You are a Fortran expert modernizing a SLATEC function from F77 to modern F90/95.
 
-Function: {func_name}
+IMPORTANT: Modernize ONLY the {func_name} function. The module must contain ONLY this single function.
+
+Function to modernize: {func_name}
 
 Original Fortran 77 source:
 ```fortran
@@ -137,46 +140,50 @@ Original Fortran 77 source:
 Test cases (for understanding usage):
 {test_cases}
 
-Modernize following these rules:
-1. Create a module named {func_name.lower()}_module
-2. Use 'implicit none' always
-3. Add INTENT for all arguments
-4. Replace GOTO with structured constructs
-5. For machine constants (I1MACH, R1MACH, D1MACH):
-   - Use intrinsic functions from ISO_FORTRAN_ENV
-   - Return 0 for invalid indices (no error stops)
-   - R1MACH: Use REAL(REAL32) for all values
-   - D1MACH: Use REAL(REAL64) for all values
-6. Remove ALL XERMSG calls - return defaults for errors
-7. Use PURE/ELEMENTAL where appropriate
-8. Preserve exact mathematical behavior
-9. Keep same interface (function vs subroutine)
-10. For LSAME: Handle the SAVE statement carefully
-11. Module structure:
-    - PUBLIC only the main function
-    - PRIVATE for any module variables or helper procedures
-    - Use modern parameter declarations
-12. For complex arithmetic functions (CDIV, CSROOT):
-    - Keep separate real/imaginary components if that's the interface
-    - Don't force COMPLEX type unless beneficial
-    - Preserve numerical stability techniques
-13. For array output functions (SVOUT, DVOUT, IVOUT):
-    - Use assumed-size arrays to match F77 interface
-    - Preserve formatting behavior exactly
-    - Handle variable format strings properly
-14. For functions with dependencies:
-    - USE the modernized module (e.g., use pythag_module)
-    - Import with rename if needed: use pythag_module, only: pythag
-15. Special patterns:
-    - PYTHAG: Keep the iterative algorithm for overflow protection
-    - CSROOT: Preserve branch cut behavior
-    - Output functions: Keep I1MACH(2) for output unit
+Modernization rules:
+
+1. **Module Structure**:
+   - Create a module named `{func_name.lower()}_module`
+   - Use `implicit none` in the module
+   - Make the function PUBLIC: `public :: {func_name.lower()}`
+   - Everything else should be PRIVATE
+   - One function per module - do NOT include any other functions
+
+2. **General Modernization**:
+   - Add INTENT(IN), INTENT(OUT), or INTENT(INOUT) for all arguments
+   - Replace GOTO with DO loops or IF-THEN-ELSE constructs
+   - Use PURE or ELEMENTAL where appropriate (functions with no side effects)
+   - Preserve the exact mathematical algorithm and numerical behavior
+   - Keep the same interface type (FUNCTION vs SUBROUTINE)
+
+3. **Type Modernization**:
+   - Use ISO_FORTRAN_ENV for precision: REAL32, REAL64, INT32, etc.
+   - For REAL without explicit precision, keep as default REAL
+   - For DOUBLE PRECISION, use REAL(REAL64)
+   - For INTEGER, keep as default INTEGER unless precision matters
+
+4. **Error Handling**:
+   - Remove ALL calls to XERMSG or other error routines
+   - For invalid inputs, return sensible defaults (0, 0.0, .FALSE., etc.)
+   - No error stops - let the caller handle invalid results
+   - Thread-safe design with no global state
+
+5. **Dependencies**:
+   - If the function calls other SLATEC functions, assume they exist as modules
+   - Use: `use other_module, only: other_function`
+   - Do NOT implement stub versions of dependencies
+
+6. **Critical Requirements**:
+   - Mathematical correctness is the top priority
+   - Preserve all numerical stability techniques from the original
+   - Do NOT add functions that weren't in the original F77 code
+   - Do NOT create implementations for other functions
 
 Respond with JSON:
 {{
     "name": "{func_name}",
-    "description": "What this function does",
-    "algorithm_analysis": "Understanding of the algorithm",
-    "modernization_notes": "Key changes made",
-    "f90_code": "Complete module code"
+    "description": "Brief description of what this function computes",
+    "algorithm_analysis": "Your understanding of the mathematical algorithm used",
+    "modernization_notes": "Key changes made during modernization",
+    "f90_code": "Complete Fortran 90/95 module code containing ONLY the {func_name} function"
 }}"""
