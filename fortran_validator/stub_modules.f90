@@ -1,4 +1,4 @@
-! Stub modules for missing Phase 0 functions
+! Stub modules for missing functions
 ! These provide placeholder implementations when the real modern versions don't exist yet
 
 module fdump_module

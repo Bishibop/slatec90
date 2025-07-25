@@ -1,0 +1,10 @@
+{
+  "name": "Simple Functions",
+  "description": "Level 1 complexity - basic arrays, simple algorithms, minimal dependencies",
+  "functions": ["CDIV", "PYTHAG", "CSROOT", "SVOUT", "DVOUT"],
+  "dependencies": {
+    "CSROOT": ["PYTHAG"],
+    "SVOUT": ["I1MACH"],
+    "DVOUT": ["I1MACH"]
+  }
+}

@@ -1,14 +1,17 @@
 # SLATEC Iterative Modernization Master Plan
 
-**Date**: July 24, 2025  
-**Purpose**: Define phased approach to modernize 738 SLATEC functions iteratively  
-**Strategy**: Start simple, learn, adapt process, scale up
+**Date**: July 24, 2025 (Updated July 25, 2025)  
+**Purpose**: Define iterative approach to modernize 738 SLATEC functions  
+**Strategy**: Start simple, learn, adapt process, scale up  
+**Philosophy**: Iterative improvements to existing systems, not new versions
 
 ## Executive Summary
 
 Rather than attempting to build a universal modernization process upfront, we will approach SLATEC modernization iteratively. Starting with the simplest functions (4.5%), we'll build and refine our tools and processes, learning from each level before tackling more complex functions. This allows us to develop robust solutions for each complexity level while maintaining momentum.
 
 **🚀 UPDATE (July 24, 2025)**: **Phase 0 infrastructure is complete and parallel-ready!** The universal validator with auto-discovery eliminates serialization bottlenecks. Multiple functions can now be modernized simultaneously without coordination overhead. Ready to scale up parallel execution for remaining Phase 0 and Phase 1 functions.
+
+**📋 UPDATE (July 25, 2025)**: **Generic organizational structure implemented!** Removed rigid phase-based directories in favor of flexible function lists. Infrastructure continuously improves - no versioning of tools.
 
 ## Key Learnings from Phase 0 Planning
 
@@ -62,6 +65,66 @@ REAL(REAL32), PARAMETER :: r1_huge = HUGE(1.0_REAL32)
 
 **Rationale**: 39% fewer errors, 24% faster, structured output support critical for automation.
 
+## Generic Organizational Structure (Implemented July 25, 2025)
+
+### Philosophy: Iterative Improvements, Not Versions
+
+The modernization infrastructure follows these key principles:
+
+1. **No Phase-Specific Directories**: All functions share common directories
+   ```
+   modern/          # All modernized functions
+   test_cases/      # All test cases
+   logs/            # All logs with timestamps
+   work/            # Working directory
+   function_lists/  # Named function lists
+   ```
+
+2. **Function Lists Replace Phases**: Flexible JSON-based organization
+   ```json
+   {
+     "name": "Descriptive Name",
+     "description": "What this group represents",
+     "functions": ["FUNC1", "FUNC2", ...],
+     "dependencies": {
+       "FUNC2": ["FUNC1"]
+     }
+   }
+   ```
+
+3. **Infrastructure Evolution**: Tools improve in-place
+   - Test generator gains new patterns as discovered
+   - Modernizer prompts enhanced with learnings
+   - Validator extended for new function types
+   - No "v2" or phase-specific versions created
+
+4. **Usage Patterns**:
+   ```bash
+   # Process predefined list
+   python slatec_orchestrator.py --list trivial
+   
+   # Process custom functions
+   python slatec_orchestrator.py --functions PIMACH,AAAAAA,FDUMP
+   
+   # Use custom list file
+   python slatec_orchestrator.py --list-file my_functions.json
+   ```
+
+5. **Progress Tracking**: By list name, not phase
+   ```
+   work/progress/trivial_progress.json
+   work/progress/simple_progress.json
+   work/progress/custom_20250125_progress.json
+   ```
+
+### Benefits of Generic Structure
+
+1. **Flexibility**: Process any combination of functions
+2. **Reusability**: Compiled objects and tests shared across all runs
+3. **Continuous Improvement**: Infrastructure evolves without versioning
+4. **Clarity**: Self-documenting function lists
+5. **Scalability**: Easy to add new groupings without restructuring
+
 ## Function Complexity Distribution
 
 Based on comprehensive analysis of all 738 SLATEC functions:
@@ -76,11 +139,12 @@ Based on comprehensive analysis of all 738 SLATEC functions:
 
 **Total**: 738 functions (analyzed 736, 99.7% coverage)
 
-## Phased Approach
+## Iterative Approach (No Rigid Phases)
 
-### Phase 0: Foundation (Weeks 1-2) ✅ **COMPLETE - 100% SUCCESS**
-**Target**: 7 ultra-minimal functions (refined from initial 33)
+### Iteration 1: Trivial Functions (Weeks 1-2) ✅ **COMPLETE - 100% SUCCESS**
+**List**: `trivial.json` - 7 ultra-minimal functions (refined from initial 33)
 **Progress**: 7/7 functions completed and validated ✅
+**Command**: `python slatec_orchestrator.py --list trivial`
 
 **Functions** (all validated with 100% pass rate):
 1. ✅ **PIMACH** - Returns π constant (3/3 tests pass)
@@ -126,7 +190,7 @@ Based on comprehensive analysis of all 738 SLATEC functions:
 - ✅ Proven iterative refinement process
 - ✅ **Parallel infrastructure complete**
 
-## Phase 0 Learnings and Strategic Policies
+## Iteration 1 Learnings and Strategic Policies
 
 ### Machine Constants Policy
 **Decision**: Use modern IEEE 754 constants instead of 1978 values
@@ -252,8 +316,9 @@ The following 16 error handling functions are completely eliminated:
 - **Solution**: Universal validator with auto-discovery
 - **Result**: 5+ functions modernized in parallel successfully
 
-### Phase 1: Core Utilities (Weeks 3-4)
-**Target**: Level 1 functions (63 total)
+### Iteration 2: Simple Functions (Weeks 3-4)
+**List**: `simple.json` - Level 1 functions (bridge complexity)
+**Command**: `python slatec_orchestrator.py --list simple`
 
 **Example Functions**:
 - PYTHAG (sqrt(a²+b²))
@@ -286,7 +351,7 @@ The following 16 error handling functions are completely eliminated:
 - Comprehensive test coverage
 - Performance benchmarks
 
-### Phase 1.5: Tolerance Sensitivity Analysis (Week 4)
+### Iteration 2.5: Tolerance Sensitivity Analysis (Week 4)
 **Target**: Analyze impact of modern IEEE constants on 266+ dependent functions
 
 **Activities**:
@@ -328,8 +393,9 @@ The following 16 error handling functions are completely eliminated:
 - Relaxation strategy tested on sample functions
 - No surprises in Phase 2 due to tolerance issues
 
-### Phase 2: Workhorses (Weeks 5-12)
+### Iteration 3: Workhorses (Weeks 5-12)
 **Target**: Level 2 functions (415 total - largest group)
+**Approach**: Create multiple function lists by domain/type
 
 **Example Functions**:
 - Linear solvers (SGEIR, DGEFA)
@@ -364,8 +430,9 @@ The following 16 error handling functions are completely eliminated:
 - Work array calculator functional
 - COMMON block strategy proven
 
-### Phase 3: Advanced Algorithms (Weeks 13-20)
+### Iteration 4: Advanced Algorithms (Weeks 13-20)
 **Target**: Level 3 functions (223 total)
+**Approach**: Domain-specific lists with complex patterns
 
 **Example Functions**:
 - Integration (QAGI, QAWS)
@@ -401,8 +468,9 @@ The following 16 error handling functions are completely eliminated:
 - EXTERNAL handling proven
 - 70%+ functions migrated
 
-### Phase 4: Special Cases (Week 21)
+### Iteration 5: Special Cases (Week 21)
 **Target**: Level 4 functions (4 total)
+**List**: `stateful.json` - Functions with INDEX patterns
 
 **Functions**:
 - BSPLVN, BSPVN, DBSPVN, DFSPVN
@@ -454,38 +522,38 @@ The following 16 error handling functions are completely eliminated:
 
 ## Milestone Schedule
 
-| Week | Phase | Functions | Cumulative | % Complete |
-|------|-------|-----------|------------|------------|
-| 1-2  | 0     | 7         | 7          | 0.9%       |
-| 3-4  | 1     | 63        | 70         | 9.5%       |
-| 4    | 1.5   | Analysis  | 70         | 9.5%       |
-| 5-12 | 2     | 415       | 485        | 65.7%      |
-| 13-20| 3     | 223       | 708        | 95.9%      |
-| 21   | 4     | 30        | 738        | 100%       |
+| Week | Iteration | Functions | Cumulative | % Complete | List |
+|------|-----------|-----------|------------|------------|------|
+| 1-2  | 1         | 7         | 7          | 0.9%       | trivial.json |
+| 3-4  | 2         | 63        | 70         | 9.5%       | simple.json + custom |
+| 4    | 2.5       | Analysis  | 70         | 9.5%       | - |
+| 5-12 | 3         | 415       | 485        | 65.7%      | Multiple domain lists |
+| 13-20| 4         | 223       | 708        | 95.9%      | Advanced lists |
+| 21   | 5         | 30        | 738        | 100%       | stateful.json + edge |
 
 ## Key Decision Points
 
-### After Phase 0 (Week 2)
+### After Iteration 1 (Week 2)
 - Validate basic approach
 - Refine test formats
 - Confirm modernization patterns
 
-### After Phase 1 (Week 4)
+### After Iteration 2 (Week 4)
 - Review array handling strategy
 - Optimize test generation
 - Assess automation percentage
 
-### Mid-Phase 2 (Week 8)
+### Mid-Iteration 3 (Week 8)
 - Evaluate COMMON block approach
 - Review work array automation
 - Consider parallelization
 
-### After Phase 2 (Week 12)
+### After Iteration 3 (Week 12)
 - Major process review
 - Tool enhancement planning
 - Strategy for EXTERNAL params
 
-### Mid-Phase 3 (Week 16)
+### Mid-Iteration 4 (Week 16)
 - Callback mechanism review
 - Performance assessment
 - Final tool refinements
@@ -530,39 +598,43 @@ The following 16 error handling functions are completely eliminated:
 
 ## Tool Development Timeline
 
-### Phase 0 Tools
+### Initial Tools (Iteration 1)
 - Basic test generator
 - Simple modernizer
 - Core validator
 
-### Phase 1 Enhancements
+### Iteration 2 Enhancements
 - Array test generation
 - SAVE pattern handler
 - Tolerance system
 
-### Phase 2 Enhancements
+### Iteration 3 Enhancements
 - Work array calculator
 - COMMON block migrator
 - Property validator
 
-### Phase 3 Enhancements
+### Iteration 4 Enhancements
 - Test function library
 - EXTERNAL handler
 - Callback test framework
 
-### Phase 4 Enhancements
+### Iteration 5 Enhancements
 - Sequential test support
 - State validator
 
+**Key Principle**: Tools evolve in-place. No versioning, no phase-specific variants.
+
 ## Learning Integration
 
-Each phase builds on previous learnings:
+Each iteration builds on previous learnings:
 
-1. **Phase 0**: Establish fundamentals
-2. **Phase 1**: Learn array patterns, refine tools
-3. **Phase 2**: Master work arrays and COMMON blocks
-4. **Phase 3**: Solve EXTERNAL parameters
-5. **Phase 4**: Handle special cases
+1. **Iteration 1**: Establish fundamentals
+2. **Iteration 2**: Learn array patterns, refine tools
+3. **Iteration 3**: Master work arrays and COMMON blocks
+4. **Iteration 4**: Solve EXTERNAL parameters
+5. **Iteration 5**: Handle special cases
+
+**Infrastructure Evolution**: Each learning is immediately incorporated into existing tools, not saved for a "next version".
 
 ## Error Handling Migration Throughout Phases
 

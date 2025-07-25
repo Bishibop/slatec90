@@ -1,0 +1,6 @@
+{
+  "name": "Trivial Functions",
+  "description": "Level 0 complexity - pure math, no state, ultra-simple functions",
+  "functions": ["PIMACH", "AAAAAA", "FDUMP", "LSAME", "I1MACH", "R1MACH", "D1MACH"],
+  "dependencies": {}
+}

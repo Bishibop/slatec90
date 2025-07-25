@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SLATEC Orchestrator - Main driver for SLATEC modernization
-Supports multiple phases of the iterative modernization process
+Generic orchestrator that processes any set of functions
 """
 import os
 import json
@@ -20,53 +20,30 @@ from fortran_validator import FortranValidator
 # Load environment variables
 load_dotenv()
 
-# Phase 0 functions in order of complexity
-PHASE_0_FUNCTIONS = [
-    'PIMACH',   # Simplest - returns constant
-    'AAAAAA',   # Returns version string
-    'FDUMP',    # Empty subroutine
-    'LSAME',    # Character comparison
-    'I1MACH',   # Integer constants
-    'R1MACH',   # Real constants
-    'D1MACH',   # Double constants
-]
-
-# Phase 0.1 functions - bridge to complex functions
-PHASE_0_1_FUNCTIONS = [
-    'CDIV',    # Complex division - zero deps
-    'PYTHAG',  # Pythagorean - zero deps  
-    'CSROOT',  # Complex sqrt - depends on PYTHAG
-    'SVOUT',   # Single vector output - depends on I1MACH
-    'DVOUT',   # Double vector output - depends on I1MACH
-]
-
-# Function dependencies
-DEPENDENCIES = {
-    'CSROOT': ['PYTHAG'],
-    'SVOUT': ['I1MACH'],
-    'DVOUT': ['I1MACH']
-}
+# No hard-coded function lists - load from JSON files or command line
 
 class SLATECOrchestrator:
-    def __init__(self, config_file='config.json', phase='0'):
-        self.phase = phase
+    def __init__(self, config_file='config.json', list_name=None, list_file=None, functions=None):
         self.config = self._load_config(config_file)
+        self.list_name = list_name
+        self.list_file = list_file
+        self.functions = functions
         self.setup_logging()
         self.test_gen = TestGenerator(self.config)
         self.modernizer = LLMModernizer(self.config)
         self.validator = FortranValidator(self.config)
+        self.function_data = self._load_function_data()
         self.progress = self._load_progress()
-        self.function_list = self._get_function_list()
         
     def _load_config(self, config_file):
         """Load configuration from JSON file and environment"""
-        phase_dir = f'phase_{self.phase.replace(".", "_")}'
         default_config = {
             'source_dir': 'src',
-            'modern_dir': f'modern/{phase_dir}',
-            'test_dir': f'test_cases/{phase_dir}',
-            'log_dir': f'logs/{phase_dir}',
-            'work_dir': f'work/{phase_dir}',
+            'modern_dir': 'modern',
+            'test_dir': 'test_cases',
+            'log_dir': 'logs',
+            'work_dir': 'work',
+            'function_lists_dir': 'function_lists',
             'max_iterations': 5,
             'parallel_workers': 4,
             'llm_model': os.getenv('OPENAI_MODEL', 'o3-mini'),
@@ -90,7 +67,8 @@ class SLATECOrchestrator:
         
     def setup_logging(self):
         """Configure logging"""
-        log_file = Path(self.config['log_dir']) / f"phase_{self.phase}_{datetime.now():%Y%m%d_%H%M%S}.log"
+        list_id = self.list_name or Path(self.list_file).stem if self.list_file else 'functions'
+        log_file = Path(self.config['log_dir']) / f"{list_id}_{datetime.now():%Y%m%d_%H%M%S}.log"
         log_file.parent.mkdir(parents=True, exist_ok=True)
         
         logging.basicConfig(
@@ -101,28 +79,54 @@ class SLATECOrchestrator:
                 logging.StreamHandler()
             ]
         )
-        self.logger = logging.getLogger(f'Phase{self.phase}')
+        self.logger = logging.getLogger('SLATECOrchestrator')
         
     def _load_progress(self):
         """Load progress from previous runs"""
-        progress_file = Path(self.config['work_dir']) / 'progress.json'
+        list_id = self.list_name or Path(self.list_file).stem if self.list_file else 'functions'
+        progress_file = Path(self.config['work_dir']) / 'progress' / f'{list_id}_progress.json'
         if progress_file.exists():
             with open(progress_file) as f:
                 return json.load(f)
         return {'completed': [], 'failed': [], 'in_progress': []}
     
-    def _get_function_list(self):
-        """Get the function list for the current phase"""
-        if self.phase == '0':
-            return PHASE_0_FUNCTIONS
-        elif self.phase == '0.1':
-            return PHASE_0_1_FUNCTIONS
+    def _load_function_data(self):
+        """Load function list and dependencies"""
+        if self.list_name:
+            # Load predefined list
+            list_file = Path(self.config['function_lists_dir']) / f'{self.list_name}.json'
+            if not list_file.exists():
+                raise FileNotFoundError(f"Function list not found: {list_file}")
+            with open(list_file) as f:
+                data = json.load(f)
+                return {
+                    'functions': data['functions'],
+                    'dependencies': data.get('dependencies', {}),
+                    'name': data.get('name', self.list_name)
+                }
+        elif self.list_file:
+            # Load custom list file
+            with open(self.list_file) as f:
+                data = json.load(f)
+                return {
+                    'functions': data['functions'],
+                    'dependencies': data.get('dependencies', {}),
+                    'name': data.get('name', Path(self.list_file).stem)
+                }
+        elif self.functions:
+            # Direct function list
+            return {
+                'functions': self.functions,
+                'dependencies': {},
+                'name': 'custom'
+            }
         else:
-            raise ValueError(f"Unknown phase: {self.phase}")
+            raise ValueError("No function list specified")
         
     def _save_progress(self):
         """Save current progress"""
-        progress_file = Path(self.config['work_dir']) / 'progress.json'
+        list_id = self.list_name or Path(self.list_file).stem if self.list_file else 'functions'
+        progress_file = Path(self.config['work_dir']) / 'progress' / f'{list_id}_progress.json'
         progress_file.parent.mkdir(parents=True, exist_ok=True)
         with open(progress_file, 'w') as f:
             json.dump(self.progress, f, indent=2)
@@ -136,7 +140,7 @@ class SLATECOrchestrator:
     
     def ensure_dependencies(self, func_name):
         """Ensure function dependencies are built first"""
-        deps = DEPENDENCIES.get(func_name, [])
+        deps = self.function_data['dependencies'].get(func_name, [])
         for dep in deps:
             if dep not in self.progress['completed']:
                 self.logger.info(f"{func_name} depends on {dep}, building dependency first")
@@ -247,12 +251,12 @@ class SLATECOrchestrator:
             return False
             
     def process_all(self, parallel=True):
-        """Process all functions for the current phase"""
-        remaining = [f for f in self.function_list 
+        """Process all functions in the list"""
+        remaining = [f for f in self.function_data['functions'] 
                     if f not in self.progress['completed']]
         
         if not remaining:
-            self.logger.info(f"All Phase {self.phase} functions already completed!")
+            self.logger.info(f"All functions in {self.function_data['name']} already completed!")
             return
             
         self.logger.info(f"Processing {len(remaining)} functions: {remaining}")
@@ -283,22 +287,24 @@ class SLATECOrchestrator:
         
     def generate_report(self):
         """Generate final report"""
+        total_functions = len(self.function_data['functions'])
         report = {
-            'phase': f'Phase {self.phase}',
-            'total_functions': len(self.function_list),
+            'list_name': self.function_data['name'],
+            'total_functions': total_functions,
             'completed': len(self.progress['completed']),
             'failed': len(self.progress['failed']),
-            'success_rate': len(self.progress['completed']) / len(self.function_list) * 100 if self.function_list else 0,
+            'success_rate': len(self.progress['completed']) / total_functions * 100 if total_functions else 0,
             'completed_functions': self.progress['completed'],
             'failed_functions': self.progress['failed'],
             'timestamp': datetime.now().isoformat()
         }
         
-        report_file = Path(self.config['log_dir']) / f'phase_{self.phase.replace(".", "_")}_report.json'
+        list_id = self.list_name or Path(self.list_file).stem if self.list_file else 'functions'
+        report_file = Path(self.config['log_dir']) / f'{list_id}_report.json'
         with open(report_file, 'w') as f:
             json.dump(report, f, indent=2)
             
-        self.logger.info(f"Phase {self.phase} Report:")
+        self.logger.info(f"Report for {self.function_data['name']}:")
         self.logger.info(f"  Total functions: {report['total_functions']}")
         self.logger.info(f"  Completed: {report['completed']}")
         self.logger.info(f"  Failed: {report['failed']}")
@@ -309,14 +315,32 @@ if __name__ == '__main__':
     import argparse
     
     parser = argparse.ArgumentParser(description='SLATEC Modernization Orchestrator')
-    parser.add_argument('--phase', default='0', help='Phase to process (0, 0.1, etc)')
+    parser.add_argument('--list', help='Use predefined function list (e.g., trivial, simple)')
+    parser.add_argument('--list-file', help='Use custom function list JSON file')
+    parser.add_argument('--functions', help='Comma-separated list of functions to process')
     parser.add_argument('--function', help='Process single function')
     parser.add_argument('--sequential', action='store_true', help='Process sequentially')
     parser.add_argument('--config', default='config.json', help='Configuration file')
     
     args = parser.parse_args()
     
-    orchestrator = SLATECOrchestrator(args.config, phase=args.phase)
+    # Determine function source
+    if args.function:
+        # Single function
+        functions = [args.function.upper()]
+        orchestrator = SLATECOrchestrator(args.config, functions=functions)
+    elif args.functions:
+        # Multiple functions from command line
+        functions = [f.strip().upper() for f in args.functions.split(',')]
+        orchestrator = SLATECOrchestrator(args.config, functions=functions)
+    elif args.list:
+        # Predefined list
+        orchestrator = SLATECOrchestrator(args.config, list_name=args.list)
+    elif args.list_file:
+        # Custom list file
+        orchestrator = SLATECOrchestrator(args.config, list_file=args.list_file)
+    else:
+        parser.error('Must specify --list, --list-file, --functions, or --function')
     
     if args.function:
         # Process single function
