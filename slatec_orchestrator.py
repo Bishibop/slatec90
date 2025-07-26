@@ -34,6 +34,7 @@ class SLATECOrchestrator:
         self.validator = FortranValidator(self.config)
         self.function_data = self._load_function_data()
         self.progress = self._load_progress()
+        self._ensure_metadata_updated()
         
     def _load_config(self, config_file):
         """Load configuration from JSON file and environment"""
@@ -47,7 +48,7 @@ class SLATECOrchestrator:
             'max_iterations': 5,
             'parallel_workers': 4,
             'llm_model': os.getenv('OPENAI_MODEL', 'o3-mini'),
-            'validator_executable': 'fortran_validator/mega_validator_full',
+            'validator_executable': 'fortran_validator/mega_validator_generic',
             'openai_api_key': os.getenv('OPENAI_API_KEY')
         }
         
@@ -130,6 +131,22 @@ class SLATECOrchestrator:
         progress_file.parent.mkdir(parents=True, exist_ok=True)
         with open(progress_file, 'w') as f:
             json.dump(self.progress, f, indent=2)
+    
+    def _ensure_metadata_updated(self):
+        """Ensure validator metadata is up to date with current functions"""
+        if 'mega_validator_generic' in self.config.get('validator_executable', ''):
+            validator_dir = Path('fortran_validator')
+            metadata_gen = validator_dir / 'generate_fortran_metadata.py'
+            if metadata_gen.exists():
+                self.logger.info("Updating validator metadata for generic validator...")
+                result = subprocess.run(['python3', 'generate_fortran_metadata.py'], 
+                                      cwd=str(validator_dir),
+                                      capture_output=True,
+                                      text=True)
+                if result.returncode == 0:
+                    self.logger.info("Validator metadata updated successfully")
+                else:
+                    self.logger.warning(f"Failed to update metadata: {result.stderr}")
             
     def read_source(self, func_name):
         """Read F77 source code"""
