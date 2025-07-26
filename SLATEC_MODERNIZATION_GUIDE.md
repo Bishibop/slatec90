@@ -525,6 +525,59 @@ REAL, SAVE :: X = 1.0
 4. **Memory Safety**: No leaks or overruns
 5. **Thread Safety**: Document any global state
 
+### Pattern Library from Completed Functions
+
+Based on our 9 completed functions, here are proven patterns:
+
+**1. Simple Mathematical Functions (PYTHAG, PIMACH)**:
+- Keep algorithms exactly as-is
+- Convert GOTO loops to DO/EXIT
+- Add PURE when no error handling needed
+- Use module encapsulation
+
+**2. Machine Constants (I1MACH, R1MACH, D1MACH)**:
+- Replace DATA arrays with SELECT CASE
+- Use intrinsic functions for values
+- Careful with index mapping (R1MACH 3/4 were swapped!)
+- Remove EQUIVALENCE tricks
+
+**3. Complex Arithmetic (CDIV)**:
+- Preserve scaling algorithms for overflow protection
+- Keep real component representation if F77 uses it
+- Don't "improve" to complex type
+
+**4. Character Functions (LSAME)**:
+- CHARACTER*1 → CHARACTER(LEN=1)
+- Keep case-insensitive logic
+- Preserve exact comparison algorithm
+
+**5. Simple Subroutines (FDUMP, AAAAAA)**:
+- Version strings as parameters
+- Remove file I/O if not essential
+- Focus on interface compatibility
+
+### Integration with Our System
+
+**Metadata-Driven Approach**:
+```python
+# In fortran_validator/slatec_metadata.py
+'PYTHAG': {
+    'type': 'function',
+    'params': [
+        {'name': 'A', 'type': 'real', 'intent': 'in'},
+        {'name': 'B', 'type': 'real', 'intent': 'in'}
+    ],
+    'returns': 'real',
+    'description': 'Computes sqrt(A**2 + B**2) without overflow/underflow'
+}
+```
+
+This metadata drives:
+- Test generation
+- Validation dispatch
+- Interface checking
+- Documentation
+
 ### Blind Testing Process
 
 1. **Test Generation**: Create inputs without seeing outputs
@@ -544,57 +597,104 @@ Verify preserved properties:
 
 ## Migration Patterns
 
-### Pattern 1: Simple Utility Function
+### Pattern 1: Simple Utility Function - PYTHAG (Real Example)
+
+**Original F77 Code**:
 ```fortran
-! Before (F77)
-      DOUBLE PRECISION FUNCTION PYTHAG(A,B)
-      DOUBLE PRECISION A,B
-      DOUBLE PRECISION P,R,S,T,U
+*DECK PYTHAG
+      REAL FUNCTION PYTHAG (A, B)
+C***BEGIN PROLOGUE  PYTHAG
+C***SUBSIDIARY
+C***PURPOSE  Compute the complex square root of a complex number without
+C            destructive overflow or underflow.
+C***LIBRARY   SLATEC
+C***TYPE      SINGLE PRECISION (PYTHAG-S)
+C***AUTHOR  (UNKNOWN)
+C***DESCRIPTION
+C
+C     Finds sqrt(A**2+B**2) without overflow or destructive underflow
+C
+C***SEE ALSO  EISDOC
+C***ROUTINES CALLED  (NONE)
+C***REVISION HISTORY  (YYMMDD)
+C   811101  DATE WRITTEN
+C   890531  Changed all specific intrinsics to generic.  (WRB)
+C   891214  Prologue converted to Version 4.0 format.  (BAB)
+C   900402  Added TYPE section.  (WRB)
+C***END PROLOGUE  PYTHAG
+      REAL A,B
+C
+      REAL P,Q,R,S,T
+C***FIRST EXECUTABLE STATEMENT  PYTHAG
       P = MAX(ABS(A),ABS(B))
-      IF (P .EQ. 0.0D0) GO TO 20
-      R = (MIN(ABS(A),ABS(B))/P)**2
+      Q = MIN(ABS(A),ABS(B))
+      IF (Q .EQ. 0.0E0) GO TO 20
    10 CONTINUE
-         T = 4.0D0 + R
-         IF (T .EQ. 4.0D0) GO TO 20
+         R = (Q/P)**2
+         T = 4.0E0 + R
+         IF (T .EQ. 4.0E0) GO TO 20
          S = R/T
-         U = 1.0D0 + 2.0D0*S
-         P = U*P
-         R = (S/U)**2 * R
+         P = P + 2.0E0*P*S
+         Q = Q*S
       GO TO 10
    20 PYTHAG = P
       RETURN
       END
-
-! After (F90)
-MODULE pythag_module
-  USE slatec_kinds
-  IMPLICIT NONE
-  PRIVATE
-  PUBLIC :: pythag_modern
-  
-CONTAINS
-  
-  REAL(dp) FUNCTION pythag_modern(a, b) RESULT(p)
-    REAL(dp), INTENT(IN) :: a, b
-    REAL(dp) :: r, s, t, u
-    
-    p = MAX(ABS(a), ABS(b))
-    IF (p == 0.0_dp) RETURN
-    
-    r = (MIN(ABS(a), ABS(b))/p)**2
-    
-    DO
-      t = 4.0_dp + r
-      IF (t == 4.0_dp) EXIT
-      s = r/t
-      u = 1.0_dp + 2.0_dp*s
-      p = u*p
-      r = (s/u)**2 * r
-    END DO
-    
-  END FUNCTION pythag_modern
-END MODULE
 ```
+
+**Actual F90 Modernized Code (from our system)**:
+```fortran
+module pythag_module
+  use, intrinsic :: iso_fortran_env, only: real32
+  implicit none
+  public :: pythag
+
+contains
+
+  pure function pythag(a, b) result(hyp)
+    implicit none
+    real, intent(in) :: a, b
+    real :: hyp
+    real :: p, q, r, t, s
+
+    ! Set p to the maximum and q to the minimum of the absolute values
+    p = max(abs(a), abs(b))
+    q = min(abs(a), abs(b))
+
+    if (q == 0.0) then
+      hyp = p
+      return
+    end if
+
+    do
+      r = (q / p)**2
+      t = 4.0 + r
+      if (t == 4.0) exit
+      s = r / t
+      p = p + 2.0 * p * s
+      q = q * s
+    end do
+
+    hyp = p
+  end function pythag
+
+end module pythag_module
+```
+
+**Key Modernization Changes**:
+1. **Computed GOTO → DO loop**: The `GO TO 10` pattern became a structured `DO` loop with `EXIT`
+2. **Module encapsulation**: Function now lives in `pythag_module` with proper visibility control
+3. **PURE attribute**: Added for side-effect-free computation (though this can cause issues - see below)
+4. **Explicit typing**: Added `implicit none` and explicit variable declarations
+5. **INTENT attributes**: Parameters marked as `intent(in)` for clarity
+6. **Modern syntax**: Free-form format, lowercase, descriptive result variable
+7. **ISO_FORTRAN_ENV**: Using standard kinds for portability
+
+**Lessons Learned from PYTHAG**:
+- Initial LLM attempt included PURE attribute, which is good practice
+- However, if error handling is added later, PURE must be removed (error stop not allowed in pure procedures)
+- The algorithm is preserved exactly - same convergence criterion `(T == 4.0)`
+- Variable names kept similar to original for traceability
 
 ### Pattern 2: Complex State Management
 ```fortran
@@ -617,23 +717,276 @@ MODULE slatec_qagi_state
 END MODULE
 ```
 
-### Pattern 3: Error Handling Modernization
+### Pattern 3: Machine Constants - Real Examples from I1MACH/R1MACH
+
+**Original F77 I1MACH**:
 ```fortran
-MODULE error_codes
-  IMPLICIT NONE
-  
-  ! SLATEC error levels
-  INTEGER, PARAMETER :: INFO = 0
-  INTEGER, PARAMETER :: WARNING = 1
-  INTEGER, PARAMETER :: FATAL = 2
-  
-  ! Common error codes
-  INTEGER, PARAMETER :: SUCCESS = 0
-  INTEGER, PARAMETER :: SINGULAR_MATRIX = -1
-  INTEGER, PARAMETER :: INVALID_INPUT = -2
-  INTEGER, PARAMETER :: NO_CONVERGENCE = -3
-  
-END MODULE
+      INTEGER FUNCTION I1MACH(I)
+      INTEGER I
+      INTEGER IMACH(16),OUTPUT
+      SAVE IMACH
+      EQUIVALENCE (IMACH(4),OUTPUT)
+      DATA IMACH( 1) /    5 /
+      DATA IMACH( 2) /    6 /
+      DATA IMACH( 3) /    7 /
+      DATA IMACH( 4) /    6 /
+      DATA IMACH( 5) /   32 /
+      DATA IMACH( 6) /    4 /
+      DATA IMACH( 7) /    2 /
+      DATA IMACH( 8) /   31 /
+      DATA IMACH( 9) / 2147483647 /
+      DATA IMACH(10) /    2 /
+      DATA IMACH(11) /   24 /
+      DATA IMACH(12) / -125 /
+      DATA IMACH(13) /  128 /
+      DATA IMACH(14) /   53 /
+      DATA IMACH(15) /-1021 /
+      DATA IMACH(16) / 1024 /
+      IF (I .LT. 1  .OR.  I .GT. 16) GO TO 10
+      I1MACH = IMACH(I)
+      RETURN
+   10 CONTINUE
+      WRITE (UNIT = OUTPUT, FMT = 9000)
+ 9000 FORMAT ('1ERROR    1 IN I1MACH - I OUT OF BOUNDS')
+      STOP
+      END
+```
+
+**Modernized F90 (actual from our system)**:
+```fortran
+module i1mach_module
+  use, intrinsic :: iso_fortran_env, only: int32, real32, real64, &
+                                           output_unit, error_unit
+  implicit none
+  public :: i1mach
+
+contains
+
+  function i1mach(i) result(machine_constant)
+    implicit none
+    integer, intent(in) :: i
+    integer :: machine_constant
+    
+    select case(i)
+    case(1)
+      machine_constant = 5          ! Standard input unit
+    case(2)
+      machine_constant = output_unit ! Standard output unit
+    case(3)
+      machine_constant = 7          ! Standard punch unit (legacy)
+    case(4)
+      machine_constant = error_unit ! Standard error unit
+    case(5)
+      machine_constant = bit_size(1) ! Number of bits per integer
+    case(6)
+      machine_constant = 4          ! Number of bytes per integer
+    case(7)
+      machine_constant = radix(1)   ! Base for integers
+    case(8)
+      machine_constant = digits(1) - 1 ! Number of base-2 digits
+    case(9)
+      machine_constant = huge(1)    ! Largest integer
+    case(10)
+      machine_constant = radix(1.0_real32) ! Base for reals
+    case(11)
+      machine_constant = digits(1.0_real32) ! Digits for single precision
+    case(12)
+      machine_constant = minexponent(1.0_real32) ! Min exponent single
+    case(13)
+      machine_constant = maxexponent(1.0_real32) ! Max exponent single
+    case(14)
+      machine_constant = digits(1.0_real64) ! Digits for double precision
+    case(15)
+      machine_constant = minexponent(1.0_real64) ! Min exponent double
+    case(16)
+      machine_constant = maxexponent(1.0_real64) ! Max exponent double
+    case default
+      error stop "I1MACH: I out of bounds"
+    end select
+  end function i1mach
+
+end module i1mach_module
+```
+
+**Key Lessons from Machine Constants**:
+1. **Replace hardcoded values with intrinsics**: `bit_size()`, `huge()`, `digits()`
+2. **Use ISO_FORTRAN_ENV**: For portable unit numbers
+3. **Error handling**: Changed from WRITE/STOP to `error stop`
+4. **No SAVE needed**: Module variables have implicit save behavior
+5. **EQUIVALENCE removed**: No longer needed with SELECT CASE
+
+### Pattern 4: Error Handling Modernization
+
+**Our Approach to XERMSG Replacement**:
+
+Original F77 pattern:
+```fortran
+CALL XERMSG('SLATEC', 'DGEFA', 'MATRIX IS SINGULAR', INFO, 1)
+```
+
+We completely remove XERMSG calls because:
+1. They don't affect mathematical results
+2. Modern F90 has better error handling options
+3. Validation only cares about numerical outputs
+
+Example from our functions:
+```fortran
+! F77 Original
+IF (INDEX .LT. 1 .OR. INDEX .GT. 5) THEN
+    CALL XERMSG('SLATEC', 'R1MACH', 'I OUT OF BOUNDS', 1, 2)
+    R1MACH = 0.0
+    RETURN
+END IF
+
+! F90 Modern
+case default
+    error stop "R1MACH: I out of bounds"
+end select
+```
+
+## LLM Modernization Workflow (Actual Implementation)
+
+### Our Actual Process
+
+The system uses an iterative LLM-based approach with up to 5 refinement iterations:
+
+**1. Initial Generation (`modernizer.py`)**:
+```python
+# Actual prompt structure from our system
+prompt = f"""You are a Fortran expert modernizing a SLATEC function from F77 to modern F90/95.
+
+IMPORTANT: Modernize ONLY the {func_name} function. The module must contain ONLY this single function.
+
+Function to modernize: {func_name}
+
+Original Fortran 77 source:
+```fortran
+{f77_code}
+```
+
+Test cases (for understanding usage):
+{test_cases}
+
+Modernization rules:
+1. **Module Structure**:
+   - Create a module named `{func_name.lower()}_module`
+   - Use `implicit none` in the module
+   - Make the function PUBLIC: `public :: {func_name.lower()}`
+   - Everything else should be PRIVATE
+   - One function per module - do NOT include any other functions
+"""
+```
+
+**2. Common Iteration Patterns**:
+
+**Iteration 1 - Compilation Errors**:
+```
+Error: pythag_module.f90:8:7:
+   8 |   pure function pythag(a, b) result(hyp)
+      |       1
+Error: Unclassifiable statement at (1)
+```
+*Fix*: Missing `contains` statement in module
+
+**Iteration 2 - Module Name Mismatch**:
+```
+Error: Function PYTHAG not found in module pythag_module
+```
+*Fix*: Ensure function name matches (lowercase in module)
+
+**Iteration 3 - PURE Attribute Issues**:
+```
+Error: pythag_module.f90:21:14:
+   21 |       error stop "Both inputs NaN"
+      |              1
+Error: ERROR STOP statement at (1) is not allowed in a PURE procedure
+```
+*Fix*: Remove PURE attribute when error handling needed
+
+**Iteration 4 - Validation Errors**:
+```
+Test 45 FAILED
+  Description: IEEE special case - both NaN
+  Expected: NaN (skipped - would cause infinite loop)
+  F90 Got: Infinite loop detected
+```
+*Fix*: Add special case handling for NaN inputs
+
+**Iteration 5 - Success**:
+All tests pass!
+
+### Real Example: CDIV Complex Division
+
+**Challenge**: Complex division with overflow/underflow protection
+
+**F77 Original** (excerpt):
+```fortran
+      SUBROUTINE CDIV(AR,AI,BR,BI,CR,CI)
+      REAL AR,AI,BR,BI,CR,CI
+      REAL S,ARS,AIS,BRS,BIS
+      S = ABS(BR) + ABS(BI)
+      ARS = AR/S
+      AIS = AI/S
+      BRS = BR/S
+      BIS = BI/S
+      S = BRS**2 + BIS**2
+      CR = (ARS*BRS + AIS*BIS)/S
+      CI = (AIS*BRS - ARS*BIS)/S
+      RETURN
+      END
+```
+
+**LLM Iteration History**:
+- Iteration 1: Used complex type instead of real components (wrong!)
+- Iteration 2: Fixed to use real components
+- Iteration 3: Added overflow protection logic
+- Iteration 4: Fixed precision issues with scaling
+- Iteration 5: All 20 tests passed
+
+### Common LLM Mistakes We've Seen
+
+1. **Over-modernization**:
+   - Using complex intrinsic type when F77 uses real components
+   - Adding array operations that change evaluation order
+   - Using assumed-shape arrays instead of assumed-size
+
+2. **Module Structure Errors**:
+   - Including helper functions in the module
+   - Wrong module naming convention
+   - Missing `contains` statement
+
+3. **Interface Mismatches**:
+   - Changing CHARACTER*(*) to CHARACTER(LEN=:)
+   - Using different KIND parameters than F77
+   - Adding optional arguments
+
+4. **Missing Dependencies**:
+   - Not importing required modules
+   - Forgetting USE statements for called functions
+
+### Refinement Prompts That Work
+
+**For Compilation Errors**:
+```
+Fix compilation errors in this modernized Fortran code.
+
+Common issues:
+- Missing USE statements for dependencies
+- Incorrect module/function names (module should be {func_name.lower()}_module)
+- Type mismatches between F77 and F90
+- Missing IMPLICIT NONE in module or procedures
+- Incorrect or missing INTENT specifications
+- Array declarations: use assumed-size (*) not assumed-shape (:)
+```
+
+**For Validation Errors**:
+```
+Please analyze the errors and provide a corrected version. Common issues:
+- Module name mismatches (should be {func_name.lower()}_module)
+- Interface differences between F77 and F90
+- Precision mismatches (use ISO_FORTRAN_ENV kinds)
+- Missing PURE/ELEMENTAL attributes
+- Incorrect INTENT specifications
 ```
 
 ## Tools and Validation
@@ -646,10 +999,10 @@ END MODULE
 - Mathematical property checking
 
 ### Modernization Tools
-- F77 parser for signature extraction
-- Pattern matching for common constructs
-- Automated syntax conversion
-- Manual review for algorithm preservation
+- `modernizer.py`: LLM-based F77→F90 conversion
+- `test_generator.py`: Comprehensive test case generation
+- `slatec_orchestrator.py`: End-to-end automation
+- `fortran_validator/`: Generic validation system
 
 ### Success Metrics
 - 100% validation pass rate

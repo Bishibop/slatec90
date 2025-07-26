@@ -317,31 +317,129 @@ class ConstraintLearner:
             }
 ```
 
-## Implementation Guide
+## Our Actual Test Format (From Real Implementation)
 
-### Phase 1: Foundation (Weeks 1-2)
+### Test File Structure
 
-1. **Build Test Data Format**:
+Here's the actual format we use in our system:
+
+**Example from `test_cases/pythag_tests.txt`**:
 ```
-FUNCTION: DGESV
+FUNCTION: PYTHAG
 
 TEST_START
-3x3 system with unique solution
-PARAMS: N=3 NRHS=1
-MATRIX_A: 
-  2.0  1.0  1.0
-  1.0  3.0  2.0
-  1.0  2.0  3.0
-VECTOR_B: 
-  5.0
-  10.0
-  12.0
-EXPECTED_X:
-  1.0
-  2.0  
-  3.0
-TOLERANCE: relative=1e-14
+Description: Both inputs zero
+REAL_PARAMS: 0.0 0.0
 TEST_END
+
+TEST_START
+Description: A=0.0, B=1.0e-8 (small positive)
+REAL_PARAMS: 0.0 1.0e-8
+TEST_END
+
+TEST_START
+Description: Positive pair (3,4) should yield 5
+REAL_PARAMS: 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Large values near overflow
+REAL_PARAMS: 1.0e+38 1.0e+38
+TEST_END
+
+TEST_START
+Description: IEEE special case - both NaN
+REAL_PARAMS: NaN NaN
+TEST_END
+```
+
+**Key Format Rules**:
+1. `FUNCTION:` line declares which function to test
+2. `TEST_START`/`TEST_END` blocks delimit individual tests
+3. `Description:` provides human-readable test purpose
+4. Parameter types:
+   - `INT_PARAMS:` for integer parameters
+   - `REAL_PARAMS:` for real/float parameters
+   - `CHAR_PARAMS:` for character parameters
+   - `ARRAY_SIZE:` followed by `REAL_ARRAY:` for arrays
+5. No expected values - F77 provides the oracle
+
+### Actual Test Generation Process
+
+Our `test_generator.py` uses LLM to create comprehensive tests:
+
+```python
+prompt = f"""You are a Fortran testing expert. Generate COMPREHENSIVE test cases for a SLATEC function.
+
+Function to test: {func_name}
+
+Source code:
+```fortran
+{source_code}
+```
+
+REQUIREMENTS:
+1. Generate AT LEAST 50-100 test cases for thorough coverage
+2. Include EXTENSIVE boundary testing:
+   - Values near machine epsilon
+   - Values near overflow/underflow limits
+   - Powers of 2 and 10
+   - Values that differ by small amounts (1e-6, 1e-7, etc.)
+3. Test all edge cases:
+   - All combinations of zeros
+   - All combinations of signs (+/+, +/-, -/+, -/-)
+   - Special values if applicable (Inf, -Inf, NaN)
+"""
+```
+
+### Real Test Suite Examples
+
+**PYTHAG (69 tests generated)**:
+- Zero handling: 5 tests
+- Small values: 8 tests  
+- Normal values: 10 tests
+- Large values: 8 tests
+- Sign combinations: 12 tests
+- IEEE special values: 15 tests
+- Near-overflow cases: 11 tests
+
+**CDIV (20 tests generated)**:
+- Basic division: 5 tests
+- Division by small numbers: 4 tests
+- Division by large numbers: 4 tests
+- Complex edge cases: 7 tests
+
+**I1MACH (5 tests)**:
+- All valid indices (1-16): 4 tests
+- Invalid index for error: 1 test
+
+## Implementation Guide
+
+### Our Actual Workflow
+
+1. **Generate Tests with LLM**:
+```bash
+# Inside slatec_orchestrator.py
+test_generator = TestGenerator(config)
+test_cases = test_generator.generate(func_name, f77_source)
+```
+
+2. **Write Test File**:
+```python
+with open(f'test_cases/{func_name.lower()}_tests.txt', 'w') as f:
+    f.write(test_content)
+```
+
+3. **Validate Format**:
+The validator parses tests line by line:
+```fortran
+! In validator.f90
+if (line(1:10) == 'FUNCTION: ') then
+    function_name = trim(line(11:))
+else if (line == 'TEST_START') then
+    in_test = .true.
+else if (line == 'TEST_END') then
+    call run_generic_validation()
 ```
 
 2. **Create Basic Generators**:
@@ -354,37 +452,98 @@ TEST_END
 - Validate test cases before execution
 - Report constraint violations clearly
 
-### Phase 2: Intelligence (Weeks 3-4)
+### Constraint Validation in Practice
 
-1. **F77 Parser**:
-- Extract function signatures
-- Identify parameter relationships
-- Find documented constraints
+**PYTHAG Constraints**:
+- No mathematical constraints on inputs
+- But algorithm fails on both NaN (infinite loop)
+- Solution: Special case handling in validator
 
-2. **Pattern Recognition**:
-- Categorize functions by domain
-- Apply domain-specific patterns
-- Generate relevant test cases
-
-3. **Test Function Library**:
+**Real validation code from our system**:
 ```fortran
-MODULE test_functions
-  ! For integration testing
-  REAL FUNCTION f_polynomial(x, params)
-    REAL :: x, params(*)
-    ! f(x) = params(1) + params(2)*x + params(3)*x**2 + ...
-    
-  REAL FUNCTION f_gaussian(x, params)
-    REAL :: x, params(*)
-    ! f(x) = params(1) * exp(-params(2)*(x-params(3))**2)
-    
-  ! For ODE testing  
-  SUBROUTINE ode_linear(t, y, yprime, params)
-    ! y' = A*y, known solution y = exp(A*t)*y0
-    
-  SUBROUTINE ode_vanderpol(t, y, yprime, params)
-    ! Van der Pol oscillator with known behavior
-END MODULE
+! In validator_module.f90
+if (func_name == 'PYTHAG') then
+    if (ieee_is_nan(real_params(1)) .and. ieee_is_nan(real_params(2))) then
+        call report_skipped("Both inputs NaN - would cause infinite loop")
+        return
+    end if
+end if
+```
+
+**CDIV Constraints**:
+- Cannot divide by zero: BR²+BI² ≠ 0
+- Test generator ensures this:
+
+```python
+# In test generation
+if func_name == 'CDIV':
+    # Ensure denominator is not zero
+    if br == 0.0 and bi == 0.0:
+        bi = 1e-10  # Make non-zero
+```
+
+### Coverage Strategy by Function Type
+
+Based on our experience with 9 functions:
+
+**1. Simple Math Functions (PYTHAG, PIMACH)**:
+```
+Coverage targets:
+- Zero inputs: Both, one, neither
+- Sign combinations: ++, +-, -+, --
+- Scale variations: 1e-38 to 1e+38
+- Special values: Inf, -Inf, NaN
+- Edge cases: Subnormal numbers
+```
+
+**2. Machine Constants (I1MACH, R1MACH, D1MACH)**:
+```
+Coverage targets:
+- All valid indices
+- One invalid index (error path)
+- No mathematical properties to test
+- Focus on correct value mapping
+```
+
+**3. Complex Arithmetic (CDIV)**:
+```
+Coverage targets:
+- Normal division cases
+- Near-zero denominators
+- Large numerator/small denominator
+- Small numerator/large denominator
+- Complex conjugate patterns
+```
+
+**4. Character Functions (LSAME)**:
+```
+Coverage targets:
+- Same characters (various cases)
+- Different characters
+- Case mixing: aA, Aa, AA, aa
+- Special characters if applicable
+```
+
+### LLM Test Generation Patterns
+
+**Successful prompts we use**:
+
+```python
+# For mathematical functions
+"Generate test cases covering:
+1. All combinations of zero/non-zero inputs
+2. Values at different scales: 1e-30, 1e-20, 1e-10, 1, 1e10, 1e20, 1e30
+3. Values that differ by small amounts to test precision
+4. Known mathematical relationships (e.g., pythag(3,4)=5)
+5. IEEE special values where applicable"
+
+# For machine constant functions  
+"Generate test cases for all valid index values plus one invalid index.
+For each index, verify the description matches the expected constant."
+
+# For utility functions
+"Focus on interface testing - various input combinations that exercise
+all code paths without requiring deep mathematical properties."
 ```
 
 ### Phase 3: Adaptation (Weeks 5-6)
@@ -504,23 +663,92 @@ def validate_complex_constraints(test_case):
 3. **Edge Cases**: All identified edge cases included
 4. **Properties**: Key mathematical properties verified
 
+## Lessons Learned from Our Implementation
+
+### What Works Well
+
+1. **LLM-Generated Comprehensive Coverage**:
+   - GPT-4/o3-mini generates 50-100+ tests reliably
+   - Excellent at identifying edge cases humans might miss
+   - Good at systematic coverage (powers of 2, 10, etc.)
+
+2. **Simple Text Format**:
+   - Easy to parse in Fortran
+   - Human-readable for debugging
+   - No JSON complexity
+
+3. **F77 as Oracle**:
+   - No need to specify expected values
+   - Eliminates human error in expectations
+   - Handles complex computations automatically
+
+### Real Challenges We Faced
+
+**1. The BSPLVN Constraint Debacle**:
+- 109 of 200 tests had invalid ILEFT values
+- Caused negative B-spline values (impossible!)
+- Solution: Better constraint documentation in prompts
+
+**2. IEEE Special Values**:
+- PYTHAG fails on both inputs NaN (infinite loop)
+- Not a bug - F77 algorithm limitation
+- Solution: Skip these tests with explanation
+
+**3. Machine Constant Validation**:
+- R1MACH indices 3 and 4 were swapped in docs
+- Only discovered through careful testing
+- Solution: Verify against multiple sources
+
+**4. Test Volume Management**:
+- 69 tests for PYTHAG seems excessive but found issues
+- Balance thoroughness with execution time
+- Solution: Categorize tests by priority
+
+### Our Test Generation Evolution
+
+**Version 1** (Manual):
+```
+# Hand-written basic tests
+TEST_START
+REAL_PARAMS: 3.0 4.0
+TEST_END
+```
+
+**Version 2** (LLM-Assisted):
+```
+# Generated with categories
+TEST_START  
+Description: Basic positive values
+REAL_PARAMS: 3.0 4.0
+TEST_END
+```
+
+**Version 3** (Current):
+```
+# Comprehensive with IEEE handling
+TEST_START
+Description: IEEE special case - both NaN
+REAL_PARAMS: NaN NaN
+TEST_END
+```
+
 ## Common Pitfalls and Solutions
 
-### Pitfall 1: Floating-Point Parsing
-**Problem**: Converting between text and binary can introduce errors  
-**Solution**: Use high-precision parsing, validate round-trip conversion
+### Pitfall 1: Trusting Documentation
+**Problem**: SLATEC docs sometimes wrong (R1MACH 3/4 swap)
+**Solution**: Verify with implementation and multiple sources
 
-### Pitfall 2: Constraint Violations
-**Problem**: Generated tests violate mathematical constraints  
-**Solution**: Validate all constraints before including test
+### Pitfall 2: Over-Testing Simple Functions
+**Problem**: 100+ tests for PIMACH that just returns π
+**Solution**: Match test complexity to function complexity
 
-### Pitfall 3: Incomplete Coverage
-**Problem**: Missing important edge cases  
-**Solution**: Systematic coverage analysis and gap filling
+### Pitfall 3: Missing Algorithm Limitations
+**Problem**: Not knowing PYTHAG loops on NaN inputs
+**Solution**: Document known limitations in test descriptions
 
-### Pitfall 4: Invalid Expected Values
-**Problem**: Expected values don't match F77 computation  
-**Solution**: Always use F77 as oracle for expected values
+### Pitfall 4: Constraint Specification
+**Problem**: LLM generates invalid test parameters
+**Solution**: Explicit constraint documentation in prompts
 
 ## Tools and Infrastructure
 
