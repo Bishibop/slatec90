@@ -14,6 +14,7 @@
         call register_modern('PYTHAG', .true.)
         call register_modern('QWGTC', .true.)
         call register_modern('R1MACH', .true.)
+        call register_modern('ZABS', .true.)
     end subroutine register_discovered_functions
 
     subroutine dispatch_validation(func_name)

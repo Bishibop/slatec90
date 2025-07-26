@@ -13,3 +13,4 @@
     use pythag_module, only: pythag_modern => pythag
     use qwgtc_module, only: qwgtc_modern => qwgtc
     use r1mach_module, only: r1mach_modern => r1mach
+    use zabs_module, only: zabs_modern => zabs

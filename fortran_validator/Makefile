@@ -30,7 +30,7 @@ TESTED_F77_SRCS := $(foreach func,$(ALL_TESTED_FUNCTIONS),$(wildcard $(SRC_DIR)/
 ALL_F77_OBJS := $(patsubst $(SRC_DIR)/%.f,$(OBJ_DIR)/%_f77.o,$(TESTED_F77_SRCS))
 
 # Modern objects
-MODERN_OBJS := $(patsubst %,$(OBJ_DIR)/%_modern.o,$(filter $(ALL_TESTED_FUNCTIONS),$(AVAILABLE_MODERN_FUNCTIONS)))
+MODERN_OBJS := $(patsubst %,$(OBJ_DIR)/%_modern.o,$(DISCOVERED_FUNCTIONS))
 
 # Error handling F77 dependencies
 ERROR_F77_OBJS = $(OBJ_DIR)/xermsg_f77.o \

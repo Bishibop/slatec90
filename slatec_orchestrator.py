@@ -15,7 +15,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
 
 from test_generator import TestGenerator
-from modernizer import LLMModernizer
+from modernizer import UnifiedModernizer as LLMModernizer
 from validator_wrapper import FortranValidator
 from f77_parser import F77Parser
 

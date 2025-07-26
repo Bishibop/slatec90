@@ -1,33 +1,116 @@
 """
-LLM-based Fortran modernizer with iterative refinement
+Unified LLM-based Fortran modernizer supporting multiple providers
 """
 import json
 import logging
 import os
-from typing import Dict, List
-from openai import OpenAI
+from typing import Dict, List, Optional
+from abc import ABC, abstractmethod
 
-class LLMModernizer:
+# Provider imports
+from openai import OpenAI
+from google import genai
+
+class BaseLLMProvider(ABC):
+    """Abstract base class for LLM providers"""
+    
+    @abstractmethod
+    def generate_completion(self, prompt: str, response_format: Optional[str] = None) -> Dict:
+        """Generate a completion from the LLM"""
+        pass
+
+class OpenAIProvider(BaseLLMProvider):
+    """OpenAI provider implementation"""
+    
     def __init__(self, config):
-        self.config = config
-        self.logger = logging.getLogger('LLMModernizer')
         api_key = config.get('openai_api_key') or os.getenv('OPENAI_API_KEY')
         if not api_key:
             raise ValueError("OpenAI API key not found in config or environment")
         self.client = OpenAI(api_key=api_key)
+        self.model = config.get('openai_model', 'o3-mini')
         
+    def generate_completion(self, prompt: str, response_format: Optional[str] = None) -> Dict:
+        kwargs = {
+            "model": self.model,
+            "messages": [{"role": "user", "content": prompt}]
+        }
+        
+        if response_format == "json":
+            kwargs["response_format"] = {"type": "json_object"}
+            
+        response = self.client.chat.completions.create(**kwargs)
+        content = response.choices[0].message.content
+        
+        if response_format == "json":
+            return json.loads(content)
+        return {"text": content}
+
+class GeminiProvider(BaseLLMProvider):
+    """Google Gemini provider implementation"""
+    
+    def __init__(self, config):
+        # Set API key from config or environment
+        api_key = config.get('gemini_api_key') or os.getenv('GEMINI_API_KEY')
+        if api_key:
+            os.environ['GEMINI_API_KEY'] = api_key
+            
+        self.client = genai.Client()
+        self.model = config.get('gemini_model', 'gemini-2.5-flash')
+        
+    def generate_completion(self, prompt: str, response_format: Optional[str] = None) -> Dict:
+        # Prepare the prompt
+        if response_format == "json":
+            prompt = f"{prompt}\n\nIMPORTANT: Respond with valid JSON only, no additional text."
+            
+        # Generate response
+        response = self.client.models.generate_content(
+            model=self.model,
+            contents=prompt,
+            # Configuration options can be passed directly
+            config={
+                "temperature": 0.3,  # Lower temperature for more consistent code generation
+                "top_p": 0.8,
+                "max_output_tokens": 8192,
+            }
+        )
+        
+        content = response.text
+        
+        if response_format == "json":
+            # Clean up potential markdown formatting
+            if content.startswith("```json"):
+                content = content[7:]
+            if content.endswith("```"):
+                content = content[:-3]
+            return json.loads(content.strip())
+        
+        return {"text": content}
+
+class UnifiedModernizer:
+    """Modernizer that supports multiple LLM providers"""
+    
+    def __init__(self, config):
+        self.config = config
+        self.logger = logging.getLogger('UnifiedModernizer')
+        
+        # Select provider based on configuration
+        provider = config.get('llm_provider', 'openai').lower()
+        
+        if provider == 'openai':
+            self.provider = OpenAIProvider(config)
+            self.logger.info(f"Using OpenAI provider with model: {config.get('openai_model', 'o3-mini')}")
+        elif provider == 'gemini':
+            self.provider = GeminiProvider(config)
+            self.logger.info(f"Using Gemini provider with model: {config.get('gemini_model', 'gemini-2.5-flash')}")
+        else:
+            raise ValueError(f"Unknown LLM provider: {provider}")
+            
     def modernize(self, func_name, f77_code, test_cases):
         """Initial modernization of F77 to F90"""
         prompt = self._create_modernization_prompt(func_name, f77_code, test_cases)
         
         try:
-            response = self.client.chat.completions.create(
-                model=self.config.get('llm_model', 'o3-mini'),
-                messages=[{"role": "user", "content": prompt}],
-                response_format={"type": "json_object"}
-            )
-            
-            result = json.loads(response.choices[0].message.content)
+            result = self.provider.generate_completion(prompt, response_format="json")
             self.logger.info(f"Modernization complete for {func_name}")
             return result
             
@@ -59,6 +142,30 @@ Please analyze the errors and provide a corrected version. Common issues:
 - Missing implicit none statements
 - Incorrect handling of dependencies
 
+Common issues and fixes:
+1. Module structure errors:
+   - Function/subroutine definitions must be INSIDE the contains section
+   - The module itself cannot have "pure" - only the function/subroutine can
+   
+2. Declaration issues:
+   - Missing USE statements for dependencies
+   - Incorrect module/function names (module should be {func_name.lower()}_module)
+   - Type mismatches between F77 and F90
+   - Missing IMPLICIT NONE in module or procedures
+   - Incorrect or missing INTENT specifications
+   
+3. Array vs scalar confusion:
+   - If F77 doesn't have DIMENSION, the parameter is a SCALAR
+   - Only use array syntax (*) if F77 explicitly has DIMENSION
+   - Array declarations: use assumed-size (*) not assumed-shape (:)
+   
+4. Other issues:
+   - For dependencies: use module_name, only: function_name
+   - Character arguments: use CHARACTER(*) for assumed length
+   - ELEMENTAL functions cannot have array arguments with (*)
+
+IMPORTANT: The module must contain ONLY the {func_name} function. Do not include any other functions.
+
 Respond with a JSON object containing:
 {{
     "name": "{func_name}",
@@ -68,13 +175,7 @@ Respond with a JSON object containing:
 }}"""
 
         try:
-            response = self.client.chat.completions.create(
-                model=self.config.get('llm_model', 'o3-mini'),
-                messages=[{"role": "user", "content": prompt}],
-                response_format={"type": "json_object"}
-            )
-            
-            result = json.loads(response.choices[0].message.content)
+            result = self.provider.generate_completion(prompt, response_format="json")
             self.logger.info(f"Refinement complete for {func_name}")
             return result
             
@@ -123,13 +224,7 @@ IMPORTANT: The module must contain ONLY the {func_name} function. Do not include
 Respond with JSON containing the corrected f90_code."""
 
         try:
-            response = self.client.chat.completions.create(
-                model=self.config.get('llm_model', 'o3-mini'),
-                messages=[{"role": "user", "content": prompt}],
-                response_format={"type": "json_object"}
-            )
-            
-            result = json.loads(response.choices[0].message.content)
+            result = self.provider.generate_completion(prompt, response_format="json")
             return result
             
         except Exception as e:
@@ -235,3 +330,6 @@ Respond with JSON:
     "modernization_notes": "Key changes made during modernization",
     "f90_code": "Complete Fortran 90/95 module code containing ONLY the {func_name} function"
 }}"""
+
+# For backward compatibility
+LLMModernizer = UnifiedModernizer
