@@ -5,12 +5,14 @@
         ! Register which modern implementations are available
         call register_modern('AAAAAA', .true.)
         call register_modern('CDIV', .true.)
+        call register_modern('CSROOT', .true.)
         call register_modern('D1MACH', .true.)
         call register_modern('FDUMP', .true.)
         call register_modern('I1MACH', .true.)
         call register_modern('LSAME', .true.)
         call register_modern('PIMACH', .true.)
         call register_modern('PYTHAG', .true.)
+        call register_modern('QWGTC', .true.)
         call register_modern('R1MACH', .true.)
     end subroutine register_discovered_functions
 
@@ -22,8 +24,6 @@
         call to_upper(func_upper)
 
         select case(trim(func_upper))
-            case('PYTHAG')
-                call validate_pythag()
             case default
                 call validate_generic(func_name)
         end select

@@ -96,15 +96,27 @@ Code with compilation errors:
 Compilation errors:
 {compilation_errors}
 
-Common issues:
-- Missing USE statements for dependencies
-- Incorrect module/function names (module should be {func_name.lower()}_module)
-- Type mismatches between F77 and F90
-- Missing IMPLICIT NONE in module or procedures
-- Incorrect or missing INTENT specifications
-- Array declarations: use assumed-size (*) not assumed-shape (:)
-- For dependencies: use module_name, only: function_name
-- Character arguments: use CHARACTER(*) for assumed length
+Common issues and fixes:
+1. Module structure errors:
+   - Function/subroutine definitions must be INSIDE the contains section
+   - The module itself cannot have "pure" - only the function/subroutine can
+   
+2. Declaration issues:
+   - Missing USE statements for dependencies
+   - Incorrect module/function names (module should be {func_name.lower()}_module)
+   - Type mismatches between F77 and F90
+   - Missing IMPLICIT NONE in module or procedures
+   - Incorrect or missing INTENT specifications
+   
+3. Array vs scalar confusion:
+   - If F77 doesn't have DIMENSION, the parameter is a SCALAR
+   - Only use array syntax (*) if F77 explicitly has DIMENSION
+   - Array declarations: use assumed-size (*) not assumed-shape (:)
+   
+4. Other issues:
+   - For dependencies: use module_name, only: function_name
+   - Character arguments: use CHARACTER(*) for assumed length
+   - ELEMENTAL functions cannot have array arguments with (*)
 
 IMPORTANT: The module must contain ONLY the {func_name} function. Do not include any other functions.
 
@@ -155,6 +167,8 @@ Modernization rules:
    - Use PURE or ELEMENTAL where appropriate (functions with no side effects)
    - Preserve the exact mathematical algorithm and numerical behavior
    - Keep the same interface type (FUNCTION vs SUBROUTINE)
+   - IMPORTANT: Do NOT assume parameters are arrays unless explicitly declared as DIMENSION in F77
+   - Scalar parameters should remain scalars - only use array syntax (*) if F77 has DIMENSION
 
 3. **Type Modernization**:
    - Use ISO_FORTRAN_ENV for precision: REAL32, REAL64, INT32, etc.
@@ -193,6 +207,25 @@ Modernization rules:
    - Do NOT add functions that weren't in the original F77 code
    - Do NOT create implementations for other functions
    - Each function must be completely independent and reentrant
+
+8. **Example Module Structure**:
+```fortran
+module function_name_module
+  use iso_fortran_env, only: real32  ! or real64 as needed
+  implicit none
+  private
+  public :: function_name
+
+contains
+
+  pure function function_name(arg1, arg2) result(res)
+    real(real32), intent(in) :: arg1, arg2  ! Scalars unless F77 has DIMENSION
+    real(real32) :: res
+    ! Implementation here
+  end function function_name
+
+end module function_name_module
+```
 
 Respond with JSON:
 {{

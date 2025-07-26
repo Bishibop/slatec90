@@ -112,6 +112,54 @@ SLATEC_FUNCTIONS = {
         ],
         'returns': None,
         'description': 'Compute the complex square root of a complex number.'
+    },
+    
+    'SVOUT': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'N', 'type': 'real', 'intent': 'in', 'dimension': 'SVOUT-S, DVOUT-D'},
+            {'name': 'SX', 'type': 'real', 'intent': 'in', 'dimension': '*'},
+            {'name': 'IFMT', 'type': 'character', 'intent': 'in', 'dimension': '*'},
+            {'name': 'IDIGIT', 'type': 'real', 'intent': 'in'},
+        ],
+        'returns': None,
+        'description': 'Subsidiary to SPLP'
+    },
+    
+    'ZEXP': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'AR', 'type': 'double', 'intent': 'in'},
+            {'name': 'AI', 'type': 'double', 'intent': 'in'},
+            {'name': 'BR', 'type': 'double', 'intent': 'out'},
+            {'name': 'BI', 'type': 'double', 'intent': 'out'},
+        ],
+        'returns': None,
+        'description': 'Subsidiary to ZBESH, ZBESI, ZBESJ, ZBESK, ZBESY, ZAIRY and'
+    },
+    
+    'QWGTC': {
+        'type': 'function',
+        'params': [
+            {'name': 'X', 'type': 'real', 'intent': 'in'},
+            {'name': 'C', 'type': 'real', 'intent': 'in'},
+            {'name': 'P2', 'type': 'real', 'intent': 'in'},
+            {'name': 'P3', 'type': 'real', 'intent': 'in'},
+            {'name': 'P4', 'type': 'real', 'intent': 'in'},
+            {'name': 'KP', 'type': 'integer', 'intent': 'in'},
+        ],
+        'returns': 'real',
+        'description': 'Cauchy weight function for quadrature'
+    },
+    
+    'ZABS': {
+        'type': 'function',
+        'params': [
+            {'name': 'ZR', 'type': 'double', 'intent': 'in'},
+            {'name': 'ZI', 'type': 'double', 'intent': 'in'},
+        ],
+        'returns': 'double',
+        'description': 'Computes absolute value of complex number without overflow'
     }}
 
 def get_function_signature(func_name):

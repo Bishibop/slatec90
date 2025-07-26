@@ -37,7 +37,7 @@ module slatec_signatures_module
     integer, parameter :: INTENT_INOUT = 3
     
     ! Number of registered functions
-    integer, parameter :: NUM_FUNCTIONS = 11
+    integer, parameter :: NUM_FUNCTIONS = 15
     
     ! Function registry
     type(function_info), parameter :: FUNCTION_REGISTRY(NUM_FUNCTIONS) = [ &
@@ -137,8 +137,44 @@ module slatec_signatures_module
             is_function=.false., &
             num_params=4, &
             param_types=[2,2,2,2,0,0,0,0,0,0], &
+            param_intents=[1,1,2,2,0,0,0,0,0,0], &
+            return_type=0 &
+        ), &
+        function_info( &
+            name='SVOUT               ', &
+            signature_type=0, &
+            is_function=.false., &
+            num_params=4, &
+            param_types=[2,2,3,2,0,0,0,0,0,0], &
             param_intents=[1,1,1,1,0,0,0,0,0,0], &
             return_type=0 &
+        ), &
+        function_info( &
+            name='ZEXP                ', &
+            signature_type=0, &
+            is_function=.false., &
+            num_params=4, &
+            param_types=[4,4,4,4,0,0,0,0,0,0], &
+            param_intents=[1,1,2,2,0,0,0,0,0,0], &
+            return_type=0 &
+        ), &
+        function_info( &
+            name='QWGTC               ', &
+            signature_type=0, &
+            is_function=.true., &
+            num_params=6, &
+            param_types=[2,2,2,2,2,1,0,0,0,0], &
+            param_intents=[1,1,1,1,1,1,0,0,0,0], &
+            return_type=2 &
+        ), &
+        function_info( &
+            name='ZABS                ', &
+            signature_type=0, &
+            is_function=.true., &
+            num_params=2, &
+            param_types=[4,4,0,0,0,0,0,0,0,0], &
+            param_intents=[1,1,0,0,0,0,0,0,0,0], &
+            return_type=4 &
         ) &
     ]
     

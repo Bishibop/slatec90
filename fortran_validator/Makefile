@@ -1,7 +1,7 @@
 # Makefile for SLATEC Validator
 
 FC = gfortran
-FFLAGS = -O2
+FFLAGS = -O2 -J$(OBJ_DIR)
 OBJ_DIR = obj
 SRC_DIR = ../src
 MODERN_DIR = ../modern
@@ -46,6 +46,13 @@ ERROR_F77_OBJS = $(OBJ_DIR)/xermsg_f77.o \
 validator: $(MODULE_OBJS) $(ALL_F77_OBJS) $(MODERN_OBJS) $(ERROR_F77_OBJS) $(OBJ_DIR)/validator.o
 	$(FC) -o $@ $^
 
+# Modern function modules must be compiled before function_execution_module
+$(OBJ_DIR)/csroot_modern.o: $(MODERN_DIR)/csroot_module.f90
+	$(FC) $(FFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/qwgtc_modern.o: $(MODERN_DIR)/qwgtc_module.f90
+	$(FC) $(FFLAGS) -c $< -o $@
+
 # Module compilation rules
 $(OBJ_DIR)/%.o: %.f90
 	$(FC) $(FFLAGS) -c $< -o $@
@@ -73,8 +80,7 @@ $(OBJ_DIR)/validator_module.o: validator_module.f90 \
     $(OBJ_DIR)/function_execution_module.o \
     $(OBJ_DIR)/validation_reporting_module.o
 
-$(OBJ_DIR)/function_execution_module.o: function_execution_module.f90 \
-    $(MODERN_OBJS)
+$(OBJ_DIR)/function_execution_module.o: function_execution_module.f90 $(MODERN_OBJS)
 
 $(OBJ_DIR)/validation_reporting_module.o: validation_reporting_module.f90 \
     $(OBJ_DIR)/output_formats_module.o

@@ -201,8 +201,8 @@ def generate_dispatcher_module():
     """Generate module for dynamic dispatch"""
     code = """module function_dispatcher_module
     use slatec_signatures_module
-    use generic_validator_module
     use validation_reporting_module
+    use validator_module
     implicit none
     
 contains
