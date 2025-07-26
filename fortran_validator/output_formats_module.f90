@@ -1,5 +1,6 @@
 module output_formats_module
     use error_analysis_module
+    use, intrinsic :: ieee_arithmetic
     implicit none
     
     ! Output format constants
@@ -96,12 +97,14 @@ contains
                 else
                     print '(A,A)', 'FAIL: ', trim(test_desc)
                     if (present(f77_val) .and. present(modern_val)) then
-                        print '(A,ES16.8)', '  F77 result:    ', f77_val
-                        print '(A,ES16.8)', '  Modern result: ', modern_val
-                        print '(A,ES16.8)', '  Difference:    ', abs(f77_val - modern_val)
-                        if (abs(f77_val) > 0.0) then
-                            print '(A,F6.2,A)', '  Relative err:  ', &
-                                100.0 * abs(f77_val - modern_val) / abs(f77_val), '%'
+                        print '(A,A)', '  F77 result:    ', trim(format_real_safe(f77_val))
+                        print '(A,A)', '  Modern result: ', trim(format_real_safe(modern_val))
+                        if (ieee_is_finite(f77_val) .and. ieee_is_finite(modern_val)) then
+                            print '(A,A)', '  Difference:    ', trim(format_real_safe(abs(f77_val - modern_val)))
+                            if (abs(f77_val) > 0.0) then
+                                print '(A,F6.2,A)', '  Relative err:  ', &
+                                    100.0 * abs(f77_val - modern_val) / abs(f77_val), '%'
+                            end if
                         end if
                     end if
                     if (present(error_info)) then
@@ -119,9 +122,14 @@ contains
                     print '(A)', '          "passed": false,'
                 end if
                 if (present(f77_val) .and. present(modern_val)) then
-                    print '(A,ES16.8,A)', '          "f77_result": ', f77_val, ','
-                    print '(A,ES16.8,A)', '          "modern_result": ', modern_val, ','
-                    print '(A,ES16.8)', '          "difference": ', abs(f77_val - modern_val)
+                    print '(A,A,A)', '          "f77_result": "', trim(format_real_safe(f77_val)), '",'
+                    print '(A,A,A)', '          "modern_result": "', trim(format_real_safe(modern_val)), '",'
+                    if (ieee_is_finite(f77_val) .and. ieee_is_finite(modern_val)) then
+                        print '(A,A,A)', '          "difference": "', &
+                            trim(format_real_safe(abs(f77_val - modern_val))), '"'
+                    else
+                        print '(A)', '          "difference": "N/A"'
+                    end if
                 else
                     print '(A)', '          "details": "' // escape_json(error_info) // '"'
                 end if
@@ -133,8 +141,8 @@ contains
                 if (.not. passed) then
                     print '(A)', '      <failure>'
                     if (present(f77_val) .and. present(modern_val)) then
-                        write(*, '(A,ES16.8)') '        F77 result: ', f77_val
-                        write(*, '(A,ES16.8)') '        Modern result: ', modern_val
+                        print '(A,A)', '        F77 result: ', trim(format_real_safe(f77_val))
+                        print '(A,A)', '        Modern result: ', trim(format_real_safe(modern_val))
                     end if
                     if (present(error_info)) then
                         print '(A)', '        ' // escape_xml(error_info)
@@ -152,12 +160,14 @@ contains
                     print '(A)', '### Failed Test: ' // trim(test_desc)
                     print '(A)', '```'
                     print '(A)', 'Error Category: ' // get_error_category(error_type)
-                    print '(A,ES16.8)', 'F77 Result:     ', f77_val
-                    print '(A,ES16.8)', 'Modern Result:  ', modern_val
-                    print '(A,ES16.8)', 'Difference:     ', abs(f77_val - modern_val)
-                    if (abs(f77_val) > 0.0) then
-                        print '(A,F8.4,A)', 'Relative Error: ', &
-                            100.0 * abs(f77_val - modern_val) / abs(f77_val), '%'
+                    print '(A,A)', 'F77 Result:     ', trim(format_real_safe(f77_val))
+                    print '(A,A)', 'Modern Result:  ', trim(format_real_safe(modern_val))
+                    if (ieee_is_finite(f77_val) .and. ieee_is_finite(modern_val)) then
+                        print '(A,A)', 'Difference:     ', trim(format_real_safe(abs(f77_val - modern_val)))
+                        if (abs(f77_val) > 0.0) then
+                            print '(A,F8.4,A)', 'Relative Error: ', &
+                                100.0 * abs(f77_val - modern_val) / abs(f77_val), '%'
+                        end if
                     end if
                     print '(A)', ''
                     print '(A)', 'Analysis: ' // trim(error_msg)
@@ -329,5 +339,23 @@ contains
                 category = 'Numerical Difference'
         end select
     end function get_error_category
+
+    function format_real_safe(value) result(formatted)
+        real, intent(in) :: value
+        character(len=20) :: formatted
+        
+        if (ieee_is_nan(value)) then
+            formatted = 'NaN'
+        else if (.not. ieee_is_finite(value)) then
+            if (value > 0.0) then
+                formatted = 'Infinity'
+            else
+                formatted = '-Infinity'
+            end if
+        else
+            write(formatted, '(ES16.8)') value
+        end if
+        formatted = adjustl(formatted)
+    end function format_real_safe
 
 end module output_formats_module

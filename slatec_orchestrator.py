@@ -173,9 +173,15 @@ class SLATECOrchestrator:
                 test_content = self.test_gen.generate(func_name, f77_code)
                 test_file.parent.mkdir(parents=True, exist_ok=True)
                 test_file.write_text(test_content)
+                # Count generated tests
+                test_count = test_content.count('TEST_START')
+                self.logger.info(f"Generated {test_count} test cases for {func_name}")
             else:
                 self.logger.info(f"Using existing test cases for {func_name}")
                 test_content = test_file.read_text()
+                # Count existing tests
+                test_count = test_content.count('TEST_START')
+                self.logger.info(f"Found {test_count} existing test cases for {func_name}")
                 
             # 3. Initial modernization
             self.logger.info(f"Modernizing {func_name}")

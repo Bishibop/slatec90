@@ -162,22 +162,37 @@ Modernization rules:
    - For DOUBLE PRECISION, use REAL(REAL64)
    - For INTEGER, keep as default INTEGER unless precision matters
 
-4. **Error Handling**:
-   - Remove ALL calls to XERMSG or other error routines
-   - For invalid inputs, return sensible defaults (0, 0.0, .FALSE., etc.)
-   - No error stops - let the caller handle invalid results
-   - Thread-safe design with no global state
+4. **Error Handling Philosophy (CRITICAL)**:
+   - Remove ALL calls to XERMSG, J4SAVE, or any error handling routines
+   - J4SAVE maintains global error state - completely eliminate it
+   - For invalid inputs, return sensible defaults:
+     * Machine constants: return IEEE standard values even for invalid indices
+     * Mathematical functions: return 0.0 or mathematically sensible defaults
+     * Logical functions: return .FALSE.
+   - NO error stops - let the caller handle invalid results
+   - NO global variables or SAVE statements - ensure thread safety
+   - NO hidden state - each function call must be independent
+   - Replace any XGETUA/XSETUA (error output routing) with removal
 
 5. **Dependencies**:
    - If the function calls other SLATEC functions, assume they exist as modules
    - Use: `use other_module, only: other_function`
    - Do NOT implement stub versions of dependencies
 
-6. **Critical Requirements**:
+6. **Machine Constants Special Handling**:
+   - For I1MACH, R1MACH, D1MACH: use Fortran intrinsics
+   - Replace platform-specific DATA statements with:
+     * huge(), tiny(), epsilon(), digits(), radix()
+   - Return sensible defaults for invalid indices (not error stop)
+   - Example: R1MACH(2) = HUGE(1.0), R1MACH(1) = TINY(1.0)
+
+7. **Critical Requirements**:
    - Mathematical correctness is the top priority
    - Preserve all numerical stability techniques from the original
+   - Thread-safe: NO global state, NO SAVE statements, NO common blocks
    - Do NOT add functions that weren't in the original F77 code
    - Do NOT create implementations for other functions
+   - Each function must be completely independent and reentrant
 
 Respond with JSON:
 {{
