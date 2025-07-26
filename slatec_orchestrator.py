@@ -5,6 +5,7 @@ Generic orchestrator that processes any set of functions
 """
 import os
 import json
+import re
 import subprocess
 import logging
 from pathlib import Path
@@ -16,6 +17,7 @@ from dotenv import load_dotenv
 from test_generator import TestGenerator
 from modernizer import LLMModernizer
 from validator_wrapper import FortranValidator
+from f77_parser import F77Parser
 
 # Load environment variables
 load_dotenv()
@@ -32,6 +34,7 @@ class SLATECOrchestrator:
         self.test_gen = TestGenerator(self.config)
         self.modernizer = LLMModernizer(self.config)
         self.validator = FortranValidator(self.config)
+        self.parser = F77Parser()
         self.function_data = self._load_function_data()
         self.progress = self._load_progress()
         self._ensure_metadata_updated()
@@ -165,6 +168,104 @@ class SLATECOrchestrator:
                     return False
         return True
         
+    def _auto_add_metadata(self, func_name, f77_code):
+        """Automatically add function metadata if not present"""
+        # Check if metadata exists
+        metadata_file = Path('fortran_validator/slatec_metadata.py')
+        metadata_content = metadata_file.read_text()
+        
+        if f"'{func_name.upper()}':" not in metadata_content:
+            self.logger.info(f"Metadata not found for {func_name}, extracting from source...")
+            
+            # Extract metadata
+            metadata = self.parser.extract_metadata(f77_code, func_name)
+            if metadata:
+                # Also discover dependencies
+                deps = self.parser.discover_dependencies(f77_code)
+                if deps:
+                    self.logger.info(f"Discovered dependencies for {func_name}: {deps}")
+                    # Update function_data if needed
+                    if 'dependencies' not in self.function_data:
+                        self.function_data['dependencies'] = {}
+                    self.function_data['dependencies'][func_name] = deps
+                
+                # Add to metadata file
+                self._add_to_metadata_file(func_name, metadata)
+                
+                # Regenerate Fortran metadata
+                self._ensure_metadata_updated()
+                
+                return True
+            else:
+                self.logger.warning(f"Could not extract metadata for {func_name}")
+                return False
+        return True
+    
+    def _add_to_metadata_file(self, func_name, metadata):
+        """Add function metadata to slatec_metadata.py"""
+        metadata_file = Path('fortran_validator/slatec_metadata.py')
+        content = metadata_file.read_text()
+        
+        # Find the end of SLATEC_FUNCTIONS dict
+        insert_pos = content.rfind('}')
+        
+        # Format metadata as Python code
+        metadata_str = f",\n    \n    '{func_name.upper()}': {{\n"
+        metadata_str += f"        'type': '{metadata['type']}',\n"
+        metadata_str += f"        'params': [\n"
+        
+        for param in metadata['params']:
+            metadata_str += f"            {{"
+            for key, value in param.items():
+                if isinstance(value, str):
+                    metadata_str += f"'{key}': '{value}', "
+                else:
+                    metadata_str += f"'{key}': {value}, "
+            metadata_str = metadata_str.rstrip(', ') + "},\n"
+        
+        metadata_str += "        ],\n"
+        if metadata.get('returns'):
+            metadata_str += f"        'returns': '{metadata['returns']}',\n"
+        else:
+            metadata_str += f"        'returns': None,\n"
+        metadata_str += f"        'description': '{metadata['description']}'\n"
+        metadata_str += "    }"
+        
+        # Insert before the closing brace
+        new_content = content[:insert_pos] + metadata_str + content[insert_pos:]
+        metadata_file.write_text(new_content)
+        
+        self.logger.info(f"Added metadata for {func_name} to slatec_metadata.py")
+    
+    def _preflight_checks(self, func_name):
+        """Perform pre-flight checks before processing"""
+        self.logger.info(f"Running pre-flight checks for {func_name}")
+        
+        # Check 1: Source file exists
+        source_file = Path(self.config['source_dir']) / f"{func_name.lower()}.f"
+        if not source_file.exists():
+            self.logger.error(f"Source file not found: {source_file}")
+            return False, "Source file not found"
+        
+        # Check 2: Not already modernized (unless forced)
+        modern_file = Path(self.config['modern_dir']) / f"{func_name.lower()}_module.f90"
+        if modern_file.exists() and func_name not in self.progress.get('failed', []):
+            self.logger.warning(f"Modern version already exists: {modern_file}")
+            # Could add --force flag to override
+        
+        # Check 3: Check for naming conflicts
+        reserved_names = {'MODULE', 'FUNCTION', 'SUBROUTINE', 'END', 'IF', 'DO', 'WHILE'}
+        if func_name.upper() in reserved_names:
+            self.logger.error(f"{func_name} is a reserved Fortran keyword")
+            return False, "Reserved keyword"
+        
+        # Check 4: Validate function name format
+        if not re.match(r'^[A-Za-z][A-Za-z0-9_]*$', func_name):
+            self.logger.error(f"Invalid function name format: {func_name}")
+            return False, "Invalid name format"
+        
+        return True, "All checks passed"
+    
     def process_function(self, func_name):
         """Process a single function through the modernization pipeline"""
         self.logger.info(f"Processing {func_name}")
@@ -175,6 +276,14 @@ class SLATECOrchestrator:
                 self.logger.info(f"{func_name} already completed, skipping")
                 return True
             
+            # Pre-flight checks
+            checks_passed, check_msg = self._preflight_checks(func_name)
+            if not checks_passed:
+                self.logger.error(f"Pre-flight checks failed for {func_name}: {check_msg}")
+                self.progress['failed'].append(func_name)
+                self._save_progress()
+                return False
+            
             # Ensure dependencies are built first
             if not self.ensure_dependencies(func_name):
                 self.logger.error(f"Failed to build dependencies for {func_name}")
@@ -182,6 +291,11 @@ class SLATECOrchestrator:
                 
             # 1. Read source
             f77_code = self.read_source(func_name)
+            
+            # 1.5 Auto-add metadata if needed
+            if not self._auto_add_metadata(func_name, f77_code):
+                self.logger.error(f"Failed to add metadata for {func_name}")
+                return False
             
             # 2. Generate or load test cases
             test_file = Path(self.config['test_dir']) / f"{func_name.lower()}_tests.txt"
@@ -332,6 +446,55 @@ class SLATECOrchestrator:
         self.logger.info(f"  Completed: {report['completed']}")
         self.logger.info(f"  Failed: {report['failed']}")
         self.logger.info(f"  Success rate: {report['success_rate']:.1f}%")
+        
+        # Also generate markdown report
+        self.generate_progress_report()
+    
+    def generate_progress_report(self):
+        """Generate a markdown progress report"""
+        report_file = Path(self.config['work_dir']) / 'modernization_progress.md'
+        
+        total_functions = len(self.function_data['functions'])
+        completed = len(self.progress['completed'])
+        failed = len(self.progress['failed'])
+        in_progress = len(self.progress['in_progress'])
+        pending = total_functions - completed - failed - in_progress
+        
+        report = f"""# SLATEC Modernization Progress Report
+
+Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+## Summary
+- **Total Functions**: {total_functions}
+- **Completed**: {completed} ({completed/total_functions*100:.1f}%)
+- **Failed**: {failed} ({failed/total_functions*100:.1f}%)
+- **In Progress**: {in_progress}
+- **Pending**: {pending}
+
+## Completed Functions
+"""
+        for func in sorted(self.progress['completed']):
+            report += f"- ✅ {func}\n"
+        
+        if self.progress['failed']:
+            report += "\n## Failed Functions\n"
+            for func in sorted(self.progress['failed']):
+                report += f"- ❌ {func}\n"
+        
+        if pending > 0:
+            report += "\n## Pending Functions\n"
+            pending_funcs = [f for f in self.function_data['functions'] 
+                           if f not in self.progress['completed'] 
+                           and f not in self.progress['failed']
+                           and f not in self.progress['in_progress']]
+            for func in sorted(pending_funcs)[:10]:  # Show first 10
+                report += f"- ⏳ {func}\n"
+            if len(pending_funcs) > 10:
+                report += f"- ... and {len(pending_funcs) - 10} more\n"
+        
+        report_file.parent.mkdir(parents=True, exist_ok=True)
+        report_file.write_text(report)
+        self.logger.info(f"Progress report written to {report_file}")
         
         
 if __name__ == '__main__':

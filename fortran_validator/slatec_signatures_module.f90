@@ -37,7 +37,7 @@ module slatec_signatures_module
     integer, parameter :: INTENT_INOUT = 3
     
     ! Number of registered functions
-    integer, parameter :: NUM_FUNCTIONS = 10
+    integer, parameter :: NUM_FUNCTIONS = 11
     
     ! Function registry
     type(function_info), parameter :: FUNCTION_REGISTRY(NUM_FUNCTIONS) = [ &
@@ -130,6 +130,15 @@ module slatec_signatures_module
             param_types=[2,2,0,0,0,0,0,0,0,0], &
             param_intents=[1,1,0,0,0,0,0,0,0,0], &
             return_type=2 &
+        ), &
+        function_info( &
+            name='CSROOT              ', &
+            signature_type=0, &
+            is_function=.false., &
+            num_params=4, &
+            param_types=[2,2,2,2,0,0,0,0,0,0], &
+            param_intents=[1,1,1,1,0,0,0,0,0,0], &
+            return_type=0 &
         ) &
     ]
     

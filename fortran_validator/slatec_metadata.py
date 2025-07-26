@@ -100,7 +100,19 @@ SLATEC_FUNCTIONS = {
         'returns': 'real',
         'description': 'Computes sqrt(X**2 + Y**2) (example function)'
     }
-}
+,
+    
+    'CSROOT': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'XR', 'type': 'real', 'intent': 'in'},
+            {'name': 'XI', 'type': 'real', 'intent': 'in'},
+            {'name': 'YR', 'type': 'real', 'intent': 'out'},
+            {'name': 'YI', 'type': 'real', 'intent': 'out'}
+        ],
+        'returns': None,
+        'description': 'Compute the complex square root of a complex number.'
+    }}
 
 def get_function_signature(func_name):
     """Get function signature metadata"""
