@@ -1,0 +1,26 @@
+FUNCTION: D1MACH
+
+TEST_START
+Smallest positive magnitude
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Largest magnitude
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Machine epsilon
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Largest relative spacing
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Log10 of base
+INT_PARAMS: 5
+TEST_END

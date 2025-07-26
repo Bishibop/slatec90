@@ -42,8 +42,6 @@ work/
 modern/
 compiled/
 
-# Test case directories (generated)
-test_cases/
 
 # Claude AI directories
 .claude/

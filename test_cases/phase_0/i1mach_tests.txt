@@ -1,0 +1,22 @@
+FUNCTION: I1MACH
+
+TEST_START
+Standard input unit
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Standard output unit
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Standard error unit
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Number of bits per integer
+INT_PARAMS: 5
+TEST_END
+

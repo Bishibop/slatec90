@@ -1,0 +1,26 @@
+FUNCTION: CDIV
+
+TEST_START
+Basic complex division (1+2i)/(3+4i)
+REAL_PARAMS: 1.0 2.0 3.0 4.0 0.0 0.0
+TEST_END
+
+TEST_START
+Division by real number (4+3i)/2
+REAL_PARAMS: 4.0 3.0 2.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Division by pure imaginary (2+3i)/(2i)
+REAL_PARAMS: 2.0 3.0 0.0 2.0 0.0 0.0
+TEST_END
+
+TEST_START
+Division of real by complex 5/(1+i)
+REAL_PARAMS: 5.0 0.0 1.0 1.0 0.0 0.0
+TEST_END
+
+TEST_START
+Division with negative values (-3-4i)/(1-2i)
+REAL_PARAMS: -3.0 -4.0 1.0 -2.0 0.0 0.0
+TEST_END

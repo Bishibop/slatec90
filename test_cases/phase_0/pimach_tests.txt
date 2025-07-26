@@ -1,0 +1,16 @@
+FUNCTION: PIMACH
+
+TEST_START
+Basic PI retrieval
+REAL_PARAMS: 1.0
+TEST_END
+
+TEST_START
+PI with zero dummy
+REAL_PARAMS: 0.0
+TEST_END
+
+TEST_START
+PI with negative dummy
+REAL_PARAMS: -1.0
+TEST_END

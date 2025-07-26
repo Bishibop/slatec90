@@ -1,0 +1,176 @@
+FUNCTION: PIMACH
+
+TEST_START
+Basic PI retrieval with positive dummy
+REAL_PARAMS: 1.0
+TEST_END
+
+TEST_START
+PI retrieval with zero dummy
+REAL_PARAMS: 0.0
+TEST_END
+
+TEST_START
+PI retrieval with negative dummy
+REAL_PARAMS: -1.0
+TEST_END
+
+FUNCTION: AAAAAA
+
+TEST_START
+Get SLATEC version
+TEST_END
+
+FUNCTION: LSAME
+
+TEST_START
+Exact match uppercase
+CHAR_PARAMS: A A
+TEST_END
+
+TEST_START
+Exact match lowercase
+CHAR_PARAMS: a a
+TEST_END
+
+TEST_START
+Case insensitive match
+CHAR_PARAMS: a A
+TEST_END
+
+TEST_START
+Different characters
+CHAR_PARAMS: A B
+TEST_END
+
+TEST_START
+Numbers
+CHAR_PARAMS: 1 1
+TEST_END
+
+TEST_START
+Special characters
+CHAR_PARAMS: @ @
+TEST_END
+
+FUNCTION: FDUMP
+
+TEST_START
+Call dummy subroutine
+TEST_END
+
+FUNCTION: I1MACH
+
+TEST_START
+Standard input unit
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Standard output unit
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Standard error unit
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Error message unit
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Number of bits per integer
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Invalid index (too high)
+INT_PARAMS: 17
+TEST_END
+
+TEST_START
+Invalid index (zero)
+INT_PARAMS: 0
+TEST_END
+
+TEST_START
+Invalid index (negative)
+INT_PARAMS: -1
+TEST_END
+
+FUNCTION: R1MACH
+
+TEST_START
+Smallest positive magnitude
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Largest magnitude
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Smallest relative spacing
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Largest relative spacing
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Log10 of base
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Invalid index (too high)
+INT_PARAMS: 6
+TEST_END
+
+TEST_START
+Invalid index (zero)
+INT_PARAMS: 0
+TEST_END
+
+FUNCTION: D1MACH
+
+TEST_START
+Smallest positive magnitude
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Largest magnitude
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Machine epsilon
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Largest relative spacing
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Log10 of base
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Invalid index (too high)
+INT_PARAMS: 6
+TEST_END
+
+TEST_START
+Invalid index (zero)
+INT_PARAMS: 0
+TEST_END

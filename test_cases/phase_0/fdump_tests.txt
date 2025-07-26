@@ -1,0 +1,5 @@
+FUNCTION: FDUMP
+
+TEST_START
+Call dummy subroutine
+TEST_END
