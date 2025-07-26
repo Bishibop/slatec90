@@ -35,16 +35,23 @@ test_*
 # Logs (but keep the directory)
 logs/*
 !logs/.gitkeep
+*.log
 
 # Work directories
 work/
 modern/
 compiled/
 
+# Test case directories (generated)
+test_cases/
+
+# Claude AI directories
+.claude/
+
 # Object directories
 obj*/
 
-# Executables
+# Old validator executables (obsolete)
 mega_validator_full
 fortran_validator/mega_validator_full
 
