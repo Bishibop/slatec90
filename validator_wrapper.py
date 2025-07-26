@@ -68,8 +68,8 @@ class FortranValidator:
         try:
             # Build the mega_validator if it doesn't exist
             validator_dir = Path(__file__).parent / 'fortran_validator'
-            if not (validator_dir / 'mega_validator_generic').exists():
-                self.logger.info("Building mega_validator_generic...")
+            if not (validator_dir / 'validator').exists():
+                self.logger.info("Building validator...")
                 # First, regenerate metadata if needed
                 metadata_gen = validator_dir / 'generate_fortran_metadata.py'
                 if metadata_gen.exists():
@@ -77,7 +77,7 @@ class FortranValidator:
                     subprocess.run(['python3', str(metadata_gen)], cwd=validator_dir)
                 
                 result = subprocess.run(
-                    ['make', '-f', 'Makefile.generic', 'mega_validator_generic'],
+                    ['make', 'validator'],
                     cwd=validator_dir,
                     capture_output=True,
                     text=True
@@ -93,7 +93,7 @@ class FortranValidator:
                     }
             
             # Run the validator with the test file
-            validator_exe = validator_dir / 'mega_validator_generic'
+            validator_exe = validator_dir / 'validator'
             with open(test_file, 'r') as f:
                 result = subprocess.run(
                     [str(validator_exe)],

@@ -53,6 +53,9 @@ obj*/
 mega_validator_full
 fortran_validator/mega_validator_full
 
+# Current validator executable
+fortran_validator/validator
+
 # OS
 .DS_Store
 Thumbs.db

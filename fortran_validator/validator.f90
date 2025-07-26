@@ -2,14 +2,14 @@
 ! Generic SLATEC Mega-Validator
 ! Uses metadata-driven validation instead of function-specific code
 !
-program mega_validator_generic
+program validator
     use error_analysis_module
     use performance_module  
     use output_formats_module
     use state_validation_module
     use numerical_utils_module
     use runtime_detection_module
-    use generic_validator_module
+    use validator_module
     use function_execution_module
     use validation_reporting_module
     use slatec_signatures_module
@@ -375,4 +375,4 @@ contains
     end subroutine
     
 
-end program mega_validator_generic
+end program validator

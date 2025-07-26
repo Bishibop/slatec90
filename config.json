@@ -7,6 +7,6 @@
     "function_lists_dir": "function_lists",
     "max_iterations": 5,
     "parallel_workers": 4,
-    "validator_executable": "fortran_validator/mega_validator_generic",
+    "validator_executable": "fortran_validator/validator",
     "llm_model": "o3-mini"
 }

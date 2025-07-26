@@ -1,4 +1,4 @@
-module generic_validator_module
+module validator_module
     use error_analysis_module
     use numerical_utils_module
     use output_formats_module
@@ -264,4 +264,4 @@ contains
         end if
     end subroutine
 
-end module generic_validator_module
+end module validator_module

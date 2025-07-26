@@ -14,8 +14,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
 
 from test_generator import TestGenerator
-from llm_modernizer import LLMModernizer
-from fortran_validator import FortranValidator
+from modernizer import LLMModernizer
+from validator_wrapper import FortranValidator
 
 # Load environment variables
 load_dotenv()
@@ -48,7 +48,7 @@ class SLATECOrchestrator:
             'max_iterations': 5,
             'parallel_workers': 4,
             'llm_model': os.getenv('OPENAI_MODEL', 'o3-mini'),
-            'validator_executable': 'fortran_validator/mega_validator_generic',
+            'validator_executable': 'fortran_validator/validator',
             'openai_api_key': os.getenv('OPENAI_API_KEY')
         }
         
@@ -134,7 +134,7 @@ class SLATECOrchestrator:
     
     def _ensure_metadata_updated(self):
         """Ensure validator metadata is up to date with current functions"""
-        if 'mega_validator_generic' in self.config.get('validator_executable', ''):
+        if 'validator' in self.config.get('validator_executable', ''):
             validator_dir = Path('fortran_validator')
             metadata_gen = validator_dir / 'generate_fortran_metadata.py'
             if metadata_gen.exists():
