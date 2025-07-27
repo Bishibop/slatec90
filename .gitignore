@@ -57,6 +57,9 @@ fortran_validator/mega_validator_full
 # Current validator executable
 fortran_validator/validator
 
+# Git worktrees
+slatec_test_ui/
+
 # OS
 .DS_Store
 Thumbs.db
