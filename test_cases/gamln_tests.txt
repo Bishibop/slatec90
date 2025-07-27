@@ -1,0 +1,301 @@
+FUNCTION: GAMLN
+
+TEST_START
+Description: Test 1 - Zero input (Z = 0.0) should trigger error flag.
+REAL_PARAMS: 0.0
+TEST_END
+
+TEST_START
+Description: Test 2 - Negative input (Z = -1.0) should trigger error flag.
+REAL_PARAMS: -1.0
+TEST_END
+
+TEST_START
+Description: Test 3 - Very small positive number (denormal) Z = 1e-45.
+REAL_PARAMS: 1.0e-45
+TEST_END
+
+TEST_START
+Description: Test 4 - Small positive number near underflow limit (Z = 1e-38).
+REAL_PARAMS: 1.0e-38
+TEST_END
+
+TEST_START
+Description: Test 5 - Number near machine epsilon scale (Z = 1e-7).
+REAL_PARAMS: 1.0e-7
+TEST_END
+
+TEST_START
+Description: Test 6 - Small positive number (Z = 1e-6).
+REAL_PARAMS: 1.0e-6
+TEST_END
+
+TEST_START
+Description: Test 7 - Small positive number (Z = 1e-5).
+REAL_PARAMS: 1.0e-5
+TEST_END
+
+TEST_START
+Description: Test 8 - Low non-integer value (Z = 0.1).
+REAL_PARAMS: 0.1
+TEST_END
+
+TEST_START
+Description: Test 9 - Low non-integer value (Z = 0.5).
+REAL_PARAMS: 0.5
+TEST_END
+
+TEST_START
+Description: Test 10 - Value just below 1 (Z = 0.999999).
+REAL_PARAMS: 0.999999
+TEST_END
+
+TEST_START
+Description: Test 11 - Integer value 1 (Z = 1.0).
+REAL_PARAMS: 1.0
+TEST_END
+
+TEST_START
+Description: Test 12 - Value just above 1 (Z = 1.000001).
+REAL_PARAMS: 1.000001
+TEST_END
+
+TEST_START
+Description: Test 13 - Non-integer value (Z = 1.5).
+REAL_PARAMS: 1.5
+TEST_END
+
+TEST_START
+Description: Test 14 - Exact integer value (Z = 2.0) using lookup table.
+REAL_PARAMS: 2.0
+TEST_END
+
+TEST_START
+Description: Test 15 - Value just above an integer (Z = 2.000001).
+REAL_PARAMS: 2.000001
+TEST_END
+
+TEST_START
+Description: Test 16 - Non-integer value (Z = 2.5).
+REAL_PARAMS: 2.5
+TEST_END
+
+TEST_START
+Description: Test 17 - Non-integer value (Z = 3.14159, approximating pi).
+REAL_PARAMS: 3.14159
+TEST_END
+
+TEST_START
+Description: Test 18 - Exact integer value (Z = 4.0) from lookup table.
+REAL_PARAMS: 4.0
+TEST_END
+
+TEST_START
+Description: Test 19 - Exact integer value (Z = 5.0).
+REAL_PARAMS: 5.0
+TEST_END
+
+TEST_START
+Description: Test 20 - Exact integer value (Z = 6.0).
+REAL_PARAMS: 6.0
+TEST_END
+
+TEST_START
+Description: Test 21 - Exact integer value (Z = 7.0).
+REAL_PARAMS: 7.0
+TEST_END
+
+TEST_START
+Description: Test 22 - Exact integer value (Z = 8.0).
+REAL_PARAMS: 8.0
+TEST_END
+
+TEST_START
+Description: Test 23 - Exact integer value (Z = 9.0).
+REAL_PARAMS: 9.0
+TEST_END
+
+TEST_START
+Description: Test 24 - Exact integer value (Z = 10.0).
+REAL_PARAMS: 10.0
+TEST_END
+
+TEST_START
+Description: Test 25 - Exact integer value (Z = 11.0).
+REAL_PARAMS: 11.0
+TEST_END
+
+TEST_START
+Description: Test 26 - Exact integer value (Z = 12.0).
+REAL_PARAMS: 12.0
+TEST_END
+
+TEST_START
+Description: Test 27 - Mid-range integer (Z = 20.0).
+REAL_PARAMS: 20.0
+TEST_END
+
+TEST_START
+Description: Test 28 - Larger integer value (Z = 50.0).
+REAL_PARAMS: 50.0
+TEST_END
+
+TEST_START
+Description: Test 29 - Larger integer value (Z = 70.0).
+REAL_PARAMS: 70.0
+TEST_END
+
+TEST_START
+Description: Test 30 - Edge of lookup table (Z = 99.0).
+REAL_PARAMS: 99.0
+TEST_END
+
+TEST_START
+Description: Test 31 - Boundary integer value (Z = 100.0).
+REAL_PARAMS: 100.0
+TEST_END
+
+TEST_START
+Description: Test 32 - Non-integer slightly above boundary (Z = 100.000001).
+REAL_PARAMS: 100.000001
+TEST_END
+
+TEST_START
+Description: Test 33 - Transition to asymptotic branch (Z = 101.0).
+REAL_PARAMS: 101.0
+TEST_END
+
+TEST_START
+Description: Test 34 - Asymptotic expansion test (Z = 110.0).
+REAL_PARAMS: 110.0
+TEST_END
+
+TEST_START
+Description: Test 35 - Non-integer arbitrary value (Z = 123.456).
+REAL_PARAMS: 123.456
+TEST_END
+
+TEST_START
+Description: Test 36 - Larger value (Z = 150.0).
+REAL_PARAMS: 150.0
+TEST_END
+
+TEST_START
+Description: Test 37 - Larger value (Z = 200.0).
+REAL_PARAMS: 200.0
+TEST_END
+
+TEST_START
+Description: Test 38 - Larger value (Z = 250.0).
+REAL_PARAMS: 250.0
+TEST_END
+
+TEST_START
+Description: Test 39 - Larger value (Z = 300.0).
+REAL_PARAMS: 300.0
+TEST_END
+
+TEST_START
+Description: Test 40 - Larger value (Z = 400.0).
+REAL_PARAMS: 400.0
+TEST_END
+
+TEST_START
+Description: Test 41 - Larger value (Z = 500.0).
+REAL_PARAMS: 500.0
+TEST_END
+
+TEST_START
+Description: Test 42 - Large value (Z = 1000.0).
+REAL_PARAMS: 1000.0
+TEST_END
+
+TEST_START
+Description: Test 43 - Power of 10: (Z = 1e+4 = 10000.0).
+REAL_PARAMS: 1.0e+4
+TEST_END
+
+TEST_START
+Description: Test 44 - Power of 10: (Z = 1e+5 = 100000.0).
+REAL_PARAMS: 1.0e+5
+TEST_END
+
+TEST_START
+Description: Test 45 - Power of 10: (Z = 1e+6 = 1000000.0).
+REAL_PARAMS: 1.0e+6
+TEST_END
+
+TEST_START
+Description: Test 46 - Power of 2: (Z = 16.0).
+REAL_PARAMS: 16.0
+TEST_END
+
+TEST_START
+Description: Test 47 - Power of 2: (Z = 32.0).
+REAL_PARAMS: 32.0
+TEST_END
+
+TEST_START
+Description: Test 48 - Power of 2: (Z = 64.0).
+REAL_PARAMS: 64.0
+TEST_END
+
+TEST_START
+Description: Test 49 - Power of 2: (Z = 128.0).
+REAL_PARAMS: 128.0
+TEST_END
+
+TEST_START
+Description: Test 50 - Arithmetic progression sample (Z = 25.0).
+REAL_PARAMS: 25.0
+TEST_END
+
+TEST_START
+Description: Test 51 - Arithmetic progression sample (Z = 75.0).
+REAL_PARAMS: 75.0
+TEST_END
+
+TEST_START
+Description: Test 52 - Non-integer value near lookup boundary (Z = 99.999999).
+REAL_PARAMS: 99.999999
+TEST_END
+
+TEST_START
+Description: Test 53 - Value just below an integer (Z = 9.999999).
+REAL_PARAMS: 9.999999
+TEST_END
+
+TEST_START
+Description: Test 54 - Value just above an integer (Z = 10.000001).
+REAL_PARAMS: 10.000001
+TEST_END
+
+TEST_START
+Description: Test 55 - Random intermediate value (Z = 37.42).
+REAL_PARAMS: 37.42
+TEST_END
+
+TEST_START
+Description: Test 56 - Random intermediate value (Z = 62.71).
+REAL_PARAMS: 62.71
+TEST_END
+
+TEST_START
+Description: Test 57 - Small random non-integer (Z = 0.123456).
+REAL_PARAMS: 0.123456
+TEST_END
+
+TEST_START
+Description: Test 58 - Random intermediate value (Z = 78.9).
+REAL_PARAMS: 78.9
+TEST_END
+
+TEST_START
+Description: Test 59 - Random non-integer value (Z = 87.654321).
+REAL_PARAMS: 87.654321
+TEST_END
+
+TEST_START
+Description: Test 60 - Large non-integer value (Z = 314.159).
+REAL_PARAMS: 314.159
+TEST_END

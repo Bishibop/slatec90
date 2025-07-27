@@ -208,6 +208,16 @@ SLATEC_FUNCTIONS = {
         ],
         'returns': None,
         'description': 'Accumulate Q from QR factorization'
+    },
+    
+    'GAMLN': {
+        'type': 'function',
+        'params': [
+            {'name': 'Z', 'type': 'real', 'intent': 'in'},
+            {'name': 'IERR', 'type': 'integer', 'intent': 'out'},
+        ],
+        'returns': 'real',
+        'description': 'Compute the logarithm of the Gamma function'
     }}
 
 def get_function_signature(func_name):

@@ -29,6 +29,12 @@
     "signature_name": "SIG_SUB_0_PARAMS",
     "signature_type": 7
   },
+  "gamln": {
+    "has_f77": true,
+    "name": "GAMLN",
+    "signature_name": "SIG_UNKNOWN_14",
+    "signature_type": 14
+  },
   "i1mach": {
     "has_f77": true,
     "name": "I1MACH",
@@ -50,8 +56,8 @@
   "polcof": {
     "has_f77": true,
     "name": "POLCOF",
-    "signature_name": "SIG_SUB_REAL_INT_4ARRAYS",
-    "signature_type": 13
+    "signature_name": "SIG_SUB_6_REAL",
+    "signature_type": 9
   },
   "pythag": {
     "has_f77": true,
@@ -62,8 +68,8 @@
   "qform": {
     "has_f77": true,
     "name": "QFORM",
-    "signature_name": "SIG_SUB_2D_ARRAY",
-    "signature_type": 11
+    "signature_name": "SIG_UNKNOWN_0",
+    "signature_type": 0
   },
   "qwgtc": {
     "has_f77": true,

@@ -9,9 +9,9 @@
     "parallel_workers": 4,
     "validator_executable": "fortran_validator/validator",
     
-    "llm_provider": "gemini",
+    "llm_provider": "openai",
     "openai_model": "o3-mini",
-    "gemini_model": "gemini-2.0-flash-exp",
+    "gemini_model": "gemini-2.5-flash",
     
     "validate_parameters": true,
     
