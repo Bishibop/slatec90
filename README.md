@@ -1,116 +1,160 @@
-# SLATEC F77 to Modern Fortran Migration
+# SLATEC Modernization Visualization
 
-Systematic migration of the SLATEC mathematical library from FORTRAN 77 to modern Fortran using LLM-assisted generation and comprehensive validation.
+A real-time visualization tool for monitoring the SLATEC function modernization process. This desktop application provides an interactive system architecture diagram showing the flow of functions through various processing stages.
 
-## Overview
+## Features
 
-SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Committee) is a comprehensive FORTRAN 77 library containing mathematical and statistical routines. This project uses an automated pipeline to migrate functions to modern Fortran (F90+) while preserving numerical accuracy through exhaustive testing.
+- **Live System Architecture Diagram**: Shows the modernization pipeline with animated nodes and connections
+- **Real-time Updates**: Monitors orchestrator events and updates visualization instantly
+- **Function Pipeline View**: Track multiple functions being processed in parallel
+- **Metrics Dashboard**: Overall statistics including success rate, completion count, and average processing time
+- **Event Log**: Detailed timeline of all processing events
+- **Dark Theme**: Professional appearance optimized for extended viewing
 
-## Current Status
+## Installation
 
-✅ **Completed**: 13 functions  
-📊 **Generic Validator**: Operational with array support  
-🎯 **Available**: 725+ functions ready for migration  
-🚀 **New**: Gemini 2.5 Flash integration for improved code generation  
-🛡️ **New**: Automatic parameter validation catches test data issues
-
-## Prerequisites
-
-- gfortran 8.0+ (or compatible Fortran compiler)
-- Python 3.6+
-- LLM API key: OpenAI or Google Gemini (for code generation)
-- Basic command line tools (make, git)
-
-## Quick Start
-
-1. **Set up environment**:
-   ```bash
-   cp .env.example .env
-   # Add your API key to .env:
-   # For OpenAI: OPENAI_API_KEY=sk-...
-   # For Gemini: GEMINI_API_KEY=...
-   ```
-
-2. **Migrate a function**:
-   ```bash
-   python slatec_orchestrator.py --function FUNCNAME
-   ```
-
-3. **Check results** in:
-   - `modern/funcname_module.f90` - Modernized code
-   - `test_cases/funcname_tests.txt` - Generated test cases
-   - `logs/` - Detailed analysis and results
-
-All migrations require 100% validation pass rate.
-
-## Configuration
-
-The project supports multiple LLM providers. Create `config.json`:
-
-```json
-{
-  "llm_provider": "gemini",  // or "openai"
-  "gemini_model": "gemini-2.5-flash",
-  "openai_model": "o3-mini",
-  "validate_parameters": true  // Enable automatic test parameter validation
-}
+1. Install PyQt6 dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
-Default: Uses OpenAI if no config.json exists. Parameter validation is enabled by default.
+## Usage
 
-## Project Structure
+### Option 1: Demo Mode (No Orchestrator Required)
 
-```
-slatec_test/
-├── src/                    # Original SLATEC F77 source files
-├── modern/                 # Modern Fortran implementations
-├── test_cases/             # Generated test cases
-├── fortran_validator/      # Generic validation system
-├── docs/                   # Documentation
-│   ├── guides/            # Technical guides
-│   ├── reference/         # Reference materials
-│   └── archive/           # Historical documents
-├── data/                   # Analysis data
-├── logs/                   # Execution logs
-└── journal/               # Development journal
+Test the visualization with simulated events:
+
+```bash
+python demo_visualization.py
 ```
 
-## Key Components
+This runs a demonstration showing how the visualization responds to modernization events without needing the actual orchestrator.
 
-- **`slatec_orchestrator.py`** - Main automation script
-- **`modernizer.py`** - LLM-based F77→F90 converter
-- **`test_generator.py`** - Comprehensive test generation with parameter validation
-- **`test_parameter_validator.py`** - Automatic test parameter fixing
-- **`fortran_validator/`** - Generic validation system
-- **`MIGRATION_GUIDE.md`** - Complete migration guide
+### Option 2: Standalone Mode
 
-## Documentation
+Run the visualization and connect to an orchestrator later:
 
-- **[Migration Guide](MIGRATION_GUIDE.md)** - Complete function list and status
-- **[Modernization Guide](docs/guides/SLATEC_MODERNIZATION_GUIDE.md)** - F77→F90 patterns and examples
-- **[Test Generation Guide](docs/guides/SLATEC_TEST_GENERATION_GUIDE.md)** - Test creation strategies
-- **[Validation Guide](docs/guides/SLATEC_VALIDATION_GUIDE.md)** - Using the generic validator
+```bash
+python run_visualization.py
+```
 
-## Completed Functions
+Then in another terminal, run the visual orchestrator:
+```bash
+python slatec_orchestrator_visual.py --function PYTHAG
+```
 
-| Function | Type | Description |
-|----------|------|-------------|
-| AAAAAA | Version | Returns SLATEC version string |
-| CDIV | Complex | Complex division with overflow protection |
-| CSROOT | Complex | Complex square root |
-| D1MACH | Machine | Double precision machine constants |
-| ENORM | Vector | Euclidean norm of a vector (array support) |
-| FDUMP | Debug | Error message dump |
-| I1MACH | Machine | Integer machine constants |
-| LSAME | Character | Case-insensitive character comparison |
-| PIMACH | Constant | Returns value of π |
-| PYTHAG | Math | Pythagorean sum sqrt(a²+b²) |
-| QWGTC | Quadrature | Cauchy principal value weight function |
-| R1MACH | Machine | Single precision machine constants |
-| ZABS | Complex | Complex absolute value |
+### Option 3: Integrated Mode
 
-## Original SLATEC Info
+Run visualization and orchestrator together:
 
-- **Version**: 4.1 (July 1993)
-- **Source**: Public domain
-- **Size**: 738 functions in this repository
+```bash
+# Process a single function
+python run_visualization.py --with-orchestrator --function PYTHAG
+
+# Process a list of functions
+python run_visualization.py --with-orchestrator --list simple
+
+# Process multiple functions
+python run_visualization.py --with-orchestrator --functions PYTHAG,CDIV,CSROOT
+```
+
+### Option 4: Use Visual Orchestrator Directly
+
+The visual orchestrator can be used as a drop-in replacement for the standard orchestrator:
+
+```bash
+# All standard orchestrator commands work
+python slatec_orchestrator_visual.py --list simple
+python slatec_orchestrator_visual.py --function ENORM
+python slatec_orchestrator_visual.py --summary
+
+# Disable visualization if needed
+python slatec_orchestrator_visual.py --list simple --no-visualization
+```
+
+## Architecture
+
+### Visual Components
+
+1. **System Architecture Diagram**
+   - **Nodes**: Represent processing stages (Source, Test Generator, Modernizer, Compiler, Validator, Output)
+   - **Connections**: Show data flow with animated particles
+   - **States**: Idle (gray), Active (blue), Success (green), Error (red)
+   - **Refinement Loop**: Shows iterative improvement process
+
+2. **Function Pipeline**
+   - Lists all functions being processed
+   - Shows current status, progress bar, and pass rate
+   - Color-coded status indicators
+
+3. **Metrics Panel**
+   - Total functions to process
+   - Completed count (with success indicator)
+   - Failed count (with error indicator)
+   - Active count (currently processing)
+   - Overall success rate
+   - Average processing time per function
+
+4. **Event Log**
+   - Timestamped events for debugging
+   - Shows which function triggered each event
+
+### Event System
+
+The visualization responds to these orchestrator events:
+
+- `FUNCTION_START/COMPLETE/FAILED`: Function-level progress
+- `SOURCE_READ`: Reading F77 source file
+- `TEST_GEN_START/COMPLETE`: Test case generation
+- `MODERNIZE_START/COMPLETE`: F77 to F90 conversion
+- `COMPILE_START/SUCCESS/FAILED`: Fortran compilation
+- `VALIDATE_START/COMPLETE`: Test validation
+- `REFINE_START/COMPLETE`: Iterative refinement
+- `RUN_START/COMPLETE`: Overall run progress
+
+### Technical Details
+
+- **Framework**: PyQt6 with QGraphicsScene for smooth animations
+- **Communication**: Thread-safe event queue between orchestrator and UI
+- **Performance**: Efficient updates using Qt's signal/slot mechanism
+- **Animations**: Particle effects, node glowing, smooth transitions
+
+## Extending the Visualization
+
+To add new visualizations or modify existing ones:
+
+1. **Add new event types** in `visualization/event_system.py`
+2. **Modify node behavior** in `visualization/flow_diagram.py`
+3. **Add new metrics** in `visualization/main_window.py`
+4. **Customize styling** in `visualization/styles.py`
+
+## Troubleshooting
+
+### PyQt6 Installation Issues
+
+If you encounter issues installing PyQt6:
+
+```bash
+# macOS
+brew install qt6
+pip install PyQt6
+
+# Linux
+sudo apt-get install qt6-base-dev
+pip install PyQt6
+
+# Windows
+pip install PyQt6
+```
+
+### Visualization Not Updating
+
+1. Ensure you're using `slatec_orchestrator_visual.py` not the standard orchestrator
+2. Check that events are being emitted (check the event log panel)
+3. Verify no errors in the console
+
+### Performance Issues
+
+- The visualization is optimized for monitoring up to ~20 parallel functions
+- For larger batches, consider using `--no-visualization` flag
+- Particle animations can be disabled by modifying `ANIMATION` settings in styles.py
