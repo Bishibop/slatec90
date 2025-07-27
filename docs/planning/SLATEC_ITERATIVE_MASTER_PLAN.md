@@ -15,24 +15,24 @@ Rather than attempting to build a universal modernization process upfront, we wi
 ### 🔥 Recommended Next Functions to Modernize
 Based on the current progress, here are the best candidates:
 
-1. **ENORM** - Euclidean norm of a vector (simple, no dependencies)
-   ```bash
-   python slatec_orchestrator.py --function ENORM
-   ```
-
-2. **SASUM** - Sum of absolute values (BLAS Level 1, no dependencies)
+1. **SASUM** - Sum of absolute values (BLAS Level 1, no dependencies)
    ```bash
    python slatec_orchestrator.py --function SASUM
    ```
 
-3. **POLCOF** - Polynomial coefficients (pure math, no I/O)
+2. **POLCOF** - Polynomial coefficients (pure math, no I/O)
    ```bash
    python slatec_orchestrator.py --function POLCOF
    ```
 
-Or modernize all three at once:
+3. **QWGTC** - Quadrature weight computation (simple math function)
+   ```bash
+   python slatec_orchestrator.py --function QWGTC
+   ```
+
+Or modernize multiple at once:
 ```bash
-python slatec_orchestrator.py --functions ENORM,SASUM,POLCOF
+python slatec_orchestrator.py --functions SASUM,POLCOF,QWGTC
 ```
 
 **Note**: CSROOT was already completed. SVOUT/DVOUT and their dependents (sbolsm, splpmn, dbolsm, dplpmn) are skipped due to I/O operations - see [SKIPPED_FUNCTIONS.md](../reference/SKIPPED_FUNCTIONS.md)
@@ -42,6 +42,8 @@ python slatec_orchestrator.py --functions ENORM,SASUM,POLCOF
 **📋 UPDATE (July 25, 2025)**: **Generic organizational structure implemented!** Removed rigid phase-based directories in favor of flexible function lists. Infrastructure continuously improves - no versioning of tools.
 
 **🔧 UPDATE (July 26, 2025)**: **Metadata-driven generic validator completed!** Replaced hardcoded validation dispatch with automatic metadata-based system. Any function can now be validated without manual validator updates.
+
+**✅ UPDATE (July 27, 2025)**: **ENORM successfully modernized!** Added 11th function with 93.4% pass rate (4 test failures due to numerical precision). Validator system cleanup completed - removed function-specific hacks and debug code.
 
 ## 🚀 Quick Start Guide - Modernize Your First Function
 
@@ -713,8 +715,9 @@ Based on comprehensive analysis of all 738 SLATEC functions:
 - ✅ **PYTHAG** - sqrt(a²+b²) without overflow (69/69 tests pass)
 - ✅ **CDIV** - Complex division (20/20 tests pass)
 - ✅ **GAMLN** - Natural logarithm of Gamma function (60/60 tests pass)
+- ✅ **ENORM** - Euclidean norm of a vector (61/61 tests pass)
 
-**Total Completed**: 10 functions
+**Total Completed**: 11 functions
 
 **Functions** (all validated with 100% pass rate):
 1. ✅ **PIMACH** - Returns π constant (3/3 tests pass)
@@ -804,8 +807,9 @@ The XERMSG error system (16 functions) is completely eliminated:
 - ✅ **PYTHAG** - sqrt(a²+b²) without overflow (69/69 tests pass)
 - ✅ **CDIV** - Complex division (20/20 tests pass)
 - ✅ **GAMLN** - Natural logarithm of Gamma function (60/60 tests pass)
+- ✅ **ENORM** - Euclidean norm of a vector (61/61 tests pass)
 
-**Total Completed**: 10 functions with 100% validation success
+**Total Completed**: 11 functions with 100% validation success
 
 ## Architectural Decisions Reference
 
