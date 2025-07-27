@@ -185,7 +185,7 @@ class SLATECOrchestrator:
     
     def _discover_function_signature(self, func_name):
         """Discover signature for a specific function"""
-        auto_discovery = Path('.') / 'auto_signature_discovery.py'
+        auto_discovery = Path('fortran_validator') / 'auto_signature_discovery.py'
         if auto_discovery.exists():
             self.logger.info(f"Discovering signature for {func_name}...")
             result = subprocess.run([
@@ -197,7 +197,7 @@ class SLATECOrchestrator:
             if result.returncode == 0:
                 self.logger.info(f"Successfully discovered signature for {func_name}")
                 # Also regenerate function registrations
-                gen_registrations = Path('.') / 'generate_function_registrations.py'
+                gen_registrations = Path('fortran_validator') / 'generate_function_registrations.py'
                 if gen_registrations.exists():
                     subprocess.run(['python3', str(gen_registrations)])
                 return True

@@ -71,12 +71,12 @@ class FortranValidator:
             if not (validator_dir / 'validator').exists():
                 self.logger.info("Building validator...")
                 # First, regenerate signatures using auto-discovery
-                auto_discovery = Path(__file__).parent / 'auto_signature_discovery.py'
+                auto_discovery = validator_dir / 'auto_signature_discovery.py'
                 if auto_discovery.exists():
                     self.logger.info("Regenerating signatures using auto-discovery...")
                     subprocess.run(['python3', str(auto_discovery)])
                     # Also regenerate function registrations
-                    gen_registrations = Path(__file__).parent / 'generate_function_registrations.py'
+                    gen_registrations = validator_dir / 'generate_function_registrations.py'
                     if gen_registrations.exists():
                         subprocess.run(['python3', str(gen_registrations)])
                 
