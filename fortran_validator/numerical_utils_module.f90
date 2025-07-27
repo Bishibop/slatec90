@@ -113,7 +113,7 @@ contains
         end if
         
         if (ieee_is_nan(a) .or. ieee_is_nan(b)) then
-            equal = .false.
+            equal = ieee_is_nan(a) .and. ieee_is_nan(b)
             return
         end if
         

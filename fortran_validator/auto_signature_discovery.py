@@ -16,26 +16,29 @@ from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 
 @dataclass
-class Parameter:
+class FunctionParameter:
     name: str
     type: str
     intent: str  # 'in', 'out', 'inout'
-    is_array: bool
+    is_array: bool = False
     array_spec: str = ""
+
+# Alias for backwards compatibility
+Parameter = FunctionParameter
 
 @dataclass
 class FunctionSignature:
     name: str
     is_function: bool
     return_type: Optional[str]
-    parameters: List[Parameter]
+    parameters: List[FunctionParameter]
     signature_pattern: str
     signature_type: int
 
 class F77SignatureDiscovery:
     def __init__(self, base_dir=None):
         if base_dir is None:
-            self.base_dir = Path(__file__).parent
+            self.base_dir = Path(__file__).parent.parent  # Go up one level from fortran_validator
         else:
             self.base_dir = Path(base_dir)
             
@@ -208,7 +211,7 @@ class F77SignatureDiscovery:
             return None
     
     def generate_signature_pattern(self, is_function: bool, return_type: Optional[str], 
-                                 parameters: List[Parameter]) -> str:
+                                 parameters: List[FunctionParameter]) -> str:
         """Generate a signature pattern string for classification."""
         if is_function:
             # Clean return type - remove spaces, normalize
@@ -321,16 +324,24 @@ class F77SignatureDiscovery:
             for i in range(10):  # Fixed array size
                 if i < len(sig.parameters):
                     param = sig.parameters[i]
-                    param_types.append(self.type_map.get(param.type, '1'))  # Default to integer
-                    intent_map = {'in': '1', 'out': '2', 'inout': '3'}
-                    param_intents.append(intent_map.get(param.intent, '1'))
+                    # Map type names to TYPE_ constants
+                    type_name = param.type.upper().replace(' ', '_')
+                    if type_name == 'DOUBLE_PRECISION':
+                        type_name = 'DOUBLE'
+                    type_str = f"TYPE_{type_name}"
+                    param_types.append(type_str)
+                    intent_map = {'in': 'INTENT_IN', 'out': 'INTENT_OUT', 'inout': 'INTENT_INOUT'}
+                    param_intents.append(intent_map.get(param.intent, 'INTENT_IN'))
                 else:
                     param_types.append('0')
                     param_intents.append('0')
             
-            return_type_num = '0'
+            return_type_str = '0'
             if sig.return_type:
-                return_type_num = self.type_map.get(sig.return_type, '2')  # Default to real
+                type_name = sig.return_type.upper().replace(' ', '_')
+                if type_name == 'DOUBLE_PRECISION':
+                    type_name = 'DOUBLE'
+                return_type_str = f"TYPE_{type_name}"
             
             entry = f"""        function_info( &
             name='{sig.name:<20}', &
@@ -339,7 +350,7 @@ class F77SignatureDiscovery:
             num_params={len(sig.parameters)}, &
             param_types=[{','.join(param_types)}], &
             param_intents=[{','.join(param_intents)}], &
-            return_type={return_type_num} &
+            return_type={return_type_str} &
         )"""
             entries.append(entry)
         
@@ -355,10 +366,43 @@ class F77SignatureDiscovery:
         
         return '\n'.join(lines)
     
-    def generate_signature_module(self, signatures: Dict[str, FunctionSignature]) -> str:
+    def dict_to_signature(self, data: dict) -> FunctionSignature:
+        """Convert dictionary data to FunctionSignature object."""
+        sig = FunctionSignature(
+            name=data['name'],
+            is_function=data['is_function'],
+            parameters=[],
+            return_type=data.get('return_type'),
+            signature_pattern=data['signature_pattern'],
+            signature_type=data['signature_type']
+        )
+        
+        # Convert parameters
+        for p in data.get('params', []):
+            param = FunctionParameter(
+                name=p['name'],
+                type=p['type'],
+                intent=p.get('intent', 'in')
+            )
+            if p.get('dimension'):
+                param.is_array = True
+                param.array_spec = p['dimension'][0] if p['dimension'] else None
+            sig.parameters.append(param)
+            
+        return sig
+    
+    def generate_signature_module(self, signatures: Dict[str, any]) -> str:
         """Generate complete slatec_signatures_module.f90 file."""
+        # Convert dict entries to FunctionSignature objects if needed
+        sig_objects = {}
+        for name, sig in signatures.items():
+            if isinstance(sig, dict):
+                sig_objects[name] = self.dict_to_signature(sig)
+            else:
+                sig_objects[name] = sig
+                
         constants = self.generate_signature_constants()
-        registry = self.generate_function_registry(signatures)
+        registry = self.generate_function_registry(sig_objects)
         
         module_template = f"""module slatec_signatures_module
     implicit none
@@ -589,7 +633,8 @@ if __name__ == "__main__":
             print(f"  Type: {signature.signature_type}")
             
             # Regenerate Fortran module
-            discovery.generate_fortran_signatures(db)
+            discovery.generate_signature_module(db['functions'])
+            print("✓ Regenerated slatec_signatures_module.f90")
         else:
             print(f"Failed to extract signature for {args.function}")
             exit(1)

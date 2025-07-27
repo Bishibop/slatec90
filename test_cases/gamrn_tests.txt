@@ -1,0 +1,311 @@
+FUNCTION: GAMRN
+
+TEST_START
+Description: Very small positive value near the lower limit of single precision (extremely small, but > 0).
+REAL_PARAMS: 1.0E-38
+TEST_END
+
+TEST_START
+Description: Small value in the subnormal range.
+REAL_PARAMS: 1.0E-45
+TEST_END
+
+TEST_START
+Description: Very small value but larger than subnormals.
+REAL_PARAMS: 1.0E-40
+TEST_END
+
+TEST_START
+Description: Value near typical single precision machine epsilon (~1e-7).
+REAL_PARAMS: 1.0E-7
+TEST_END
+
+TEST_START
+Description: Small value to examine recurrence behavior (small but not subnormal).
+REAL_PARAMS: 1.0E-6
+TEST_END
+
+TEST_START
+Description: Small value in the 1e-4 region.
+REAL_PARAMS: 1.0E-4
+TEST_END
+
+TEST_START
+Description: Small value in the 1e-3 region.
+REAL_PARAMS: 0.001
+TEST_END
+
+TEST_START
+Description: Small value in the 1e-2 region.
+REAL_PARAMS: 0.01
+TEST_END
+
+TEST_START
+Description: Moderate small value.
+REAL_PARAMS: 0.1
+TEST_END
+
+TEST_START
+Description: Value clearly less than the likely lower bound XMIN (expected recurrence adjustment).
+REAL_PARAMS: 1.0
+TEST_END
+
+TEST_START
+Description: Value within the recurrence branch (less than computed XMIN, likely around 3).
+REAL_PARAMS: 2.5
+TEST_END
+
+TEST_START
+Description: Value just below the typical boundary (X = 2.9999, expecting recurrence branch).
+REAL_PARAMS: 2.9999
+TEST_END
+
+TEST_START
+Description: Value exactly at the expected boundary (X = 3.0, should use asymptotic expansion directly).
+REAL_PARAMS: 3.0
+TEST_END
+
+TEST_START
+Description: Value just above the boundary (X = 3.0001, testing direct asymptotic).
+REAL_PARAMS: 3.0001
+TEST_END
+
+TEST_START
+Description: Power of 2: X = 2.0
+REAL_PARAMS: 2.0
+TEST_END
+
+TEST_START
+Description: Power of 2: X = 4.0
+REAL_PARAMS: 4.0
+TEST_END
+
+TEST_START
+Description: Power of 2: X = 8.0
+REAL_PARAMS: 8.0
+TEST_END
+
+TEST_START
+Description: Power of 2: X = 16.0
+REAL_PARAMS: 16.0
+TEST_END
+
+TEST_START
+Description: Power of 10: X = 10.0
+REAL_PARAMS: 10.0
+TEST_END
+
+TEST_START
+Description: Power of 10: X = 100.0
+REAL_PARAMS: 100.0
+TEST_END
+
+TEST_START
+Description: Power of 10: X = 1000.0
+REAL_PARAMS: 1000.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 1.0 (starting value).
+REAL_PARAMS: 1.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 2.0.
+REAL_PARAMS: 2.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 3.0.
+REAL_PARAMS: 3.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 4.0.
+REAL_PARAMS: 4.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 5.0.
+REAL_PARAMS: 5.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 6.0.
+REAL_PARAMS: 6.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 7.0.
+REAL_PARAMS: 7.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 8.0.
+REAL_PARAMS: 8.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 9.0.
+REAL_PARAMS: 9.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X = 10.0.
+REAL_PARAMS: 10.0
+TEST_END
+
+TEST_START
+Description: Values that differ by a small amount near 10.0 (first test: 10.000001).
+REAL_PARAMS: 10.000001
+TEST_END
+
+TEST_START
+Description: Values that differ by a small amount near 10.0 (second test: 10.000002).
+REAL_PARAMS: 10.000002
+TEST_END
+
+TEST_START
+Description: Small difference test near 5.0 (first test: 5.000001).
+REAL_PARAMS: 5.000001
+TEST_END
+
+TEST_START
+Description: Small difference test near 5.0 (second test: 5.000002).
+REAL_PARAMS: 5.000002
+TEST_END
+
+TEST_START
+Description: Geometric progression: Large value X = 10000.0.
+REAL_PARAMS: 1.0E4
+TEST_END
+
+TEST_START
+Description: Geometric progression: Very large X = 1.0E6.
+REAL_PARAMS: 1.0E6
+TEST_END
+
+TEST_START
+Description: Geometric progression: Very large X = 1.0E7.
+REAL_PARAMS: 1.0E7
+TEST_END
+
+TEST_START
+Description: Geometric progression: Very large X = 1.0E8.
+REAL_PARAMS: 1.0E8
+TEST_END
+
+TEST_START
+Description: Geometric progression: Very large X = 1.0E9.
+REAL_PARAMS: 1.0E9
+TEST_END
+
+TEST_START
+Description: Stress test: Extremely large value X = 1.0E10.
+REAL_PARAMS: 1.0E10
+TEST_END
+
+TEST_START
+Description: Stress test: Extremely large value X = 1.0E12.
+REAL_PARAMS: 1.0E12
+TEST_END
+
+TEST_START
+Description: Stress test: Extremely large value X = 1.0E14.
+REAL_PARAMS: 1.0E14
+TEST_END
+
+TEST_START
+Description: Stress test: Extremely large value X = 1.0E20.
+REAL_PARAMS: 1.0E20
+TEST_END
+
+TEST_START
+Description: Stress test: Extremely large value X = 1.0E30.
+REAL_PARAMS: 1.0E30
+TEST_END
+
+TEST_START
+Description: Special value test: X = Infinity. This tests behavior with an infinite input.
+REAL_PARAMS: Infinity
+TEST_END
+
+TEST_START
+Description: Special value test: X = NaN (Not a Number). This verifies handling of undefined inputs.
+REAL_PARAMS: NaN
+TEST_END
+
+TEST_START
+Description: Special value test: Negative input X = -1.0, although outside the normal domain.
+REAL_PARAMS: -1.0
+TEST_END
+
+TEST_START
+Description: Special value test: Negative input X = -0.0001, testing for near-zero negative value.
+REAL_PARAMS: -0.0001
+TEST_END
+
+TEST_START
+Description: Special value test: X = 0.0, boundary condition though X should be > 0.
+REAL_PARAMS: 0.0
+TEST_END
+
+TEST_START
+Description: Special value test: X = -Infinity, to check behavior with non-finite negative input.
+REAL_PARAMS: -Infinity
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 0.2345
+REAL_PARAMS: 0.2345
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 7.89
+REAL_PARAMS: 7.89
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 3.14159 (pi approximation).
+REAL_PARAMS: 3.14159
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 2.71828 (e approximation).
+REAL_PARAMS: 2.71828
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 6.022E23 (Avogadro's number, testing large magnitude).
+REAL_PARAMS: 6.022E23
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 9.81 (acceleration due to gravity).
+REAL_PARAMS: 9.81
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 1.41421 (sqrt(2) approximation).
+REAL_PARAMS: 1.41421
+TEST_END
+
+TEST_START
+Description: Random representative value: X = 2.23607 (sqrt(5) approximation).
+REAL_PARAMS: 2.23607
+TEST_END
+
+TEST_START
+Description: Value very close to the recurrence boundary, slightly less than 3 (X = 2.999999).
+REAL_PARAMS: 2.999999
+TEST_END
+
+TEST_START
+Description: Value very close to the recurrence boundary, slightly greater than 3 (X = 3.000001).
+REAL_PARAMS: 3.000001
+TEST_END
+
+TEST_START
+Description: Test using the smallest positive normalized single precision value (approx 1.175494E-38).
+REAL_PARAMS: 1.175494E-38
+TEST_END
