@@ -154,23 +154,8 @@ class SLATECOrchestrator:
     
     def _ensure_metadata_updated(self):
         """Ensure validator metadata is up to date with current functions"""
-        if 'validator' in self.config.get('validator_executable', ''):
-            validator_dir = Path('fortran_validator')
-            # Use new auto-discovery system
-            auto_discovery = Path('.') / 'auto_signature_discovery.py'
-            if auto_discovery.exists():
-                self.logger.info("Updating validator signatures using auto-discovery...")
-                result = subprocess.run(['python3', str(auto_discovery)], 
-                                      capture_output=True,
-                                      text=True)
-                if result.returncode == 0:
-                    self.logger.info("Validator signatures updated successfully")
-                    # Also regenerate function registrations
-                    gen_registrations = Path('.') / 'generate_function_registrations.py'
-                    if gen_registrations.exists():
-                        subprocess.run(['python3', str(gen_registrations)])
-                else:
-                    self.logger.warning(f"Failed to update signatures: {result.stderr}")
+        # Skip full discovery on startup - we'll do per-function discovery as needed
+        pass
             
     def read_source(self, func_name):
         """Read F77 source code"""
@@ -196,6 +181,29 @@ class SLATECOrchestrator:
             with open(sig_db_file) as f:
                 sig_db = json.load(f)
                 return func_name.upper() in sig_db.get('functions', {})
+        return False
+    
+    def _discover_function_signature(self, func_name):
+        """Discover signature for a specific function"""
+        auto_discovery = Path('.') / 'auto_signature_discovery.py'
+        if auto_discovery.exists():
+            self.logger.info(f"Discovering signature for {func_name}...")
+            result = subprocess.run([
+                'python3', str(auto_discovery), 
+                '--function', func_name,
+                '--update'  # Update existing database
+            ], capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                self.logger.info(f"Successfully discovered signature for {func_name}")
+                # Also regenerate function registrations
+                gen_registrations = Path('.') / 'generate_function_registrations.py'
+                if gen_registrations.exists():
+                    subprocess.run(['python3', str(gen_registrations)])
+                return True
+            else:
+                self.logger.error(f"Failed to discover signature: {result.stderr}")
+                return False
         return False
     
     def _preflight_checks(self, func_name):
@@ -269,9 +277,13 @@ class SLATECOrchestrator:
             # 1.5 Check if signature exists in database
             if not self._check_signature_exists(func_name):
                 self.logger.warning(f"Signature not found for {func_name}, running auto-discovery...")
-                # Re-run signature discovery to pick up new function
-                self._ensure_metadata_updated()
-                if not self._check_signature_exists(func_name):
+                # Discover just this function's signature
+                if self._discover_function_signature(func_name):
+                    # Verify it was added
+                    if not self._check_signature_exists(func_name):
+                        self.logger.error(f"Signature discovery succeeded but {func_name} still not in database")
+                        return False
+                else:
                     self.logger.error(f"Failed to discover signature for {func_name}")
                     return False
             

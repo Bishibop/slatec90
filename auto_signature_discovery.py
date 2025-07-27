@@ -529,5 +529,70 @@ end module slatec_signatures_module"""
         return True
 
 if __name__ == "__main__":
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='F77 Signature Discovery Tool')
+    parser.add_argument('--function', help='Discover signature for a specific function')
+    parser.add_argument('--update', action='store_true', help='Update existing database (default: replace)')
+    args = parser.parse_args()
+    
     discovery = F77SignatureDiscovery()
-    discovery.run()
+    
+    if args.function:
+        # Single function discovery
+        f77_file = discovery.src_dir / f"{args.function.lower()}.f"
+        if not f77_file.exists():
+            print(f"Error: F77 file not found: {f77_file}")
+            exit(1)
+            
+        print(f"Discovering signature for {args.function}...")
+        signature = discovery.extract_signature_with_f2py(f77_file)
+        
+        if signature:
+            # Load existing database
+            db_file = discovery.validator_dir / "signature_database.json"
+            if db_file.exists() and args.update:
+                with open(db_file, 'r') as f:
+                    db = json.load(f)
+                    # Ensure signature_patterns exists
+                    if 'signature_patterns' not in db:
+                        db['signature_patterns'] = {}
+            else:
+                db = {'functions': {}, 'signature_patterns': {}}
+                
+            # Update database with single function
+            func_name = signature.name.upper()
+            db['functions'][func_name] = {
+                'name': func_name,
+                'is_function': signature.is_function,
+                'signature_type': signature.signature_type,
+                'signature_pattern': signature.signature_pattern,
+                'params': [{
+                    'name': p.name,
+                    'type': p.type,
+                    'intent': p.intent,
+                    'dimension': [p.array_spec] if p.is_array and p.array_spec else None
+                } for p in signature.parameters],
+                'return_type': signature.return_type
+            }
+            
+            # Update pattern registry
+            if signature.signature_pattern not in db['signature_patterns']:
+                db['signature_patterns'][signature.signature_pattern] = signature.signature_type
+                
+            # Save updated database
+            with open(db_file, 'w') as f:
+                json.dump(db, f, indent=2)
+                
+            print(f"✓ Added {func_name} to signature database")
+            print(f"  Pattern: {signature.signature_pattern}")
+            print(f"  Type: {signature.signature_type}")
+            
+            # Regenerate Fortran module
+            discovery.generate_fortran_signatures(db)
+        else:
+            print(f"Failed to extract signature for {args.function}")
+            exit(1)
+    else:
+        # Full discovery
+        discovery.run()
