@@ -223,11 +223,39 @@ contains
         
         select case(trim(func_name))
             case('ENORM')
-                ! ENORM not modernized yet, use F77 only
-                result = enorm(n, x_array)
+                if (use_modern) then
+                    result = enorm_modern(n, x_array)
+                else
+                    result = enorm(n, x_array)
+                end if
             case default
                 print *, 'ERROR: Unknown real function with int and real array params: ', trim(func_name)
                 result = 0.0
+        end select
+    end subroutine
+    
+    subroutine execute_real_function_real_int_out(func_name, use_modern, z, result, ierr)
+        character(len=*), intent(in) :: func_name
+        logical, intent(in) :: use_modern
+        real, intent(in) :: z
+        real, intent(out) :: result
+        integer, intent(out) :: ierr
+        
+        ! External declarations for F77 functions
+        real :: gamln
+        external gamln
+        
+        select case(trim(func_name))
+            case('GAMLN')
+                if (use_modern) then
+                    result = gamln_modern(z, ierr)
+                else
+                    result = gamln(z, ierr)
+                end if
+            case default
+                print *, 'ERROR: Unknown real function with real input and int out: ', trim(func_name)
+                result = 0.0
+                ierr = -1
         end select
     end subroutine
 

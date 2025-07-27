@@ -27,9 +27,7 @@
 
     ! SIG_SUB_6_REAL
     external :: cdiv
-
-    ! SIG_SUB_2D_ARRAY
-    external :: qform
-
-    ! SIG_SUB_REAL_INT_4ARRAYS
     external :: polcof
+
+    ! SIG_REAL_FUNC_INT_REAL_ARRAY
+    external :: enorm

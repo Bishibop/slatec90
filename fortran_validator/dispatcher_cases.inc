@@ -36,11 +36,9 @@
     ! SIG_SUB_6_REAL functions
     case('CDIV')
         ! Handled by signature type 9
-
-    ! SIG_SUB_2D_ARRAY functions
-    case('QFORM')
-        ! Handled by signature type 11
-
-    ! SIG_SUB_REAL_INT_4ARRAYS functions
     case('POLCOF')
-        ! Handled by signature type 13
+        ! Handled by signature type 9
+
+    ! SIG_REAL_FUNC_INT_REAL_ARRAY functions
+    case('ENORM')
+        ! Handled by signature type 10

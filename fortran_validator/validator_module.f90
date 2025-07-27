@@ -347,7 +347,6 @@ contains
         
         ! Compare results
         arrays_match = .true.
-        print *, 'Comparing arrays, M=', m, ', LDQ=', ldq
         do j = 1, m
             do i = 1, ldq
                 if (abs(q_f77(i,j) - q_modern(i,j)) > 1.0e-6) then
@@ -360,7 +359,6 @@ contains
         end do
         
         ! Also check work arrays
-        print *, 'Checking work arrays...'
         do i = 1, m
             if (abs(wa_f77(i) - wa_modern(i)) > 1.0e-6) then
                 print '(A,I0,A,F12.6,A,F12.6)', &
@@ -397,9 +395,6 @@ contains
         ! Report test header
         print '(A,A)', 'Testing ', trim(func_name)
         print '(A,I0,A,I0,A,I0)', 'M=', m, ', N=', n, ', LDQ=', ldq
-        print '(A,I0)', 'Number of arrays: ', num_arrays
-        if (num_arrays >= 1) print '(A,I0)', 'Array 1 size: ', array_sizes(1)
-        if (num_arrays >= 2) print '(A,I0)', 'Array 2 size: ', array_sizes(2)
         
         ! Allocate arrays - Q needs M columns (not max(m,n))
         allocate(q_f77(ldq, m), q_modern(ldq, m))
@@ -420,7 +415,6 @@ contains
                     end if
                 end do
             end do
-            print *, 'Q initialized, used', idx-1, 'values from array 1'
         else
             q_f77 = 0.0
             q_modern = 0.0
@@ -438,9 +432,7 @@ contains
         ! Call F77 version
         select case(trim(func_name))
             case('QFORM')
-                print *, 'Before F77 call, Q(1,1)=', q_f77(1,1), 'Q(2,1)=', q_f77(2,1)
                 call qform(m, n, q_f77, ldq, wa_f77)
-                print *, 'After F77 call, Q(1,1)=', q_f77(1,1), 'Q(2,1)=', q_f77(2,1)
             case default
                 call report_failed_test_character("Unknown 2D array subroutine", func_name)
                 return
@@ -450,9 +442,7 @@ contains
         if (has_modern_implementation(func_name)) then
             select case(trim(func_name))
                 case('QFORM')
-                    print *, 'Before modern call, Q(1,1)=', q_modern(1,1), 'Q(2,1)=', q_modern(2,1)
                     call qform_modern(m, n, q_modern, ldq, wa_modern)
-                    print *, 'After modern call, Q(1,1)=', q_modern(1,1), 'Q(2,1)=', q_modern(2,1)
             end select
         else
             q_modern = q_f77
@@ -461,7 +451,6 @@ contains
         
         ! Compare results
         arrays_match = .true.
-        print *, 'Comparing arrays, M=', m, ', LDQ=', ldq
         do j = 1, m
             do i = 1, ldq
                 if (abs(q_f77(i,j) - q_modern(i,j)) > 1.0e-6) then
@@ -474,7 +463,6 @@ contains
         end do
         
         ! Also check work arrays
-        print *, 'Checking work arrays...'
         do i = 1, m
             if (abs(wa_f77(i) - wa_modern(i)) > 1.0e-6) then
                 print '(A,I0,A,F12.6,A,F12.6)', &
@@ -592,6 +580,36 @@ contains
         ! Clean up
         deallocate(x_f77, c_f77, d_f77, work_f77)
         deallocate(x_modern, c_modern, d_modern, work_modern)
+    end subroutine
+    
+    subroutine validate_real_function_real_int_out(func_name, z, ierr)
+        character(len=*), intent(in) :: func_name
+        real, intent(in) :: z
+        integer, intent(out) :: ierr
+        real :: result_f77, result_modern
+        integer :: ierr_f77, ierr_modern
+        
+        ! Call F77 version
+        call execute_real_function_real_int_out(func_name, .false., z, result_f77, ierr_f77)
+        
+        ! Call modern version
+        if (has_modern_implementation(func_name)) then
+            call execute_real_function_real_int_out(func_name, .true., z, result_modern, ierr_modern)
+        else
+            result_modern = result_f77
+            ierr_modern = ierr_f77
+        end if
+        
+        ierr = ierr_f77  ! Return the error code
+        
+        ! Compare results
+        call compare_real_results(result_f77, result_modern)
+        
+        ! Also compare error codes
+        if (ierr_f77 /= ierr_modern) then
+            call report_failed_test_real(result_f77, result_modern)
+            write(error_unit, '(A,I0,A,I0)') '    Error code mismatch: F77=', ierr_f77, ', Modern=', ierr_modern
+        end if
     end subroutine
 
 end module validator_module

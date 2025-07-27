@@ -23,6 +23,12 @@
     "signature_name": "SIG_DOUBLE_FUNC_1_INT",
     "signature_type": 5
   },
+  "enorm": {
+    "has_f77": true,
+    "name": "ENORM",
+    "signature_name": "SIG_REAL_FUNC_INT_REAL_ARRAY",
+    "signature_type": 10
+  },
   "fdump": {
     "has_f77": true,
     "name": "FDUMP",
@@ -32,8 +38,8 @@
   "gamln": {
     "has_f77": true,
     "name": "GAMLN",
-    "signature_name": "SIG_UNKNOWN_14",
-    "signature_type": 14
+    "signature_name": "SIG_UNKNOWN_0",
+    "signature_type": 0
   },
   "i1mach": {
     "has_f77": true,
