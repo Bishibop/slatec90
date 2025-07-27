@@ -45,6 +45,11 @@ python slatec_orchestrator.py --functions ENORM,SASUM,POLCOF
 
 ## 🚀 Quick Start Guide - Modernize Your First Function
 
+**⚠️ IMPORTANT NOTE FOR CLAUDE AGENTS**: Do not run the orchestrator yourself due to timeout issues. Instead, ask the user to run it by providing them with the exact command. For example:
+- "Please run: `python slatec_orchestrator.py --function ENORM`"
+- "Please run: `python slatec_orchestrator.py --functions ENORM,SASUM,POLCOF`"
+- After they report completion, run: `python slatec_orchestrator.py --summary` to view results
+
 This guide enables you to modernize a SLATEC function immediately. For example, to modernize CSROOT:
 
 ### Prerequisites Checklist
@@ -707,8 +712,9 @@ Based on comprehensive analysis of all 738 SLATEC functions:
 **Additional Functions Completed**:
 - ✅ **PYTHAG** - sqrt(a²+b²) without overflow (69/69 tests pass)
 - ✅ **CDIV** - Complex division (20/20 tests pass)
+- ✅ **GAMLN** - Natural logarithm of Gamma function (60/60 tests pass)
 
-**Total Completed**: 9 functions
+**Total Completed**: 10 functions
 
 **Functions** (all validated with 100% pass rate):
 1. ✅ **PIMACH** - Returns π constant (3/3 tests pass)
@@ -797,8 +803,9 @@ The XERMSG error system (16 functions) is completely eliminated:
 **Additional Functions Completed**:
 - ✅ **PYTHAG** - sqrt(a²+b²) without overflow (69/69 tests pass)
 - ✅ **CDIV** - Complex division (20/20 tests pass)
+- ✅ **GAMLN** - Natural logarithm of Gamma function (60/60 tests pass)
 
-**Total Completed**: 9 functions with 100% validation success
+**Total Completed**: 10 functions with 100% validation success
 
 ## Architectural Decisions Reference
 
