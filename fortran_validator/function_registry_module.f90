@@ -1,5 +1,6 @@
 module function_registry_module
     use, intrinsic :: iso_c_binding
+    use slatec_signatures_module
     implicit none
     private
     
@@ -205,34 +206,34 @@ contains
             return
         end if
         
-        ! Call appropriate function based on signature_type
+        ! Call appropriate function based on NEW signature_type constants
         select case(signature_type)
-            case(2)  ! SIG_REAL_FUNC_1_REAL
+            case(SIG_FUNC_REAL_REAL)  ! PIMACH
                 if (associated(registry(idx)%f77_real_1_real)) then
                     real_result = registry(idx)%f77_real_1_real(real_params(1))
                 end if
-            case(3)  ! SIG_REAL_FUNC_2_REAL
+            case(SIG_FUNC_REAL_REAL_REAL)  ! PYTHAG
                 if (associated(registry(idx)%f77_real_2_real)) then
                     real_result = registry(idx)%f77_real_2_real(real_params(1), real_params(2))
                 end if
-            case(1)  ! SIG_REAL_FUNC_1_INT
+            case(SIG_FUNC_REAL_INTEGER)  ! R1MACH
                 if (associated(registry(idx)%f77_real_1_int)) then
                     real_result = registry(idx)%f77_real_1_int(int_params(1))
                 end if
-            case(4)  ! SIG_INT_FUNC_1_INT
+            case(SIG_FUNC_INTEGER_INTEGER)  ! I1MACH
                 if (associated(registry(idx)%f77_int_1_int)) then
                     int_result = registry(idx)%f77_int_1_int(int_params(1))
                 end if
-            case(6)  ! SIG_LOGICAL_FUNC_2_CHAR
+            case(SIG_FUNC_LOGICAL_0_PARAMS)  ! LSAME - need special handling
                 ! Need special handling for character parameters
-            case(7)  ! SIG_SUB_0_PARAMS
+            case(SIG_SUB_0_PARAMS)  ! AAAAAA, FDUMP
                 if (associated(registry(idx)%f77_sub_0)) then
                     call registry(idx)%f77_sub_0()
                 end if
-            case(8)  ! SIG_SUB_1_CHAR_OUT
-                if (associated(registry(idx)%f77_sub_1_char)) then
-                    call registry(idx)%f77_sub_1_char(char_result)
-                end if
+            case(SIG_FUNC_DOUBLE_INTEGER)  ! D1MACH
+                ! Handle double precision functions
+            case(SIG_FUNC_REAL_INTEGER_ARR_REAL_ARR)  ! ENORM
+                ! Handle array functions
         end select
     end subroutine
     
@@ -256,34 +257,34 @@ contains
             return
         end if
         
-        ! Call appropriate function based on signature_type
+        ! Call appropriate function based on NEW signature_type constants
         select case(signature_type)
-            case(2)  ! SIG_REAL_FUNC_1_REAL
+            case(SIG_FUNC_REAL_REAL)  ! PIMACH
                 if (associated(registry(idx)%modern_real_1_real)) then
                     real_result = registry(idx)%modern_real_1_real(real_params(1))
                 end if
-            case(3)  ! SIG_REAL_FUNC_2_REAL
+            case(SIG_FUNC_REAL_REAL_REAL)  ! PYTHAG
                 if (associated(registry(idx)%modern_real_2_real)) then
                     real_result = registry(idx)%modern_real_2_real(real_params(1), real_params(2))
                 end if
-            case(1)  ! SIG_REAL_FUNC_1_INT
+            case(SIG_FUNC_REAL_INTEGER)  ! R1MACH
                 if (associated(registry(idx)%modern_real_1_int)) then
                     real_result = registry(idx)%modern_real_1_int(int_params(1))
                 end if
-            case(4)  ! SIG_INT_FUNC_1_INT
+            case(SIG_FUNC_INTEGER_INTEGER)  ! I1MACH
                 if (associated(registry(idx)%modern_int_1_int)) then
                     int_result = registry(idx)%modern_int_1_int(int_params(1))
                 end if
-            case(6)  ! SIG_LOGICAL_FUNC_2_CHAR
+            case(SIG_FUNC_LOGICAL_0_PARAMS)  ! LSAME - need special handling
                 ! Need special handling for character parameters
-            case(7)  ! SIG_SUB_0_PARAMS
+            case(SIG_SUB_0_PARAMS)  ! AAAAAA, FDUMP
                 if (associated(registry(idx)%modern_sub_0)) then
                     call registry(idx)%modern_sub_0()
                 end if
-            case(8)  ! SIG_SUB_1_CHAR_OUT
-                if (associated(registry(idx)%modern_sub_1_char)) then
-                    call registry(idx)%modern_sub_1_char(char_result)
-                end if
+            case(SIG_FUNC_DOUBLE_INTEGER)  ! D1MACH
+                ! Handle double precision functions
+            case(SIG_FUNC_REAL_INTEGER_ARR_REAL_ARR)  ! ENORM
+                ! Handle array functions
         end select
     end subroutine
 

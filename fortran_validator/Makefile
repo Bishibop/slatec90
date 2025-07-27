@@ -46,11 +46,13 @@ ERROR_F77_OBJS = $(OBJ_DIR)/xermsg_f77.o \
 validator: $(MODULE_OBJS) $(ALL_F77_OBJS) $(MODERN_OBJS) $(ERROR_F77_OBJS) $(OBJ_DIR)/validator.o
 	$(FC) -o $@ $^
 
-# Modern function modules must be compiled before function_execution_module
-$(OBJ_DIR)/csroot_modern.o: $(MODERN_DIR)/csroot_module.f90
+# Modern function dependencies
+# GAMLN depends on r1mach and i1mach
+$(OBJ_DIR)/gamln_modern.o: $(MODERN_DIR)/gamln_module.f90 $(OBJ_DIR)/r1mach_modern.o $(OBJ_DIR)/i1mach_modern.o
 	$(FC) $(FFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/qwgtc_modern.o: $(MODERN_DIR)/qwgtc_module.f90
+# CSROOT depends on pythag 
+$(OBJ_DIR)/csroot_modern.o: $(MODERN_DIR)/csroot_module.f90 $(OBJ_DIR)/pythag_modern.o
 	$(FC) $(FFLAGS) -c $< -o $@
 
 # Module compilation rules

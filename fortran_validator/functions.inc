@@ -10,6 +10,7 @@
     use fdump_module, only: fdump_modern => fdump
     use gamln_module, only: gamln_modern => gamln
     use i1mach_module, only: i1mach_modern => i1mach
+    use intrv_module, only: intrv_modern => intrv
     use lsame_module, only: lsame_modern => lsame
     use pimach_module, only: pimach_modern => pimach
     use polcof_module, only: polcof_modern => polcof

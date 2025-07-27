@@ -11,6 +11,7 @@
         call register_modern('FDUMP', .true.)
         call register_modern('GAMLN', .true.)
         call register_modern('I1MACH', .true.)
+        call register_modern('INTRV', .true.)
         call register_modern('LSAME', .true.)
         call register_modern('PIMACH', .true.)
         call register_modern('POLCOF', .true.)

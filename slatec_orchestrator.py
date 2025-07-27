@@ -19,6 +19,8 @@ from modernizer import UnifiedModernizer as LLMModernizer
 from validator_wrapper import FortranValidator
 from f77_parser import F77Parser
 
+# Claude modernizer removed - using LLM modernizer only
+
 # Load environment variables
 load_dotenv()
 
@@ -33,8 +35,11 @@ class SLATECOrchestrator:
         self.debug = debug
         self.setup_logging()
         self.test_gen = TestGenerator(self.config)
+        
+        # Initialize modernizer and validator
         self.modernizer = LLMModernizer(self.config)
         self.validator = FortranValidator(self.config)
+            
         self.parser = F77Parser()
         self.function_data = self._load_function_data()
         self.progress = self._load_progress()
@@ -151,17 +156,21 @@ class SLATECOrchestrator:
         """Ensure validator metadata is up to date with current functions"""
         if 'validator' in self.config.get('validator_executable', ''):
             validator_dir = Path('fortran_validator')
-            metadata_gen = validator_dir / 'generate_fortran_metadata.py'
-            if metadata_gen.exists():
-                self.logger.info("Updating validator metadata for generic validator...")
-                result = subprocess.run(['python3', 'generate_fortran_metadata.py'], 
-                                      cwd=str(validator_dir),
+            # Use new auto-discovery system
+            auto_discovery = Path('.') / 'auto_signature_discovery.py'
+            if auto_discovery.exists():
+                self.logger.info("Updating validator signatures using auto-discovery...")
+                result = subprocess.run(['python3', str(auto_discovery)], 
                                       capture_output=True,
                                       text=True)
                 if result.returncode == 0:
-                    self.logger.info("Validator metadata updated successfully")
+                    self.logger.info("Validator signatures updated successfully")
+                    # Also regenerate function registrations
+                    gen_registrations = Path('.') / 'generate_function_registrations.py'
+                    if gen_registrations.exists():
+                        subprocess.run(['python3', str(gen_registrations)])
                 else:
-                    self.logger.warning(f"Failed to update metadata: {result.stderr}")
+                    self.logger.warning(f"Failed to update signatures: {result.stderr}")
             
     def read_source(self, func_name):
         """Read F77 source code"""
@@ -180,74 +189,14 @@ class SLATECOrchestrator:
                     return False
         return True
         
-    def _auto_add_metadata(self, func_name, f77_code):
-        """Automatically add function metadata if not present"""
-        # Check if metadata exists
-        metadata_file = Path('fortran_validator/slatec_metadata.py')
-        metadata_content = metadata_file.read_text()
-        
-        if f"'{func_name.upper()}':" not in metadata_content:
-            self.logger.info(f"Metadata not found for {func_name}, extracting from source...")
-            
-            # Extract metadata
-            metadata = self.parser.extract_metadata(f77_code, func_name)
-            if metadata:
-                # Also discover dependencies
-                deps = self.parser.discover_dependencies(f77_code)
-                if deps:
-                    self.logger.info(f"Discovered dependencies for {func_name}: {deps}")
-                    # Update function_data if needed
-                    if 'dependencies' not in self.function_data:
-                        self.function_data['dependencies'] = {}
-                    self.function_data['dependencies'][func_name] = deps
-                
-                # Add to metadata file
-                self._add_to_metadata_file(func_name, metadata)
-                
-                # Regenerate Fortran metadata
-                self._ensure_metadata_updated()
-                
-                return True
-            else:
-                self.logger.warning(f"Could not extract metadata for {func_name}")
-                return False
-        return True
-    
-    def _add_to_metadata_file(self, func_name, metadata):
-        """Add function metadata to slatec_metadata.py"""
-        metadata_file = Path('fortran_validator/slatec_metadata.py')
-        content = metadata_file.read_text()
-        
-        # Find the end of SLATEC_FUNCTIONS dict
-        insert_pos = content.rfind('}')
-        
-        # Format metadata as Python code
-        metadata_str = f",\n    \n    '{func_name.upper()}': {{\n"
-        metadata_str += f"        'type': '{metadata['type']}',\n"
-        metadata_str += f"        'params': [\n"
-        
-        for param in metadata['params']:
-            metadata_str += f"            {{"
-            for key, value in param.items():
-                if isinstance(value, str):
-                    metadata_str += f"'{key}': '{value}', "
-                else:
-                    metadata_str += f"'{key}': {value}, "
-            metadata_str = metadata_str.rstrip(', ') + "},\n"
-        
-        metadata_str += "        ],\n"
-        if metadata.get('returns'):
-            metadata_str += f"        'returns': '{metadata['returns']}',\n"
-        else:
-            metadata_str += f"        'returns': None,\n"
-        metadata_str += f"        'description': '{metadata['description']}'\n"
-        metadata_str += "    }"
-        
-        # Insert before the closing brace
-        new_content = content[:insert_pos] + metadata_str + content[insert_pos:]
-        metadata_file.write_text(new_content)
-        
-        self.logger.info(f"Added metadata for {func_name} to slatec_metadata.py")
+    def _check_signature_exists(self, func_name):
+        """Check if function signature exists in the new signature database"""
+        sig_db_file = Path('fortran_validator/signature_database.json')
+        if sig_db_file.exists():
+            with open(sig_db_file) as f:
+                sig_db = json.load(f)
+                return func_name.upper() in sig_db.get('functions', {})
+        return False
     
     def _preflight_checks(self, func_name):
         """Perform pre-flight checks before processing"""
@@ -317,10 +266,14 @@ class SLATECOrchestrator:
             # 1. Read source
             f77_code = self.read_source(func_name)
             
-            # 1.5 Auto-add metadata if needed
-            if not self._auto_add_metadata(func_name, f77_code):
-                self.logger.error(f"Failed to add metadata for {func_name}")
-                return False
+            # 1.5 Check if signature exists in database
+            if not self._check_signature_exists(func_name):
+                self.logger.warning(f"Signature not found for {func_name}, running auto-discovery...")
+                # Re-run signature discovery to pick up new function
+                self._ensure_metadata_updated()
+                if not self._check_signature_exists(func_name):
+                    self.logger.error(f"Failed to discover signature for {func_name}")
+                    return False
             
             # 2. Generate or load test cases
             test_file = Path(self.config['test_dir']) / f"{func_name.lower()}_tests.txt"
@@ -341,7 +294,7 @@ class SLATECOrchestrator:
                 self.logger.info(f"Found {test_count} existing test cases for {func_name}")
                 func_result['test_count'] = test_count
                 
-            # 3. Initial modernization
+            # 3. Modernization
             self.logger.info(f"Modernizing {func_name}")
             modern_result = self.modernizer.modernize(func_name, f77_code, test_content)
             
@@ -361,7 +314,7 @@ class SLATECOrchestrator:
                     'modernization_notes': modern_result.get('modernization_notes', ''),
                     'timestamp': datetime.now().isoformat()
                 }, f, indent=2)
-                
+                    
             # 4. Iterative validation and refinement
             for iteration in range(self.config['max_iterations']):
                 self.logger.info(f"Validation iteration {iteration + 1} for {func_name}")
@@ -388,7 +341,7 @@ class SLATECOrchestrator:
                 # Run validation
                 validation_result = self.validator.validate(func_name, test_file)
                 func_result['pass_rate'] = validation_result['pass_rate']
-                
+            
                 # Save debug info if enabled
                 if self.debug:
                     debug_dir = Path(self.config['log_dir']) / 'debug' / func_name.lower()
@@ -447,7 +400,7 @@ class SLATECOrchestrator:
             self.logger.error(f"✗ {func_name} failed validation after {self.config['max_iterations']} iterations")
             self.progress['failed'].append(func_name)
             self._save_progress()
-            
+        
             # Update run results for partial/failed
             func_result['end_time'] = datetime.now().isoformat()
             func_result['time_taken'] = (datetime.now() - func_start_time).total_seconds()

@@ -70,11 +70,15 @@ class FortranValidator:
             validator_dir = Path(__file__).parent / 'fortran_validator'
             if not (validator_dir / 'validator').exists():
                 self.logger.info("Building validator...")
-                # First, regenerate metadata if needed
-                metadata_gen = validator_dir / 'generate_fortran_metadata.py'
-                if metadata_gen.exists():
-                    self.logger.info("Regenerating Fortran metadata...")
-                    subprocess.run(['python3', str(metadata_gen)], cwd=validator_dir)
+                # First, regenerate signatures using auto-discovery
+                auto_discovery = Path(__file__).parent / 'auto_signature_discovery.py'
+                if auto_discovery.exists():
+                    self.logger.info("Regenerating signatures using auto-discovery...")
+                    subprocess.run(['python3', str(auto_discovery)])
+                    # Also regenerate function registrations
+                    gen_registrations = Path(__file__).parent / 'generate_function_registrations.py'
+                    if gen_registrations.exists():
+                        subprocess.run(['python3', str(gen_registrations)])
                 
                 result = subprocess.run(
                     ['make', 'validator'],
@@ -136,12 +140,26 @@ class FortranValidator:
         total = 0
         errors = []
         
+        current_test = None
         for line in lines:
+            # Track current test context
+            if 'Test' in line and ':' in line:
+                current_test = line.strip()
+            
             if 'PASSED:' in line or 'PASS:' in line:
                 passed += 1
             elif 'FAILED:' in line or 'FAIL:' in line:
                 failed += 1
-                errors.append(line.strip())
+                # Include test context in error
+                if current_test:
+                    errors.append(f"{current_test} - {line.strip()}")
+                else:
+                    errors.append(line.strip())
+                    
+            # Capture additional error details
+            elif 'Expected:' in line or 'Actual:' in line or 'Error:' in line:
+                if errors and not line.startswith('Total'):
+                    errors[-1] += f"\n  {line.strip()}"
             elif 'Total tests:' in line:
                 # Parse summary line
                 parts = line.split()

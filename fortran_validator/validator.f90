@@ -256,11 +256,26 @@ contains
         call init_validation_counters(func_passed_count, func_failed_count)
         
         ! Use metadata-driven dispatch instead of hardcoded select case
-        call dispatch_validation(function_name, &
-                               int_params, num_int_params, &
-                               real_params, num_real_params, &
-                               char_params, num_char_params, &
-                               real_arrays, array_sizes, num_arrays)
+        ! Create a temporary allocatable array for dispatch
+        block
+            real, allocatable :: temp_array(:)
+            
+            if (num_arrays > 0 .and. array_sizes(1) > 0) then
+                allocate(temp_array(array_sizes(1)))
+                temp_array = real_arrays(1:array_sizes(1),1)
+            else
+                allocate(temp_array(1))
+                temp_array(1) = 0.0
+            end if
+            
+            call dispatch_validation(function_name, &
+                                   int_params, num_int_params, &
+                                   real_params, num_real_params, &
+                                   char_params, num_char_params, &
+                                   temp_array, size(temp_array))
+            
+            deallocate(temp_array)
+        end block
         
         ! Get updated counters
         call get_validation_counters(func_passed_count, func_failed_count)

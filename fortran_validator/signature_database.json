@@ -1,0 +1,476 @@
+{
+  "functions": {
+    "aaaaaa": {
+      "is_function": false,
+      "name": "AAAAAA",
+      "parameters": [],
+      "return_type": null,
+      "signature_pattern": "SUB_0_PARAMS",
+      "signature_type": 1
+    },
+    "cdiv": {
+      "is_function": false,
+      "name": "CDIV",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "ar",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "ai",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "br",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "bi",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "out",
+          "is_array": false,
+          "name": "cr",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "out",
+          "is_array": false,
+          "name": "ci",
+          "type": "real"
+        }
+      ],
+      "return_type": null,
+      "signature_pattern": "SUB_REAL_REAL_REAL_REAL_REAL_REAL",
+      "signature_type": 2
+    },
+    "csroot": {
+      "is_function": false,
+      "name": "CSROOT",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "xr",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "xi",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "yr",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "yi",
+          "type": "real"
+        }
+      ],
+      "return_type": null,
+      "signature_pattern": "SUB_REAL_REAL_REAL_REAL",
+      "signature_type": 3
+    },
+    "d1mach": {
+      "is_function": true,
+      "name": "D1MACH",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "i",
+          "type": "integer"
+        }
+      ],
+      "return_type": "double precision",
+      "signature_pattern": "FUNC_DOUBLE_INTEGER",
+      "signature_type": 4
+    },
+    "enorm": {
+      "is_function": true,
+      "name": "ENORM",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "n",
+          "type": "integer"
+        },
+        {
+          "array_spec": "*",
+          "intent": "in",
+          "is_array": true,
+          "name": "x",
+          "type": "real"
+        }
+      ],
+      "return_type": "real",
+      "signature_pattern": "FUNC_REAL_INTEGER_ARR_REAL_ARR",
+      "signature_type": 5
+    },
+    "gamln": {
+      "is_function": true,
+      "name": "GAMLN",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "z",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "out",
+          "is_array": false,
+          "name": "ierr",
+          "type": "integer"
+        }
+      ],
+      "return_type": "real",
+      "signature_pattern": "FUNC_REAL_REAL_INTEGER",
+      "signature_type": 6
+    },
+    "i1mach": {
+      "is_function": true,
+      "name": "I1MACH",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "i",
+          "type": "integer"
+        }
+      ],
+      "return_type": "integer",
+      "signature_pattern": "FUNC_INTEGER_INTEGER",
+      "signature_type": 7
+    },
+    "intrv": {
+      "is_function": false,
+      "name": "INTRV",
+      "parameters": [
+        {
+          "array_spec": "*",
+          "intent": "in",
+          "is_array": true,
+          "name": "xt",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "lxt",
+          "type": "integer"
+        },
+        {
+          "array_spec": "*",
+          "intent": "in",
+          "is_array": true,
+          "name": "x",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "ilo",
+          "type": "integer"
+        },
+        {
+          "array_spec": "",
+          "intent": "out",
+          "is_array": true,
+          "name": "ileft",
+          "type": "integer"
+        },
+        {
+          "array_spec": "",
+          "intent": "out",
+          "is_array": true,
+          "name": "mflag",
+          "type": "integer"
+        }
+      ],
+      "return_type": null,
+      "signature_pattern": "SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_INTEGE_B84D1923",
+      "signature_type": 8
+    },
+    "lsame": {
+      "is_function": true,
+      "name": "LSAME",
+      "parameters": [],
+      "return_type": "logical",
+      "signature_pattern": "FUNC_LOGICAL_0_PARAMS",
+      "signature_type": 9
+    },
+    "pimach": {
+      "is_function": true,
+      "name": "PIMACH",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "dum",
+          "type": "real"
+        }
+      ],
+      "return_type": "real",
+      "signature_pattern": "FUNC_REAL_REAL",
+      "signature_type": 10
+    },
+    "polcof": {
+      "is_function": false,
+      "name": "POLCOF",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "xx",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "n",
+          "type": "integer"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "x",
+          "type": "real"
+        },
+        {
+          "array_spec": "*",
+          "intent": "in",
+          "is_array": true,
+          "name": "c",
+          "type": "real"
+        },
+        {
+          "array_spec": "*",
+          "intent": "out",
+          "is_array": true,
+          "name": "d",
+          "type": "real"
+        },
+        {
+          "array_spec": "*",
+          "intent": "out",
+          "is_array": true,
+          "name": "work",
+          "type": "real"
+        }
+      ],
+      "return_type": null,
+      "signature_pattern": "SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_REAL_A_65000675",
+      "signature_type": 11
+    },
+    "pythag": {
+      "is_function": true,
+      "name": "PYTHAG",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "a",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "b",
+          "type": "real"
+        }
+      ],
+      "return_type": "real",
+      "signature_pattern": "FUNC_REAL_REAL_REAL",
+      "signature_type": 12
+    },
+    "qform": {
+      "is_function": false,
+      "name": "QFORM",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "m",
+          "type": "integer"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": true,
+          "name": "n",
+          "type": "integer"
+        },
+        {
+          "array_spec": "ldq,*",
+          "intent": "out",
+          "is_array": true,
+          "name": "q",
+          "type": "real"
+        },
+        {
+          "array_spec": "*",
+          "intent": "out",
+          "is_array": true,
+          "name": "wa",
+          "type": "real"
+        }
+      ],
+      "return_type": null,
+      "signature_pattern": "SUB_INTEGER_ARR_INTEGER_ARR_REAL_ARR_REAL_ARR",
+      "signature_type": 13
+    },
+    "qwgtc": {
+      "is_function": true,
+      "name": "QWGTC",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "x",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "c",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "p2",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "p3",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "p4",
+          "type": "real"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "kp",
+          "type": "integer"
+        }
+      ],
+      "return_type": "real",
+      "signature_pattern": "FUNC_REAL_REAL_REAL_REAL_REAL_REAL_INTEGER",
+      "signature_type": 14
+    },
+    "r1mach": {
+      "is_function": true,
+      "name": "R1MACH",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "i",
+          "type": "integer"
+        }
+      ],
+      "return_type": "real",
+      "signature_pattern": "FUNC_REAL_INTEGER",
+      "signature_type": 15
+    },
+    "zabs": {
+      "is_function": true,
+      "name": "ZABS",
+      "parameters": [
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "zr",
+          "type": "double precision"
+        },
+        {
+          "array_spec": "",
+          "intent": "in",
+          "is_array": false,
+          "name": "zi",
+          "type": "double precision"
+        }
+      ],
+      "return_type": "double precision",
+      "signature_pattern": "FUNC_DOUBLE_DOUBLE_DOUBLE",
+      "signature_type": 16
+    }
+  },
+  "metadata": {
+    "generated_by": "auto_signature_discovery.py",
+    "num_functions": 16,
+    "signature_patterns": {
+      "FUNC_DOUBLE_DOUBLE_DOUBLE": 16,
+      "FUNC_DOUBLE_INTEGER": 4,
+      "FUNC_INTEGER_INTEGER": 7,
+      "FUNC_LOGICAL_0_PARAMS": 9,
+      "FUNC_REAL_INTEGER": 15,
+      "FUNC_REAL_INTEGER_ARR_REAL_ARR": 5,
+      "FUNC_REAL_REAL": 10,
+      "FUNC_REAL_REAL_INTEGER": 6,
+      "FUNC_REAL_REAL_REAL": 12,
+      "FUNC_REAL_REAL_REAL_REAL_REAL_REAL_INTEGER": 14,
+      "SUB_0_PARAMS": 1,
+      "SUB_INTEGER_ARR_INTEGER_ARR_REAL_ARR_REAL_ARR": 13,
+      "SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_INTEGE_B84D1923": 8,
+      "SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_REAL_A_65000675": 11,
+      "SUB_REAL_REAL_REAL_REAL": 3,
+      "SUB_REAL_REAL_REAL_REAL_REAL_REAL": 2
+    }
+  }
+}

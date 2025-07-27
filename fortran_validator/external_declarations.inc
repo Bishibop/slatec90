@@ -1,33 +1,21 @@
-! Automatically generated external declarations
+! External F77 function declarations - AUTO-GENERATED
 ! DO NOT EDIT MANUALLY
 
-    ! SIG_REAL_FUNC_1_INT
-    external :: r1mach
-
-    ! SIG_REAL_FUNC_1_REAL
-    external :: pimach
-
-    ! SIG_REAL_FUNC_2_REAL
-    external :: pythag
-
-    ! SIG_INT_FUNC_1_INT
+    ! Real functions
+    real :: r1mach, pimach, pythag, gamln, enorm
+    external :: r1mach, pimach, pythag, gamln, enorm
+    
+    ! Integer functions  
+    integer :: i1mach
     external :: i1mach
-
-    ! SIG_DOUBLE_FUNC_1_INT
-    external :: d1mach
-
-    ! SIG_LOGICAL_FUNC_2_CHAR
+    
+    ! Double precision functions
+    real(8) :: d1mach, zabs
+    external :: d1mach, zabs
+    
+    ! Logical functions
+    logical :: lsame
     external :: lsame
-
-    ! SIG_SUB_0_PARAMS
-    external :: fdump
-
-    ! SIG_SUB_1_CHAR_OUT
-    external :: aaaaaa
-
-    ! SIG_SUB_6_REAL
-    external :: cdiv
-    external :: polcof
-
-    ! SIG_REAL_FUNC_INT_REAL_ARRAY
-    external :: enorm
+    
+    ! Subroutines
+    external :: aaaaaa, fdump, cdiv, csroot

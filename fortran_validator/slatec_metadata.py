@@ -165,8 +165,8 @@ SLATEC_FUNCTIONS = {
     'ENORM': {
         'type': 'function',
         'params': [
-            {'name': 'N', 'type': 'integer', 'intent': 'in', 'dimension': 'ENORM-S, DENORM-D'},
-            {'name': 'X', 'type': 'real', 'intent': 'in', 'dimension': '*'},
+            {'name': 'N', 'type': 'integer', 'intent': 'in'},
+            {'name': 'X', 'type': 'real', 'intent': 'in', 'dimension': 'N'},
         ],
         'returns': 'real',
         'description': 'Subsidiary to SNLS1, SNLS1E, SNSQ and SNSQE'
@@ -218,6 +218,20 @@ SLATEC_FUNCTIONS = {
         ],
         'returns': 'real',
         'description': 'Compute the logarithm of the Gamma function'
+    },
+    
+    'INTRV': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'XT', 'type': 'real', 'intent': 'in', 'dimension': 'ILEFT'},
+            {'name': 'LXT', 'type': 'integer', 'intent': 'in'},
+            {'name': 'X', 'type': 'real', 'intent': 'in'},
+            {'name': 'ILO', 'type': 'integer', 'intent': 'inout'},
+            {'name': 'ILEFT', 'type': 'integer', 'intent': 'out'},
+            {'name': 'MFLAG', 'type': 'integer', 'intent': 'in'},
+        ],
+        'returns': None,
+        'description': 'Compute the largest integer ILEFT in 1 .LE. ILEFT .LE. LXT'
     }}
 
 def get_function_signature(func_name):

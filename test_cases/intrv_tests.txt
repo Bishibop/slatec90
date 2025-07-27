@@ -1,0 +1,441 @@
+FUNCTION: INTRV
+
+TEST_START
+Description: X is less than the smallest knot (basic boundary test).
+INT_PARAMS: 1 5
+REAL_PARAMS: 0.5
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: X equals the smallest knot.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: X is between the first and second knot.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.5
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: X is just below the second knot by a tiny margin.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.999999
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: X equals the last knot.
+INT_PARAMS: 1 5
+REAL_PARAMS: 5.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: X is greater than the last knot.
+INT_PARAMS: 1 5
+REAL_PARAMS: 6.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: Duplicate knots at the beginning; X equals the duplicated value.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 1.0 2.0 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Duplicate knots in the middle; X equals the duplicated knot.
+INT_PARAMS: 1 6
+REAL_PARAMS: 2.0
+ARRAY_SIZE: 6
+REAL_ARRAY: 1.0 2.0 2.0 2.0 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Duplicate knots at the end; X equals the duplicated value at the end.
+INT_PARAMS: 1 6
+REAL_PARAMS: 4.0
+ARRAY_SIZE: 6
+REAL_ARRAY: 1.0 2.0 3.0 4.0 4.0 4.0
+TEST_END
+
+TEST_START
+Description: Random middle value within an arithmetic progression.
+INT_PARAMS: 1 7
+REAL_PARAMS: 3.5
+ARRAY_SIZE: 7
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0 7.0
+TEST_END
+
+TEST_START
+Description: Geometric progression array; X between two values.
+INT_PARAMS: 1 5
+REAL_PARAMS: 15.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 5.0 25.0 125.0 625.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression array; X is exactly equal to one of the knots.
+INT_PARAMS: 1 6
+REAL_PARAMS: 4.0
+ARRAY_SIZE: 6
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0
+TEST_END
+
+TEST_START
+Description: X equals a middle value (duplicate case) in a geometric progression.
+INT_PARAMS: 1 5
+REAL_PARAMS: 25.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 5.0 25.0 125.0 625.0
+TEST_END
+
+TEST_START
+Description: Test value near lower machine epsilon; very small numbers in XT.
+INT_PARAMS: 1 4
+REAL_PARAMS: 2.0e-7
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.0e-7 3.0e-7 5.0e-7 7.0e-7
+TEST_END
+
+TEST_START
+Description: Denormalized numbers (if supported); numbers near the underflow limit.
+INT_PARAMS: 1 4
+REAL_PARAMS: 1.5e-38
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.0e-38 1.2e-38 1.5e-38 1.8e-38
+TEST_END
+
+TEST_START
+Description: Array with negative numbers; X between two negative knots.
+INT_PARAMS: 1 6
+REAL_PARAMS: -2.0
+ARRAY_SIZE: 6
+REAL_ARRAY: -5.0 -4.0 -3.0 -2.0 -1.0 0.0
+TEST_END
+
+TEST_START
+Description: Mixed negative and positive knots; X equals a negative knot.
+INT_PARAMS: 1 7
+REAL_PARAMS: -1.0
+ARRAY_SIZE: 7
+REAL_ARRAY: -5.0 -3.0 -1.0 0.0 1.0 3.0 5.0
+TEST_END
+
+TEST_START
+Description: Mixed negative and positive knots; X equals zero.
+INT_PARAMS: 1 7
+REAL_PARAMS: 0.0
+ARRAY_SIZE: 7
+REAL_ARRAY: -5.0 -3.0 -1.0 0.0 1.0 3.0 5.0
+TEST_END
+
+TEST_START
+Description: Array with a large gap between knots.
+INT_PARAMS: 1 5
+REAL_PARAMS: 50.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 100.0
+TEST_END
+
+TEST_START
+Description: Array containing very large numbers; X in the middle of large values.
+INT_PARAMS: 1 3
+REAL_PARAMS: 5.5e37
+ARRAY_SIZE: 3
+REAL_ARRAY: 1e37 5e37 1e38
+TEST_END
+
+TEST_START
+Description: XT values differing by small amounts (1e-6 differences); X falls in between.
+INT_PARAMS: 1 4
+REAL_PARAMS: 1.0000015
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.000000 1.000001 1.000002 1.000003
+TEST_END
+
+TEST_START
+Description: XT values with differences of 1e-7; X exactly equals one of the knots.
+INT_PARAMS: 1 4
+REAL_PARAMS: 1.0000001
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.0000000 1.0000001 1.0000002 1.0000003
+TEST_END
+
+TEST_START
+Description: Boundary test: LXT = 1 and X is less than the single knot.
+INT_PARAMS: 1 1
+REAL_PARAMS: -1.0
+ARRAY_SIZE: 1
+REAL_ARRAY: 0.0
+TEST_END
+
+TEST_START
+Description: Boundary test: LXT = 1 and X equals the single knot.
+INT_PARAMS: 1 1
+REAL_PARAMS: 0.0
+ARRAY_SIZE: 1
+REAL_ARRAY: 0.0
+TEST_END
+
+TEST_START
+Description: Boundary test: LXT = 1 and X is greater than the single knot.
+INT_PARAMS: 1 1
+REAL_PARAMS: 1.0
+ARRAY_SIZE: 1
+REAL_ARRAY: 0.0
+TEST_END
+
+TEST_START
+Description: Stress test: Very dense array from 0 to 1 in steps of 1e-7; X in the middle.
+INT_PARAMS: 1 11
+REAL_PARAMS: 0.5000000
+ARRAY_SIZE: 11
+REAL_ARRAY: 0.0 0.0000001 0.0000002 0.0000003 0.0000004 0.5000000 0.5000001 0.5000002 0.5000003 0.5000004 1.0
+TEST_END
+
+TEST_START
+Description: Stress test: Wide range array from -1e5 to 1e5; X near zero.
+INT_PARAMS: 1 5
+REAL_PARAMS: 0.0
+ARRAY_SIZE: 5
+REAL_ARRAY: -1e5 -5e4 0.0 5e4 1e5
+TEST_END
+
+TEST_START
+Description: Power of 2 based array; X is between two powers.
+INT_PARAMS: 1 6
+REAL_PARAMS: 20.0
+ARRAY_SIZE: 6
+REAL_ARRAY: 1.0 2.0 4.0 8.0 16.0 32.0
+TEST_END
+
+TEST_START
+Description: Power of 10 based array; X equals one of the knots exactly.
+INT_PARAMS: 1 5
+REAL_PARAMS: 100.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 10.0 100.0 1000.0 10000.0
+TEST_END
+
+TEST_START
+Description: XT with values differing by 1e-6 and X equals a knot, testing precision.
+INT_PARAMS: 1 4
+REAL_PARAMS: 2.000001
+ARRAY_SIZE: 4
+REAL_ARRAY: 2.000000 2.000001 2.000002 2.000003
+TEST_END
+
+TEST_START
+Description: XT with small differences (1e-7) with X very slightly above a knot.
+INT_PARAMS: 1 4
+REAL_PARAMS: 2.00000015
+ARRAY_SIZE: 4
+REAL_ARRAY: 2.0000000 2.0000001 2.0000002 2.0000003
+TEST_END
+
+TEST_START
+Description: XT array of all zeros; X equals 0.
+INT_PARAMS: 1 5
+REAL_PARAMS: 0.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0.0 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: XT array with all identical nonzero values; X equals that value.
+INT_PARAMS: 1 5
+REAL_PARAMS: 3.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 3.0 3.0 3.0 3.0 3.0
+TEST_END
+
+TEST_START
+Description: Degenerate two-element array; X is between the two unique knots.
+INT_PARAMS: 1 2
+REAL_PARAMS: 1.5
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0 2.0
+TEST_END
+
+TEST_START
+Description: Two-element array; X exactly equals the second element.
+INT_PARAMS: 1 2
+REAL_PARAMS: 2.0
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0 2.0
+TEST_END
+
+TEST_START
+Description: Two-element array; X is less than the first element.
+INT_PARAMS: 1 2
+REAL_PARAMS: 0.5
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0 2.0
+TEST_END
+
+TEST_START
+Description: Two-element array; X is greater than the last element.
+INT_PARAMS: 1 2
+REAL_PARAMS: 2.5
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0 2.0
+TEST_END
+
+TEST_START
+Description: XT array with very close values (stress on cancellation); X is in the middle.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.0000005
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0000000 1.0000002 1.0000004 1.0000006 1.0000008
+TEST_END
+
+TEST_START
+Description: Simulate subsequent call by setting ILO initially not equal to 1; X in middle of array.
+INT_PARAMS: 3 7
+REAL_PARAMS: 4.5
+ARRAY_SIZE: 7
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0 7.0
+TEST_END
+
+TEST_START
+Description: ILO set high to simulate near-boundary subsequent call; X near last knot.
+INT_PARAMS: 5 7
+REAL_PARAMS: 6.5
+ARRAY_SIZE: 7
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0 7.0
+TEST_END
+
+TEST_START
+Description: XT with an extremely large range; X in the lower half.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1e-5
+ARRAY_SIZE: 5
+REAL_ARRAY: 1e-10 1e-5 1e0 1e5 1e10
+TEST_END
+
+TEST_START
+Description: XT with float values approaching machine precision differences.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.0000001
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 1.00000005 1.0000001 1.00000015 1.0000002
+TEST_END
+
+TEST_START
+Description: Geometric progression with a small factor; X between terms.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.4
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 1.2 1.44 1.728 2.0736
+TEST_END
+
+TEST_START
+Description: Arithmetic progression with a tiny step; X in between.
+INT_PARAMS: 1 5
+REAL_PARAMS: 1.00000005
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 1.00000001 1.00000002 1.00000003 1.00000004
+TEST_END
+
+TEST_START
+Description: Test near underflow boundary; XT values extremely small and X slightly larger.
+INT_PARAMS: 1 4
+REAL_PARAMS: 2e-45
+ARRAY_SIZE: 4
+REAL_ARRAY: 1e-45 1.2e-45 1.5e-45 1.8e-45
+TEST_END
+
+TEST_START
+Description: Test near overflow boundary; XT values extremely large and X just below the last value.
+INT_PARAMS: 1 4
+REAL_PARAMS: 1e38
+ARRAY_SIZE: 4
+REAL_ARRAY: 1e37 5e37 8e37 1e38
+TEST_END
+
+TEST_START
+Description: Random test across a wide range; X is picked in the middle.
+INT_PARAMS: 1 6
+REAL_PARAMS: 50.0
+ARRAY_SIZE: 6
+REAL_ARRAY: -100.0 -10.0 0.0 10.0 100.0 1000.0
+TEST_END
+
+TEST_START
+Description: Test with X = NaN (Not a Number).
+INT_PARAMS: 1 5
+REAL_PARAMS: NaN
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: Test with X = Inf (infinity).
+INT_PARAMS: 1 5
+REAL_PARAMS: Inf
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: Test with X = -Inf (-infinity).
+INT_PARAMS: 1 5
+REAL_PARAMS: -Inf
+ARRAY_SIZE: 5
+REAL_ARRAY: -5.0 -4.0 -3.0 -2.0 -1.0
+TEST_END
+
+TEST_START
+Description: XT contains Inf as the last value; X equals Inf.
+INT_PARAMS: 1 5
+REAL_PARAMS: Inf
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 Inf
+TEST_END
+
+TEST_START
+Description: XT contains -Inf as the first value; X equals -Inf.
+INT_PARAMS: 1 5
+REAL_PARAMS: -Inf
+ARRAY_SIZE: 5
+REAL_ARRAY: -Inf -2.0 -1.0 0.0 1.0
+TEST_END
+
+TEST_START
+Description: XT with both -Inf and Inf present; X is a normal finite value.
+INT_PARAMS: 1 5
+REAL_PARAMS: 0.0
+ARRAY_SIZE: 5
+REAL_ARRAY: -Inf -1.0 0.0 1.0 Inf
+TEST_END
+
+TEST_START
+Description: X differs from knot by a very slight amount (1e-8 difference).
+INT_PARAMS: 1 5
+REAL_PARAMS: 3.00000001
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+TEST_END
+
+TEST_START
+Description: Random array test with unsorted spacing (but still ascending) and X in between.
+INT_PARAMS: 1 7
+REAL_PARAMS: 3.7
+ARRAY_SIZE: 7
+REAL_ARRAY: 0.5 2.3 3.3 3.8 4.1 7.7 9.0
+TEST_END

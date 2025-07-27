@@ -45,6 +45,8 @@ python slatec_orchestrator.py --functions SASUM,POLCOF,QWGTC
 
 **✅ UPDATE (July 27, 2025)**: **ENORM successfully modernized!** Added 11th function with 93.4% pass rate (4 test failures due to numerical precision). Validator system cleanup completed - removed function-specific hacks and debug code.
 
+**🔧 UPDATE (January 27, 2025)**: **Complete migration to metadata-driven validator!** Replaced all hardcoded function dispatch with automatic signature-based routing. Auto-discovery system eliminates manual metadata entry. Claude modernizer removed in favor of standard LLM modernizer for consistency.
+
 ## 🚀 Quick Start Guide - Modernize Your First Function
 
 **⚠️ IMPORTANT NOTE FOR CLAUDE AGENTS**: Do not run the orchestrator yourself due to timeout issues. Instead, ask the user to run it by providing them with the exact command. For example:
@@ -262,60 +264,85 @@ Is it a machine constant function (I1MACH, R1MACH, D1MACH)?
         └─ NO → Standard modernization
 ```
 
-## 📝 Function Metadata Registration
+## 📝 Function Signature Auto-Discovery System
 
-To enable validation of a new function, add it to `fortran_validator/slatec_metadata.py`:
+**🎯 UPDATE (January 27, 2025)**: **Fully automated signature discovery!** No manual metadata entry required - the system automatically extracts function signatures from F77 source files using f2py.
 
-### Basic Function Example
-```python
-'ENORM': {
-    'type': 'function',           # 'function' or 'subroutine'
-    'params': [
-        {'name': 'N', 'type': 'integer', 'intent': 'in'},
-        {'name': 'X', 'type': 'real', 'intent': 'in', 'dimension': 'N'}
-    ],
-    'returns': 'real',           # Return type (omit for subroutines)
-    'description': 'Euclidean norm of a vector'
-}
-```
+### How It Works
 
-### Complex Subroutine Example
-```python
-'SGEFA': {
-    'type': 'subroutine',
-    'params': [
-        {'name': 'A', 'type': 'real', 'intent': 'inout', 
-         'dimension': 'LDA,N'},
-        {'name': 'LDA', 'type': 'integer', 'intent': 'in'},
-        {'name': 'N', 'type': 'integer', 'intent': 'in'},
-        {'name': 'IPVT', 'type': 'integer', 'intent': 'out', 
-         'dimension': 'N'},
-        {'name': 'INFO', 'type': 'integer', 'intent': 'out'}
-    ],
-    'returns': None,
-    'description': 'LU factorization of a matrix'
-}
-```
+The new system automatically discovers function signatures when you modernize a function:
 
-### Metadata Fields
-- **type**: `'function'` or `'subroutine'`
-- **params**: List of parameters with:
-  - **name**: Parameter name (uppercase to match F77)
-  - **type**: `'integer'`, `'real'`, `'double'`, `'logical'`, `'character'`
-  - **intent**: `'in'`, `'out'`, or `'inout'`
-  - **dimension**: Array dimensions (optional)
-  - **size**: Character length (optional)
-- **returns**: Return type for functions (omit for subroutines)
-- **description**: Brief description
+1. **Automatic Discovery**: When processing a new function, the orchestrator checks if its signature exists
+2. **F77 Parsing**: If not found, it runs `auto_signature_discovery.py` which uses f2py to extract the signature
+3. **Database Update**: Signatures are stored in `fortran_validator/signature_database.json`
+4. **Module Generation**: The system auto-generates Fortran validation modules from the database
 
-### After Adding Metadata
+### Manual Signature Discovery (if needed)
+
+If you need to manually discover signatures:
+
 ```bash
-# Regenerate Fortran metadata modules
-cd fortran_validator
-python generate_fortran_metadata.py
-make clean && make
-cd ..
+# Discover all functions in src/
+python auto_signature_discovery.py
+
+# Check the generated database
+cat fortran_validator/signature_database.json
+
+# Regenerate Fortran modules
+python generate_function_registrations.py
 ```
+
+### Signature Database Format
+
+The signature database (`signature_database.json`) contains:
+
+```json
+{
+  "functions": {
+    "ENORM": {
+      "name": "ENORM",
+      "is_function": true,
+      "signature_type": 12,
+      "signature_pattern": "FUNC_REAL_INTEGER_ARR_REAL_ARR",
+      "params": [
+        {"name": "n", "type": "integer", "intent": "in"},
+        {"name": "x", "type": "real", "intent": "in", "dimension": ["n"]}
+      ],
+      "return_type": "real"
+    }
+  }
+}
+```
+
+### Benefits of the New System
+
+1. **Zero Manual Work**: No need to add metadata manually
+2. **Always Accurate**: Signatures extracted directly from F77 source
+3. **Type Safety**: Auto-generated signature constants prevent mismatches
+4. **Extensible**: Handles complex array patterns and parameter combinations
+5. **Single Source of Truth**: One database drives all validation
+
+### Troubleshooting Signature Issues
+
+If a function fails with "signature not found":
+
+```bash
+# 1. Check if function exists in source
+ls src/FUNCNAME.f
+
+# 2. Run discovery manually
+python auto_signature_discovery.py
+
+# 3. Check if it was discovered
+grep -i "FUNCNAME" fortran_validator/signature_database.json
+
+# 4. If still missing, check for f2py parsing errors
+python auto_signature_discovery.py 2>&1 | grep -A5 "FUNCNAME"
+```
+
+### Legacy Metadata System (Deprecated)
+
+The old `slatec_metadata.py` system is no longer used. All function signatures are now managed through the auto-discovery system.
 
 ## 🎯 Critical Principle: Generic Structure Over Phases
 
@@ -380,12 +407,20 @@ Rigid phases create artificial barriers. When modernizing CSROOT requires PYTHAG
 - **Orchestrator** (`slatec_orchestrator.py`): Main driver, handles parallel execution
 - **Test Generator** (`test_generator.py`): LLM-powered comprehensive test generation  
 - **Modernizer** (`modernizer.py`): F77→F90 conversion with iterative refinement
-- **Validator** (`fortran_validator/validator`): Metadata-driven, handles any function
+- **Validator** (`fortran_validator/validator`): Fully generic, metadata-driven validation
 
-### Metadata System
-- **Registry** (`slatec_metadata.py`): Function signatures in Python
-- **Generator**: Auto-creates Fortran dispatch modules
-- **No manual updates**: Add function to metadata, regenerate, done
+### Automated Signature System
+- **Auto-Discovery** (`auto_signature_discovery.py`): Extracts signatures from F77 using f2py
+- **Database** (`signature_database.json`): Central repository of all function signatures
+- **Module Generator** (`slatec_signatures_module.f90`): Auto-generated Fortran constants
+- **Registration Generator** (`generate_function_registrations.py`): Creates function mappings
+- **Zero Manual Work**: Functions are discovered, registered, and validated automatically
+
+### Key Architecture Benefits
+- **No Hardcoded Functions**: Every function name comes from metadata
+- **Type-Safe Dispatch**: Signature constants prevent mismatches
+- **Automatic Updates**: Add F77 file → Run discovery → Everything works
+- **Parallel Ready**: No serialization or coordination needed
 
 
 ## 🔧 Troubleshooting Guide

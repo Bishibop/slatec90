@@ -2,29 +2,28 @@ module slatec_signatures_module
     implicit none
     
     ! Public parameters
-    public :: SIG_UNKNOWN, SIG_REAL_FUNC_1_INT, SIG_REAL_FUNC_1_REAL
-    public :: SIG_REAL_FUNC_2_REAL, SIG_INT_FUNC_1_INT, SIG_DOUBLE_FUNC_1_INT
-    public :: SIG_LOGICAL_FUNC_2_CHAR, SIG_SUB_0_PARAMS, SIG_SUB_1_CHAR_OUT
-    public :: SIG_SUB_6_REAL, SIG_REAL_FUNC_INT_REAL_ARRAY, SIG_SUB_2D_ARRAY
-    public :: function_info, get_function_info, get_signature_type
+    public :: SIG_UNKNOWN, function_info, get_function_info, get_signature_type
     public :: TYPE_INTEGER, TYPE_REAL, TYPE_CHARACTER, TYPE_DOUBLE, TYPE_LOGICAL
     public :: INTENT_IN, INTENT_OUT, INTENT_INOUT
     
-    ! Signature type constants
+    ! Signature type constants - AUTO-GENERATED
     integer, parameter :: SIG_UNKNOWN = 0
-    integer, parameter :: SIG_REAL_FUNC_1_INT = 1
-    integer, parameter :: SIG_REAL_FUNC_1_REAL = 2
-    integer, parameter :: SIG_REAL_FUNC_2_REAL = 3
-    integer, parameter :: SIG_INT_FUNC_1_INT = 4
-    integer, parameter :: SIG_DOUBLE_FUNC_1_INT = 5
-    integer, parameter :: SIG_LOGICAL_FUNC_2_CHAR = 6
-    integer, parameter :: SIG_SUB_0_PARAMS = 7
-    integer, parameter :: SIG_SUB_1_CHAR_OUT = 8
-    integer, parameter :: SIG_SUB_6_REAL = 9
-    integer, parameter :: SIG_REAL_FUNC_INT_REAL_ARRAY = 10
-    integer, parameter :: SIG_SUB_2D_ARRAY = 11  ! For subroutines like QFORM with 2D arrays
-    integer, parameter :: SIG_SUB_REAL_2INT = 12 ! For subroutines like XRED (real, int, int)
-    integer, parameter :: SIG_SUB_REAL_INT_4ARRAYS = 13 ! For subroutines like POLCOF
+    integer, parameter :: SIG_SUB_0_PARAMS = 1
+    integer, parameter :: SIG_SUB_REAL_REAL_REAL_REAL_REAL_REAL = 2
+    integer, parameter :: SIG_SUB_REAL_REAL_REAL_REAL = 3
+    integer, parameter :: SIG_FUNC_DOUBLE_INTEGER = 4
+    integer, parameter :: SIG_FUNC_REAL_INTEGER_ARR_REAL_ARR = 5
+    integer, parameter :: SIG_FUNC_REAL_REAL_INTEGER = 6
+    integer, parameter :: SIG_FUNC_INTEGER_INTEGER = 7
+    integer, parameter :: SIG_SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_INTEGE_B84D1923 = 8
+    integer, parameter :: SIG_FUNC_LOGICAL_0_PARAMS = 9
+    integer, parameter :: SIG_FUNC_REAL_REAL = 10
+    integer, parameter :: SIG_SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_REAL_A_65000675 = 11
+    integer, parameter :: SIG_FUNC_REAL_REAL_REAL = 12
+    integer, parameter :: SIG_SUB_INTEGER_ARR_INTEGER_ARR_REAL_ARR_REAL_ARR = 13
+    integer, parameter :: SIG_FUNC_REAL_REAL_REAL_REAL_REAL_REAL_INTEGER = 14
+    integer, parameter :: SIG_FUNC_REAL_INTEGER = 15
+    integer, parameter :: SIG_FUNC_DOUBLE_DOUBLE_DOUBLE = 16
     
     ! Function information type
     type :: function_info
@@ -49,181 +48,153 @@ module slatec_signatures_module
     integer, parameter :: INTENT_OUT = 2
     integer, parameter :: INTENT_INOUT = 3
     
-    ! Number of registered functions
-    integer, parameter :: NUM_FUNCTIONS = 19
-    
-    ! Function registry
+    ! Function registry - AUTO-GENERATED
+    integer, parameter :: NUM_FUNCTIONS = 16
+
     type(function_info), parameter :: FUNCTION_REGISTRY(NUM_FUNCTIONS) = [ &
-        function_info( &
+            function_info( &
             name='AAAAAA              ', &
-            signature_type=8, &
-            is_function=.false., &
-            num_params=1, &
-            param_types=[3,0,0,0,0,0,0,0,0,0], &
-            param_intents=[2,0,0,0,0,0,0,0,0,0], &
-            return_type=0 &
-        ), &
-        function_info( &
-            name='CDIV                ', &
-            signature_type=9, &
-            is_function=.false., &
-            num_params=6, &
-            param_types=[2,2,2,2,2,2,0,0,0,0], &
-            param_intents=[1,1,1,1,2,2,0,0,0,0], &
-            return_type=0 &
-        ), &
-        function_info( &
-            name='D1MACH              ', &
-            signature_type=5, &
-            is_function=.true., &
-            num_params=1, &
-            param_types=[1,0,0,0,0,0,0,0,0,0], &
-            param_intents=[1,0,0,0,0,0,0,0,0,0], &
-            return_type=4 &
-        ), &
-        function_info( &
-            name='FDUMP               ', &
-            signature_type=7, &
+            signature_type=1, &
             is_function=.false., &
             num_params=0, &
             param_types=[0,0,0,0,0,0,0,0,0,0], &
             param_intents=[0,0,0,0,0,0,0,0,0,0], &
             return_type=0 &
         ), &
-        function_info( &
-            name='I1MACH              ', &
-            signature_type=4, &
-            is_function=.true., &
-            num_params=1, &
-            param_types=[1,0,0,0,0,0,0,0,0,0], &
-            param_intents=[1,0,0,0,0,0,0,0,0,0], &
-            return_type=1 &
-        ), &
-        function_info( &
-            name='LSAME               ', &
-            signature_type=6, &
-            is_function=.true., &
-            num_params=2, &
-            param_types=[3,3,0,0,0,0,0,0,0,0], &
-            param_intents=[1,1,0,0,0,0,0,0,0,0], &
-            return_type=5 &
-        ), &
-        function_info( &
-            name='PIMACH              ', &
+            function_info( &
+            name='CDIV                ', &
             signature_type=2, &
-            is_function=.true., &
-            num_params=1, &
-            param_types=[2,0,0,0,0,0,0,0,0,0], &
-            param_intents=[1,0,0,0,0,0,0,0,0,0], &
-            return_type=2 &
-        ), &
-        function_info( &
-            name='PYTHAG              ', &
-            signature_type=3, &
-            is_function=.true., &
-            num_params=2, &
-            param_types=[2,2,0,0,0,0,0,0,0,0], &
-            param_intents=[1,1,0,0,0,0,0,0,0,0], &
-            return_type=2 &
-        ), &
-        function_info( &
-            name='R1MACH              ', &
-            signature_type=1, &
-            is_function=.true., &
-            num_params=1, &
-            param_types=[1,0,0,0,0,0,0,0,0,0], &
-            param_intents=[1,0,0,0,0,0,0,0,0,0], &
-            return_type=2 &
-        ), &
-        function_info( &
-            name='HYPOT               ', &
-            signature_type=3, &
-            is_function=.true., &
-            num_params=2, &
-            param_types=[2,2,0,0,0,0,0,0,0,0], &
-            param_intents=[1,1,0,0,0,0,0,0,0,0], &
-            return_type=2 &
-        ), &
-        function_info( &
-            name='CSROOT              ', &
-            signature_type=0, &
-            is_function=.false., &
-            num_params=4, &
-            param_types=[2,2,2,2,0,0,0,0,0,0], &
-            param_intents=[1,1,2,2,0,0,0,0,0,0], &
-            return_type=0 &
-        ), &
-        function_info( &
-            name='SVOUT               ', &
-            signature_type=0, &
-            is_function=.false., &
-            num_params=4, &
-            param_types=[2,2,3,2,0,0,0,0,0,0], &
-            param_intents=[1,1,1,1,0,0,0,0,0,0], &
-            return_type=0 &
-        ), &
-        function_info( &
-            name='ZEXP                ', &
-            signature_type=0, &
-            is_function=.false., &
-            num_params=4, &
-            param_types=[4,4,4,4,0,0,0,0,0,0], &
-            param_intents=[1,1,2,2,0,0,0,0,0,0], &
-            return_type=0 &
-        ), &
-        function_info( &
-            name='QWGTC               ', &
-            signature_type=0, &
-            is_function=.true., &
-            num_params=6, &
-            param_types=[2,2,2,2,2,1,0,0,0,0], &
-            param_intents=[1,1,1,1,1,1,0,0,0,0], &
-            return_type=2 &
-        ), &
-        function_info( &
-            name='ZABS                ', &
-            signature_type=0, &
-            is_function=.true., &
-            num_params=2, &
-            param_types=[4,4,0,0,0,0,0,0,0,0], &
-            param_intents=[1,1,0,0,0,0,0,0,0,0], &
-            return_type=4 &
-        ), &
-        function_info( &
-            name='ENORM               ', &
-            signature_type=10, &
-            is_function=.true., &
-            num_params=2, &
-            param_types=[1,2,0,0,0,0,0,0,0,0], &
-            param_intents=[1,1,0,0,0,0,0,0,0,0], &
-            return_type=2 &
-        ), &
-        function_info( &
-            name='POLCOF              ', &
-            signature_type=13, &
             is_function=.false., &
             num_params=6, &
-            param_types=[2,1,4,4,4,4,0,0,0,0], &
+            param_types=[TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,0,0,0,0], &
             param_intents=[1,1,1,1,2,2,0,0,0,0], &
             return_type=0 &
         ), &
-        function_info( &
-            name='XRED                ', &
-            signature_type=12, &
+            function_info( &
+            name='CSROOT              ', &
+            signature_type=3, &
             is_function=.false., &
-            num_params=3, &
-            param_types=[2,1,1,0,0,0,0,0,0,0], &
-            param_intents=[3,3,2,0,0,0,0,0,0,0], &
+            num_params=4, &
+            param_types=[TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,0,0,0,0,0,0], &
+            param_intents=[1,1,1,1,0,0,0,0,0,0], &
             return_type=0 &
         ), &
-        function_info( &
-            name='QFORM               ', &
-            signature_type=11, &  ! SIG_SUB_2D_ARRAY
+            function_info( &
+            name='D1MACH              ', &
+            signature_type=4, &
+            is_function=.true., &
+            num_params=1, &
+            param_types=[TYPE_INTEGER,0,0,0,0,0,0,0,0,0], &
+            param_intents=[1,0,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_DOUBLE &
+        ), &
+            function_info( &
+            name='ENORM               ', &
+            signature_type=5, &
+            is_function=.true., &
+            num_params=2, &
+            param_types=[TYPE_INTEGER,TYPE_REAL,0,0,0,0,0,0,0,0], &
+            param_intents=[1,1,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_REAL &
+        ), &
+            function_info( &
+            name='GAMLN               ', &
+            signature_type=6, &
+            is_function=.true., &
+            num_params=2, &
+            param_types=[TYPE_REAL,TYPE_INTEGER,0,0,0,0,0,0,0,0], &
+            param_intents=[1,2,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_REAL &
+        ), &
+            function_info( &
+            name='I1MACH              ', &
+            signature_type=7, &
+            is_function=.true., &
+            num_params=1, &
+            param_types=[TYPE_INTEGER,0,0,0,0,0,0,0,0,0], &
+            param_intents=[1,0,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_INTEGER &
+        ), &
+            function_info( &
+            name='INTRV               ', &
+            signature_type=8, &
             is_function=.false., &
-            num_params=5, &
-            param_types=[1,1,2,1,2,0,0,0,0,0], &
-            param_intents=[1,1,3,1,3,0,0,0,0,0], &
+            num_params=6, &
+            param_types=[TYPE_REAL,TYPE_INTEGER,TYPE_REAL,TYPE_INTEGER,TYPE_INTEGER,TYPE_INTEGER,0,0,0,0], &
+            param_intents=[1,1,1,1,2,2,0,0,0,0], &
             return_type=0 &
+        ), &
+            function_info( &
+            name='LSAME               ', &
+            signature_type=9, &
+            is_function=.true., &
+            num_params=0, &
+            param_types=[0,0,0,0,0,0,0,0,0,0], &
+            param_intents=[0,0,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_LOGICAL &
+        ), &
+            function_info( &
+            name='PIMACH              ', &
+            signature_type=10, &
+            is_function=.true., &
+            num_params=1, &
+            param_types=[TYPE_REAL,0,0,0,0,0,0,0,0,0], &
+            param_intents=[1,0,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_REAL &
+        ), &
+            function_info( &
+            name='POLCOF              ', &
+            signature_type=11, &
+            is_function=.false., &
+            num_params=6, &
+            param_types=[TYPE_REAL,TYPE_INTEGER,TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,0,0,0,0], &
+            param_intents=[1,1,1,1,2,2,0,0,0,0], &
+            return_type=0 &
+        ), &
+            function_info( &
+            name='PYTHAG              ', &
+            signature_type=12, &
+            is_function=.true., &
+            num_params=2, &
+            param_types=[TYPE_REAL,TYPE_REAL,0,0,0,0,0,0,0,0], &
+            param_intents=[1,1,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_REAL &
+        ), &
+            function_info( &
+            name='QFORM               ', &
+            signature_type=13, &
+            is_function=.false., &
+            num_params=4, &
+            param_types=[TYPE_INTEGER,TYPE_INTEGER,TYPE_REAL,TYPE_REAL,0,0,0,0,0,0], &
+            param_intents=[1,1,2,2,0,0,0,0,0,0], &
+            return_type=0 &
+        ), &
+            function_info( &
+            name='QWGTC               ', &
+            signature_type=14, &
+            is_function=.true., &
+            num_params=6, &
+            param_types=[TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_REAL,TYPE_INTEGER,0,0,0,0], &
+            param_intents=[1,1,1,1,1,1,0,0,0,0], &
+            return_type=TYPE_REAL &
+        ), &
+            function_info( &
+            name='R1MACH              ', &
+            signature_type=15, &
+            is_function=.true., &
+            num_params=1, &
+            param_types=[TYPE_INTEGER,0,0,0,0,0,0,0,0,0], &
+            param_intents=[1,0,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_REAL &
+        ), &
+            function_info( &
+            name='ZABS                ', &
+            signature_type=16, &
+            is_function=.true., &
+            num_params=2, &
+            param_types=[TYPE_DOUBLE,TYPE_DOUBLE,0,0,0,0,0,0,0,0], &
+            param_intents=[1,1,0,0,0,0,0,0,0,0], &
+            return_type=TYPE_DOUBLE &
         ) &
     ]
     

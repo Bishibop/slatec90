@@ -47,6 +47,12 @@
     "signature_name": "SIG_INT_FUNC_1_INT",
     "signature_type": 4
   },
+  "intrv": {
+    "has_f77": true,
+    "name": "INTRV",
+    "signature_name": "SIG_UNKNOWN_0",
+    "signature_type": 0
+  },
   "lsame": {
     "has_f77": true,
     "name": "LSAME",
