@@ -1,5 +1,5 @@
 !
-! Generic SLATEC Mega-Validator
+! Generic SLATEC Validator
 ! Uses metadata-driven validation instead of function-specific code
 !
 program validator
@@ -173,10 +173,31 @@ contains
                     if (allocated(real_array)) deallocate(real_array)
                     allocate(real_array(array_size))
                 case('REAL_ARRAY')
-                    read(line(pos+1:), *) real_array
+                    call parse_real_array(line(pos+1:))
             end select
         else
             description = trim(line)
+        end if
+    end subroutine
+    
+    subroutine parse_real_array(values_str)
+        character(len=*), intent(in) :: values_str
+        integer :: iostat, i
+        character(len=200) :: error_msg
+        
+        ! Try to read the array values
+        read(values_str, *, iostat=iostat) real_array
+        
+        if (iostat /= 0) then
+            ! Error reading array - try to recover or skip
+            write(error_msg, '(A,A)') "WARNING: Failed to parse REAL_ARRAY: ", trim(values_str)
+            call report_failed_test_character(error_msg, "Parse error - using zeros")
+            
+            ! Set array to zeros as fallback
+            real_array = 0.0
+            
+            ! Log the error but continue
+            print *, "Parse error in REAL_ARRAY, using zeros. Bad input: ", trim(values_str)
         end if
     end subroutine
     
@@ -198,7 +219,8 @@ contains
         call dispatch_validation(function_name, &
                                int_params, num_int_params, &
                                real_params, num_real_params, &
-                               char_params, num_char_params)
+                               char_params, num_char_params, &
+                               real_array, array_size)
         
         ! Get updated counters
         call get_validation_counters(func_passed_count, func_failed_count)
@@ -323,7 +345,7 @@ contains
     
     subroutine print_final_summary()
         print '(/,A)', repeat('=', 60)
-        print '(A)', 'MEGA-VALIDATOR FINAL SUMMARY'
+        print '(A)', 'VALIDATOR FINAL SUMMARY'
         print '(A)', repeat('=', 60)
         print '(A,I5)', 'Total tests:      ', total_tests
         print '(A,I5)', 'Passed:           ', total_passed
@@ -340,7 +362,7 @@ contains
     end subroutine
     
     subroutine list_supported_functions()
-        print '(A)', 'Generic Mega-Validator Supported Functions:'
+        print '(A)', 'Supported Functions:'
         print '(A)', '  AAAAAA  - SLATEC version string'
         print '(A)', '  CDIV    - Complex division'
         print '(A)', '  D1MACH  - Double precision machine constants'
@@ -353,7 +375,7 @@ contains
     end subroutine
     
     subroutine print_usage()
-        print '(A)', 'Usage: mega_validator_generic < test_file'
+        print '(A)', 'Usage: validator < test_file'
         print '(A)', ''
         print '(A)', 'Options:'
         print '(A)', '  --format <type>  Output format (human, json, llm, junit)'
@@ -366,6 +388,7 @@ contains
         call register_modern('AAAAAA', .true.)
         call register_modern('CDIV', .true.)
         call register_modern('D1MACH', .true.)
+        call register_modern('ENORM', .true.)
         call register_modern('FDUMP', .true.)
         call register_modern('I1MACH', .true.)
         call register_modern('LSAME', .true.)

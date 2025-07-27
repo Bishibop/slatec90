@@ -209,5 +209,29 @@ contains
                 p6 = 0.0
         end select
     end subroutine
+    
+    subroutine execute_real_function_int_real_array(func_name, use_modern, n, x_array, result)
+        character(len=*), intent(in) :: func_name
+        logical, intent(in) :: use_modern
+        integer, intent(in) :: n
+        real, intent(in) :: x_array(:)
+        real, intent(out) :: result
+        
+        ! External declarations for F77 functions
+        real :: enorm
+        external enorm
+        
+        select case(trim(func_name))
+            case('ENORM')
+                if (use_modern) then
+                    result = enorm_modern(n, x_array)
+                else
+                    result = enorm(n, x_array)
+                end if
+            case default
+                print *, 'ERROR: Unknown real function with int and real array params: ', trim(func_name)
+                result = 0.0
+        end select
+    end subroutine
 
 end module function_execution_module

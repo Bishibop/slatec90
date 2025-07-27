@@ -8,13 +8,16 @@ contains
 
     subroutine dispatch_validation(func_name, int_params, num_int_params, &
                                   real_params, num_real_params, &
-                                  char_params, num_char_params)
+                                  char_params, num_char_params, &
+                                  real_array, array_size)
         character(len=*), intent(in) :: func_name
         integer, intent(in) :: int_params(:), num_int_params
         real, intent(in) :: real_params(:)
         integer, intent(in) :: num_real_params
         character(len=*), intent(in) :: char_params(:)
         integer, intent(in) :: num_char_params
+        real, allocatable, intent(in) :: real_array(:)
+        integer, intent(in) :: array_size
         
         type(function_info) :: info
         
@@ -79,6 +82,14 @@ contains
                         real_params(4), real_params(5), real_params(6))
                 else
                     call report_failed_test_character("Missing real parameters", "")
+                end if
+                
+            case(SIG_REAL_FUNC_INT_REAL_ARRAY)
+                if (num_int_params >= 1 .and. array_size > 0) then
+                    call validate_real_function_int_real_array(func_name, &
+                        int_params(1), real_array)
+                else
+                    call report_failed_test_character("Missing integer parameter or array", "")
                 end if
                 
             case default

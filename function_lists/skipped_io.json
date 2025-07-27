@@ -1,0 +1,14 @@
+{
+  "name": "Skipped I/O Functions",
+  "description": "Functions skipped due to I/O operations that are difficult to validate automatically",
+  "functions": ["SVOUT", "DVOUT", "sbolsm", "splpmn", "dbolsm", "dplpmn"],
+  "dependencies": {
+    "SVOUT": ["I1MACH"],
+    "DVOUT": ["I1MACH"],
+    "sbolsm": ["SVOUT"],
+    "splpmn": ["SVOUT"],
+    "dbolsm": ["DVOUT"],
+    "dplpmn": ["DVOUT"]
+  },
+  "skip_reason": "I/O operations - writes to output units, difficult to validate automatically"
+}

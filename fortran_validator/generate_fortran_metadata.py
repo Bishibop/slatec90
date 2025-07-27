@@ -15,6 +15,15 @@ def generate_signature_module():
     code = """module slatec_signatures_module
     implicit none
     
+    ! Public parameters
+    public :: SIG_UNKNOWN, SIG_REAL_FUNC_1_INT, SIG_REAL_FUNC_1_REAL
+    public :: SIG_REAL_FUNC_2_REAL, SIG_INT_FUNC_1_INT, SIG_DOUBLE_FUNC_1_INT
+    public :: SIG_LOGICAL_FUNC_2_CHAR, SIG_SUB_0_PARAMS, SIG_SUB_1_CHAR_OUT
+    public :: SIG_SUB_6_REAL, SIG_REAL_FUNC_INT_REAL_ARRAY
+    public :: function_info, get_function_info, get_signature_type
+    public :: TYPE_INTEGER, TYPE_REAL, TYPE_CHARACTER, TYPE_DOUBLE, TYPE_LOGICAL
+    public :: INTENT_IN, INTENT_OUT, INTENT_INOUT
+    
     ! Signature type constants
     integer, parameter :: SIG_UNKNOWN = 0
     integer, parameter :: SIG_REAL_FUNC_1_INT = 1
@@ -26,6 +35,7 @@ def generate_signature_module():
     integer, parameter :: SIG_SUB_0_PARAMS = 7
     integer, parameter :: SIG_SUB_1_CHAR_OUT = 8
     integer, parameter :: SIG_SUB_6_REAL = 9
+    integer, parameter :: SIG_REAL_FUNC_INT_REAL_ARRAY = 10
     
     ! Function information type
     type :: function_info
@@ -166,6 +176,10 @@ def determine_signature_type(name, info):
                 return 3  # SIG_REAL_FUNC_2_REAL
             elif all(p['type'] == 'character' for p in params) and returns == 'logical':
                 return 6  # SIG_LOGICAL_FUNC_2_CHAR
+            elif params[0]['type'] == 'integer' and params[1]['type'] == 'real' and returns == 'real':
+                # Check if second param is array (for ENORM-like functions)
+                if 'dimension' in params[1] or name.upper() == 'ENORM':
+                    return 10  # SIG_REAL_FUNC_INT_REAL_ARRAY
     else:  # subroutine
         params = info['params']
         if len(params) == 0:
@@ -209,13 +223,16 @@ contains
 
     subroutine dispatch_validation(func_name, int_params, num_int_params, &
                                   real_params, num_real_params, &
-                                  char_params, num_char_params)
+                                  char_params, num_char_params, &
+                                  real_array, array_size)
         character(len=*), intent(in) :: func_name
         integer, intent(in) :: int_params(:), num_int_params
         real, intent(in) :: real_params(:)
         integer, intent(in) :: num_real_params
         character(len=*), intent(in) :: char_params(:)
         integer, intent(in) :: num_char_params
+        real, allocatable, intent(in) :: real_array(:)
+        integer, intent(in) :: array_size
         
         type(function_info) :: info
         
@@ -280,6 +297,14 @@ contains
                         real_params(4), real_params(5), real_params(6))
                 else
                     call report_failed_test_character("Missing real parameters", "")
+                end if
+                
+            case(SIG_REAL_FUNC_INT_REAL_ARRAY)
+                if (num_int_params >= 1 .and. array_size > 0) then
+                    call validate_real_function_int_real_array(func_name, &
+                        int_params(1), real_array)
+                else
+                    call report_failed_test_character("Missing integer parameter or array", "")
                 end if
                 
             case default

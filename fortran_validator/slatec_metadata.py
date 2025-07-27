@@ -160,6 +160,16 @@ SLATEC_FUNCTIONS = {
         ],
         'returns': 'double',
         'description': 'Computes absolute value of complex number without overflow'
+    },
+    
+    'ENORM': {
+        'type': 'function',
+        'params': [
+            {'name': 'N', 'type': 'integer', 'intent': 'in', 'dimension': 'ENORM-S, DENORM-D'},
+            {'name': 'X', 'type': 'real', 'intent': 'in', 'dimension': '*'},
+        ],
+        'returns': 'real',
+        'description': 'Subsidiary to SNLS1, SNLS1E, SNSQ and SNSQE'
     }}
 
 def get_function_signature(func_name):

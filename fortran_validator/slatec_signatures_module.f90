@@ -1,6 +1,15 @@
 module slatec_signatures_module
     implicit none
     
+    ! Public parameters
+    public :: SIG_UNKNOWN, SIG_REAL_FUNC_1_INT, SIG_REAL_FUNC_1_REAL
+    public :: SIG_REAL_FUNC_2_REAL, SIG_INT_FUNC_1_INT, SIG_DOUBLE_FUNC_1_INT
+    public :: SIG_LOGICAL_FUNC_2_CHAR, SIG_SUB_0_PARAMS, SIG_SUB_1_CHAR_OUT
+    public :: SIG_SUB_6_REAL, SIG_REAL_FUNC_INT_REAL_ARRAY
+    public :: function_info, get_function_info, get_signature_type
+    public :: TYPE_INTEGER, TYPE_REAL, TYPE_CHARACTER, TYPE_DOUBLE, TYPE_LOGICAL
+    public :: INTENT_IN, INTENT_OUT, INTENT_INOUT
+    
     ! Signature type constants
     integer, parameter :: SIG_UNKNOWN = 0
     integer, parameter :: SIG_REAL_FUNC_1_INT = 1
@@ -12,6 +21,7 @@ module slatec_signatures_module
     integer, parameter :: SIG_SUB_0_PARAMS = 7
     integer, parameter :: SIG_SUB_1_CHAR_OUT = 8
     integer, parameter :: SIG_SUB_6_REAL = 9
+    integer, parameter :: SIG_REAL_FUNC_INT_REAL_ARRAY = 10
     
     ! Function information type
     type :: function_info
@@ -37,7 +47,7 @@ module slatec_signatures_module
     integer, parameter :: INTENT_INOUT = 3
     
     ! Number of registered functions
-    integer, parameter :: NUM_FUNCTIONS = 15
+    integer, parameter :: NUM_FUNCTIONS = 16
     
     ! Function registry
     type(function_info), parameter :: FUNCTION_REGISTRY(NUM_FUNCTIONS) = [ &
@@ -175,6 +185,15 @@ module slatec_signatures_module
             param_types=[4,4,0,0,0,0,0,0,0,0], &
             param_intents=[1,1,0,0,0,0,0,0,0,0], &
             return_type=4 &
+        ), &
+        function_info( &
+            name='ENORM               ', &
+            signature_type=10, &
+            is_function=.true., &
+            num_params=2, &
+            param_types=[1,2,0,0,0,0,0,0,0,0], &
+            param_intents=[1,1,0,0,0,0,0,0,0,0], &
+            return_type=2 &
         ) &
     ]
     

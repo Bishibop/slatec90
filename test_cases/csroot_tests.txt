@@ -1,0 +1,306 @@
+FUNCTION: CSROOT
+
+TEST_START
+Description: Both real and imaginary parts are zero.
+REAL_PARAMS: 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Pure positive real number (4.0, 0.0).
+REAL_PARAMS: 4.0 0.0
+TEST_END
+
+TEST_START
+Description: Pure negative real number (-4.0, 0.0).
+REAL_PARAMS: -4.0 0.0
+TEST_END
+
+TEST_START
+Description: Pure positive imaginary number (0.0, 4.0).
+REAL_PARAMS: 0.0 4.0
+TEST_END
+
+TEST_START
+Description: Pure negative imaginary number (0.0, -4.0).
+REAL_PARAMS: 0.0 -4.0
+TEST_END
+
+TEST_START
+Description: Complex number in quadrant I (3.0, 4.0).
+REAL_PARAMS: 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Complex number in quadrant IV (3.0, -4.0).
+REAL_PARAMS: 3.0 -4.0
+TEST_END
+
+TEST_START
+Description: Complex number in quadrant II (-3.0, 4.0).
+REAL_PARAMS: -3.0 4.0
+TEST_END
+
+TEST_START
+Description: Complex number in quadrant III (-3.0, -4.0).
+REAL_PARAMS: -3.0 -4.0
+TEST_END
+
+TEST_START
+Description: Values near machine epsilon (positive parts) (1e-7, 2e-7).
+REAL_PARAMS: 1e-7 2e-7
+TEST_END
+
+TEST_START
+Description: Values near machine epsilon with negative imaginary (1e-7, -2e-7).
+REAL_PARAMS: 1e-7 -2e-7
+TEST_END
+
+TEST_START
+Description: Values near machine epsilon with negative real (-1e-7, 2e-7).
+REAL_PARAMS: -1e-7 2e-7
+TEST_END
+
+TEST_START
+Description: Values near machine epsilon with both parts negative (-1e-7, -2e-7).
+REAL_PARAMS: -1e-7 -2e-7
+TEST_END
+
+TEST_START
+Description: Powers of 2 with positive components (2.0, 2.0).
+REAL_PARAMS: 2.0 2.0
+TEST_END
+
+TEST_START
+Description: Powers of 2 with negative imaginary (2.0, -2.0).
+REAL_PARAMS: 2.0 -2.0
+TEST_END
+
+TEST_START
+Description: Powers of 2 with negative real (-2.0, 2.0).
+REAL_PARAMS: -2.0 2.0
+TEST_END
+
+TEST_START
+Description: Powers of 2 with both parts negative (-2.0, -2.0).
+REAL_PARAMS: -2.0 -2.0
+TEST_END
+
+TEST_START
+Description: Powers of 10: real small, imaginary large (1.0, 10.0).
+REAL_PARAMS: 1.0 10.0
+TEST_END
+
+TEST_START
+Description: Powers of 10: real large, imaginary small (10.0, 1.0).
+REAL_PARAMS: 10.0 1.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 with negative imaginary (1.0, -10.0).
+REAL_PARAMS: 1.0 -10.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 with negative imaginary and larger real (10.0, -1.0).
+REAL_PARAMS: 10.0 -1.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 with negative real ( -1.0, 10.0).
+REAL_PARAMS: -1.0 10.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 with negative real and small positive imaginary (-10.0, 1.0).
+REAL_PARAMS: -10.0 1.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 with both parts negative (-1.0, -10.0).
+REAL_PARAMS: -1.0 -10.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 with both parts negative alternative (-10.0, -1.0).
+REAL_PARAMS: -10.0 -1.0
+TEST_END
+
+TEST_START
+Description: Geometric progression test with (1.0, 1.0).
+REAL_PARAMS: 1.0 1.0
+TEST_END
+
+TEST_START
+Description: Geometric progression test with (10.0, 10.0).
+REAL_PARAMS: 10.0 10.0
+TEST_END
+
+TEST_START
+Description: Geometric progression test with (100.0, 100.0).
+REAL_PARAMS: 100.0 100.0
+TEST_END
+
+TEST_START
+Description: Geometric progression test with (1000.0, 1000.0).
+REAL_PARAMS: 1000.0 1000.0
+TEST_END
+
+TEST_START
+Description: Geometric progression test with (10000.0, 10000.0).
+REAL_PARAMS: 10000.0 10000.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test (5.0, 10.0).
+REAL_PARAMS: 5.0 10.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test (10.0, 15.0).
+REAL_PARAMS: 10.0 15.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test (15.0, 20.0).
+REAL_PARAMS: 15.0 20.0
+TEST_END
+
+TEST_START
+Description: Stress test with very large magnitude difference: (1e20, 1.0).
+REAL_PARAMS: 1e20 1.0
+TEST_END
+
+TEST_START
+Description: Stress test with very large magnitude difference: (1.0, 1e20).
+REAL_PARAMS: 1.0 1e20
+TEST_END
+
+TEST_START
+Description: Stress test with negative large real part: (-1e20, 1.0).
+REAL_PARAMS: -1e20 1.0
+TEST_END
+
+TEST_START
+Description: Stress test with negative large imaginary part: (1.0, -1e20).
+REAL_PARAMS: 1.0 -1e20
+TEST_END
+
+TEST_START
+Description: Stress test with both parts large and negative in one component: (-1e20, -1.0).
+REAL_PARAMS: -1e20 -1.0
+TEST_END
+
+TEST_START
+Description: Stress test with both parts large and negative in the other component: (-1.0, -1e20).
+REAL_PARAMS: -1.0 -1e20
+TEST_END
+
+TEST_START
+Description: Extreme very large values near overflow limit: (1e38, 1e38).
+REAL_PARAMS: 1e38 1e38
+TEST_END
+
+TEST_START
+Description: Extreme very large values with negative real: (-1e38, 1e38).
+REAL_PARAMS: -1e38 1e38
+TEST_END
+
+TEST_START
+Description: Extreme very large values with negative imaginary: (1e38, -1e38).
+REAL_PARAMS: 1e38 -1e38
+TEST_END
+
+TEST_START
+Description: Extreme very large values with both parts negative: (-1e38, -1e38).
+REAL_PARAMS: -1e38 -1e38
+TEST_END
+
+TEST_START
+Description: Extreme very small denormalized values: (1e-38, 1e-38).
+REAL_PARAMS: 1e-38 1e-38
+TEST_END
+
+TEST_START
+Description: Extreme very small values with negative imaginary: (1e-38, -1e-38).
+REAL_PARAMS: 1e-38 -1e-38
+TEST_END
+
+TEST_START
+Description: Extreme very small values with negative real: (-1e-38, 1e-38).
+REAL_PARAMS: -1e-38 1e-38
+TEST_END
+
+TEST_START
+Description: Extreme very small values with both parts negative (-1e-38, -1e-38).
+REAL_PARAMS: -1e-38 -1e-38
+TEST_END
+
+TEST_START
+Description: Values differing by a small amount (1.000000, 1.000001).
+REAL_PARAMS: 1.000000 1.000001
+TEST_END
+
+TEST_START
+Description: Values differing by a small amount with negative imaginary (1.000000, -1.000001).
+REAL_PARAMS: 1.000000 -1.000001
+TEST_END
+
+TEST_START
+Description: Values differing by a small amount with negative real (-1.000000, 1.000001).
+REAL_PARAMS: -1.000000 1.000001
+TEST_END
+
+TEST_START
+Description: Values differing by a small amount with both parts negative (-1.000000, -1.000001).
+REAL_PARAMS: -1.000000 -1.000001
+TEST_END
+
+TEST_START
+Description: Random test with moderate values (12345.678, 98765.432).
+REAL_PARAMS: 12345.678 98765.432
+TEST_END
+
+TEST_START
+Description: Random test with negative real ( -12345.678, 98765.432).
+REAL_PARAMS: -12345.678 98765.432
+TEST_END
+
+TEST_START
+Description: Random test with negative imaginary (12345.678, -98765.432).
+REAL_PARAMS: 12345.678 -98765.432
+TEST_END
+
+TEST_START
+Description: Random test with both parts negative (-12345.678, -98765.432).
+REAL_PARAMS: -12345.678 -98765.432
+TEST_END
+
+TEST_START
+Description: Stress test with cancellation effects: very large real parts with small incremental difference (1e10, 1.00001e10).
+REAL_PARAMS: 1e10 1.00001e10
+TEST_END
+
+TEST_START
+Description: Stress test with cancellation effects and negative imaginary (1e10, -1e10+1e4).
+REAL_PARAMS: 1e10 -9.9999e9
+TEST_END
+
+TEST_START
+Description: Irrational numbers test: (3.14159, 2.71828).
+REAL_PARAMS: 3.14159 2.71828
+TEST_END
+
+TEST_START
+Description: Irrational numbers test with negative real: (-3.14159, 2.71828).
+REAL_PARAMS: -3.14159 2.71828
+TEST_END
+
+TEST_START
+Description: Irrational numbers test with negative imaginary: (3.14159, -2.71828).
+REAL_PARAMS: 3.14159 -2.71828
+TEST_END
+
+TEST_START
+Description: Irrational numbers test with both parts negative: (-3.14159, -2.71828).
+REAL_PARAMS: -3.14159 -2.71828
+TEST_END

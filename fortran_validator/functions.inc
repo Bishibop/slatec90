@@ -6,6 +6,7 @@
     use cdiv_module, only: cdiv_modern => cdiv
     use csroot_module, only: csroot_modern => csroot
     use d1mach_module, only: d1mach_modern => d1mach
+    use enorm_module, only: enorm_modern => enorm
     use fdump_module, only: fdump_modern => fdump
     use i1mach_module, only: i1mach_modern => i1mach
     use lsame_module, only: lsame_modern => lsame

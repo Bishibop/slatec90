@@ -1,0 +1,351 @@
+FUNCTION: ZABS
+
+TEST_START
+Description: Both inputs zero
+REAL_PARAMS: 0.0D+0 0.0D+0
+TEST_END
+
+TEST_START
+Description: Real positive one, imaginary zero
+REAL_PARAMS: 1.0D+0 0.0D+0
+TEST_END
+
+TEST_START
+Description: Real zero, imaginary positive one
+REAL_PARAMS: 0.0D+0 1.0D+0
+TEST_END
+
+TEST_START
+Description: Real negative one, imaginary zero
+REAL_PARAMS: -1.0D+0 0.0D+0
+TEST_END
+
+TEST_START
+Description: Real zero, imaginary negative one
+REAL_PARAMS: 0.0D+0 -1.0D+0
+TEST_END
+
+TEST_START
+Description: Both components one (positive)
+REAL_PARAMS: 1.0D+0 1.0D+0
+TEST_END
+
+TEST_START
+Description: Both components one (negative)
+REAL_PARAMS: -1.0D+0 -1.0D+0
+TEST_END
+
+TEST_START
+Description: Mixed signs: positive real, negative imaginary
+REAL_PARAMS: 1.0D+0 -1.0D+0
+TEST_END
+
+TEST_START
+Description: Mixed signs: negative real, positive imaginary
+REAL_PARAMS: -1.0D+0 1.0D+0
+TEST_END
+
+TEST_START
+Description: Pythagorean triple: (3,4) (should be 5)
+REAL_PARAMS: 3.0D+0 4.0D+0
+TEST_END
+
+TEST_START
+Description: Pythagorean triple (swapped): (4,3)
+REAL_PARAMS: 4.0D+0 3.0D+0
+TEST_END
+
+TEST_START
+Description: Pythagorean triple with negative imaginary: (3,-4)
+REAL_PARAMS: 3.0D+0 -4.0D+0
+TEST_END
+
+TEST_START
+Description: Pythagorean triple with negative real: (-3,4)
+REAL_PARAMS: -3.0D+0 4.0D+0
+TEST_END
+
+TEST_START
+Description: Pythagorean triple with both negative: (-3,-4)
+REAL_PARAMS: -3.0D+0 -4.0D+0
+TEST_END
+
+TEST_START
+Description: Small equal values near 1e-6
+REAL_PARAMS: 1.0D-6 1.0D-6
+TEST_END
+
+TEST_START
+Description: Small values with one component twice the other
+REAL_PARAMS: 1.0D-6 2.0D-6
+TEST_END
+
+TEST_START
+Description: Small values with components swapped
+REAL_PARAMS: 2.0D-6 1.0D-6
+TEST_END
+
+TEST_START
+Description: Very small values: 1e-7 and 1e-8
+REAL_PARAMS: 1.0D-7 1.0D-8
+TEST_END
+
+TEST_START
+Description: Very small values swapped: 1e-8 and 1e-7
+REAL_PARAMS: 1.0D-8 1.0D-7
+TEST_END
+
+TEST_START
+Description: Values near machine epsilon: 1e-15 each
+REAL_PARAMS: 1.0D-15 1.0D-15
+TEST_END
+
+TEST_START
+Description: Mixing values near epsilon: 1e-15 and 1e-16
+REAL_PARAMS: 1.0D-15 1.0D-16
+TEST_END
+
+TEST_START
+Description: Mixing values near epsilon swapped: 1e-16 and 1e-15
+REAL_PARAMS: 1.0D-16 1.0D-15
+TEST_END
+
+TEST_START
+Description: Very large values: both 1e+300
+REAL_PARAMS: 1.0D+300 1.0D+300
+TEST_END
+
+TEST_START
+Description: One very large and one very small value
+REAL_PARAMS: 1.0D+300 1.0D-300
+TEST_END
+
+TEST_START
+Description: Very large and very small value swapped
+REAL_PARAMS: 1.0D-300 1.0D+300
+TEST_END
+
+TEST_START
+Description: Powers of 2: both 2
+REAL_PARAMS: 2.0D+0 2.0D+0
+TEST_END
+
+TEST_START
+Description: Powers of 2: (2,4)
+REAL_PARAMS: 2.0D+0 4.0D+0
+TEST_END
+
+TEST_START
+Description: Powers of 2: (4,2)
+REAL_PARAMS: 4.0D+0 2.0D+0
+TEST_END
+
+TEST_START
+Description: Powers of 10: both 10
+REAL_PARAMS: 1.0D+1 1.0D+1
+TEST_END
+
+TEST_START
+Description: Powers of 10: (10,100)
+REAL_PARAMS: 1.0D+1 1.0D+2
+TEST_END
+
+TEST_START
+Description: Powers of 10: (100,10)
+REAL_PARAMS: 1.0D+2 1.0D+1
+TEST_END
+
+TEST_START
+Description: Mixed random values: (12345.6789, 98765.4321)
+REAL_PARAMS: 1.23456789D+4 9.87654321D+4
+TEST_END
+
+TEST_START
+Description: Mixed random with negative real: (-12345.6789, 98765.4321)
+REAL_PARAMS: -1.23456789D+4 9.87654321D+4
+TEST_END
+
+TEST_START
+Description: Mixed random with negative imaginary: (12345.6789, -98765.4321)
+REAL_PARAMS: 1.23456789D+4 -9.87654321D+4
+TEST_END
+
+TEST_START
+Description: Mixed random with both negative: (-12345.6789, -98765.4321)
+REAL_PARAMS: -1.23456789D+4 -9.87654321D+4
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: (1,2)
+REAL_PARAMS: 1.0D+0 2.0D+0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: (2,3)
+REAL_PARAMS: 2.0D+0 3.0D+0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: (5,7)
+REAL_PARAMS: 5.0D+0 7.0D+0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: (8,9)
+REAL_PARAMS: 8.0D+0 9.0D+0
+TEST_END
+
+TEST_START
+Description: Random constants: (pi, e)
+REAL_PARAMS: 3.1415926535D+0 2.7182818284D+0
+TEST_END
+
+TEST_START
+Description: Random constants swapped: (e, pi)
+REAL_PARAMS: 2.7182818284D+0 3.1415926535D+0
+TEST_END
+
+TEST_START
+Description: Very different magnitudes: (1e+20, 1e-5)
+REAL_PARAMS: 1.0D+20 1.0D-5
+TEST_END
+
+TEST_START
+Description: Very different magnitudes swapped: (1e-5, 1e+20)
+REAL_PARAMS: 1.0D-5 1.0D+20
+TEST_END
+
+TEST_START
+Description: Stress test: (1e+100, 1e-100)
+REAL_PARAMS: 1.0D+100 1.0D-100
+TEST_END
+
+TEST_START
+Description: Stress test swapped: (1e-100, 1e+100)
+REAL_PARAMS: 1.0D-100 1.0D+100
+TEST_END
+
+TEST_START
+Description: Slight difference in values: (1.000001, 1.000000)
+REAL_PARAMS: 1.000001D+0 1.000000D+0
+TEST_END
+
+TEST_START
+Description: Slight difference reversed: (1.000000, 1.000001)
+REAL_PARAMS: 1.000000D+0 1.000001D+0
+TEST_END
+
+TEST_START
+Description: Slight difference with negatives: (-1.000001, -1.000000)
+REAL_PARAMS: -1.000001D+0 -1.000000D+0
+TEST_END
+
+TEST_START
+Description: Special value: Infinity for real part, zero imaginary
+REAL_PARAMS: Inf 0.0D+0
+TEST_END
+
+TEST_START
+Description: Special value: -Infinity for real part, zero imaginary
+REAL_PARAMS: -Inf 0.0D+0
+TEST_END
+
+TEST_START
+Description: Special value: Infinity for imaginary part, zero real
+REAL_PARAMS: 0.0D+0 Inf
+TEST_END
+
+TEST_START
+Description: Special value: -Infinity for imaginary part, zero real
+REAL_PARAMS: 0.0D+0 -Inf
+TEST_END
+
+TEST_START
+Description: Special value: Both parts Infinity
+REAL_PARAMS: Inf Inf
+TEST_END
+
+TEST_START
+Description: Special value: Real = Infinity, Imag = -Infinity
+REAL_PARAMS: Inf -Inf
+TEST_END
+
+TEST_START
+Description: Special value: NaN for real part, 1.0 for imaginary
+REAL_PARAMS: NaN 1.0D+0
+TEST_END
+
+TEST_START
+Description: Special value: 1.0 for real part, NaN for imaginary
+REAL_PARAMS: 1.0D+0 NaN
+TEST_END
+
+TEST_START
+Description: Special value: Both parts NaN
+REAL_PARAMS: NaN NaN
+TEST_END
+
+TEST_START
+Description: Denormalized numbers: both at approx. smallest positive subnormal (4.94e-324)
+REAL_PARAMS: 4.94065645841247D-324 4.94065645841247D-324
+TEST_END
+
+TEST_START
+Description: Denormalized numbers with slight variation
+REAL_PARAMS: 4.94065645841247D-324 1.0D-323
+TEST_END
+
+TEST_START
+Description: Geometric progression: (1e0, 1e1)
+REAL_PARAMS: 1.0D+0 1.0D+1
+TEST_END
+
+TEST_START
+Description: Geometric progression: (1e1, 1e2)
+REAL_PARAMS: 1.0D+1 1.0D+2
+TEST_END
+
+TEST_START
+Description: Geometric progression: (1e2, 1e3)
+REAL_PARAMS: 1.0D+2 1.0D+3
+TEST_END
+
+TEST_START
+Description: Random physical constants: (6.022e23, 9.109e-31)
+REAL_PARAMS: 6.022D+23 9.109D-31
+TEST_END
+
+TEST_START
+Description: Random physical constants with negative real: (-6.022e23, 9.109e-31)
+REAL_PARAMS: -6.022D+23 9.109D-31
+TEST_END
+
+TEST_START
+Description: Random physical constants with negative imaginary: (6.022e23, -9.109e-31)
+REAL_PARAMS: 6.022D+23 -9.109D-31
+TEST_END
+
+TEST_START
+Description: Random physical constants with both negative: (-6.022e23, -9.109e-31)
+REAL_PARAMS: -6.022D+23 -9.109D-31
+TEST_END
+
+TEST_START
+Description: Random small decimals: (0.123456789, 0.987654321)
+REAL_PARAMS: 0.123456789D+0 0.987654321D+0
+TEST_END
+
+TEST_START
+Description: Random small decimals with negative real: (-0.123456789, 0.987654321)
+REAL_PARAMS: -0.123456789D+0 0.987654321D+0
+TEST_END
+
+TEST_START
+Description: Near-zero with moderate values: (1e-12, 1e-12)
+REAL_PARAMS: 1.0D-12 1.0D-12
+TEST_END
+
+TEST_START
+Description: Near-zero with moderate values and negative imaginary: (1e-12, -1e-12)
+REAL_PARAMS: 1.0D-12 -1.0D-12
+TEST_END

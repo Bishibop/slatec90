@@ -1,0 +1,331 @@
+FUNCTION: ZEXP
+
+TEST_START
+Description: Both AR and AI are zero.
+REAL_PARAMS: 0.0 0.0
+TEST_END
+
+TEST_START
+Description: AR and AI equal machine epsilon (approx 2.220446049250313e-16).
+REAL_PARAMS: 2.220446049250313e-16 2.220446049250313e-16
+TEST_END
+
+TEST_START
+Description: AR and AI equal -machine epsilon.
+REAL_PARAMS: -2.220446049250313e-16 -2.220446049250313e-16
+TEST_END
+
+TEST_START
+Description: AR very small positive (1e-6), AI zero.
+REAL_PARAMS: 1.0e-6 0.0
+TEST_END
+
+TEST_START
+Description: AR and AI very small positive (1e-6, 1e-6).
+REAL_PARAMS: 1.0e-6 1.0e-6
+TEST_END
+
+TEST_START
+Description: AR small positive (1e-6) and AI small negative (-1e-6).
+REAL_PARAMS: 1.0e-6 -1.0e-6
+TEST_END
+
+TEST_START
+Description: AR = 1, AI = 0 (simple real exponential).
+REAL_PARAMS: 1.0 0.0
+TEST_END
+
+TEST_START
+Description: AR = 0, AI = 1 (pure imaginary exponent, testing cosine and sine).
+REAL_PARAMS: 0.0 1.0
+TEST_END
+
+TEST_START
+Description: AR and AI both positive (1, 1).
+REAL_PARAMS: 1.0 1.0
+TEST_END
+
+TEST_START
+Description: AR negative and AI positive (-1, 1).
+REAL_PARAMS: -1.0 1.0
+TEST_END
+
+TEST_START
+Description: AR positive and AI negative (1, -1).
+REAL_PARAMS: 1.0 -1.0
+TEST_END
+
+TEST_START
+Description: Both AR and AI negative (-1, -1).
+REAL_PARAMS: -1.0 -1.0
+TEST_END
+
+TEST_START
+Description: Mixed values AR = 2, AI = 3.
+REAL_PARAMS: 2.0 3.0
+TEST_END
+
+TEST_START
+Description: Mixed values AR = -2, AI = 3.
+REAL_PARAMS: -2.0 3.0
+TEST_END
+
+TEST_START
+Description: Mixed values AR = 2, AI = -3.
+REAL_PARAMS: 2.0 -3.0
+TEST_END
+
+TEST_START
+Description: Mixed values AR = -2, AI = -3.
+REAL_PARAMS: -2.0 -3.0
+TEST_END
+
+TEST_START
+Description: Powers of 2 starting test: AR = 2, AI = 0.
+REAL_PARAMS: 2.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 4, AI = 0.
+REAL_PARAMS: 4.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 8, AI = 0.
+REAL_PARAMS: 8.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 16, AI = 0.
+REAL_PARAMS: 16.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 32, AI = 0.
+REAL_PARAMS: 32.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 64, AI = 0.
+REAL_PARAMS: 64.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 128, AI = 0.
+REAL_PARAMS: 128.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 256, AI = 0.
+REAL_PARAMS: 256.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 512, AI = 0.
+REAL_PARAMS: 512.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2: AR = 1024, AI = 0 (testing overflow behavior).
+REAL_PARAMS: 1024.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 10: AR = 1, AI = 0.
+REAL_PARAMS: 1.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 10: AR = 10, AI = 0.
+REAL_PARAMS: 10.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 10: AR = 100, AI = 0.
+REAL_PARAMS: 100.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 10: AR = 1000, AI = 0 (approaching exponential overflow).
+REAL_PARAMS: 1000.0 0.0
+TEST_END
+
+TEST_START
+Description: Trigonometric cycle: AR = 1, AI = 2*pi (6.283185307179586).
+REAL_PARAMS: 1.0 6.283185307179586
+TEST_END
+
+TEST_START
+Description: Trigonometric: AR = 1, AI = pi/2 (1.570796326794897).
+REAL_PARAMS: 1.0 1.570796326794897
+TEST_END
+
+TEST_START
+Description: Trigonometric: AR = 1, AI = -pi/2 (-1.570796326794897).
+REAL_PARAMS: 1.0 -1.570796326794897
+TEST_END
+
+TEST_START
+Description: Trigonometric: AR = 1, AI = pi (3.141592653589793).
+REAL_PARAMS: 1.0 3.141592653589793
+TEST_END
+
+TEST_START
+Description: Trigonometric: AR = 1, AI = -pi (-3.141592653589793).
+REAL_PARAMS: 1.0 -3.141592653589793
+TEST_END
+
+TEST_START
+Description: Large AR near overflow limit: AR = 700, AI = 0.
+REAL_PARAMS: 700.0 0.0
+TEST_END
+
+TEST_START
+Description: AR exceeding safe limit: AR = 710, AI = 0 (likely causes overflow in exp).
+REAL_PARAMS: 710.0 0.0
+TEST_END
+
+TEST_START
+Description: Large negative AR for underflow: AR = -745, AI = 0.
+REAL_PARAMS: -745.0 0.0
+TEST_END
+
+TEST_START
+Description: Extreme underflow: AR = -750, AI = 0.
+REAL_PARAMS: -750.0 0.0
+TEST_END
+
+TEST_START
+Description: Combination: AR = 700, AI = 3.14159 (large magnitude with phase shift).
+REAL_PARAMS: 700.0 3.14159
+TEST_END
+
+TEST_START
+Description: Combination: AR = -700, AI = -3.14159.
+REAL_PARAMS: -700.0 -3.14159
+TEST_END
+
+TEST_START
+Description: Random representative values: AR = 3.14159, AI = 2.71828.
+REAL_PARAMS: 3.14159 2.71828
+TEST_END
+
+TEST_START
+Description: Random representative values: AR = -3.14159, AI = 2.71828.
+REAL_PARAMS: -3.14159 2.71828
+TEST_END
+
+TEST_START
+Description: Random representative values: AR = 3.14159, AI = -2.71828.
+REAL_PARAMS: 3.14159 -2.71828
+TEST_END
+
+TEST_START
+Description: Random representative values: AR = -3.14159, AI = -2.71828.
+REAL_PARAMS: -3.14159 -2.71828
+TEST_END
+
+TEST_START
+Description: Very small values: AR = 1e-10, AI = 1e-10.
+REAL_PARAMS: 1.0e-10 1.0e-10
+TEST_END
+
+TEST_START
+Description: Very small with cancellation potential: AR = 1e-10, AI = -1e-10.
+REAL_PARAMS: 1.0e-10 -1.0e-10
+TEST_END
+
+TEST_START
+Description: Extreme disparity: Small real, large imaginary: AR = 1e-7, AI = 1e7.
+REAL_PARAMS: 1.0e-7 1.0e7
+TEST_END
+
+TEST_START
+Description: Extreme disparity: Large real, small imaginary: AR = 1e7, AI = 1e-7.
+REAL_PARAMS: 1.0e7 1.0e-7
+TEST_END
+
+TEST_START
+Description: Both components very large: AR = 1e7, AI = 1e7.
+REAL_PARAMS: 1.0e7 1.0e7
+TEST_END
+
+TEST_START
+Description: Both components very large and negative: AR = -1e7, AI = -1e7.
+REAL_PARAMS: -1.0e7 -1.0e7
+TEST_END
+
+TEST_START
+Description: AR = 710 with a tiny imaginary part: AR = 710, AI = 1e-6.
+REAL_PARAMS: 710.0 1.0e-6
+TEST_END
+
+TEST_START
+Description: AR = 710 with a tiny negative imaginary part: AR = 710, AI = -1e-6.
+REAL_PARAMS: 710.0 -1.0e-6
+TEST_END
+
+TEST_START
+Description: Tiny real with huge imaginary: AR = 1e-6, AI = 710.
+REAL_PARAMS: 1.0e-6 710.0
+TEST_END
+
+TEST_START
+Description: Tiny negative real with huge negative imaginary: AR = -1e-6, AI = -710.
+REAL_PARAMS: -1.0e-6 -710.0
+TEST_END
+
+TEST_START
+Description: Zero real with tiny positive imaginary: AR = 0, AI = 1e-6.
+REAL_PARAMS: 0.0 1.0e-6
+TEST_END
+
+TEST_START
+Description: Zero real with tiny negative imaginary: AR = 0, AI = -1e-6.
+REAL_PARAMS: 0.0 -1.0e-6
+TEST_END
+
+TEST_START
+Description: Slight difference: AR = 1e-6, AI = 1e-7.
+REAL_PARAMS: 1.0e-6 1.0e-7
+TEST_END
+
+TEST_START
+Description: Slight difference: AR = 1e-6, AI = -1e-7.
+REAL_PARAMS: 1.0e-6 -1.0e-7
+TEST_END
+
+TEST_START
+Description: Special value: AR = Inf, AI = 0. (Assuming IEEE arithmetic; Inf is represented as INF)
+REAL_PARAMS: INF 0.0
+TEST_END
+
+TEST_START
+Description: Special value: AR = -Inf, AI = 0.
+REAL_PARAMS: -INF 0.0
+TEST_END
+
+TEST_START
+Description: Special value: AR = NaN, AI = 0. (NaN indicates not-a-number)
+REAL_PARAMS: NAN 0.0
+TEST_END
+
+TEST_START
+Description: Special value: AR = 0, AI = NaN.
+REAL_PARAMS: 0.0 NAN
+TEST_END
+
+TEST_START
+Description: Special value: AR = Inf, AI = Inf.
+REAL_PARAMS: INF INF
+TEST_END
+
+TEST_START
+Description: Special value: AR = -Inf, AI = -Inf.
+REAL_PARAMS: -INF -INF
+TEST_END
+
+TEST_START
+Description: Special value: AR = NaN, AI = NaN.
+REAL_PARAMS: NAN NAN
+TEST_END

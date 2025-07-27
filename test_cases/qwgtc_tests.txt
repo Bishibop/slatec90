@@ -1,0 +1,361 @@
+FUNCTION: QWGTC
+
+TEST_START
+Description: Basic test: X=2.0, C=1.0, simple positive difference
+REAL_PARAMS: 2.0 1.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Inverse test: X=1.0, C=2.0, expecting negative result
+REAL_PARAMS: 1.0 2.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Zero denominator test: X=0.0, C=0.0, should trigger division by zero
+REAL_PARAMS: 0.0 0.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Machine epsilon addition: X=1.0+epsilon, C=1.0; epsilon approx 1.1920929e-7
+REAL_PARAMS: 1.0000001192092896 1.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Machine epsilon subtraction: X=1.0, C=1.0+epsilon
+REAL_PARAMS: 1.0 1.0000001192092896 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Powers of 2: X=16.0, C=8.0
+REAL_PARAMS: 16.0 8.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Powers of 2 with close values: X=1e6, C=1e6 minus 1e-6
+REAL_PARAMS: 1000000.0 999999.999999 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Powers of 10: X=1000.0, C=100.0
+REAL_PARAMS: 1000.0 100.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Arithmetic progression: X=10.0, C=2.0
+REAL_PARAMS: 10.0 2.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Geometric progression: X=1.0, C=0.1
+REAL_PARAMS: 1.0 0.1 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Near underflow test: using smallest normalized positive approx for single precision
+REAL_PARAMS: 1.17549435e-38 -1.17549435e-38 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Underflow swapped: X=-1.17549435e-38, C=1.17549435e-38
+REAL_PARAMS: -1.17549435e-38 1.17549435e-38 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Denormalized number test: X=1e-45, C=0.0
+REAL_PARAMS: 1e-45 0.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small difference test: X=1.000001, C=1.0
+REAL_PARAMS: 1.000001 1.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small difference swapped: X=1.0, C=1.000001
+REAL_PARAMS: 1.0 1.000001 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Both positive: X=5.0, C=3.0
+REAL_PARAMS: 5.0 3.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Mixed signs: X=5.0, C=-3.0
+REAL_PARAMS: 5.0 -3.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Mixed signs: X=-5.0, C=3.0
+REAL_PARAMS: -5.0 3.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Both negative: X=-5.0, C=-3.0
+REAL_PARAMS: -5.0 -3.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Cancellation test: very close large numbers, X=1000.000001, C=1000.000000
+REAL_PARAMS: 1000.000001 1000.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Cancellation reverse: X=1000.000000, C=1000.000001
+REAL_PARAMS: 1000.0 1000.000001 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Extreme large difference: X=1e30, C=-1e30
+REAL_PARAMS: 1e30 -1e30 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Extremely large but close: X=1e30, C=1e30 - 1e20
+REAL_PARAMS: 1e30 9.999999999999999e+29 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Very small difference in huge numbers: X=1e30, C=1e30 - 1e-6
+REAL_PARAMS: 1e30 1e30 0.0 0.0 1e-6
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Overflow candidate: X=1e38, C=1e37
+REAL_PARAMS: 1e38 1e37 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Underflow difference with negative large: X=-1e38, C=-1e37
+REAL_PARAMS: -1e38 -1e37 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Random mid-range test: X=123.456, C=78.9
+REAL_PARAMS: 123.456 78.9 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Random negative mid-range: X=-987.65, C=-123.45
+REAL_PARAMS: -987.65 -123.45 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: High-precision near-equality: X=1.0000001, C=1.0000000
+REAL_PARAMS: 1.0000001 1.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: High-precision reverse: X=1.0000000, C=1.0000001
+REAL_PARAMS: 1.0 1.0000001 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Powers test: X=1e-3, C=1e-4
+REAL_PARAMS: 0.001 0.0001 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Pi related: X=3.141592, C=3.141591
+REAL_PARAMS: 3.141592 3.141591 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small negative vs small positive: X=-1e-6, C=1e-6
+REAL_PARAMS: -1e-6 1e-6 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small positive vs small negative: X=1e-6, C=-1e-6
+REAL_PARAMS: 1e-6 -1e-6 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Both near zero with different magnitudes: X=1e-8, C=1e-9
+REAL_PARAMS: 1e-8 1e-9 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Reverse near zero: X=1e-9, C=1e-8
+REAL_PARAMS: 1e-9 1e-8 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Extreme positive values: X=3.4e38, C=1e38
+REAL_PARAMS: 3.4e38 1e38 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Extreme negative values: X=-3.4e38, C=-1e38
+REAL_PARAMS: -3.4e38 -1e38 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Infinity scenario: X and C equal huge numbers leading to division by zero: X=1e38, C=1e38
+REAL_PARAMS: 1e38 1e38 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Negative infinity scenario: X=-1e38, C=-1e38
+REAL_PARAMS: -1e38 -1e38 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: X is NaN: using special NaN token, expecting propagation
+REAL_PARAMS: NAN 1.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: C is NaN: X valid, C=NaN
+REAL_PARAMS: 1.0 NAN 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Both X and C are NaN
+REAL_PARAMS: NAN NAN 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Test with non-default extra parameters: X=20.0, C=5.0, P2,P3,P4 non-zero
+REAL_PARAMS: 20.0 5.0 3.3 4.4 5.5
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Testing with different integer parameter: kp=2 (unused parameter test)
+REAL_PARAMS: 10.0 2.0 0.0 0.0 0.0
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Random large constant: X=6.022e23, C=1e23
+REAL_PARAMS: 6.022e23 1e23 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Random large negative: X=-6.022e23, C=-1e23
+REAL_PARAMS: -6.022e23 -1e23 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Difference of 1e-7 added to a large number: X=1000.0000001, C=1000.0
+REAL_PARAMS: 1000.0000001 1000.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Difference of -1e-7: X=1000.0, C=1000.0000001
+REAL_PARAMS: 1000.0 1000.0000001 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: High precision test: X=1.234567, C=1.234566
+REAL_PARAMS: 1.234567 1.234566 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: High precision reverse: X=1.234566, C=1.234567
+REAL_PARAMS: 1.234566 1.234567 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Test with values differing in the 6th decimal: X=999.9999, C=999.9998
+REAL_PARAMS: 999.9999 999.9998 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: High precision negative: X=-999.9999, C=-999.9998
+REAL_PARAMS: -999.9999 -999.9998 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small numbers: X=1e-5, C=2e-5
+REAL_PARAMS: 1e-5 2e-5 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small numbers reverse: X=2e-5, C=1e-5
+REAL_PARAMS: 2e-5 1e-5 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Arithmetic progression with negatives: X=-50, C=-25
+REAL_PARAMS: -50.0 -25.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Progression test: X=1e2, C=1e1
+REAL_PARAMS: 100.0 10.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Progression with close large numbers: X=3.33e2, C=3.32e2
+REAL_PARAMS: 333.0 332.0 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Borderline cancellation: X=1.000001e10, C=1.000000e10
+REAL_PARAMS: 1.000001e10 1.000000e10 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Borderline cancellation reverse: X=1.000000e10, C=1.000001e10
+REAL_PARAMS: 1.000000e10 1.000001e10 0.0 0.0 0.0
+INT_PARAMS: 1
+TEST_END

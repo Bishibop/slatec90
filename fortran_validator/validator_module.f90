@@ -263,5 +263,25 @@ contains
             call report_failed_test_character(f77_val, modern_val)
         end if
     end subroutine
+    
+    subroutine validate_real_function_int_real_array(func_name, n, x_array)
+        character(len=*), intent(in) :: func_name
+        integer, intent(in) :: n
+        real, intent(in) :: x_array(:)
+        real :: result_f77, result_modern
+        
+        ! Call F77 version
+        call execute_real_function_int_real_array(func_name, .false., n, x_array, result_f77)
+        
+        ! Call modern version
+        if (has_modern_implementation(func_name)) then
+            call execute_real_function_int_real_array(func_name, .true., n, x_array, result_modern)
+        else
+            result_modern = result_f77
+        end if
+        
+        ! Compare and report
+        call compare_real_results(result_f77, result_modern)
+    end subroutine
 
 end module validator_module

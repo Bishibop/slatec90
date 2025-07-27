@@ -7,6 +7,7 @@
         call register_modern('CDIV', .true.)
         call register_modern('CSROOT', .true.)
         call register_modern('D1MACH', .true.)
+        call register_modern('ENORM', .true.)
         call register_modern('FDUMP', .true.)
         call register_modern('I1MACH', .true.)
         call register_modern('LSAME', .true.)

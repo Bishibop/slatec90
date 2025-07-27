@@ -6,6 +6,7 @@ import json
 import logging
 from typing import Dict, List
 import os
+import re
 from openai import OpenAI
 
 class TestGenerator:
@@ -99,8 +100,72 @@ IMPORTANT: Generate extensive, thorough test coverage. More tests are better tha
             
             result = json.loads(response.choices[0].message.content)
             self.logger.info(f"Generated {result.get('num_tests', 'unknown')} tests for {func_name}")
-            return result['test_cases']
+            
+            # Validate and fix numeric formats
+            test_cases = result['test_cases']
+            test_cases = self._validate_numeric_formats(test_cases)
+            
+            return test_cases
             
         except Exception as e:
             self.logger.error(f"LLM test generation failed: {e}")
             raise
+    
+    def _validate_numeric_formats(self, test_cases):
+        """Validate and fix numeric formats in test cases"""
+        # Pattern to find malformed scientific notation
+        bad_sci_pattern = re.compile(r'\b(\d+(?:\.\d+)?)[eE]\d+[eE]\d+\b')
+        
+        # Fix double exponents (e.g., 1e19e0 -> 1e19)
+        fixed_cases = bad_sci_pattern.sub(lambda m: m.group(1) + 'e19', test_cases)
+        
+        # More general fix for any double exponent
+        double_exp_pattern = re.compile(r'\b(\d+(?:\.\d+)?[eE][+-]?\d+)[eE][+-]?\d+\b')
+        fixed_cases = double_exp_pattern.sub(r'\1', fixed_cases)
+        
+        # Validate all numeric values in REAL_ARRAY and REAL_PARAMS lines
+        lines = fixed_cases.splitlines()
+        fixed_lines = []
+        
+        for line in lines:
+            if line.strip().startswith(('REAL_ARRAY:', 'REAL_PARAMS:')):
+                # Extract the numeric part
+                parts = line.split(':', 1)
+                if len(parts) == 2:
+                    prefix = parts[0]
+                    values = parts[1].strip()
+                    
+                    # Split values and validate each
+                    validated_values = []
+                    for value in values.split():
+                        # Try to parse as float to validate
+                        try:
+                            float(value)
+                            validated_values.append(value)
+                        except ValueError:
+                            # Try to fix common issues
+                            fixed_value = self._fix_numeric_value(value)
+                            if fixed_value:
+                                validated_values.append(fixed_value)
+                                self.logger.warning(f"Fixed malformed number: {value} -> {fixed_value}")
+                            else:
+                                self.logger.error(f"Skipping malformed number: {value}")
+                    
+                    line = f"{prefix}: {' '.join(validated_values)}"
+            
+            fixed_lines.append(line)
+        
+        return '\n'.join(fixed_lines)
+    
+    def _fix_numeric_value(self, value):
+        """Try to fix a malformed numeric value"""
+        # Remove double exponents
+        if 'e' in value.lower():
+            # Find all 'e' positions
+            e_positions = [i for i, c in enumerate(value.lower()) if c == 'e']
+            if len(e_positions) > 1:
+                # Keep only the first exponent
+                return value[:e_positions[1]]
+        
+        # Try other fixes here if needed
+        return None

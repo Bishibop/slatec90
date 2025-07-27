@@ -15,25 +15,27 @@ Rather than attempting to build a universal modernization process upfront, we wi
 ### 🔥 Recommended Next Functions to Modernize
 Based on the current progress, here are the best candidates:
 
-1. **CSROOT** - Complex square root (depends on PYTHAG which is done)
-   ```bash
-   python slatec_orchestrator.py --function CSROOT
-   ```
-
-2. **ENORM** - Euclidean norm of a vector (simple, no dependencies)
+1. **ENORM** - Euclidean norm of a vector (simple, no dependencies)
    ```bash
    python slatec_orchestrator.py --function ENORM
    ```
 
-3. **SASUM** - Sum of absolute values (BLAS Level 1, no dependencies)
+2. **SASUM** - Sum of absolute values (BLAS Level 1, no dependencies)
    ```bash
    python slatec_orchestrator.py --function SASUM
    ```
 
+3. **POLCOF** - Polynomial coefficients (pure math, no I/O)
+   ```bash
+   python slatec_orchestrator.py --function POLCOF
+   ```
+
 Or modernize all three at once:
 ```bash
-python slatec_orchestrator.py --functions CSROOT,ENORM,SASUM
+python slatec_orchestrator.py --functions ENORM,SASUM,POLCOF
 ```
+
+**Note**: CSROOT was already completed. SVOUT/DVOUT and their dependents (sbolsm, splpmn, dbolsm, dplpmn) are skipped due to I/O operations - see [SKIPPED_FUNCTIONS.md](../reference/SKIPPED_FUNCTIONS.md)
 
 **🚀 UPDATE (July 24, 2025)**: **Phase 0 infrastructure is complete and parallel-ready!** The universal validator with auto-discovery eliminates serialization bottlenecks. Multiple functions can now be modernized simultaneously without coordination overhead. Ready to scale up parallel execution for remaining Phase 0 and Phase 1 functions.
 

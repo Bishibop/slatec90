@@ -17,15 +17,17 @@ class F77Parser:
             func_name = func_name.upper()
             
             # Find function/subroutine declaration
-            func_pattern = rf'^\s*(FUNCTION|SUBROUTINE)\s+{func_name}\s*\((.*?)\)'
+            # Handle optional type prefix (REAL, INTEGER, etc.) for functions
+            func_pattern = rf'^\s*(?:(REAL|INTEGER|DOUBLE\s+PRECISION|COMPLEX|LOGICAL)\s+)?(FUNCTION|SUBROUTINE)\s+{func_name}\s*\((.*?)\)'
             func_match = re.search(func_pattern, f77_code, re.MULTILINE | re.IGNORECASE)
             
             if not func_match:
                 self.logger.error(f"Could not find declaration for {func_name}")
                 return None
                 
-            func_type = func_match.group(1).upper()
-            param_string = func_match.group(2).strip()
+            type_prefix = func_match.group(1)  # Optional type prefix
+            func_type = func_match.group(2).upper()
+            param_string = func_match.group(3).strip()
             
             # Parse parameters
             param_names = []
@@ -49,7 +51,15 @@ class F77Parser:
             
             # For functions, determine return type
             if func_type == 'FUNCTION':
-                metadata['returns'] = self._extract_return_type(f77_code, func_name)
+                # If type prefix exists, use it
+                if type_prefix:
+                    if 'DOUBLE' in type_prefix.upper():
+                        metadata['returns'] = 'double'
+                    else:
+                        metadata['returns'] = type_prefix.lower()
+                else:
+                    # Otherwise try to extract from declarations
+                    metadata['returns'] = self._extract_return_type(f77_code, func_name)
             else:
                 metadata['returns'] = None
                 
