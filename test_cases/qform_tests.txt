@@ -1,0 +1,451 @@
+FUNCTION: QFORM
+
+TEST_START
+Description: Minimal input (M=1, N=1, LDQ=1); trivial case.
+INT_PARAMS: 1 1 1
+ARRAY_SIZE: 1
+REAL_ARRAY: 5.0
+ARRAY_SIZE: 1
+REAL_ARRAY: 0.0
+TEST_END
+
+TEST_START
+Description: Small matrix with M=2, N=1, LDQ=2; non‐square factored input.
+INT_PARAMS: 2 1 2
+ARRAY_SIZE: 4
+REAL_ARRAY: 2.0 3.0 7.0 8.0
+ARRAY_SIZE: 2
+REAL_ARRAY: 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=2, N=2, LDQ=2; basic square case with lower trapezoidal input.
+INT_PARAMS: 2 2 2
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.0 4.0 0.0 2.0
+ARRAY_SIZE: 2
+REAL_ARRAY: 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=3, N=2, LDQ=3; rectangular matrix with identity initialization for extra column.
+INT_PARAMS: 3 2 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1.0 2.0 3.0 9.0 8.0 7.0 0.0 0.0 0.0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=3, N=3, LDQ=3; standard square case with lower trapezoidal structure.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=4, N=2, LDQ=4; rectangular case with identity init for columns 3-4.
+INT_PARAMS: 4 2 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1.0 2.0 3.0 4.0 10.0 11.0 12.0 13.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=4, N=4, LDQ=4; full square factorization with mixed values.
+INT_PARAMS: 4 4 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 2.0 -1.0 0.5 3.0 4.0 5.0 -6.0 7.0 8.0 9.0 10.0 -11.0 12.0 13.0 14.0 15.0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=5, N=3, LDQ=5; rectangular with identity init for columns 4-5.
+INT_PARAMS: 5 3 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0.0 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=5, N=5, LDQ=5; full square case incorporating special numerical values.
+INT_PARAMS: 5 5 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 1e-7 1.19e-07 2.38e-07 4e-07 8e-07 1e38 -1e38 1e38 -1e38 1e38 Inf 2.0 3.0 4.0 5.0 NaN 1.0 -1.0 0.0 1.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0.0 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: M=6, N=3, LDQ=6; test with geometric and small-difference values in col3.
+INT_PARAMS: 6 3 6
+ARRAY_SIZE: 36
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0 6.0 1.0 10.0 100.0 1000.0 10000.0 100000.0 3.14159 3.14160 3.14158 3.14157 3.14159 3.14160 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ARRAY_SIZE: 6
+REAL_ARRAY: 0.0 0.0 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Oversized LDQ test: M=4, N=3, LDQ=6; extra rows are provided as dummies.
+INT_PARAMS: 4 3 6
+ARRAY_SIZE: 24
+REAL_ARRAY: 1.0 2.0 3.0 4.0 0.0 0.0 5.0 6.0 7.0 8.0 0.0 0.0 9.0 10.0 11.0 12.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Forcing WA branch where pivot element is zero. (M=3, N=3 with Q(3,3)=0).
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1.0 2.0 3.0 0.0 5.0 6.0 0.0 0.0 0.0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Denormalized numbers test with very small values (order 1e-45 and 1e-40).
+INT_PARAMS: 3 2 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1e-45 2e-45 3e-45 1e-40 2e-40 3e-40 0.0 0.0 0.0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 2 test: M=3, N=3, LDQ=3.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1.0 2.0 4.0 8.0 16.0 32.0 64.0 128.0 256.0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Powers of 10 test: M=3, N=3, LDQ=3.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1.0 10.0 100.0 1000.0 1e4 1e5 1e6 1e7 1e8
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Small differences test with nearly equal numbers (differ by 1e-6).
+INT_PARAMS: 4 3 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1.000000 1.000001 1.000002 1.000003 2.000000 2.000001 2.000002 2.000003 3.000000 3.000001 3.000002 3.000003 0.0 0.0 0.0 0.0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Mixed sign values test for M=4, N=4, LDQ=4.
+INT_PARAMS: 4 4 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1.0 -2.0 3.0 -4.0 -5.0 6.0 -7.0 8.0 9.0 -10.0 11.0 -12.0 -13.0 14.0 -15.0 16.0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Special values Inf, -Inf, NaN placed in a 3x3 matrix.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: Inf -Inf NaN NaN Inf -Inf 1.0 -1.0 0.0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Random values test for M=5, N=3, with a mix of positive and negative numbers.
+INT_PARAMS: 5 3 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 0.5 2.3 -1.7 4.1 0.0 3.14 -2.71 1.41 0.0 2.0 6.28 3.14 -3.14 2.71 -1.41 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0.0 0.0 0.0 0.0 0.0
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test for M=5, N=5, LDQ=5.
+INT_PARAMS: 5 5 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+ARRAY_SIZE: 5
+REAL_ARRAY: 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Geometric progression test for M=6, N=3, LDQ=6.
+INT_PARAMS: 6 3 6
+ARRAY_SIZE: 36
+REAL_ARRAY: 1 2 4 8 16 32 64 128 256 512 1024 2048 4096 8192 16384 32768 65536 131072 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 6
+REAL_ARRAY: 0 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Negative progression test for M=4, N=3, LDQ=4.
+INT_PARAMS: 4 3 4
+ARRAY_SIZE: 16
+REAL_ARRAY: -1 -2 -3 -4 -5 -6 -7 -8 -9 -10 -11 -12 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Larger matrix with M=10, N=3, LDQ=10 using arithmetic sequence in factored columns.
+INT_PARAMS: 10 3 10
+ARRAY_SIZE: 100
+REAL_ARRAY: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 10
+REAL_ARRAY: 0 0 0 0 0 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: M=10, N=10, LDQ=10; full square arithmetic progression from 1 to 100 in column-major order.
+INT_PARAMS: 10 10 10
+ARRAY_SIZE: 100
+REAL_ARRAY: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100
+ARRAY_SIZE: 10
+REAL_ARRAY: 0 0 0 0 0 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: M=10, N=5, LDQ=10; arithmetic progression in factored part.
+INT_PARAMS: 10 5 10
+ARRAY_SIZE: 100
+REAL_ARRAY: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 10
+REAL_ARRAY: 0 0 0 0 0 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: M<N case: M=3, N=5, LDQ=3; only first 3 columns used for factorization.
+INT_PARAMS: 3 5 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1 2 3 4 5 6 7 8 9
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: M>N case with alternating signs: M=5, N=2, LDQ=5.
+INT_PARAMS: 5 2 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1 -1 1 -1 1 2 -2 2 -2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Machine epsilon differences: numbers differing by 1e-7 for M=3, N=3, LDQ=3.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1.0 1.0000001 1.0000002 2.0 2.0000001 2.0000002 3.0 3.0000001 3.0000002
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Overflow values test: M=3, N=2, LDQ=3 with entries ~1e38.
+INT_PARAMS: 3 2 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1e38 1e38 1e38 1e38 -1e38 1e38 0 0 0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Underflow values test: M=3, N=2, LDQ=3 with entries ~1e-38.
+INT_PARAMS: 3 2 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1e-38 1e-38 1e-38 1e-38 -1e-38 1e-38 0 0 0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Stress test for cancellation: nearly identical large values for M=4, N=2, LDQ=4.
+INT_PARAMS: 4 2 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1e10 1e10 1e10 1e10 1e10 1e10 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Stress with large magnitude differences: M=4, N=2, LDQ=4.
+INT_PARAMS: 4 2 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1e-10 1e10 -1e10 1e-10 1e10 -1e-10 1e-10 -1e10 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Random stress with mixed large and small numbers for M=5, N=3, LDQ=5.
+INT_PARAMS: 5 3 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1e20 -1e-20 3.0 -4.0 5.0 6.0 -7.0 8e20 9.0 -1e-20 1e-20 2e20 -3e20 4.0 5.0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Repeating decimals test: M=3, N=3, LDQ=3.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 3.33333 3.33333 3.33333 2.22222 2.22222 2.22222 1.11111 1.11111 1.11111
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Increasing fractions test: M=4, N=3, LDQ=4.
+INT_PARAMS: 4 3 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00 2.25 2.50 2.75 3.00 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: All-zero factored part for M=4, N=3, LDQ=4.
+INT_PARAMS: 4 3 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: One nonzero amid zeros in the factored part, M=4, N=3, LDQ=4.
+INT_PARAMS: 4 3 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 0 0 1.0 0 0 2.0 0 0 3.0 0 0 0 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Alternating sign pattern for M=5, N=3, LDQ=5.
+INT_PARAMS: 5 3 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1 -1 1 -1 1 -1 1 -1 1 -1 1 -1 1 -1 1 1 -1 1 -1 1 1 -1 1 -1 1
+ARRAY_SIZE: 5
+REAL_ARRAY: 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Very small differences (1e-8) across columns for M=4, N=4, LDQ=4.
+INT_PARAMS: 4 4 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1.0 1.00000001 1.00000002 1.00000003 2.0 2.00000001 2.00000002 2.00000003 3.0 3.00000001 3.00000002 3.00000003 4.0 4.00000001 4.00000002 4.00000003
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Powers of 2 (different set) for M=3, N=3, LDQ=3.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 2 4 8 16 32 64 128 256 512
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Mixture of Inf, -Inf, and NaN in non-first columns for M=4, N=4, LDQ=4.
+INT_PARAMS: 4 4 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1 2 3 4 5 Inf 7 8 9 10 -Inf 12 13 14 15 NaN
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Alternating sign with very small values for M=4, N=2, LDQ=4.
+INT_PARAMS: 4 2 4
+ARRAY_SIZE: 16
+REAL_ARRAY: -1e-6 1e-6 -1e-6 1e-6 1e-6 -1e-6 1e-6 -1e-6 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Larger arithmetic progression for M=8, N=4, LDQ=8.
+INT_PARAMS: 8 4 8
+ARRAY_SIZE: 64
+REAL_ARRAY: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 8
+REAL_ARRAY: 0 0 0 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Oversized LDQ with random dummies: M=5, N=3, LDQ=7.
+INT_PARAMS: 5 3 7
+ARRAY_SIZE: 35
+REAL_ARRAY: 1 2 3 4 5 0 0 6 7 8 9 10 0 0 11 12 13 14 15 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Random decimal fractions test for M=4, N=4, LDQ=4.
+INT_PARAMS: 4 4 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 0.123 0.234 0.345 0.456 0.567 0.678 0.789 0.891 0.912 0.123 0.234 0.345 0.456 0.567 0.678 0.789
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Test with negative zero values simulated for M=3, N=2, LDQ=3.
+INT_PARAMS: 3 2 3
+ARRAY_SIZE: 9
+REAL_ARRAY: -0.0 0.0 -0.0 0.0 -0.0 0.0 0 0 0
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Borderline denormalized values test for M=3, N=3, LDQ=3.
+INT_PARAMS: 3 3 3
+ARRAY_SIZE: 9
+REAL_ARRAY: 1e-45 1e-44 1e-43 1e-42 1e-41 1e-40 1e-39 1e-38 1e-37
+ARRAY_SIZE: 3
+REAL_ARRAY: 0 0 0
+TEST_END
+
+TEST_START
+Description: Alternating large and small values for M=4, N=3, LDQ=4.
+INT_PARAMS: 4 3 4
+ARRAY_SIZE: 16
+REAL_ARRAY: 1e38 1e-38 -1e38 -1e-38 1e-38 1e38 1e-38 1e38 1e38 1e-38 1e38 1e-38 0 0 0 0
+ARRAY_SIZE: 4
+REAL_ARRAY: 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Test with near-zero pivot propagation: M=5, N=4, LDQ=5.
+INT_PARAMS: 5 4 5
+ARRAY_SIZE: 25
+REAL_ARRAY: 1 2 3 4 5 0 6 7 8 9 0 0 10 11 12 0 0 0 13 14 0 0 0 0 0
+ARRAY_SIZE: 5
+REAL_ARRAY: 0 0 0 0 0
+TEST_END
+
+TEST_START
+Description: Final stress test: M=6, N=4, LDQ=6 with a mix of random, sign alternating, and small values.
+INT_PARAMS: 6 4 6
+ARRAY_SIZE: 36
+REAL_ARRAY: 3.14 2.71 -1.0 0.0 1.0 -2.0 2.0 3.0 4.0 5.0 6.0 7.0 7.0 6.0 5.0 4.0 3.0 2.0 1e-6 -1e-6 1e-6 -1e-6 1e-6 -1e-6 0 0 0 0 0 0 0 0 0 0 0 0
+ARRAY_SIZE: 6
+REAL_ARRAY: 0 0 0 0 0 0
+TEST_END

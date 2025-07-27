@@ -32,8 +32,11 @@ program validator
     integer :: num_complex_params
     character(len=100) :: char_params(10)
     integer :: num_char_params
-    real, allocatable :: real_array(:)
-    integer :: array_size
+    ! Support for multiple arrays
+    real, allocatable :: real_arrays(:,:)  ! Up to 5 arrays
+    integer :: array_sizes(5)
+    integer :: num_arrays
+    integer :: current_array_index
     
     
     ! Performance tracking
@@ -103,7 +106,9 @@ contains
         call register_discovered_functions()
         
         function_name = ''
-        array_size = 0
+        array_sizes = 0
+        num_arrays = 0
+        current_array_index = 0
     end subroutine
     
     subroutine handle_command_line()
@@ -169,40 +174,75 @@ contains
                 case('CHAR_PARAMS')
                     call parse_char_params(line(pos+1:))
                 case('ARRAY_SIZE')
-                    read(line(pos+1:), *) array_size
-                    if (allocated(real_array)) deallocate(real_array)
-                    allocate(real_array(array_size))
+                    num_arrays = num_arrays + 1
+                    current_array_index = num_arrays
+                    if (num_arrays > 5) then
+                        print *, 'WARNING: More than 5 arrays not supported, ignoring'
+                        current_array_index = 5
+                    end if
+                    read(line(pos+1:), *) array_sizes(current_array_index)
+                    ! Allocate arrays if needed
+                    if (.not. allocated(real_arrays)) then
+                        allocate(real_arrays(maxval(array_sizes), 5))
+                        real_arrays = 0.0
+                    else if (maxval(array_sizes) > size(real_arrays,1)) then
+                        ! Need to reallocate
+                        block
+                            real, allocatable :: temp(:,:)
+                            allocate(temp(maxval(array_sizes), 5))
+                            temp = 0.0
+                            temp(1:size(real_arrays,1),:) = real_arrays
+                            call move_alloc(temp, real_arrays)
+                        end block
+                    end if
                 case('REAL_ARRAY')
-                    call parse_real_array(line(pos+1:))
+                    if (current_array_index > 0 .and. current_array_index <= 5) then
+                        call parse_real_array_multi(line(pos+1:), current_array_index)
+                    end if
             end select
         else
             description = trim(line)
         end if
     end subroutine
     
-    subroutine parse_real_array(values_str)
+    subroutine parse_real_array_multi(values_str, array_idx)
         character(len=*), intent(in) :: values_str
+        integer, intent(in) :: array_idx
         integer :: iostat, i
         character(len=200) :: error_msg
+        real, allocatable :: temp_array(:)
+        
+        ! Allocate temporary array
+        allocate(temp_array(array_sizes(array_idx)))
         
         ! Try to read the array values
-        read(values_str, *, iostat=iostat) real_array
+        read(values_str, *, iostat=iostat) temp_array
         
         if (iostat /= 0) then
             ! Error reading array - try to recover or skip
-            write(error_msg, '(A,A)') "WARNING: Failed to parse REAL_ARRAY: ", trim(values_str)
+            write(error_msg, '(A,I0,A,A)') "WARNING: Failed to parse REAL_ARRAY ", array_idx, ": ", trim(values_str)
             call report_failed_test_character(error_msg, "Parse error - using zeros")
             
             ! Set array to zeros as fallback
-            real_array = 0.0
+            temp_array = 0.0
             
             ! Log the error but continue
             print *, "Parse error in REAL_ARRAY, using zeros. Bad input: ", trim(values_str)
         end if
+        
+        ! Copy to the main arrays storage
+        real_arrays(1:array_sizes(array_idx), array_idx) = temp_array
+        
+        deallocate(temp_array)
     end subroutine
     
     subroutine reset_test_data()
-        if (allocated(real_array)) deallocate(real_array)
+        if (allocated(real_arrays)) then
+            real_arrays = 0.0  ! Reset but keep allocated
+        end if
+        array_sizes = 0
+        num_arrays = 0
+        current_array_index = 0
         num_int_params = 0
         num_real_params = 0
         num_complex_params = 0
@@ -220,7 +260,7 @@ contains
                                int_params, num_int_params, &
                                real_params, num_real_params, &
                                char_params, num_char_params, &
-                               real_array, array_size)
+                               real_arrays, array_sizes, num_arrays)
         
         ! Get updated counters
         call get_validation_counters(func_passed_count, func_failed_count)
@@ -383,19 +423,8 @@ contains
         print '(A)', '  --help           Show this help message'
     end subroutine
     
-    subroutine register_discovered_functions()
-        ! Register which modern implementations are available
-        call register_modern('AAAAAA', .true.)
-        call register_modern('CDIV', .true.)
-        call register_modern('D1MACH', .true.)
-        call register_modern('ENORM', .true.)
-        call register_modern('FDUMP', .true.)
-        call register_modern('I1MACH', .true.)
-        call register_modern('LSAME', .true.)
-        call register_modern('PIMACH', .true.)
-        call register_modern('PYTHAG', .true.)
-        call register_modern('R1MACH', .true.)
-    end subroutine
+    ! Include auto-generated registration routine
+    include 'functions_routines.inc'
     
 
 end program validator

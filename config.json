@@ -11,7 +11,9 @@
     
     "llm_provider": "gemini",
     "openai_model": "o3-mini",
-    "gemini_model": "gemini-2.5-flash",
+    "gemini_model": "gemini-2.0-flash-exp",
+    
+    "validate_parameters": true,
     
     "comment": "Set OPENAI_API_KEY or GEMINI_API_KEY environment variables as needed"
 }

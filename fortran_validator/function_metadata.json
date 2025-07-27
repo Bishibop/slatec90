@@ -1,0 +1,86 @@
+{
+  "aaaaaa": {
+    "has_f77": true,
+    "name": "AAAAAA",
+    "signature_name": "SIG_SUB_1_CHAR_OUT",
+    "signature_type": 8
+  },
+  "cdiv": {
+    "has_f77": true,
+    "name": "CDIV",
+    "signature_name": "SIG_SUB_6_REAL",
+    "signature_type": 9
+  },
+  "csroot": {
+    "has_f77": true,
+    "name": "CSROOT",
+    "signature_name": "SIG_UNKNOWN_0",
+    "signature_type": 0
+  },
+  "d1mach": {
+    "has_f77": true,
+    "name": "D1MACH",
+    "signature_name": "SIG_DOUBLE_FUNC_1_INT",
+    "signature_type": 5
+  },
+  "fdump": {
+    "has_f77": true,
+    "name": "FDUMP",
+    "signature_name": "SIG_SUB_0_PARAMS",
+    "signature_type": 7
+  },
+  "i1mach": {
+    "has_f77": true,
+    "name": "I1MACH",
+    "signature_name": "SIG_INT_FUNC_1_INT",
+    "signature_type": 4
+  },
+  "lsame": {
+    "has_f77": true,
+    "name": "LSAME",
+    "signature_name": "SIG_LOGICAL_FUNC_2_CHAR",
+    "signature_type": 6
+  },
+  "pimach": {
+    "has_f77": true,
+    "name": "PIMACH",
+    "signature_name": "SIG_REAL_FUNC_1_REAL",
+    "signature_type": 2
+  },
+  "polcof": {
+    "has_f77": true,
+    "name": "POLCOF",
+    "signature_name": "SIG_SUB_REAL_INT_4ARRAYS",
+    "signature_type": 13
+  },
+  "pythag": {
+    "has_f77": true,
+    "name": "PYTHAG",
+    "signature_name": "SIG_REAL_FUNC_2_REAL",
+    "signature_type": 3
+  },
+  "qform": {
+    "has_f77": true,
+    "name": "QFORM",
+    "signature_name": "SIG_SUB_2D_ARRAY",
+    "signature_type": 11
+  },
+  "qwgtc": {
+    "has_f77": true,
+    "name": "QWGTC",
+    "signature_name": "SIG_UNKNOWN_0",
+    "signature_type": 0
+  },
+  "r1mach": {
+    "has_f77": true,
+    "name": "R1MACH",
+    "signature_name": "SIG_REAL_FUNC_1_INT",
+    "signature_type": 1
+  },
+  "zabs": {
+    "has_f77": true,
+    "name": "ZABS",
+    "signature_name": "SIG_UNKNOWN_0",
+    "signature_type": 0
+  }
+}

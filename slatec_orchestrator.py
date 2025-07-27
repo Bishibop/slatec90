@@ -361,6 +361,10 @@ class SLATECOrchestrator:
                     self.logger.info(f"✓ {func_name} validated successfully!")
                     self.progress['completed'].append(func_name)
                     self._save_progress()
+                    
+                    # Regenerate validator include files after successful modernization
+                    self._regenerate_validator_includes()
+                    
                     return True
                     
                 # Refine if not last iteration
@@ -386,6 +390,45 @@ class SLATECOrchestrator:
             self.progress['failed'].append(func_name)
             self._save_progress()
             return False
+    
+    def _regenerate_validator_includes(self):
+        """Regenerate validator include files after successful modernization"""
+        try:
+            self.logger.info("Regenerating validator include files...")
+            
+            # Run the discovery script
+            discovery_script = Path(self.config['validator_dir']) / 'discover_functions.py'
+            
+            result = subprocess.run(
+                ['python3', str(discovery_script)],
+                cwd=self.config['validator_dir'],
+                capture_output=True,
+                text=True
+            )
+            
+            if result.returncode == 0:
+                self.logger.info("✓ Validator include files regenerated successfully")
+                
+                # Also rebuild the validator
+                self.logger.info("Rebuilding validator...")
+                rebuild_result = subprocess.run(
+                    ['make', 'clean', '&&', 'make'],
+                    cwd=self.config['validator_dir'],
+                    shell=True,
+                    capture_output=True,
+                    text=True
+                )
+                
+                if rebuild_result.returncode == 0:
+                    self.logger.info("✓ Validator rebuilt successfully")
+                else:
+                    self.logger.warning(f"Failed to rebuild validator: {rebuild_result.stderr}")
+            else:
+                self.logger.warning(f"Failed to regenerate include files: {result.stderr}")
+                
+        except Exception as e:
+            self.logger.warning(f"Error regenerating validator includes: {e}")
+            # Don't fail the whole process if regeneration fails
             
     def process_all(self, parallel=True):
         """Process all functions in the list"""

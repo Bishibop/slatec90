@@ -136,6 +136,60 @@ slatec_test/
 
 ```
 
+## BLAS Dependencies in SLATEC
+
+**Important**: While we're starting with zero-dependency functions, many SLATEC functions depend on BLAS (Basic Linear Algebra Subprograms). This section documents these dependencies for future phases.
+
+### BLAS Usage Statistics
+- **66 SLATEC files** use BLAS routines (~9% of all functions)
+- **Most commonly used BLAS functions**:
+  - `SCOPY/DCOPY` (vector copy) - 336 uses
+  - `SDOT/DDOT` (dot product) - 292 uses
+  - `SSWAP/DSWAP` (vector swap) - 170 uses
+  - `SNRM2/DNRM2` (2-norm) - 163 uses
+  - `SASUM/DASUM` (sum of absolute values) - 134 uses
+  - `SSCAL/DSCAL` (vector scaling) - 108 uses
+  - `SAXPY/DAXPY` (y = ax + y) - 88 uses
+  - `ISAMAX/IDAMAX` (index of max absolute value) - 50 uses
+
+### Handling BLAS Dependencies
+
+When migrating functions with BLAS dependencies:
+
+1. **Preserve EXTERNAL declarations**:
+   ```fortran
+   EXTERNAL SCOPY, SDOT, SAXPY  ! Keep these in modernized code
+   ```
+
+2. **Link with BLAS during compilation**:
+   ```bash
+   # On macOS with Accelerate framework:
+   gfortran -framework Accelerate module.f90 test.f90 -o test
+   
+   # On Linux with OpenBLAS:
+   gfortran -lblas module.f90 test.f90 -o test
+   ```
+
+3. **Update validator compilation** (when needed):
+   - Modify `fortran_validator/Makefile` to include BLAS linking
+   - Add platform detection for appropriate BLAS library
+
+4. **Test thoroughly**: BLAS implementations can vary slightly between vendors
+
+### Platform Notes
+
+- **macOS**: BLAS is provided by Accelerate framework at `/System/Library/Frameworks/Accelerate.framework`
+- **Linux**: Usually requires installing `libblas-dev` or `openblas`
+- **Windows**: Options include Intel MKL, OpenBLAS, or reference BLAS
+
+### Migration Strategy
+
+1. **Phase 0-1**: Focus on zero-dependency functions (no BLAS needed)
+2. **Phase 2+**: Begin handling BLAS-dependent functions
+3. **Consider**: Creating BLAS stubs for testing if linking becomes problematic
+
+This approach allows us to make significant progress before tackling the complexity of external dependencies.
+
 ### Initial Build
 ```bash
 # Build the Fortran validator

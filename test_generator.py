@@ -8,11 +8,13 @@ from typing import Dict, List
 import os
 import re
 from openai import OpenAI
+from test_parameter_validator import ParameterValidator
 
 class TestGenerator:
     def __init__(self, config):
         self.config = config
         self.logger = logging.getLogger('TestGenerator')
+        self.validator = ParameterValidator()
         
         # Initialize OpenAI if API key available
         api_key = config.get('openai_api_key') or os.getenv('OPENAI_API_KEY')
@@ -104,6 +106,21 @@ IMPORTANT: Generate extensive, thorough test coverage. More tests are better tha
             # Validate and fix numeric formats
             test_cases = result['test_cases']
             test_cases = self._validate_numeric_formats(test_cases)
+            
+            # Apply parameter validation
+            if self.config.get('validate_parameters', True):
+                self.logger.info(f"Validating test parameters for {func_name}")
+                test_cases, validation_report = self.validator.validate_test_file(func_name, test_cases)
+                
+                # Log validation results
+                valid_count = sum(1 for r in validation_report if r['status'] == 'valid')
+                fixed_count = sum(1 for r in validation_report if r['status'] == 'fixed')
+                invalid_count = sum(1 for r in validation_report if r['status'] == 'invalid')
+                
+                self.logger.info(f"Validation results: {valid_count} valid, {fixed_count} fixed, {invalid_count} invalid")
+                
+                if invalid_count > 0:
+                    self.logger.warning(f"{invalid_count} tests could not be fixed and may fail validation")
             
             return test_cases
             

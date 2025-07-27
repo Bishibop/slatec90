@@ -1,421 +1,428 @@
 FUNCTION: ENORM
 
 TEST_START
-Description: All zeros test with three elements.
+Description: Single element vector with zero.
+INT_PARAMS: 1
+ARRAY_SIZE: 1
+REAL_ARRAY: 0.0
+TEST_END
+
+TEST_START
+Description: Single element vector exactly equal to RDWARF (3.834E-20).
+INT_PARAMS: 1
+ARRAY_SIZE: 1
+REAL_ARRAY: 3.834E-20
+TEST_END
+
+TEST_START
+Description: Single element vector in intermediate range (above RDWARF) using 1.0E-19.
+INT_PARAMS: 1
+ARRAY_SIZE: 1
+REAL_ARRAY: 1.0E-19
+TEST_END
+
+TEST_START
+Description: Single element vector with value exactly equal to AGIANT for N=1 (1.304E19).
+INT_PARAMS: 1
+ARRAY_SIZE: 1
+REAL_ARRAY: 1.304E19
+TEST_END
+
+TEST_START
+Description: Single element vector with value slightly above AGIANT (1.5E19).
+INT_PARAMS: 1
+ARRAY_SIZE: 1
+REAL_ARRAY: 1.5E19
+TEST_END
+
+TEST_START
+Description: Two element vector with one very small and one intermediate value.
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0E-30 1.0E-10
+TEST_END
+
+TEST_START
+Description: Two element vector with both values in the small range (1E-21 and 2E-21).
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0E-21 2.0E-21
+TEST_END
+
+TEST_START
+Description: Two element vector with one positive small and one negative small value.
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0E-10 -1.0E-10
+TEST_END
+
+TEST_START
+Description: Three element vector with mixed signs: negative and positive values.
 INT_PARAMS: 3
 ARRAY_SIZE: 3
-REAL_ARRAY: 0.0 0.0 0.0
+REAL_ARRAY: -1.0E5 1.0E5 -1.0E5
 TEST_END
 
 TEST_START
-Description: Single element intermediate value (5.0).
-INT_PARAMS: 1
-ARRAY_SIZE: 1
-REAL_ARRAY: 5.0
-TEST_END
-
-TEST_START
-Description: Single element small positive value near machine epsilon (1.2e-7).
-INT_PARAMS: 1
-ARRAY_SIZE: 1
-REAL_ARRAY: 1.2e-7
-TEST_END
-
-TEST_START
-Description: Single element small negative value near machine epsilon (-1.2e-7).
-INT_PARAMS: 1
-ARRAY_SIZE: 1
-REAL_ARRAY: -1.2e-7
-TEST_END
-
-TEST_START
-Description: Two elements with mix of positive and negative intermediate values (3.0 and -4.0).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 3.0 -4.0
-TEST_END
-
-TEST_START
-Description: Two elements near the RDWARF boundary (both slightly below RDWARF: 3.8e-20).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 3.8e-20 3.8e-20
-TEST_END
-
-TEST_START
-Description: Two elements with one exactly RDWARF and one slightly above (3.834e-20 and 3.84e-20).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 3.834e-20 3.84e-20
-TEST_END
-
-TEST_START
-Description: Two elements just above RDWARF (3.85e-20 and 4.0e-20).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 3.85e-20 4.0e-20
-TEST_END
-
-TEST_START
-Description: Three elements around the intermediate/large transition for N=3. For N=3, AGIANT ~ 4.347e18. Values: 1e18 (intermediate), 4.347e18 (borderline large), 5e18 (large).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 1e18 4.347e18 5e18
-TEST_END
-
-TEST_START
-Description: Geometric progression of 5 elements (1, 10, 100, 1000, 10000).
+Description: Five element vector with a geometric progression (1, 10, 100, 1000, 10000).
 INT_PARAMS: 5
 ARRAY_SIZE: 5
 REAL_ARRAY: 1.0 10.0 100.0 1000.0 10000.0
 TEST_END
 
 TEST_START
-Description: Arithmetic progression of 5 elements (1, 2, 3, 4, 5).
+Description: Five element vector with a decreasing geometric progression (10000, 1000, 100, 10, 1).
+INT_PARAMS: 5
+ARRAY_SIZE: 5
+REAL_ARRAY: 10000.0 1000.0 100.0 10.0 1.0
+TEST_END
+
+TEST_START
+Description: Five element vector with an arithmetic progression (1, 2, 3, 4, 5).
 INT_PARAMS: 5
 ARRAY_SIZE: 5
 REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
 TEST_END
 
 TEST_START
-Description: Mixed dynamic range test with 5 elements: 1e-30, 1e-20, 1.0, 1e10, 1e20.
+Description: Five element vector with an arithmetic progression of negatives (-1, -2, -3, -4, -5).
 INT_PARAMS: 5
 ARRAY_SIZE: 5
-REAL_ARRAY: 1e-30 1e-20 1.0 1e10 1e20
+REAL_ARRAY: -1.0 -2.0 -3.0 -4.0 -5.0
 TEST_END
 
 TEST_START
-Description: Mix of negative and positive small values with 4 elements.
+Description: Six element vector of random values with both positive and negative numbers.
+INT_PARAMS: 6
+ARRAY_SIZE: 6
+REAL_ARRAY: 3.3 -4.4 5.5 -6.6 7.7 -8.8
+TEST_END
+
+TEST_START
+Description: Four element vector with values near machine epsilon (approx 1E-7 scale).
 INT_PARAMS: 4
 ARRAY_SIZE: 4
-REAL_ARRAY: -1e-7 1e-7 -2e-7 2e-7
+REAL_ARRAY: 1E-7 2E-7 0.5E-7 1.1E-7
 TEST_END
 
 TEST_START
-Description: Denormal numbers (if supported) with 3 elements: 1e-38, 2e-38, 3e-38.
+Description: Four element vector with values differing by 1E-6 increments.
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.000000 1.000001 1.000002 1.000003
+TEST_END
+
+TEST_START
+Description: Four element vector with values differing by 1E-7 increments.
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.000000 1.0000001 1.0000002 1.0000003
+TEST_END
+
+TEST_START
+Description: Two element vector testing denormalized numbers (1E-45, 0.0).
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: 1.0E-45 0.0
+TEST_END
+
+TEST_START
+Description: Three element vector with huge magnitude differences: 1E-30, 1E20, 1E-10.
 INT_PARAMS: 3
 ARRAY_SIZE: 3
-REAL_ARRAY: 1e-38 2e-38 3e-38
+REAL_ARRAY: 1.0E-30 1.0E20 1.0E-10
 TEST_END
 
 TEST_START
-Description: Powers of 2 with 5 elements (1, 2, 4, 8, 16).
+Description: Three element vector with opposite signs and large differences: 1E10, -1E10, 1E-10.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0E10 -1.0E10 1.0E-10
+TEST_END
+
+TEST_START
+Description: Three element vector with repeated identical values (all ones).
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0 1.0 1.0
+TEST_END
+
+TEST_START
+Description: Three element vector with border values around RDWARF: exactly RDWARF, slightly below, and slightly above.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 3.834E-20 3.0E-20 4.0E-20
+TEST_END
+
+TEST_START
+Description: Three element vector with border values around AGIANT for N=3 (approx 4.35E18).
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 4.3E18 4.34667E18 4.4E18
+TEST_END
+
+TEST_START
+Description: Three element vector with powers of two: 1.0, 2.0, 4.0.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0 2.0 4.0
+TEST_END
+
+TEST_START
+Description: Three element vector with powers of ten: 1.0, 10.0, 100.0.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0 10.0 100.0
+TEST_END
+
+TEST_START
+Description: Three element vector with mixed magnitude and sign: 1E-5, 1E5, -1E3.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0E-5 1.0E5 -1.0E3
+TEST_END
+
+TEST_START
+Description: Six element vector that exercises all three accumulation branches (small, intermediate, large) for N=6. Contains very small, intermediate, and very large values.
+INT_PARAMS: 6
+ARRAY_SIZE: 6
+REAL_ARRAY: 1.0E-21 1.0E-10 3.0E18 -3.0E18 5.0E-10 1.0E-20
+TEST_END
+
+TEST_START
+Description: Three element vector with values very near zero (including negatives) to test underflow behavior.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0E-40 -1.0E-40 1.0E-40
+TEST_END
+
+TEST_START
+Description: Two element vector with Inf and -Inf (special IEEE floating point values).
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: Inf -Inf
+TEST_END
+
+TEST_START
+Description: Two element vector with NaN and 0.0.
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: NaN 0.0
+TEST_END
+
+TEST_START
+Description: Two element vector with NaN and 1.0.
+INT_PARAMS: 2
+ARRAY_SIZE: 2
+REAL_ARRAY: NaN 1.0
+TEST_END
+
+TEST_START
+Description: Four element vector with random mixed values: -123.456, 987.654, 3.14159, -2.71828.
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: -123.456 987.654 3.14159 -2.71828
+TEST_END
+
+TEST_START
+Description: Six element vector with a mix of denormal, normalized, and huge values.
+INT_PARAMS: 6
+ARRAY_SIZE: 6
+REAL_ARRAY: 1.0E-38 1.0E-20 1.0E-10 1.0E5 1.0E10 1.0E19
+TEST_END
+
+TEST_START
+Description: Five element vector with almost equal values differing slightly.
+INT_PARAMS: 5
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.000001 1.000002 1.000003 1.000004 1.000005
+TEST_END
+
+TEST_START
+Description: Five element vector with alternating signs: 1.0, -1.0, 1.0, -1.0, 1.0.
+INT_PARAMS: 5
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 -1.0 1.0 -1.0 1.0
+TEST_END
+
+TEST_START
+Description: Five element vector with alternating extreme magnitudes: 1E-15, 1E15, -1E-15, -1E15, 1E-15.
+INT_PARAMS: 5
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0E-15 1.0E15 -1.0E-15 -1.0E15 1.0E-15
+TEST_END
+
+TEST_START
+Description: Four element arithmetic progression: 2.5, 3.5, 4.5, 5.5.
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: 2.5 3.5 4.5 5.5
+TEST_END
+
+TEST_START
+Description: Four element arithmetic progression with negatives: -5.5, -4.5, -3.5, -2.5.
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: -5.5 -4.5 -3.5 -2.5
+TEST_END
+
+TEST_START
+Description: Seven element vector in intermediate range (multiples of 1000).
+INT_PARAMS: 7
+ARRAY_SIZE: 7
+REAL_ARRAY: 1000.0 2000.0 3000.0 4000.0 5000.0 6000.0 7000.0
+TEST_END
+
+TEST_START
+Description: Seven element vector in intermediate range but in reverse order.
+INT_PARAMS: 7
+ARRAY_SIZE: 7
+REAL_ARRAY: 7000.0 6000.0 5000.0 4000.0 3000.0 2000.0 1000.0
+TEST_END
+
+TEST_START
+Description: Four element vector with borderline differences (increments of 1E-6).
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.0 1.000001 1.000002 1.000003
+TEST_END
+
+TEST_START
+Description: Four element vector with borderline differences in the 1E-6 range (small values).
+INT_PARAMS: 4
+ARRAY_SIZE: 4
+REAL_ARRAY: 1.0E-6 1.000001E-6 1.000002E-6 1.000003E-6
+TEST_END
+
+TEST_START
+Description: Three element vector with very large values (forcing the large branch): 1E20, 2E20, -3E20.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0E20 2.0E20 -3.0E20
+TEST_END
+
+TEST_START
+Description: Three element vector with borderline large values: 1E18, 2E18, 3E18.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 1.0E18 2.0E18 3.0E18
+TEST_END
+
+TEST_START
+Description: Three element vector with one zero and two moderate values: 0.0, 3.0, 4.0.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 0.0 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Three element vector with one NaN among valid values.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: NaN 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Three element vector with one Inf among valid values.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: Inf 3.0 4.0
+TEST_END
+
+TEST_START
+Description: Three element vector with all negative values to test symmetry: -3.0, -4.0, -5.0.
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: -3.0 -4.0 -5.0
+TEST_END
+
+TEST_START
+Description: Five element geometric progression with base 2: 1, 2, 4, 8, 16.
 INT_PARAMS: 5
 ARRAY_SIZE: 5
 REAL_ARRAY: 1.0 2.0 4.0 8.0 16.0
 TEST_END
 
 TEST_START
-Description: Powers of 10 with 5 elements (1, 10, 100, 1000, 10000).
+Description: Five element geometric progression with base 10: 1, 10, 100, 1000, 10000.
 INT_PARAMS: 5
 ARRAY_SIZE: 5
 REAL_ARRAY: 1.0 10.0 100.0 1000.0 10000.0
 TEST_END
 
 TEST_START
-Description: Nearly equal numbers with 3 elements (1.000001, 1.000002, 1.000003).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 1.000001 1.000002 1.000003
-TEST_END
-
-TEST_START
-Description: Extreme variation: three elements (-1e20, 1e-20, 1e10).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: -1e20 1e-20 1e10
-TEST_END
-
-TEST_START
-Description: Random set of 5 values (3.14, -2.71, 0.0, 1.414, -1.732).
+Description: Five element vector with high precision random values.
 INT_PARAMS: 5
 ARRAY_SIZE: 5
-REAL_ARRAY: 3.14 -2.71 0.0 1.414 -1.732
+REAL_ARRAY: 0.123456 -0.654321 0.333333 -0.777777 0.888888
 TEST_END
 
 TEST_START
-Description: Single element equal to RDWARF exactly (3.834e-20).
-INT_PARAMS: 1
-ARRAY_SIZE: 1
-REAL_ARRAY: 3.834e-20
-TEST_END
-
-TEST_START
-Description: Single element equal to AGIANT for N=1 (AGIANT = RGIANT = 1.304e19).
-INT_PARAMS: 1
-ARRAY_SIZE: 1
-REAL_ARRAY: 1.304e19
-TEST_END
-
-TEST_START
-Description: Three elements with two zeros and one nonzero (0, 5.0, 0).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 0.0 5.0 0.0
-TEST_END
-
-TEST_START
-Description: Repeating value test (four elements, all 7.0).
-INT_PARAMS: 4
-ARRAY_SIZE: 4
-REAL_ARRAY: 7.0 7.0 7.0 7.0
-TEST_END
-
-TEST_START
-Description: Alternating signs with six elements: 1.0, -1.0, 1.0, -1.0, 1.0, -1.0.
+Description: Six element stress test vector covering a huge range from very small to extremely large: 1E-30, 1E-20, 1E-10, 1E0, 1E10, 1E30.
 INT_PARAMS: 6
 ARRAY_SIZE: 6
-REAL_ARRAY: 1.0 -1.0 1.0 -1.0 1.0 -1.0
+REAL_ARRAY: 1.0E-30 1.0E-20 1.0E-10 1.0E0 1.0E10 1.0E30
 TEST_END
 
 TEST_START
-Description: Arithmetic progression with negatives (five elements: -5, -4, -3, -2, -1).
+Description: Five element vector with tiny differences around a large number (cancellation test).
 INT_PARAMS: 5
 ARRAY_SIZE: 5
-REAL_ARRAY: -5.0 -4.0 -3.0 -2.0 -1.0
+REAL_ARRAY: 1000000.0 1000000.000001 1000000.000002 1000000.000003 1000000.000004
 TEST_END
 
 TEST_START
-Description: Geometric progression with negatives (five elements: -1, -10, -100, -1000, -10000).
+Description: Five element vector with extremely small values and tiny differences.
 INT_PARAMS: 5
 ARRAY_SIZE: 5
-REAL_ARRAY: -1.0 -10.0 -100.0 -1000.0 -10000.0
+REAL_ARRAY: 1.0E-8 1.000000000001E-8 1.000000000002E-8 1.000000000003E-8 1.0E-8
 TEST_END
 
 TEST_START
-Description: Two elements with very close values (1.000000 and 1.000001).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 1.000000 1.000001
-TEST_END
-
-TEST_START
-Description: Two elements differing by 1e-7 (1.000000 and 1.0000001).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 1.000000 1.0000001
-TEST_END
-
-TEST_START
-Description: Multiple elements with slight differences (9.99999, 10.00000, 10.00001, 10.00002).
+Description: Four element vector mixing near-underflow and huge values: 1E-40, 1E-30, 1E30, 1E20.
 INT_PARAMS: 4
 ARRAY_SIZE: 4
-REAL_ARRAY: 9.99999 10.00000 10.00001 10.00002
+REAL_ARRAY: 1.0E-40 1.0E-30 1.0E30 1.0E20
 TEST_END
 
 TEST_START
-Description: Stress test with very large dynamic range (four elements: 1e-10, 1e-5, 1e5, 1e10).
+Description: Four element vector symmetric about zero with large magnitudes.
 INT_PARAMS: 4
 ARRAY_SIZE: 4
-REAL_ARRAY: 1e-10 1e-5 1e5 1e10
+REAL_ARRAY: 123456.0 -123456.0 654321.0 -654321.0
 TEST_END
 
 TEST_START
-Description: Stress test with negative and positive extremes (three elements: -1e-30, 1e30, -1e15).
+Description: Three element trivial vector to test symmetry: 1.0, 0.0, -1.0.
 INT_PARAMS: 3
 ARRAY_SIZE: 3
-REAL_ARRAY: -1e-30 1e30 -1e15
+REAL_ARRAY: 1.0 0.0 -1.0
 TEST_END
 
 TEST_START
-Description: Three arbitrary numbers (2.0, 3.0, 4.0) to test standard behavior.
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 2.0 3.0 4.0
-TEST_END
-
-TEST_START
-Description: Uniformly high values (four elements, each 1e19).
+Description: Four element vector with well-known constants: 2.71828, 3.14159, 1.41421, 0.57721.
 INT_PARAMS: 4
 ARRAY_SIZE: 4
-REAL_ARRAY: 1e19 1e19 1e19 1e19
+REAL_ARRAY: 2.71828 3.14159 1.41421 0.57721
 TEST_END
 
 TEST_START
-Description: Uniformly low but nonzero values (four elements, each 1e-10).
+Description: Four element vector with nearly equal high precision values.
 INT_PARAMS: 4
 ARRAY_SIZE: 4
-REAL_ARRAY: 1e-10 1e-10 1e-10 1e-10
+REAL_ARRAY: 1.000000 1.000001 0.999999 1.000000
 TEST_END
 
 TEST_START
-Description: One very high value amid zeros (five elements: 0, 0, 1e20, 0, 0).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 0.0 0.0 1e20 0.0 0.0
-TEST_END
-
-TEST_START
-Description: One very low value amid zeros (five elements: 0, 0, 1e-20, 0, 0).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 0.0 0.0 1e-20 0.0 0.0
-TEST_END
-
-TEST_START
-Description: Incremental progression starting from very low values (five elements: 1e-40, 1e-39, 1e-38, 1e-37, 1e-36).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 1e-40 1e-39 1e-38 1e-37 1e-36
-TEST_END
-
-TEST_START
-Description: Incremental progression starting high (five elements: 1e17, 1e18, 1e19, 1e20, 1e21).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 1e17 1e18 1e19 1e20 1e21
-TEST_END
-
-TEST_START
-Description: Three elements with one exactly RDWARF and values just below and above (3.83e-20, 3.834e-20, 3.84e-20).
+Description: Three element vector with alternating signs and equal magnitudes: -1.5, 1.5, -1.5.
 INT_PARAMS: 3
 ARRAY_SIZE: 3
-REAL_ARRAY: 3.83e-20 3.834e-20 3.84e-20
+REAL_ARRAY: -1.5 1.5 -1.5
 TEST_END
 
 TEST_START
-Description: Non-uniform ordering: mix of intermediate, very large, very small, negative and moderate values (six elements: 5.0, 1e20, 3.834e-20, -1e5, 2.5, 1e-7).
-INT_PARAMS: 6
-ARRAY_SIZE: 6
-REAL_ARRAY: 5.0 1e20 3.834e-20 -1e5 2.5 1e-7
-TEST_END
-
-TEST_START
-Description: Repeated zeros interleaved with denormal values (five elements: 0, 1e-38, 0, 2e-38, 0).
+Description: Five element vector mixing zero, RDWARF, AGIANT (adjusted for N=5), and other intermediate values.
 INT_PARAMS: 5
 ARRAY_SIZE: 5
-REAL_ARRAY: 0.0 1e-38 0.0 2e-38 0.0
-TEST_END
-
-TEST_START
-Description: Two elements: one very large and its negative counterpart (1e20 and -1e20).
-INT_PARAMS: 2
-ARRAY_SIZE: 2
-REAL_ARRAY: 1e20 -1e20
-TEST_END
-
-TEST_START
-Description: Borderline intermediate values for N=4. Using values: 3e18, 3.5e18, 4e18, 4.3e18. (For N=4, AGIANT ~ 3.26e18: mixture of intermediate and large).
-INT_PARAMS: 4
-ARRAY_SIZE: 4
-REAL_ARRAY: 3e18 3.5e18 4e18 4.3e18
-TEST_END
-
-TEST_START
-Description: Floating point rounding challenges: three elements differing by ~0.0000005 (1.000000, 1.0000005, 1.000001).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 1.000000 1.0000005 1.000001
-TEST_END
-
-TEST_START
-Description: Three very small negative numbers (-1e-30, -5e-31, -2e-30).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: -1e-30 -5e-31 -2e-30
-TEST_END
-
-TEST_START
-Description: Mixture across scales: six elements (1e-20, 1e-10, 1.0, 1e10, 1e15, 1e19).
-INT_PARAMS: 6
-ARRAY_SIZE: 6
-REAL_ARRAY: 1e-20 1e-10 1.0 1e10 1e15 1e19
-TEST_END
-
-TEST_START
-Description: Nearly identical extreme values: three elements (1e19, 1e19*(1+1e-7), 1e19*(1-1e-7)).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 1e19 1.0000001e19 0.9999999e19
-TEST_END
-
-TEST_START
-Description: Cancellation potential test: four elements (1e5, -1e5, 1e-5, -1e-5).
-INT_PARAMS: 4
-ARRAY_SIZE: 4
-REAL_ARRAY: 1e5 -1e5 1e-5 -1e-5
-TEST_END
-
-TEST_START
-Description: Pattern with sign alternation and slight variance (six elements: 1.0, -1.000001, 1.000002, -1.000003, 1.000004, -1.000005).
-INT_PARAMS: 6
-ARRAY_SIZE: 6
-REAL_ARRAY: 1.0 -1.000001 1.000002 -1.000003 1.000004 -1.000005
-TEST_END
-
-TEST_START
-Description: Incrementing small values (five elements: 1e-7, 2e-7, 3e-7, 4e-7, 5e-7).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 1e-7 2e-7 3e-7 4e-7 5e-7
-TEST_END
-
-TEST_START
-Description: Symmetric positive and negative values (four elements: 2.0, -2.0, 3.0, -3.0).
-INT_PARAMS: 4
-ARRAY_SIZE: 4
-REAL_ARRAY: 2.0 -2.0 3.0 -3.0
-TEST_END
-
-TEST_START
-Description: Three elements: one very high, one very low, one moderate (1e20, 1e-20, 100.0).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 1e20 1e-20 100.0
-TEST_END
-
-TEST_START
-Description: Maximum intermediate values for N=3: three values slightly below AGIANT for N=3 (using 4e18 for all three).
-INT_PARAMS: 3
-ARRAY_SIZE: 3
-REAL_ARRAY: 4e18 4e18 4e18
-TEST_END
-
-TEST_START
-Description: Edge near RDWARF for many elements: five elements all equal to 3.834e-20.
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 3.834e-20 3.834e-20 3.834e-20 3.834e-20 3.834e-20
-TEST_END
-
-TEST_START
-Description: Alternating intermediate and large values (six elements: 1e18, 1e19, 2e18, 2e19, 3e18, 3e19).
-INT_PARAMS: 6
-ARRAY_SIZE: 6
-REAL_ARRAY: 1e18 1e19 2e18 2e19 3e18 3e19
-TEST_END
-
-TEST_START
-Description: Random negatives with zero included (six elements: -0.5, 0.0, 0.5, -0.25, 0.25, 0.75).
-INT_PARAMS: 6
-ARRAY_SIZE: 6
-REAL_ARRAY: -0.5 0.0 0.5 -0.25 0.25 0.75
-TEST_END
-
-TEST_START
-Description: Geometric progression with mixed signs (five elements: -1, 10, -100, 1000, -10000).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: -1.0 10.0 -100.0 1000.0 -10000.0
-TEST_END
-
-TEST_START
-Description: Increasing values by powers (five elements: 2, 4, 8, 16, 32).
-INT_PARAMS: 5
-ARRAY_SIZE: 5
-REAL_ARRAY: 2.0 4.0 8.0 16.0 32.0
-TEST_END
-
-TEST_START
-Description: Decimal values test (four elements: 1.234, 2.345, 3.456, 4.567).
-INT_PARAMS: 4
-ARRAY_SIZE: 4
-REAL_ARRAY: 1.234 2.345 3.456 4.567
-TEST_END
-
-TEST_START
-Description: Stress test with extreme scales across eight elements (1e-40, 1e-30, 1e-20, 1e-10, 1e0, 1e10, 1e20, 1e30).
-INT_PARAMS: 8
-ARRAY_SIZE: 8
-REAL_ARRAY: 1e-40 1e-30 1e-20 1e-10 1e0 1e10 1e20 1e30
+REAL_ARRAY: 0.0 3.834E-20 2.608E18 1.0E-10 -1.0E10
 TEST_END

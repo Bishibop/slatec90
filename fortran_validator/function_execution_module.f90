@@ -223,11 +223,8 @@ contains
         
         select case(trim(func_name))
             case('ENORM')
-                if (use_modern) then
-                    result = enorm_modern(n, x_array)
-                else
-                    result = enorm(n, x_array)
-                end if
+                ! ENORM not modernized yet, use F77 only
+                result = enorm(n, x_array)
             case default
                 print *, 'ERROR: Unknown real function with int and real array params: ', trim(func_name)
                 result = 0.0

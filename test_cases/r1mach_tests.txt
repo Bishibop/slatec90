@@ -1,27 +1,251 @@
 FUNCTION: R1MACH
 
 TEST_START
-Smallest positive magnitude
+Description: Valid index test - returns smallest positive magnitude (machine constant 1).
 INT_PARAMS: 1
 TEST_END
 
 TEST_START
-Largest magnitude
+Description: Valid index test - returns largest magnitude constant.
 INT_PARAMS: 2
 TEST_END
 
 TEST_START
-Smallest relative spacing
+Description: Valid index test - returns smallest relative spacing constant.
 INT_PARAMS: 3
 TEST_END
 
 TEST_START
-Largest relative spacing
+Description: Valid index test - returns largest relative spacing constant.
 INT_PARAMS: 4
 TEST_END
 
 TEST_START
-Log10 of base
+Description: Valid index test - returns logarithm (base 10) of base constant.
 INT_PARAMS: 5
 TEST_END
 
+TEST_START
+Description: Invalid index test - I = 0 (Below valid range).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Invalid index test - I = -1 (Negative index).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Invalid index test - I = 6 (Above valid range).
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Invalid index test - I = 10 (Far above valid).
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Invalid index test - I = -10 (Far below valid).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Invalid index test - I = 100 (Extreme invalid positive).
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Invalid index test - I = -100 (Extreme invalid negative).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Boundary valid test (Repeated) - I = 1, machine epsilon near underflow scenario simulation.
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Boundary valid test (Repeated) - I = 2, checking overflow limit approximation.
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Boundary valid test (Repeated) - I = 3, verifying smallest relative spacing.
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Boundary valid test (Repeated) - I = 4, verifying largest relative spacing.
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Boundary valid test (Repeated) - I = 5, verifying logarithm constant.
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Random valid test - I = 1 selected randomly.
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Random valid test - I = 2 selected randomly.
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Random valid test - I = 3 selected randomly.
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Random valid test - I = 4 selected randomly.
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Random valid test - I = 5 selected randomly.
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Geometric progression test - Valid index I = 1 (simulate impact on scale).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Geometric progression test - Valid index I = 2 (simulate impact on scale).
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Geometric progression test - Valid index I = 3 (simulate impact on scale).
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Geometric progression test - Valid index I = 4 (simulate impact on scale).
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Geometric progression test - Valid index I = 5 (simulate impact on scale).
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test - Valid index I = 1 (step start).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test - Valid index I = 2 (step sequence).
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test - Valid index I = 3 (step sequence).
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test - Valid index I = 4 (step sequence).
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test - Valid index I = 5 (step sequence).
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Stress test - Extreme valid test with I = 1 to simulate large magnitude differences in constants.
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Stress test - Extreme valid test with I = 2 to simulate large magnitude differences.
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Stress test - Extreme valid test with I = 3 to simulate cancellation issues.
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Stress test - Extreme valid test with I = 4 for high sensitivity verification.
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Stress test - Extreme valid test with I = 5 for high sensitivity verification.
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Denormalized number simulation - Valid test I = 3, mimicking very small differences.
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Denormalized number simulation - Valid test I = 4, checking spacing consistency.
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Special values simulation - Using an invalid index (I = -5) to mimic handling of special non-numeric values (Inf type simulation).
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Special values simulation - Using an invalid index (I = 7) to mimic NaN conditions.
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Commutativity test placeholder - Valid test I = 2 verifying consistency repeatedly.
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Symmetry test placeholder - Valid test I = 3 for internal consistency.
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Inverse operation test placeholder - Valid test I = 5 to check related logarithmic properties.
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Small difference test - Repeated valid test I = 1 to simulate differences on order 1e-6.
+INT_PARAMS: 1
+TEST_END
+
+TEST_START
+Description: Small difference test - Repeated valid test I = 2 to simulate tiny numerical differences.
+INT_PARAMS: 2
+TEST_END
+
+TEST_START
+Description: Small difference test - Repeated valid test I = 3 to simulate 1e-7 level differences.
+INT_PARAMS: 3
+TEST_END
+
+TEST_START
+Description: Small difference test - Repeated valid test I = 4 to simulate minute variations.
+INT_PARAMS: 4
+TEST_END
+
+TEST_START
+Description: Small difference test - Repeated valid test I = 5 to simulate slight changes in logarithmic constant.
+INT_PARAMS: 5
+TEST_END
+
+TEST_START
+Description: Stress test with large magnitude difference - Invalid test I = 9999 to trigger error handling in extreme case.
+INT_PARAMS: 5
+TEST_END

@@ -11,7 +11,8 @@ SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Comm
 ✅ **Completed**: 13 functions  
 📊 **Generic Validator**: Operational with array support  
 🎯 **Available**: 725+ functions ready for migration  
-🚀 **New**: Gemini 2.5 Flash integration for improved code generation
+🚀 **New**: Gemini 2.5 Flash integration for improved code generation  
+🛡️ **New**: Automatic parameter validation catches test data issues
 
 ## Prerequisites
 
@@ -50,11 +51,12 @@ The project supports multiple LLM providers. Create `config.json`:
 {
   "llm_provider": "gemini",  // or "openai"
   "gemini_model": "gemini-2.5-flash",
-  "openai_model": "o3-mini"
+  "openai_model": "o3-mini",
+  "validate_parameters": true  // Enable automatic test parameter validation
 }
 ```
 
-Default: Uses OpenAI if no config.json exists.
+Default: Uses OpenAI if no config.json exists. Parameter validation is enabled by default.
 
 ## Project Structure
 
@@ -77,7 +79,8 @@ slatec_test/
 
 - **`slatec_orchestrator.py`** - Main automation script
 - **`modernizer.py`** - LLM-based F77→F90 converter
-- **`test_generator.py`** - Comprehensive test generation
+- **`test_generator.py`** - Comprehensive test generation with parameter validation
+- **`test_parameter_validator.py`** - Automatic test parameter fixing
 - **`fortran_validator/`** - Generic validation system
 - **`MIGRATION_GUIDE.md`** - Complete migration guide
 

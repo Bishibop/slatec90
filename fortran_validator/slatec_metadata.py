@@ -170,6 +170,44 @@ SLATEC_FUNCTIONS = {
         ],
         'returns': 'real',
         'description': 'Subsidiary to SNLS1, SNLS1E, SNSQ and SNSQE'
+    },
+    
+    'POLCOF': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'XX', 'type': 'real', 'intent': 'in'},
+            {'name': 'N', 'type': 'real', 'intent': 'in', 'dimension': 'POLCOF-S, DPOLCF-D'},
+            {'name': 'X', 'type': 'real', 'intent': 'in', 'dimension': '*'},
+            {'name': 'C', 'type': 'real', 'intent': 'in', 'dimension': '*'},
+            {'name': 'D', 'type': 'real', 'intent': 'inout', 'dimension': '1'},
+            {'name': 'WORK', 'type': 'real', 'intent': 'inout', 'dimension': '*'},
+        ],
+        'returns': None,
+        'description': 'Compute the coefficients of the polynomial fit (including'
+    },
+    
+    'XRED': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'X', 'type': 'real', 'intent': 'in'},
+            {'name': 'IX', 'type': 'integer', 'intent': 'in'},
+            {'name': 'IERROR', 'type': 'real', 'intent': 'out'},
+        ],
+        'returns': None,
+        'description': 'To provide single-precision floating-point arithmetic'
+    },
+    
+    'QFORM': {
+        'type': 'subroutine',
+        'params': [
+            {'name': 'M', 'type': 'integer', 'intent': 'in'},
+            {'name': 'N', 'type': 'integer', 'intent': 'in'},
+            {'name': 'Q', 'type': 'real', 'intent': 'inout', 'dimension': 'LDQ,*'},
+            {'name': 'LDQ', 'type': 'integer', 'intent': 'in'},
+            {'name': 'WA', 'type': 'real', 'intent': 'inout', 'dimension': 'M'}
+        ],
+        'returns': None,
+        'description': 'Accumulate Q from QR factorization'
     }}
 
 def get_function_signature(func_name):

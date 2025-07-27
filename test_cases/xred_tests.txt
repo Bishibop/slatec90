@@ -1,0 +1,361 @@
+FUNCTION: XRED
+
+TEST_START
+Description: X is zero, IX is zero
+REAL_PARAMS: 0.0
+INT_PARAMS: 0 -999
+TEST_END
+
+TEST_START
+Description: X is zero, IX is positive
+REAL_PARAMS: 0.0
+INT_PARAMS: 5 -999
+TEST_END
+
+TEST_START
+Description: X is zero, IX is negative
+REAL_PARAMS: 0.0
+INT_PARAMS: -5 -999
+TEST_END
+
+TEST_START
+Description: X positive with IX = 0 (no transformation expected)
+REAL_PARAMS: 1.0
+INT_PARAMS: 0 -999
+TEST_END
+
+TEST_START
+Description: X negative with IX = 0 (no transformation expected)
+REAL_PARAMS: -1.0
+INT_PARAMS: 0 -999
+TEST_END
+
+TEST_START
+Description: Small positive X near machine epsilon with IX = 0
+REAL_PARAMS: 1.2e-7
+INT_PARAMS: 0 -999
+TEST_END
+
+TEST_START
+Description: Small negative X near machine epsilon with IX = 0
+REAL_PARAMS: -1.2e-7
+INT_PARAMS: 0 -999
+TEST_END
+
+TEST_START
+Description: Positive X with IX positive (simple case)
+REAL_PARAMS: 2.0
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Negative X with IX positive (simple case)
+REAL_PARAMS: -2.0
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Small positive X (denormalized region) with IX positive
+REAL_PARAMS: 1.0e-38
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Small negative X (denormalized region) with IX positive
+REAL_PARAMS: -1.0e-38
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Large positive X with IX positive
+REAL_PARAMS: 1.0e38
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Large negative X with IX positive
+REAL_PARAMS: -1.0e38
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Positive X with IX negative
+REAL_PARAMS: 2.0
+INT_PARAMS: -1 -999
+TEST_END
+
+TEST_START
+Description: Small positive X with IX negative
+REAL_PARAMS: 1.0e-38
+INT_PARAMS: -1 -999
+TEST_END
+
+TEST_START
+Description: Large positive X with IX negative
+REAL_PARAMS: 1.0e38
+INT_PARAMS: -1 -999
+TEST_END
+
+TEST_START
+Description: Geometric progression test: X = 1.0, IX = 3
+REAL_PARAMS: 1.0
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Geometric progression test: X = 10.0, IX = 3
+REAL_PARAMS: 10.0
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Geometric progression test: X = 100.0, IX = 3
+REAL_PARAMS: 100.0
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Geometric progression test: X = 1000.0, IX = 3
+REAL_PARAMS: 1000.0
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Geometric progression test with negative X: X = -1.0, IX = 3
+REAL_PARAMS: -1.0
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Geometric progression test with negative X: X = -10.0, IX = 3
+REAL_PARAMS: -10.0
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test: X = 1.0, IX = 2
+REAL_PARAMS: 1.0
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test: X = 1.1, IX = 2
+REAL_PARAMS: 1.1
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test: X = 1.2, IX = 2
+REAL_PARAMS: 1.2
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test: X = 1.3, IX = 2
+REAL_PARAMS: 1.3
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Arithmetic progression test: X = 1.4, IX = 2
+REAL_PARAMS: 1.4
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Values differing by a small amount: X = 1.000001, IX = 2
+REAL_PARAMS: 1.000001
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Values differing by a small amount: X = 1.0000001, IX = 2
+REAL_PARAMS: 1.0000001
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Stress test: Very different magnitude, X = 1.23e-20, IX = 123
+REAL_PARAMS: 1.23e-20
+INT_PARAMS: 123 -999
+TEST_END
+
+TEST_START
+Description: Stress test with negative X: X = -1.23e20, IX = -123
+REAL_PARAMS: -1.23e20
+INT_PARAMS: -123 -999
+TEST_END
+
+TEST_START
+Description: Stress test with cancellation tendencies: X = 0.999999, IX = -4
+REAL_PARAMS: 0.999999
+INT_PARAMS: -4 -999
+TEST_END
+
+TEST_START
+Description: Test loop condition: X = 0.75, IX = 5
+REAL_PARAMS: 0.75
+INT_PARAMS: 5 -999
+TEST_END
+
+TEST_START
+Description: Test loop condition: X = 1.5, IX = 5
+REAL_PARAMS: 1.5
+INT_PARAMS: 5 -999
+TEST_END
+
+TEST_START
+Description: Test loop condition with negative X: X = -0.75, IX = 5
+REAL_PARAMS: -0.75
+INT_PARAMS: 5 -999
+TEST_END
+
+TEST_START
+Description: Test loop condition with negative X: X = -1.5, IX = 5
+REAL_PARAMS: -1.5
+INT_PARAMS: 5 -999
+TEST_END
+
+TEST_START
+Description: IX multiple adjustment test: X = 3.14, IX = 10
+REAL_PARAMS: 3.14
+INT_PARAMS: 10 -999
+TEST_END
+
+TEST_START
+Description: IX multiple adjustment test with negative IX and X: X = -2.71, IX = -10
+REAL_PARAMS: -2.71
+INT_PARAMS: -10 -999
+TEST_END
+
+TEST_START
+Description: Boundary near underflow: X = 1.0e-45 (subnormal), IX = 2
+REAL_PARAMS: 1.0e-45
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Boundary near overflow: X = 3.4e38, IX = 2
+REAL_PARAMS: 3.4e38
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Random test: X = 7.89, IX = 1
+REAL_PARAMS: 7.89
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Random test with negative X: X = -7.89, IX = -1
+REAL_PARAMS: -7.89
+INT_PARAMS: -1 -999
+TEST_END
+
+TEST_START
+Description: Symmetry test: X = 123.456, IX = 4
+REAL_PARAMS: 123.456
+INT_PARAMS: 4 -999
+TEST_END
+
+TEST_START
+Description: Symmetry test with negative X: X = -123.456, IX = 4
+REAL_PARAMS: -123.456
+INT_PARAMS: 4 -999
+TEST_END
+
+TEST_START
+Description: Edge case: very small positive denormal, X = 1e-45, IX = 1
+REAL_PARAMS: 1e-45
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Edge case: very small negative denormal, X = -1e-45, IX = -1
+REAL_PARAMS: -1e-45
+INT_PARAMS: -1 -999
+TEST_END
+
+TEST_START
+Description: Multiple paths test: X = 2.99792458e8 (speed of light approx), IX = 7
+REAL_PARAMS: 2.99792458e8
+INT_PARAMS: 7 -999
+TEST_END
+
+TEST_START
+Description: Multiple paths test with negative X: X = -2.99792458e8, IX = 7
+REAL_PARAMS: -2.99792458e8
+INT_PARAMS: 7 -999
+TEST_END
+
+TEST_START
+Description: Large integer adjustment: X = 6.022e23 (Avogadro's number scale), IX = 20
+REAL_PARAMS: 6.022e23
+INT_PARAMS: 20 -999
+TEST_END
+
+TEST_START
+Description: Large integer adjustment with negative X: X = -6.022e23, IX = -20
+REAL_PARAMS: -6.022e23
+INT_PARAMS: -20 -999
+TEST_END
+
+TEST_START
+Description: IX zero with large X (no adjustment performed): X = 1.0e25, IX = 0
+REAL_PARAMS: 1.0e25
+INT_PARAMS: 0 -999
+TEST_END
+
+TEST_START
+Description: Test near unity boundary: X = 0.9999999, IX = 3
+REAL_PARAMS: 0.9999999
+INT_PARAMS: 3 -999
+TEST_END
+
+TEST_START
+Description: Test near unity boundary with negative X: X = -1.0000001, IX = -3
+REAL_PARAMS: -1.0000001
+INT_PARAMS: -3 -999
+TEST_END
+
+TEST_START
+Description: Borderline transformation test: X = 5.5, IX = 2
+REAL_PARAMS: 5.5
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Minimal transformation test: X = 1.0, IX = 1
+REAL_PARAMS: 1.0
+INT_PARAMS: 1 -999
+TEST_END
+
+TEST_START
+Description: Scaling down test: X = 8.0, IX = -2
+REAL_PARAMS: 8.0
+INT_PARAMS: -2 -999
+TEST_END
+
+TEST_START
+Description: Scaling up test: X = 0.125, IX = 2
+REAL_PARAMS: 0.125
+INT_PARAMS: 2 -999
+TEST_END
+
+TEST_START
+Description: Random high precision test: X = 3.1415927, IX = 6
+REAL_PARAMS: 3.1415927
+INT_PARAMS: 6 -999
+TEST_END
+
+TEST_START
+Description: Random high precision test with negative X: X = -2.7182818, IX = -6
+REAL_PARAMS: -2.7182818
+INT_PARAMS: -6 -999
+TEST_END
+
+TEST_START
+Description: Additional test: X = 0.09999999, IX = 10
+REAL_PARAMS: 0.09999999
+INT_PARAMS: 10 -999
+TEST_END

@@ -16,10 +16,10 @@ This is a comprehensive guide for migrating SLATEC functions from F77 to modern 
 ## Migration Status
 
 ### Summary
-- **Total Zero-Dependency Functions**: 169
+- **Total Zero-Dependency Functions**: 167
 - **Completed**: 15
 - **In Progress**: 2
-- **Available**: 152
+- **Available**: 150
 
 ### Completed Migrations ✅
 
@@ -54,14 +54,14 @@ These are recommended based on simplicity and usefulness:
 
 | Function | Description | Why Priority |
 |----------|-------------|--------------|
-| ISAMAX | Index of max abs value | BLAS utility |
-| SASUM | Sum of absolute values | BLAS utility |
 | JAIRY | Airy function Ai(x) | Special function |
 | POLCOF | Polynomial coefficients | Utility function |
 | QFORM | Quadrature formula | Integration utility |
 | XRED | Extended precision reduction | Numeric utility |
+| POLYVL | Polynomial evaluation | Simple utility |
+| QCHEB | Chebyshev moments | Integration utility |
 
-### Complete List of Available Functions (155)
+### Complete List of Available Functions (153)
 
 All zero-dependency functions available for migration:
 
@@ -520,6 +520,31 @@ Create modern/funcname_modern.f90 and output results
 
 ## Test Generation Strategies
 
+### Automatic Parameter Validation
+
+As of January 2025, the test generator includes automatic parameter validation that fixes common LLM generation issues:
+
+**Configuration**: Set `"validate_parameters": true` in `config.json` (default: true)
+
+**What it does**:
+- Fixes malformed scientific notation (e.g., `1e19e0` → `1e19`)
+- Validates and fixes function-specific constraints:
+  - Machine constant indices (R1MACH, I1MACH, D1MACH)
+  - Array size consistency (ENORM, etc.)
+  - Dangerous parameter combinations (PYTHAG with both NaN)
+- Provides detailed reporting of fixes applied
+
+**Example output**:
+```
+Validation results: 40 valid, 10 fixed, 0 invalid
+```
+
+The validator has two layers:
+1. **Parsing layer** - Fixes format issues for ALL functions
+2. **Validation layer** - Applies function-specific rules when available
+
+See `test_parameter_validator.py` for implementation details.
+
 ### By Function Category
 
 #### 1. Utility Functions (ENORM, PYTHAG, VNORM)
@@ -961,7 +986,7 @@ When F77 code contains `Y = PYTHAG(A,B)`, the linker resolves it to the F90 modu
 As you migrate functions, check which test programs they enable:
 - Machine constants (I1MACH, R1MACH, D1MACH) → Many tests use these
 - Error handling (FDUMP, J4SAVE, XERMSG) → Required by most test programs
-- BLAS utilities (LSAME, ISAMAX, SASUM) → Enable test17 (BLAS tests)
+- BLAS utilities (LSAME) → Enable test17 (BLAS tests)
 - Simple functions (PYTHAG, CDIV) → Enable specific arithmetic tests
 
 This creates a positive feedback loop where each migration enables more validation.

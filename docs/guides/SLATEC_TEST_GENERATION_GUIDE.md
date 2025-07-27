@@ -732,6 +732,60 @@ REAL_PARAMS: NaN NaN
 TEST_END
 ```
 
+**Version 4** (With Parameter Validation):
+```python
+# Automatic parameter validation and fixing
+from test_parameter_validator import ParameterValidator
+
+validator = ParameterValidator()
+test_cases, report = validator.validate_test_file('ENORM', test_content)
+# Automatically fixes: array size mismatches, out-of-range indices, 
+# malformed numbers, dangerous parameter combinations
+```
+
+### Parameter Validation System
+
+As of January 2025, we've implemented automatic parameter validation to catch and fix common test generation issues:
+
+**Key Features**:
+1. **Automatic Constraint Checking**: Validates mathematical constraints before tests reach Fortran
+2. **Smart Fixing**: Attempts to fix invalid parameters rather than rejecting tests
+3. **Function-Specific Rules**: Custom validators for functions with special requirements
+4. **Malformed Number Detection**: Catches and fixes scientific notation errors (e.g., `1e19e0`)
+
+**Example Fixes**:
+```
+# PYTHAG with both NaN (causes infinite loop)
+Original: REAL_PARAMS: NaN NaN
+Fixed:    REAL_PARAMS: 0 1
+
+# ENORM array size mismatch
+Original: INT_PARAMS: 5
+         ARRAY_SIZE: 3
+         REAL_ARRAY: 1.0 2.0 3.0
+Fixed:    INT_PARAMS: 5
+         ARRAY_SIZE: 5
+         REAL_ARRAY: 1.0 2.0 3.0 0.0 0.0
+
+# R1MACH out of range
+Original: INT_PARAMS: 10  # Valid range is [1,5]
+Fixed:    INT_PARAMS: 5
+```
+
+**Implementation in test_generator.py**:
+```python
+# Apply parameter validation after LLM generation
+if self.config.get('validate_parameters', True):
+    test_cases, validation_report = self.validator.validate_test_file(func_name, test_cases)
+    
+    # Log results
+    valid_count = sum(1 for r in validation_report if r['status'] == 'valid')
+    fixed_count = sum(1 for r in validation_report if r['status'] == 'fixed')
+    invalid_count = sum(1 for r in validation_report if r['status'] == 'invalid')
+```
+
+This validation layer has significantly reduced false failures in the validation phase, allowing us to focus on real modernization issues rather than test data problems.
+
 ## Common Pitfalls and Solutions
 
 ### Pitfall 1: Trusting Documentation
