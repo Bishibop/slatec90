@@ -8,15 +8,16 @@ SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Comm
 
 ## Current Status
 
-✅ **Completed**: 9 functions  
-📊 **Generic Validator**: Operational  
-🎯 **Available**: 729 functions ready for migration
+✅ **Completed**: 13 functions  
+📊 **Generic Validator**: Operational with array support  
+🎯 **Available**: 725+ functions ready for migration  
+🚀 **New**: Gemini 2.5 Flash integration for improved code generation
 
 ## Prerequisites
 
 - gfortran 8.0+ (or compatible Fortran compiler)
 - Python 3.6+
-- OpenAI API key (for LLM-based generation)
+- LLM API key: OpenAI or Google Gemini (for code generation)
 - Basic command line tools (make, git)
 
 ## Quick Start
@@ -24,7 +25,9 @@ SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Comm
 1. **Set up environment**:
    ```bash
    cp .env.example .env
-   # Add your OpenAI API key to .env
+   # Add your API key to .env:
+   # For OpenAI: OPENAI_API_KEY=sk-...
+   # For Gemini: GEMINI_API_KEY=...
    ```
 
 2. **Migrate a function**:
@@ -38,6 +41,20 @@ SLATEC (Sandia, Los Alamos, Air Force Weapons Laboratory Technical Exchange Comm
    - `logs/` - Detailed analysis and results
 
 All migrations require 100% validation pass rate.
+
+## Configuration
+
+The project supports multiple LLM providers. Create `config.json`:
+
+```json
+{
+  "llm_provider": "gemini",  // or "openai"
+  "gemini_model": "gemini-2.5-flash",
+  "openai_model": "o3-mini"
+}
+```
+
+Default: Uses OpenAI if no config.json exists.
 
 ## Project Structure
 
@@ -77,13 +94,17 @@ slatec_test/
 |----------|------|-------------|
 | AAAAAA | Version | Returns SLATEC version string |
 | CDIV | Complex | Complex division with overflow protection |
+| CSROOT | Complex | Complex square root |
 | D1MACH | Machine | Double precision machine constants |
+| ENORM | Vector | Euclidean norm of a vector (array support) |
 | FDUMP | Debug | Error message dump |
 | I1MACH | Machine | Integer machine constants |
 | LSAME | Character | Case-insensitive character comparison |
 | PIMACH | Constant | Returns value of π |
 | PYTHAG | Math | Pythagorean sum sqrt(a²+b²) |
+| QWGTC | Quadrature | Cauchy principal value weight function |
 | R1MACH | Machine | Single precision machine constants |
+| ZABS | Complex | Complex absolute value |
 
 ## Original SLATEC Info
 

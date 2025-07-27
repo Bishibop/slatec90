@@ -1,8 +1,8 @@
 # SLATEC Validation Guide: Generic Validator System
 
-**Date**: July 26, 2025  
+**Date**: July 26, 2025 (Updated January 26, 2025)  
 **Purpose**: Practical guide for using and extending the generic SLATEC validator  
-**Status**: Implemented and operational for 9 functions
+**Status**: Implemented and operational for 13 functions with array parameter support
 
 ## Overview
 
@@ -119,6 +119,49 @@ make validator
 cd ..
 python3 slatec_orchestrator.py --function NEWFUNC
 ```
+
+## Array Parameter Support
+
+The validator now supports functions with array parameters. This enables validation of linear algebra routines, vector operations, and other array-based algorithms.
+
+### Array Function Metadata Example
+
+```python
+'ENORM': {
+    'type': 'function',
+    'params': [
+        {'name': 'N', 'type': 'integer', 'intent': 'in'},
+        {'name': 'X', 'type': 'real', 'intent': 'in', 'dimension': 'N'}
+    ],
+    'returns': 'real',
+    'description': 'Euclidean norm of a vector'
+}
+```
+
+### Test File Format for Arrays
+
+```
+FUNCTION: ENORM
+TEST_START
+Description: Basic 3-element vector
+INT_PARAMS: 3
+ARRAY_SIZE: 3
+REAL_ARRAY: 3.0 4.0 0.0
+TEST_END
+```
+
+### Supported Array Signatures
+
+- `SIG_REAL_FUNC_INT_REAL_ARRAY` (type 10): Functions like ENORM(N, X)
+- Future: Integer arrays, complex arrays, multi-dimensional arrays
+
+### Array Validation Flow
+
+1. Test parser reads `ARRAY_SIZE` and allocates array
+2. `REAL_ARRAY` values are parsed into allocated array
+3. Dispatcher passes array to validation function
+4. Both F77 and F90 implementations receive same array data
+5. Results compared with standard tolerance
 
 ## Special Case Handling
 
