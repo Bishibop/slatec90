@@ -90,66 +90,12 @@ contains
                     call report_failed_test_character("Missing real parameters", "")
                 end if
                 
-            case(SIG_SUB_REAL_REAL_REAL_REAL)
-                if (num_real_params >= 4) then
-                    call validate_subroutine_real_2int(func_name, &
-                        real_params(1), int(real_params(2)), int(real_params(3)))
+            case(SIG_REAL_FUNC_INT_REAL_ARRAY)
+                if (num_int_params >= 1 .and. array_size > 0) then
+                    call validate_real_function_int_real_array(func_name, &
+                        int_params(1), real_array)
                 else
-                    call report_failed_test_character("Missing real parameters", "")
-                end if
-                
-            case(SIG_FUNC_REAL_REAL_INTEGER)
-                if (num_real_params >= 1) then
-                    ! GAMLN - treat as real function with 1 real parameter
-                    call validate_real_function_1_real(func_name, real_params(1))
-                else
-                    call report_failed_test_character("Missing real parameter", "")
-                end if
-                
-            case(SIG_SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_INTEGE_B84D1923)
-                ! INTRV - use generic 2D array validation
-                if (num_real_params >= 2 .and. num_int_params >= 3) then
-                    call validate_subroutine_2d_array(func_name, &
-                        int_params(1), 1, int_params(1), real_params, num_real_params)
-                else
-                    call report_failed_test_character("Missing parameters for INTRV", "")
-                end if
-                
-            case(SIG_SUB_REAL_ARR_INTEGER_ARR_REAL_ARR_REAL_A_65000675)
-                ! POLCOF - use array validation with real and int params
-                if (num_real_params >= 3 .and. num_int_params >= 1) then
-                    call validate_subroutine_real_int_4arrays(func_name, &
-                        real_params(1), int_params(1), real_params(2:), &
-                        real_params(2:), real_params(3:), real_params(3:))
-                else
-                    call report_failed_test_character("Missing parameters for POLCOF", "")
-                end if
-                
-            case(SIG_SUB_INTEGER_ARR_INTEGER_ARR_REAL_ARR_REAL_ARR)
-                ! QFORM - use 2D array validation
-                if (num_int_params >= 2 .and. num_real_params >= 2) then
-                    call validate_subroutine_2d_array(func_name, &
-                        int_params(1), int_params(2), int_params(1), real_params, num_real_params)
-                else
-                    call report_failed_test_character("Missing parameters for QFORM", "")
-                end if
-                
-            case(SIG_FUNC_REAL_REAL_REAL_REAL_REAL_REAL_INTEGER)
-                ! QWGTC - use multi-real validation (treat as 2-real for simplicity)
-                if (num_real_params >= 5 .and. num_int_params >= 1) then
-                    call validate_real_function_2_real(func_name, &
-                        real_params(1), real_params(2))
-                else
-                    call report_failed_test_character("Missing parameters for QWGTC", "")
-                end if
-                
-            case(SIG_FUNC_DOUBLE_DOUBLE_DOUBLE)
-                if (num_real_params >= 2) then
-                    ! ZABS - treat as 2-real function for validation
-                    call validate_real_function_2_real(func_name, &
-                        real_params(1), real_params(2))
-                else
-                    call report_failed_test_character("Missing double precision parameters", "")
+                    call report_failed_test_character("Missing integer parameter or array", "")
                 end if
                 
             case default

@@ -1,2 +1,7 @@
 openai>=1.0.0
 python-dotenv>=1.0.0
+PyQt6>=6.5.0
+PyQt6-Qt6>=6.5.0
+PyQt6-sip>=13.5.0
+plantuml>=0.3.0
+requests>=2.25.0
