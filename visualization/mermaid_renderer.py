@@ -27,6 +27,8 @@ class MermaidRenderer(QObject):
     
     def render_diagram(self, mermaid_code: str) -> Optional[QPixmap]:
         """Render Mermaid diagram and return QPixmap"""
+        if not mermaid_code:
+            return None
         try:
             # Check cache first
             cache_path = self._get_cache_path(mermaid_code)
@@ -58,9 +60,12 @@ class MermaidRenderer(QObject):
         try:
             # Mermaid.ink uses simple base64 encoding
             encoded = base64.b64encode(mermaid_code.encode('utf-8')).decode('ascii')
-            url = f"https://mermaid.ink/img/{encoded}"
+            # Request PNG with higher scale for better resolution
+            # Use fit parameter to remove whitespace
+            url = f"https://mermaid.ink/img/{encoded}?bgColor=!1E1E1E"
             
             response = requests.get(url, timeout=30)
+            
             
             if response.status_code == 200:
                 # Check if it's a valid image format (PNG, JPEG, or SVG)
@@ -83,13 +88,14 @@ class MermaidTemplateGenerator:
 %%{init: {
   'theme': 'dark',
   'themeVariables': {
+    'darkMode': true,
+    'background': '#1E1E1E',
     'primaryColor': '#2D2D2D',
     'primaryTextColor': '#E0E0E0',
     'primaryBorderColor': '#555555',
     'lineColor': '#0D7EC4',
     'secondaryColor': '#3A3A3A',
     'tertiaryColor': '#1E1E1E',
-    'background': '#1E1E1E',
     'mainBkg': '#2D2D2D',
     'secondBkg': '#3A3A3A',
     'tertiaryBkg': '#4A4A4A'
@@ -103,10 +109,14 @@ class MermaidTemplateGenerator:
         
         if stage.lower() in ['test generation']:
             return self._generate_test_generation_diagram(data)
-        elif stage.lower() in ['modernize']:
+        elif stage.lower() in ['modernize', 'modernization']:
             return self._generate_modernization_diagram(data)
-        elif stage.lower() in ['validate']:
+        elif stage.lower() in ['validate', 'validation']:
             return self._generate_validation_diagram(data)
+        elif stage.lower() in ['output']:
+            return self._generate_output_diagram(data)
+        elif stage.lower() in ['queue']:
+            return self._generate_queue_diagram(data)
         else:
             return self._generate_queue_diagram(data)
     
@@ -121,15 +131,18 @@ class MermaidTemplateGenerator:
         
         return f"""{self.dark_theme_config}
 graph TD
-    F77["{function_name}.f<br/>F77 Source"] --> LLM["LLM Generator<br/>(o3-mini)"]
-    LLM --> VAL["Parameter<br/>Validator"]
-    VAL --> TESTS["Test Cases<br/>{test_count} generated"]
-    VAL -.-> LLM
+    F77["{function_name}.f"] --> LLM["LLM Generator"]
+    LLM --> FORMAT["Numeric Format Fixer"]
+    FORMAT --> VAL["Parameter Validator"]
+    VAL --> TESTS["Test Cases"]
+    VAL --> STATS["Validation Report"]
     
-    style F77 fill:#4CAF50
-    style LLM fill:#FF9800
-    style VAL fill:#2196F3
-    style TESTS fill:#9C27B0
+    style F77 fill:#505050
+    style LLM fill:#606060
+    style FORMAT fill:#707070
+    style VAL fill:#808080
+    style TESTS fill:#909090
+    style STATS fill:#A0A0A0
     
     classDef default color:#E0E0E0
 """
@@ -153,16 +166,16 @@ graph TD
         
         return f"""{self.dark_theme_config}
 graph TD
-    F77["{function_name}.f<br/>Original F77"] --> LLM["LLM Converter<br/>(o3-mini)"]
-    TESTS["Test Cases<br/>(Generated)"] --> LLM
-    ERRORS["Error History<br/>(Previous iterations)"] --> LLM
-    LLM --> F90["{function_name}_module.f90<br/>Modern F90"]
+    F77["{function_name}.f"] --> LLM["LLM Modernizer"]
+    TESTS["Test Cases"] --> LLM
+    ERRORS["Error History"] --> LLM
+    LLM --> F90["{function_name}_module.f90"]
     
-    style F77 fill:#4CAF50
-    style TESTS fill:#4CAF50
-    style ERRORS fill:#4CAF50
-    style LLM fill:#FF9800
-    style F90 fill:#9C27B0
+    style F77 fill:#505050
+    style TESTS fill:#606060
+    style ERRORS fill:#707070
+    style LLM fill:#808080
+    style F90 fill:#909090
     
     classDef default color:#E0E0E0
 """
@@ -184,16 +197,16 @@ graph TD
         
         return f"""{self.dark_theme_config}
 graph TD
-    F77BIN["F77 Binary<br/>(Reference)"] --> RUNNER["Test Runner<br/>(130 test cases)"]
-    F90BIN["F90 Binary<br/>(Modern)"] --> RUNNER
-    RUNNER --> COMP["Result Comparator<br/>(Numerical accuracy)"]
-    COMP --> RESULTS["Pass/Fail Results<br/>{int(pass_rate * 100)}% pass rate"]
+    F77BIN["F77 Binary"] --> VALIDATOR["Validator"]
+    F90BIN["F90 Binary"] --> VALIDATOR
+    TESTS["Test Cases"] --> VALIDATOR
+    VALIDATOR --> RESULTS["Validation Results"]
     
-    style F77BIN fill:#4CAF50
-    style F90BIN fill:#4CAF50
-    style RUNNER fill:#2196F3
-    style COMP fill:#2196F3
-    style RESULTS fill:#9C27B0
+    style F77BIN fill:#606060
+    style F90BIN fill:#707070
+    style TESTS fill:#808080
+    style VALIDATOR fill:#909090
+    style RESULTS fill:#A0A0A0
     
     classDef default color:#E0E0E0
 """
@@ -204,10 +217,32 @@ graph TD
         
         return f"""{self.dark_theme_config}
 graph TD
-    QUEUE["Processing Queue"] --> FUNC["{function_name}<br/>Ready for processing"]
+    FUNC["{function_name}.f"] --> COMP["Complexity Analysis"]
+    FUNC --> DEP["Dependency Analysis"]
     
-    style QUEUE fill:#2196F3
-    style FUNC fill:#2196F3
+    COMP --> QUEUE["Prioritized Queue"]
+    DEP --> QUEUE
+    
+    style FUNC fill:#606060
+    style COMP fill:#707070
+    style DEP fill:#808080
+    style QUEUE fill:#909090
+    
+    classDef default color:#E0E0E0
+"""
+    
+    def _generate_output_diagram(self, data: Dict[str, Any]) -> str:
+        """Generate output/delivery architecture diagram"""
+        function_name = data.get('function_name', 'PYTHAG')
+        
+        return f"""{self.dark_theme_config}
+graph TD
+    REPORT["Report Generator"] --> FINAL["{function_name} Modernization Complete"]
+    FUNCTION["{function_name}_module.f90"] --> FINAL
+    
+    style REPORT fill:#707070
+    style FUNCTION fill:#808080
+    style FINAL fill:#909090
     
     classDef default color:#E0E0E0
 """

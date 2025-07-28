@@ -1,160 +1,176 @@
-# SLATEC Modernization Visualization
+# AI-Assisted Legacy Codebase Migration
 
-A real-time visualization tool for monitoring the SLATEC function modernization process. This desktop application provides an interactive system architecture diagram showing the flow of functions through various processing stages.
+*Exploring how AI can accelerate the modernization of legacy codebases*
 
-## Features
+## The Legacy Migration Problem
 
-- **Live System Architecture Diagram**: Shows the modernization pipeline with animated nodes and connections
-- **Real-time Updates**: Monitors orchestrator events and updates visualization instantly
-- **Function Pipeline View**: Track multiple functions being processed in parallel
-- **Metrics Dashboard**: Overall statistics including success rate, completion count, and average processing time
-- **Event Log**: Detailed timeline of all processing events
-- **Dark Theme**: Professional appearance optimized for extended viewing
+Millions of lines of legacy code across industries need modernization. The traditional approach is manual, expensive, error-prone, and requires deep domain expertise.
 
-## Installation
+**The Question**: Can AI meaningfully assist in legacy code migration while maintaining correctness?
 
-1. Install PyQt6 dependencies:
+## Our AI-Assisted Migration Approach
+
+**Hypothesis**: AI can accelerate legacy codebase modernization when paired with robust validation.
+
+**Core Strategies**:
+- **LLM-powered code translation** and modernization
+- **Legacy-as-Oracle validation**: Using original code to validate migrations
+- **Automated discovery** and metadata extraction
+- **Zero-trust verification**: Every AI migration must prove correctness
+
+## SLATEC Test Case
+
+**Why SLATEC**: 700+ mathematical functions with well-defined correctness criteria
+**Migration Target**: Fortran 77 → Fortran 90/95
+**Validation Advantage**: Mathematical functions have clear right/wrong answers
+**Scale**: Real-world complexity with manageable scope
+
+## Technical Implementation
+
+- **AI Migration Pipeline**: LLM translates legacy → modern code
+- **Validation Framework**: Automated comparison system
+- **Oracle Strategy**: Legacy code generates test cases for migration validation
+- **Metadata-Driven Architecture**: Scales to large codebases
+
+## What We Learned
+
+- **AI Migration Patterns**: Where LLMs excel vs struggle in code translation
+- **Validation Strategies**: Effective approaches for ensuring migration correctness
+- **Scalability Factors**: What makes AI-assisted migration practical for large codebases
+- **Quality Assurance**: Building trust in AI-generated code changes
+
+## Getting Started
+
+### See AI Migration in Action
+
+```bash
+cd fortran_validator
+make           # Build the validator
+./validator < test_cases.txt
+```
+
+### Test Format
+
+The validator uses simple text-based test cases:
+
+```
+FUNCTION: PYTHAG
+
+TEST_START
+Simple 3-4-5 triangle
+PARAMS: 3.0 4.0
+TEST_END
+```
+
+### Example Output
+
+```
+============================================================
+VALIDATING FUNCTION: PYTHAG
+============================================================
+PASS: Simple 3-4-5 triangle
+  F77 result:      5.00000000E+00
+  Modern result:   5.00000000E+00
+  Perfect match ✓
+```
+
+### Run Full Migration Pipeline
+
+Experience the complete AI-assisted migration process:
+
+```bash
+python slatec_orchestrator.py --function FUNCNAME
+```
+
+### Explore the Approach
+
+- **`fortran_validator/`**: Pure Fortran validation framework with F77-as-Oracle
+- **`modernizer.py`**: LLM-powered F77→F90 translation engine
+- **`test_generator.py`**: AI-generated comprehensive test suites
+- **`modern/`**: 18 successfully migrated functions
+
+## Applications Beyond SLATEC
+
+- **Enterprise Legacy Systems**: Apply methodology to business-critical code
+- **Language Migrations**: Adapt approach for different language pairs
+- **Framework Modernization**: Migrate to modern libraries/frameworks
+- **Technical Debt Reduction**: Systematic approach to code modernization
+
+## Project Structure
+
+```
+slatec_test/
+├── slatec_orchestrator.py      # Main AI migration automation pipeline
+├── modernizer.py               # LLM-powered F77→F90 translation engine  
+├── test_generator.py           # AI-generated comprehensive test suites
+├── test_parameter_validator.py # Automatic test parameter validation
+├── config.json                 # AI provider configuration
+├── requirements.txt            # Python dependencies
+├── src/                        # Original SLATEC F77 source files (Oracle)
+├── modern/                     # AI-migrated Fortran 90/95 implementations
+├── fortran_validator/          # F77-as-Oracle validation framework
+├── test_cases/                 # Generated test cases
+├── logs/                       # Migration results and analysis
+└── docs/                       # Technical documentation
+```
+
+## Prerequisites
+
+- **Fortran Compiler**: gfortran 8.0+ (or compatible Fortran compiler)
+- **Python**: 3.8+ with pip
+- **Build Tools**: make, git
+- **AI API**: OpenAI or Google Gemini API key for code generation
+
+## Installation & Setup
+
+### 1. Clone and Navigate
+
+```bash
+git clone <repository-url>
+cd slatec_test
+```
+
+### 2. Install Python Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+### 3. Set up AI Provider
 
-### Option 1: Demo Mode (No Orchestrator Required)
+Create `config.json` in the root directory:
 
-Test the visualization with simulated events:
-
-```bash
-python demo_visualization.py
+```json
+{
+  "llm_provider": "gemini",  // or "openai"
+  "gemini_model": "gemini-2.5-flash",
+  "openai_model": "o3-mini"
+}
 ```
 
-This runs a demonstration showing how the visualization responds to modernization events without needing the actual orchestrator.
-
-### Option 2: Standalone Mode
-
-Run the visualization and connect to an orchestrator later:
+Add your API key as an environment variable:
 
 ```bash
-python run_visualization.py
+# For OpenAI
+export OPENAI_API_KEY="sk-your-key-here"
+
+# For Gemini
+export GEMINI_API_KEY="your-key-here"
 ```
 
-Then in another terminal, run the visual orchestrator:
-```bash
-python slatec_orchestrator_visual.py --function PYTHAG
-```
-
-### Option 3: Integrated Mode
-
-Run visualization and orchestrator together:
+### 4. Build the Validator
 
 ```bash
-# Process a single function
-python run_visualization.py --with-orchestrator --function PYTHAG
-
-# Process a list of functions
-python run_visualization.py --with-orchestrator --list simple
-
-# Process multiple functions
-python run_visualization.py --with-orchestrator --functions PYTHAG,CDIV,CSROOT
+cd fortran_validator
+make clean && make
 ```
 
-### Option 4: Use Visual Orchestrator Directly
+### 5. Verify Installation
 
-The visual orchestrator can be used as a drop-in replacement for the standard orchestrator:
+Test the validator with existing functions:
 
 ```bash
-# All standard orchestrator commands work
-python slatec_orchestrator_visual.py --list simple
-python slatec_orchestrator_visual.py --function ENORM
-python slatec_orchestrator_visual.py --summary
-
-# Disable visualization if needed
-python slatec_orchestrator_visual.py --list simple --no-visualization
+./validator < ../test_cases/pythag_tests.txt
 ```
 
-## Architecture
-
-### Visual Components
-
-1. **System Architecture Diagram**
-   - **Nodes**: Represent processing stages (Source, Test Generator, Modernizer, Compiler, Validator, Output)
-   - **Connections**: Show data flow with animated particles
-   - **States**: Idle (gray), Active (blue), Success (green), Error (red)
-   - **Refinement Loop**: Shows iterative improvement process
-
-2. **Function Pipeline**
-   - Lists all functions being processed
-   - Shows current status, progress bar, and pass rate
-   - Color-coded status indicators
-
-3. **Metrics Panel**
-   - Total functions to process
-   - Completed count (with success indicator)
-   - Failed count (with error indicator)
-   - Active count (currently processing)
-   - Overall success rate
-   - Average processing time per function
-
-4. **Event Log**
-   - Timestamped events for debugging
-   - Shows which function triggered each event
-
-### Event System
-
-The visualization responds to these orchestrator events:
-
-- `FUNCTION_START/COMPLETE/FAILED`: Function-level progress
-- `SOURCE_READ`: Reading F77 source file
-- `TEST_GEN_START/COMPLETE`: Test case generation
-- `MODERNIZE_START/COMPLETE`: F77 to F90 conversion
-- `COMPILE_START/SUCCESS/FAILED`: Fortran compilation
-- `VALIDATE_START/COMPLETE`: Test validation
-- `REFINE_START/COMPLETE`: Iterative refinement
-- `RUN_START/COMPLETE`: Overall run progress
-
-### Technical Details
-
-- **Framework**: PyQt6 with QGraphicsScene for smooth animations
-- **Communication**: Thread-safe event queue between orchestrator and UI
-- **Performance**: Efficient updates using Qt's signal/slot mechanism
-- **Animations**: Particle effects, node glowing, smooth transitions
-
-## Extending the Visualization
-
-To add new visualizations or modify existing ones:
-
-1. **Add new event types** in `visualization/event_system.py`
-2. **Modify node behavior** in `visualization/flow_diagram.py`
-3. **Add new metrics** in `visualization/main_window.py`
-4. **Customize styling** in `visualization/styles.py`
-
-## Troubleshooting
-
-### PyQt6 Installation Issues
-
-If you encounter issues installing PyQt6:
-
-```bash
-# macOS
-brew install qt6
-pip install PyQt6
-
-# Linux
-sudo apt-get install qt6-base-dev
-pip install PyQt6
-
-# Windows
-pip install PyQt6
-```
-
-### Visualization Not Updating
-
-1. Ensure you're using `slatec_orchestrator_visual.py` not the standard orchestrator
-2. Check that events are being emitted (check the event log panel)
-3. Verify no errors in the console
-
-### Performance Issues
-
-- The visualization is optimized for monitoring up to ~20 parallel functions
-- For larger batches, consider using `--no-visualization` flag
-- Particle animations can be disabled by modifying `ANIMATION` settings in styles.py
+You should see validation results for the PYTHAG function.

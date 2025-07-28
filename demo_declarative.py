@@ -44,28 +44,28 @@ class DeclarativeDemoController:
             DemoState("Test Generation", "success", 33, 0.0, 0, "130 tests generated"),
             
             # Move to Modernize -> then show completion
-            DemoState("Modernize", "active", 50, 0.0, 0, "Generating modern function"),
-            DemoState("Modernize", "success", 66, 0.0, 0, "Modern function generated"),
+            DemoState("Modernization", "active", 50, 0.0, 0, "Generating modern function"),
+            DemoState("Modernization", "success", 66, 0.0, 0, "Modern function generated"),
             
             # Move to Validation -> then show results
-            DemoState("Validate", "active", 75, 0.0, 0, "Validating"),
-            DemoState("Validate", "active", 85, 0.73, 0, "73 test cases pass (73%)"),
+            DemoState("Validation", "active", 75, 0.0, 0, "Validating"),
+            DemoState("Validation", "active", 85, 0.73, 0, "73 test cases pass (73%)"),
             
             # Move back to Modernize for refinement -> show completion
-            DemoState("Modernize", "refining", 50, 0.73, 1, "Refining function (iteration 1)"),
-            DemoState("Modernize", "success", 66, 0.73, 1, "Refined function generated"),
+            DemoState("Modernization", "refining", 50, 0.73, 1, "Refining function (iteration 1)"),
+            DemoState("Modernization", "success", 66, 0.73, 1, "Refined function generated"),
             
             # Move back to Validation -> show improved results
-            DemoState("Validate", "active", 75, 0.73, 1, "Re-validating"),
-            DemoState("Validate", "active", 85, 0.89, 1, "116 test cases pass (89%)"),
+            DemoState("Validation", "active", 75, 0.73, 1, "Re-validating"),
+            DemoState("Validation", "active", 85, 0.89, 1, "116 test cases pass (89%)"),
             
             # Move back to Modernize for final refinement -> show completion
-            DemoState("Modernize", "refining", 50, 0.89, 2, "Refining function (iteration 2)"),
-            DemoState("Modernize", "success", 66, 0.89, 2, "Final function generated"),
+            DemoState("Modernization", "refining", 50, 0.89, 2, "Refining function (iteration 2)"),
+            DemoState("Modernization", "success", 66, 0.89, 2, "Final function generated"),
             
             # Move back to Validation -> show perfect results
-            DemoState("Validate", "active", 75, 0.89, 2, "Validating"),
-            DemoState("Validate", "success", 100, 1.0, 2, "130 test cases pass (100%)"),
+            DemoState("Validation", "active", 75, 0.89, 2, "Validating"),
+            DemoState("Validation", "success", 100, 1.0, 2, "130 test cases pass (100%)"),
             
             # Move to Output
             DemoState("Output", "success", 100, 1.0, 0, "PYTHAG successfully modernized"),
@@ -123,6 +123,8 @@ class DeclarativeDemoController:
                 stage = "modernize"
             elif "valid" in stage:
                 stage = "validate"
+            elif "output" in stage:
+                stage = "output"
             else:
                 stage = "queue"
                 
@@ -232,8 +234,8 @@ class DeclarativeDemoWindow(QMainWindow):
         self.subsystem_panel = SubsystemDetailPanel()
         content_splitter.addWidget(self.subsystem_panel)
         
-        # Set splitter sizes (60% pipeline, 40% subsystem)
-        content_splitter.setSizes([600, 400])
+        # Set splitter sizes (45% pipeline, 55% subsystem)
+        content_splitter.setSizes([450, 550])
         content_splitter.setStretchFactor(0, 1)  # Pipeline stretches
         content_splitter.setStretchFactor(1, 0)  # Subsystem fixed-ish
         

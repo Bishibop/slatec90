@@ -64,10 +64,12 @@ class OutputDisplayWidget(QWidget):
         """Update the display based on current stage and data"""
         if self.current_stage in ['test generation']:
             self._show_test_generation_output()
-        elif self.current_stage in ['modernize']:
+        elif self.current_stage in ['modernize', 'modernization']:
             self._show_modernization_output()
-        elif self.current_stage in ['validate']:
+        elif self.current_stage in ['validate', 'validation']:
             self._show_validation_output()
+        elif self.current_stage in ['output']:
+            self._show_output_output()
         else:
             self._show_queue_output()
             
@@ -77,59 +79,93 @@ class OutputDisplayWidget(QWidget):
         
         if self.current_data.get('completed'):
             # Show sample of generated tests
-            output = """Test Generation Complete!
+            func_name = self.current_data.get('function_name', 'PYTHAG')
+            test_count = self.current_data.get('test_count', '69')
+            
+            output = f"""Test Generation Complete!
 
-Generated: 130 comprehensive test cases
-Coverage: Boundary conditions, edge cases, normal operation
+Generated: {test_count} comprehensive test cases
+Function: {func_name}
+Coverage Strategy: Boundary conditions, numerical stability, mathematical properties
 
-Sample Test Cases:
-═══════════════════
+Test Categories Generated:
+• Zero input handling (all combinations)
+• Sign combinations (+/+, +/-, -/+, -/-)
+• Machine epsilon boundary tests
+• Overflow/underflow protection
+• Powers of 2 and 10 progressions
+• Geometric and arithmetic sequences
+• Large magnitude differences
+• Numerical cancellation tests
 
-TEST 1: Zero Input Handling
-Description: Both inputs zero
-Input: a=0.0, b=0.0
-Expected: Handles gracefully without overflow
+Validator: {func_name}-specific mathematical constraints applied
 
-TEST 2: Small Value Precision  
-Description: Very small positive values
-Input: a=1.0e-15, b=2.0e-15
-Expected: Maintains precision for tiny numbers
+Sample Test Cases from {func_name}_tests.txt:
+═══════════════════════════════════════
 
-TEST 3: Large Value Overflow Protection
-Description: Values near overflow threshold
-Input: a=1.0e+150, b=1.0e+150  
-Expected: Prevents overflow, returns valid result
+TEST 1: Both inputs zero
+REAL_PARAMS: 0.0 0.0
 
-TEST 4: Mixed Scale Inputs
-Description: Vastly different magnitudes
-Input: a=1.0e-10, b=1.0e+10
-Expected: Handles scale differences correctly
+TEST 6: Positive pair (3,4) should yield 5
+REAL_PARAMS: 3.0 4.0
 
-TEST 5: Negative Input Handling
-Description: Negative input values
-Input: a=-3.4, b=-5.7
-Expected: Computes absolute value correctly
+TEST 7: Mixed sign (3,-4) yields same result as (3,4)
+REAL_PARAMS: 3.0 -4.0
 
-... (125 more test cases)
+TEST 10: Both inputs very small near machine epsilon
+REAL_PARAMS: 1.0e-7 2.0e-7
 
-Validation Status: All tests passed parameter validation
+TEST 20: Powers of 2: (8, 16)
+REAL_PARAMS: 8.0 16.0
+
+TEST 30: Geometric progression: (2, 4) with ratio 2
+REAL_PARAMS: 2.0 4.0
+
+Example Array Test (for functions with array inputs):
+TEST 45: Vector norm calculation
+ARRAY_SIZE: 5
+REAL_ARRAY: 1.0 2.0 3.0 4.0 5.0
+
+Validation Results:
+✓ 125 tests passed validation directly
+🔧 5 tests had parameters auto-fixed:
+   - Test 48: Large value 1e400 clamped to 1e308
+   - Test 52: Invalid index 17 adjusted to valid range [1,16]
+✗ 0 tests failed validation
+
 Mathematical Constraints: Verified for numerical stability"""
         else:
             # Show generation in progress
-            output = """Test Generation In Progress...
+            func_name = self.current_data.get('function_name', 'PYTHAG')
+            output = f"""Test Generation In Progress...
 
-Current Status: Analyzing function signature
-Target: Generate 50-100 comprehensive test cases
+Current Status: Analyzing {func_name} function signature
+Target: Generate 100-500 tests based on function complexity
+
+Coverage Strategy Being Applied:
+• Zero input combinations
+• Sign permutations (+/+, +/-, -/+, -/-)
+• Machine epsilon boundaries
+• Overflow/underflow thresholds
+• Powers of 2 and 10 progressions
+• Geometric/arithmetic sequences
+• Large magnitude differences
+• Numerical cancellation scenarios
+• Special values (NaN, Inf if applicable)
 
 LLM Model: o3-mini
-Processing: Mathematical function analysis
-- Identifying input domains
-- Boundary condition analysis  
-- Edge case detection
-- Numerical stability testing
+Processing Steps:
+1. Source code analysis
+2. Mathematical property identification
+3. Domain boundary detection
+4. Test case generation with descriptions
+5. Numeric format validation
+6. {func_name}-specific constraint checking
 
-Parameter Validation: Enabled
-Constraint Checking: Active
+Parameter Validation: Active
+- Function-specific validator loaded
+- Mathematical constraints ready
+- Auto-fix capabilities enabled
 
 Estimated completion: 15-30 seconds"""
             
@@ -140,6 +176,7 @@ Estimated completion: 15-30 seconds"""
         self.title_label.setText("Generated F90 Code")
         
         if self.current_data.get('completed'):
+            func_name = self.current_data.get('function_name', 'PYTHAG')
             if self.current_data.get('iteration', 0) > 0:
                 iteration = self.current_data.get('iteration')
                 output = f"""Modernization Refinement (Iteration {iteration}) Complete!
@@ -148,6 +185,18 @@ Previous Issues Addressed:
 - Numerical precision mismatch
 - Array boundary handling
 - Error condition improvements
+
+Modernization Rules Applied:
+• Error Handling: Removed all XERMSG/J4SAVE calls
+• Thread Safety: No SAVE statements or global state
+• Invalid Inputs: Return sensible defaults (0.0, IEEE values)
+• Module Structure: One function per module ({func_name.lower()}_module)
+• Array Detection: Preserved scalar/array nature from F77
+
+Precision Modernization:
+• Using ISO_FORTRAN_ENV for portable precision
+• DOUBLE PRECISION → REAL(REAL64)
+• Default REAL/INTEGER preserved where appropriate
 
 Generated Modern F90 Code:
 ═══════════════════════════
@@ -195,7 +244,39 @@ Improvements Made:
 - Better overflow protection
 - Improved algorithm convergence"""
             else:
-                output = """Initial Modernization Complete!
+                output = f"""Initial Modernization Complete!
+
+Function: {func_name}
+LLM Provider: OpenAI o3-mini
+
+Modernization Rules Applied:
+• Error Handling Philosophy: 
+  - Removed all XERMSG/J4SAVE error calls
+  - No error stops - return sensible defaults
+  - Let caller handle invalid results
+• Thread Safety:
+  - No SAVE statements (eliminated global state)
+  - No hidden state between calls
+  - Each function call is independent
+• Invalid Input Handling:
+  - Machine constants: Return IEEE standard values
+  - Math functions: Return 0.0 or sensible defaults
+  - Logical functions: Return .FALSE.
+• Module Structure:
+  - One function per module design
+  - Module name: {func_name.lower()}_module
+  - Function made PUBLIC, all else PRIVATE
+• Array vs Scalar Detection:
+  - Preserved F77 parameter types
+  - Arrays only if DIMENSION in F77
+  - Scalars remain scalars
+
+Precision Modernization Applied:
+• ISO_FORTRAN_ENV for portable types
+• REAL → kept as default REAL (REAL32)
+• DOUBLE PRECISION → REAL(REAL64)
+• INTEGER → kept as default unless precision critical
+• Character strings → CHARACTER(*) for flexibility
 
 Generated Modern F90 Code:
 ═══════════════════════════
@@ -246,23 +327,61 @@ Modernization Features:
 - Intrinsic precision control"""
         else:
             # Show generation in progress
-            output = """Modernization In Progress...
+            func_name = self.current_data.get('function_name', 'PYTHAG')
+            iteration = self.current_data.get('iteration', 0)
+            
+            if iteration > 0:
+                output = f"""Modernization Refinement In Progress...
 
-Current Status: Converting F77 to F90
-Model: Processing algorithm analysis
+Current Status: Refining {func_name} (Iteration {iteration})
+Model: OpenAI o3-mini analyzing validation errors
 
-Conversion Steps:
-1. ✓ Analyzing original F77 source
-2. ✓ Identifying modernization opportunities  
-3. ◦ Generating module structure
-4. ◦ Converting to modern syntax
-5. ◦ Preserving algorithm integrity
-6. ◦ Adding type safety
+Refinement Context:
+- Previous validation errors identified
+- Original F77 code provided
+- Failing test examples included
+- Error pattern analysis applied
 
-Input Sources:
-- Original PYTHAG.f (F77 source)
-- Generated test cases (130 tests)
-- Function signature metadata
+Error Pattern Detection Active:
+• Checking for IERR parameter issues
+• Analyzing numerical overflow patterns
+• Detecting precision mismatches
+• Identifying algorithm flow differences
+
+Applying Fixes For:
+- Module structure errors
+- Array vs scalar mismatches
+- Missing INTENT specifications
+- Dependency declarations
+- Thread safety violations"""
+            else:
+                output = f"""Modernization In Progress...
+
+Current Status: Converting {func_name} from F77 to F90
+Model: OpenAI o3-mini processing
+
+Modernization Rules Being Applied:
+• Error Handling Philosophy:
+  - Removing all XERMSG/J4SAVE calls
+  - Eliminating error stops
+  - Implementing sensible defaults
+• Thread Safety Enforcement:
+  - Removing SAVE statements
+  - Eliminating global state
+  - Ensuring call independence
+• Module Structure:
+  - Creating {func_name.lower()}_module
+  - One function per module
+  - PUBLIC/PRIVATE declarations
+• Precision Modernization:
+  - Analyzing type requirements
+  - Applying ISO_FORTRAN_ENV
+  - Preserving F77 precision semantics
+
+Input Analysis:
+- Original {func_name}.f source code
+- 130 generated test cases
+- Function dependencies identified
 
 Target: Modern F90 module with pure function interface"""
             
@@ -292,15 +411,27 @@ Test Categories:
 ✓ Boundary conditions: 25/25 passed
 ✓ Special cases: 25/25 passed
 
+Advanced Validation Features Used:
+- Adaptive Comparison: ULP mode for 85 tests, relative for 45 tests
+- Intelligent Test Skipping: 3 NaN tests auto-skipped (would cause infinite loop)
+- Error Pattern Analysis: No patterns detected - all clean
+- Numerical Stability: Condition number < 1e-10 (excellent)
+
+Comparison Modes Applied:
+• ULP (Units in Last Place): Used for simple arithmetic (±2 ULPs)
+• Relative Tolerance: Applied to transcendental results (1e-12)
+• Adaptive Selection: Auto-selected based on value magnitudes
+
 Performance Comparison:
 - F77 Average: 0.234 μs per call
 - F90 Average: 0.229 μs per call
 - Performance Gain: 2.1%
 
-Numerical Accuracy: EXCELLENT
-- All results within machine epsilon
-- No overflow or underflow detected
-- Iterative convergence maintained
+Numerical Analysis:
+- Maximum ULP distance: 2 (excellent)
+- Relative error distribution: 98% < 1e-15, 2% < 1e-14
+- No catastrophic cancellation detected
+- IEEE compliance: Full NaN/Inf handling verified
 
 The modernized function is ready for production use!"""
             else:
@@ -319,25 +450,44 @@ Improvement from Previous Iteration:
 - Current: {int(pass_rate * 100)}% pass rate  
 - Progress: +{int(0.16 * 100)}% improvement
 
-Remaining Issues:
-═══════════════
-⚠ Precision mismatch (7 tests)
+Error Pattern Analysis:
+═══════════════════════
+⚠ LARGE_REL_ERROR (7 tests) - Algorithm divergence
   - Expected: 1.41421356237309504880
   - Actual:   1.41421356237309482881
-  - Error: 2.2e-14 (slightly above tolerance)
+  - Error: 2.2e-14 (ULP distance: 4)
+  - Pattern: Accumulation in iterative loop
 
-⚠ Boundary condition handling (5 tests)
-  - Large value combinations
-  - Need improved overflow protection
+⚠ INFINITY_HANDLING (5 tests) - Overflow differences  
+  - Large value combinations near IEEE limits
+  - F77 scales earlier than F90 version
+  - Max input causing issue: 1.7e308
 
-⚠ Algorithm convergence (3 tests)  
-  - Slow convergence for extreme ratios
-  - Consider iteration limit adjustment
+⚠ SIGN_DIFF (3 tests) - Sign handling logic
+  - Occurs with mixed negative inputs
+  - F77 preserves sign, F90 returns absolute
 
-Recommended Fixes:
-1. Increase precision in intermediate calculations
-2. Enhance overflow detection
-3. Adjust convergence criteria"""
+Intelligent Test Skipping Applied:
+- 2 tests with both NaN inputs (would hang PYTHAG)
+- 1 test with Inf input (undefined behavior)
+
+Automatic Fix Suggestions:
+1. LARGE_REL_ERROR: Check iteration counts and convergence criteria
+   - Suggested: Match F77's convergence test exactly
+   - Look for: "if (t == 4.0)" vs "if (abs(t-4.0) < eps)"
+
+2. INFINITY_HANDLING: Review scaling algorithms  
+   - Suggested: Add pre-scaling for inputs > 1e150
+   - Check: Overflow protection before squaring
+
+3. SIGN_DIFF: Review sign handling logic
+   - Suggested: Check if F90 is missing sign preservation
+   - Look for: Missing sign() function calls
+
+Comparison Modes Used:
+• Failed tests used ULP comparison (stricter)
+• Adaptive mode would have passed 3 more tests
+• Consider context-specific tolerances"""
                 else:
                     output = f"""Initial Validation Results
 
@@ -345,28 +495,50 @@ Results: {passed_tests}/130 tests PASSED ({int(pass_rate*100)}%)
 Failed: {failed_tests} tests  
 Status: Requires refinement
 
-Failed Test Analysis:
-═══════════════════
-⚠ Precision Issues (15 tests)
+Error Pattern Analysis (Automatic):
+══════════════════════════════════
+⚠ SMALL_NUM (15 tests) - Minor numerical differences
   - F77 result: 2.6457513110645906
   - F90 result: 2.6457513110645901  
-  - Relative error: 1.9e-15
-  - Tolerance: 1.0e-15
+  - ULP distance: 1-2 (very close)
+  - Pattern: Floating-point operation ordering
 
-⚠ Large Value Handling (12 tests)
-  - Input values near overflow threshold
-  - F77 handles better than initial F90 version
+⚠ ZERO_NONZERO (12 tests) - Algorithm logic differences
+  - F77 returns: 0.0 for edge cases
+  - F90 returns: Small non-zero (1e-16)
+  - Pattern: Missing special case handling
 
-⚠ Edge Cases (8 tests)
-  - Zero input combinations
-  - Very small value handling
+⚠ NAN_HANDLING (8 tests) - IEEE arithmetic differences
+  - F77: No NaN checks (may crash/hang)
+  - F90: Returns NaN (safer but different)
+  - Pattern: Modern IEEE compliance
 
-Common Patterns:
-- Most errors in extreme input ranges
-- Algorithm differences in convergence criteria
-- Need better numerical stability
+Intelligent Test Management:
+- Auto-skipped: 3 problematic NaN tests
+- Test categories: Boundary (35%), Normal (40%), Stress (25%)
+- Comparison modes: ULP (60%), Relative (30%), Adaptive (10%)
 
-Next Steps: Refinement iteration recommended"""
+Automatic Fix Suggestions Generated:
+1. SMALL_NUM errors:
+   - Add: use, intrinsic :: ieee_arithmetic
+   - Match F77's operation order exactly
+   - Consider: Are you using FMA instructions?
+
+2. ZERO_NONZERO errors:
+   - Check: Special handling for zero inputs
+   - Add: if (abs(result) < tiny(result)) result = 0.0
+
+3. NAN_HANDLING errors:
+   - Decision needed: Match F77 or improve safety?
+   - If matching: Remove IEEE checks
+   - If improving: Document behavior change
+
+Numerical Stability Analysis:
+- Condition number: 1.2e-14 (good)
+- Error growth rate: Linear (stable)
+- No catastrophic cancellation detected
+
+Next Steps: Apply suggested fixes for refinement"""
         else:
             # Show validation in progress
             output = """Validation In Progress...
@@ -374,54 +546,112 @@ Next Steps: Refinement iteration recommended"""
 Current Status: Running comparative tests
 Progress: Testing numerical accuracy
 
-Test Execution:
+Test Execution Pipeline:
 1. ✓ Compiling F77 reference version
 2. ✓ Compiling F90 modernized version  
-3. ◦ Running 130 test cases
-4. ◦ Comparing numerical results
-5. ◦ Analyzing accuracy differences
+3. ◉ Intelligent Test Filtering
+   - Skipping 3 NaN tests (would hang)
+   - Running 127 valid test cases
+4. ◉ Adaptive Comparison System
+   - Selecting comparison mode per test
+   - ULP mode for simple arithmetic
+   - Relative mode for complex results
+5. ◉ Error Pattern Analysis
+   - Categorizing failures in real-time
+   - Generating fix suggestions
 
 Current Test: 45/130
-- Basic functionality: PASSED
-- Boundary conditions: In progress...
-- Edge cases: Pending
-- Performance: Pending
+Test Type: Boundary condition (large values)
+Comparison Mode: ULP (±4 units tolerance)
 
-Tolerance Checking: ±1.0e-15 relative error
-Error Analysis: Active"""
+Real-time Analysis:
+- Tests passed: 38
+- Tests failed: 7 
+- Error types detected: SMALL_NUM (5), ZERO_NONZERO (2)
+- Numerical stability: Monitoring...
+
+Advanced Features Active:
+✓ Intelligent test skipping
+✓ Multi-mode comparison
+✓ Pattern recognition
+✓ Fix suggestion engine
+◉ Statistical analysis running...
+
+Tolerance Strategy:
+- Default: ±1.0e-15 relative
+- ULP mode: ±2-4 units
+- Adaptive: Context-aware selection"""
             
         self.output_text.setPlainText(output)
         
     def _show_queue_output(self):
         """Show queue information"""
-        self.title_label.setText("Processing Queue")
+        self.title_label.setText("Queue Management System")
         
-        output = """Function Processing Queue
+        output = """Queue Management & Function Tracking
 
-Current Status: PYTHAG ready for processing
+Current Status: PYTHAG queued for processing
 
-Queue Information:
+Function Tracking:
 ═════════════════
-Function: PYTHAG
-Source: src/PYTHAG.f  
-Type: Mathematical utility function
-Dependencies: None (standalone)
-Complexity: Level 0 (Trivial)
-Priority: Standard
+Total Functions in SLATEC: 1,427
+Functions Processed: 0
+Remaining in Queue: 1,427
+Current Function: PYTHAG (Position #1)
 
-Function Analysis:
-- Pure mathematical computation
-- No external dependencies  
-- No I/O operations
-- Well-defined algorithm
-- Suitable for modernization
+Queue Statistics:
+════════════════
+Zero-dependency functions: 89 (immediate processing candidates)
+Level 1 dependencies: 234 (blocked by 1-2 functions)
+Level 2 dependencies: 567 (moderately complex chains)
+Complex dependencies: 537 (deep dependency chains)
 
-Estimated Processing Time: 2-5 minutes
-- Test generation: 30 seconds
-- Modernization: 45 seconds  
-- Validation: 1-2 minutes
-- Potential refinement: +2 minutes
+Processing Reports:
+══════════════════
+Functions completed successfully: 0
+Functions needing refinement: 0
+Functions with compilation errors: 0
+Functions skipped (dependency issues): 0
 
-Ready to begin processing..."""
+Current Function Analysis Complete:
+• Dependency analysis: ✓ (0 dependencies found)
+• Complexity analysis: ✓ (Level 0 - Trivial)
+• Priority calculation: ✓ (Score: 250, Rank #1)
+
+Next Action: Begin test generation for PYTHAG
+Estimated queue processing time: 3-6 months (parallel processing)
+
+System Ready: All analyzers operational"""
+        
+        self.output_text.setPlainText(output)
+        
+    def _show_output_output(self):
+        """Show final output stage information"""
+        self.title_label.setText("Modernization Complete")
+        
+        output = """PYTHAG Modernization Complete!
+
+Final Report:
+════════════
+✓ Modernization: SUCCESS
+✓ Validation: 130/130 tests passed
+✓ Performance: 2.1% improvement over F77
+
+Generated Files:
+═══════════════
+📄 pythag_module.f90 - Modern F90 implementation
+📊 pythag_validation.json - Test results
+
+Key Improvements:
+════════════════
+• Module structure with explicit interfaces
+• Thread-safe (no global state)
+• Pure function optimization
+• IEEE arithmetic compliance
+
+Ready for Use:
+═════════════
+gfortran -c pythag_module.f90
+use pythag_module, only: pythag"""
         
         self.output_text.setPlainText(output)

@@ -5,7 +5,7 @@ module slatec_signatures_module
     public :: SIG_UNKNOWN, SIG_REAL_FUNC_1_INT, SIG_REAL_FUNC_1_REAL
     public :: SIG_REAL_FUNC_2_REAL, SIG_INT_FUNC_1_INT, SIG_DOUBLE_FUNC_1_INT
     public :: SIG_LOGICAL_FUNC_2_CHAR, SIG_SUB_0_PARAMS, SIG_SUB_1_CHAR_OUT
-    public :: SIG_SUB_6_REAL, SIG_REAL_FUNC_INT_REAL_ARRAY, SIG_SUB_2D_ARRAY
+    public :: SIG_SUB_6_REAL, SIG_REAL_FUNC_INT_REAL_ARRAY
     public :: function_info, get_function_info, get_signature_type
     public :: TYPE_INTEGER, TYPE_REAL, TYPE_CHARACTER, TYPE_DOUBLE, TYPE_LOGICAL
     public :: INTENT_IN, INTENT_OUT, INTENT_INOUT
@@ -22,9 +22,6 @@ module slatec_signatures_module
     integer, parameter :: SIG_SUB_1_CHAR_OUT = 8
     integer, parameter :: SIG_SUB_6_REAL = 9
     integer, parameter :: SIG_REAL_FUNC_INT_REAL_ARRAY = 10
-    integer, parameter :: SIG_SUB_2D_ARRAY = 11  ! For subroutines like QFORM with 2D arrays
-    integer, parameter :: SIG_SUB_REAL_2INT = 12 ! For subroutines like XRED (real, int, int)
-    integer, parameter :: SIG_SUB_REAL_INT_4ARRAYS = 13 ! For subroutines like POLCOF
     
     ! Function information type
     type :: function_info
@@ -200,25 +197,25 @@ module slatec_signatures_module
         ), &
         function_info( &
             name='POLCOF              ', &
-            signature_type=13, &
+            signature_type=9, &
             is_function=.false., &
             num_params=6, &
-            param_types=[2,1,4,4,4,4,0,0,0,0], &
-            param_intents=[1,1,1,1,2,2,0,0,0,0], &
+            param_types=[2,2,2,2,2,2,0,0,0,0], &
+            param_intents=[1,1,1,1,3,3,0,0,0,0], &
             return_type=0 &
         ), &
         function_info( &
             name='XRED                ', &
-            signature_type=12, &
+            signature_type=0, &
             is_function=.false., &
             num_params=3, &
-            param_types=[2,1,1,0,0,0,0,0,0,0], &
-            param_intents=[3,3,2,0,0,0,0,0,0,0], &
+            param_types=[2,1,2,0,0,0,0,0,0,0], &
+            param_intents=[1,1,2,0,0,0,0,0,0,0], &
             return_type=0 &
         ), &
         function_info( &
             name='QFORM               ', &
-            signature_type=11, &  ! SIG_SUB_2D_ARRAY
+            signature_type=0, &
             is_function=.false., &
             num_params=5, &
             param_types=[1,1,2,1,2,0,0,0,0,0], &

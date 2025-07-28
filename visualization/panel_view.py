@@ -8,7 +8,7 @@ from PyQt6.QtWidgets import (QWidget, QHBoxLayout, QVBoxLayout, QLabel,
 from PyQt6.QtCore import (Qt, QPropertyAnimation, QPoint, QEasingCurve, 
                          QParallelAnimationGroup, QSequentialAnimationGroup,
                          pyqtSignal, QTimer, pyqtProperty)
-from PyQt6.QtGui import QPainter, QColor, QFont, QPalette
+from PyQt6.QtGui import QColor, QFont, QPalette
 from typing import Dict, List, Optional
 import math
 
@@ -47,10 +47,6 @@ class FunctionCard(QWidget):
         self.name_label.setFont(font)
         layout.addWidget(self.name_label)
         
-        # Progress bar (custom painted)
-        self.progress_widget = QWidget()
-        self.progress_widget.setFixedHeight(4)
-        layout.addWidget(self.progress_widget)
         
         # Iteration label (shown above status when applicable)
         self.iteration_label = QLabel("")
@@ -104,21 +100,21 @@ class FunctionCard(QWidget):
         # Update status label
         if self.pass_rate > 0 and self.pass_rate < 1.0:
             self.status_label.setText(f"{int(self.pass_rate*100)}% tests passed")
-        elif self.status == "success" and self.panel_name == "Validate":
+        elif self.status == "success" and self.panel_name == "Validation":
             self.status_label.setText("100% tests passed")
         elif self.status == "success" and self.panel_name == "Test Generation":
             self.status_label.setText("130 test cases generated")
-        elif self.status == "success" and self.panel_name == "Modernize":
-            self.status_label.setText("Modernized F90 code generated")
+        elif self.status == "success" and self.panel_name == "Modernization":
+            self.status_label.setText("F90 code generated")
         elif self.status == "error":
             self.status_label.setText("Failed")
         elif self.status == "active" and self.panel_name == "Test Generation":
             self.status_label.setText("Generating test cases...")
-        elif self.status == "active" and self.panel_name == "Modernize":
+        elif self.status == "active" and self.panel_name == "Modernization":
             self.status_label.setText("Modernizing function code...")
-        elif self.status == "refining" and self.panel_name == "Modernize":
+        elif self.status == "refining" and self.panel_name == "Modernization":
             self.status_label.setText("Refining function code...")
-        elif self.status == "active" and self.panel_name == "Validate":
+        elif self.status == "active" and self.panel_name == "Validation":
             self.status_label.setText("Validating...")
         else:
             self.status_label.setText("")
@@ -145,23 +141,6 @@ class FunctionCard(QWidget):
         self.iteration = iteration
         self.update_appearance()
         
-    def paintEvent(self, event):
-        """Custom paint for progress bar"""
-        super().paintEvent(event)
-        
-        if self.progress > 0:
-            painter = QPainter(self)
-            painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-            
-            # Draw progress bar
-            progress_rect = self.progress_widget.rect()
-            progress_width = int(progress_rect.width() * self.progress / 100)
-            
-            painter.fillRect(progress_rect.x(), 
-                           progress_rect.y() + self.progress_widget.y(),
-                           progress_width, 
-                           progress_rect.height(),
-                           QColor(COLORS['success']))
             
     def mousePressEvent(self, event):
         """Handle mouse clicks"""
@@ -209,7 +188,8 @@ class ProcessPanel(QFrame):
         """)
         
         layout = QVBoxLayout()
-        layout.setSpacing(8)
+        layout.setSpacing(4)  # Reduced spacing
+        layout.setContentsMargins(0, 0, 0, 0)  # No margins inside panel
         
         # Header
         header_text = self.name if not self.icon else f"{self.icon} {self.name}"
@@ -218,7 +198,7 @@ class ProcessPanel(QFrame):
         header.setStyleSheet(f"""
             QLabel {{
                 background-color: {COLORS['surface_light']};
-                padding: 8px;
+                padding: 4px 8px;
                 border-radius: 4px;
                 font-weight: bold;
                 font-size: 14px;
@@ -241,7 +221,8 @@ class ProcessPanel(QFrame):
         self.card_container = QWidget()
         self.card_layout = QVBoxLayout()
         self.card_layout.setSpacing(4)
-        self.card_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.card_layout.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+        self.card_layout.setContentsMargins(0, 0, 0, 0)
         self.card_container.setLayout(self.card_layout)
         
         scroll.setWidget(self.card_container)
@@ -284,13 +265,14 @@ class PipelineView(QWidget):
         """Initialize the pipeline UI"""
         layout = QHBoxLayout()
         layout.setSpacing(12)
+        layout.setContentsMargins(6, 6, 6, 6)  # Reduced margins to prevent clipping
         
         # Create panels
         panel_data = [
             ("Queue", ""),
             ("Test Generation", ""),
-            ("Modernize", ""),
-            ("Validate", ""),
+            ("Modernization", ""),
+            ("Validation", ""),
             ("Output", ""),
         ]
         
@@ -298,7 +280,7 @@ class PipelineView(QWidget):
             panel = ProcessPanel(name, icon)
             self.panels[name] = panel
             self.panel_order.append(name)
-            layout.addWidget(panel)
+            layout.addWidget(panel, stretch=1)  # Equal stretch for all panels
             
         self.setLayout(layout)
         

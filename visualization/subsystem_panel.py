@@ -33,22 +33,7 @@ class SubsystemDetailPanel(QWidget):
         diagram_layout = QVBoxLayout()
         diagram_layout.setContentsMargins(0, 0, 0, 0)
         
-        # Diagram title
-        diagram_title = QLabel("System Architecture")
-        diagram_title.setStyleSheet("""
-            QLabel {
-                font-size: 14px;
-                font-weight: bold;
-                color: #FFFFFF;
-                background-color: #444444;
-                padding: 8px;
-                border-radius: 4px;
-                margin-bottom: 5px;
-            }
-        """)
-        diagram_layout.addWidget(diagram_title)
-        
-        # Diagram widget
+        # Diagram widget (no title)
         self.diagram_widget = SubsystemDiagramWidget()
         diagram_layout.addWidget(self.diagram_widget)
         
@@ -59,8 +44,8 @@ class SubsystemDetailPanel(QWidget):
         self.output_widget = OutputDisplayWidget()
         splitter.addWidget(self.output_widget)
         
-        # Set initial splitter sizes (40% diagram, 60% output)
-        splitter.setSizes([400, 600])
+        # Set initial splitter sizes (50% diagram, 50% output)
+        splitter.setSizes([500, 500])
         splitter.setStretchFactor(0, 0)  # Diagram doesn't stretch
         splitter.setStretchFactor(1, 1)  # Output stretches
         
